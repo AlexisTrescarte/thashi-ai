@@ -13,7 +13,7 @@ Ce dossier contient **les 5 routines à créer manuellement dans Claude Desktop*
    ```
 2. **Claude Desktop → Routines → Cloud environments → Add**
    - Name : `trading`
-   - Network access : **Full**
+   - Network access : **Full** (ou allowlist : `paper-api.alpaca.markets`, `data.alpaca.markets`, `api.telegram.org`, `github.com`, `api.github.com`)
    - Variables :
      - `ALPACA_API_KEY`
      - `ALPACA_SECRET_KEY`

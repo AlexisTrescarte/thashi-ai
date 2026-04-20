@@ -4,27 +4,31 @@
 
 ## Latest snapshot
 
-- **Date (UTC)**: _(filled on first run)_
-- **Equity total (USD)**: $—
-- **Cash (USD)**: $—
-- **Positions value**: $—
-- **Cash %**: —
-- **BTC benchmark price**: —
-- **Performance vs BTC since baseline**: —
-- **Regime (crypto)**: —
+- **Date (UTC)**: 2026-04-20T23:10Z
+- **Equity total (USD)**: $97,382.43
+- **Cash (USD)**: $97,382.43
+- **Positions value**: $0.00
+- **Cash %**: 100.0%
+- **BTC benchmark price**: $75,324 (spot, Apr 20)
+- **Performance vs BTC since baseline**: baseline set this run
+- **Regime (crypto)**: neutral (leaning risk-on)
 - **Auto-defense active**: no
+- **Daily loss cap active**: no
+- **Weekly loss cap active**: no
+- **Last daily P&L marker (UTC 00:00)**: pending first 00:00 snapshot
 
 ## Baseline
 
-- **Starting capital**: $— (crypto allocation)
-- **Baseline date (UTC)**: _(first live run)_
-- **BTC baseline**: _(BTC price at baseline)_
+- **Starting capital**: $97,382.43 (crypto allocation, shared account with equities agent)
+- **Baseline date (UTC)**: 2026-04-20T23:10Z
+- **BTC baseline**: $75,324
+- **Note**: Account is shared with Bull-Equities. Crypto agent's book is a slice of total NAV; hard caps (10%/position, 5% cash floor of crypto book, 30% crypto-book-of-total-NAV) enforced at trade time.
 
 ## ATH tracking
 
-- **ATH equity**: $—
-- **ATH date**: —
-- **Current drawdown from ATH**: —%
+- **ATH equity**: $97,382.43
+- **ATH date**: 2026-04-20
+- **Current drawdown from ATH**: 0.0%
 
 ## Open positions
 

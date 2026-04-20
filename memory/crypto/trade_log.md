@@ -22,4 +22,16 @@ Append-only. **Never rewrite** a past entry. Reverse chronological.
 
 ## Entries
 
-_(empty — first run will append here)_
+### 2026-04-20T23:10:12Z — CUT BTC/USD 0.000049999@~75790.80
+- Order ID: 3d292f92-3969-4a6f-9270-8ec74d896c8f
+- Value USD: ~$3.79
+- % NAV at exit: 0.004%
+- Style: orphan dust cleanup
+- CTQS: n/a (inherited position, never CTQS-justified)
+- Catalyst: none
+- Thesis: Residual BTC inherited from legacy equities runs (see learnings 2026-04-20). Never had a documented CTQS, stop, or thesis under Bull-Crypto. Cleaned to establish a flat baseline for the Bull-Crypto namespace.
+- Stop: n/a (never placed)
+- Take-profit: n/a
+- Time stop: n/a
+- Routine: crypto-hourly
+- Notes: Realized P&L ~+$0.13 (+3.69%). First Bull-Crypto action. Book now 100% cash at $97,382.43.

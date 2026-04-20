@@ -1,24 +1,15 @@
-# Journal de recherche
+# Research log — Equities
 
-Append-only. Chaque note de recherche produit **au plus** une idée de trade. Le pre-market rédige, le market-open exécute (ou pas).
+Append-only. Each run's research notes follow the CTQS template from `.claude/skills/research/SKILL.md`.
 
-## Schéma
+## Structure
 
-```
-### YYYY-MM-DDTHH:MM:SSZ — {TICKER} — {verdict: BUY / WATCH / SKIP}
-**Catalyseur** : {une phrase}
-**Sources** :
-- {url 1}
-- {url 2}
-**Thèse** : {3-5 lignes — ce qui doit se passer pour que le trade marche}
-**Risques** : {ce qui casserait la thèse}
-**Plan d'entrée** : {prix max, taille cible en % portfolio, stop}
-**Temps de détention attendu** : {2-10 semaines}
-```
+- **pre-market** runs append a daily plan block (macro regime + week calendar + open positions + new ideas + risks)
+- **intraday-scan** runs append opportunity notes (mid-session ideas)
+- **weekly-review** runs append a weekly outlook block
+- **monthly-deep-review** runs append a monthly macro outlook
 
----
-
-## Notes
+## Entries
 
 ### 2026-04-20T12:20:00Z — CONTEXTE MACRO pre-market
 **Setup** : SPY a cassé 7,100 vendredi (ATH), Nasdaq = plus longue série gagnante depuis 1992. Ceasefire US-Iran du 7 avril fragile, Détroit d'Ormuz "complètement ouvert" → pétrole -10%. CPI mars à +3,3% YoY (chaud, vs 2,4% en février, énergie +12,5%). FOMC 28-29 avril : 99,3% de probabilité de hold (range 3,50-3,75%). Earnings season Q1 : 78% de beats sur 32 rapports, croissance blended attendue 12,5%.
@@ -63,8 +54,8 @@ Append-only. Chaque note de recherche produit **au plus** une idée de trade. Le
 ### 2026-04-20T12:28:00Z — PLAN POUR L'OUVERTURE DU 20 AVRIL (09:30 ET)
 **Ordres à placer aujourd'hui** : **AUCUN BUY**. Environnement ATH + cluster earnings + première journée de tracking du bot → priorité = établir baseline propre et observer.
 **Action prioritaire market-open** :
-1. Noter le prix d'ouverture SPY → baseline benchmark (à consigner dans portfolio.md au market-close).
-2. **Liquider le résidu BTCUSD ($3,76, 0,000049999 BTC)** : position crypto interdite par guardrails.md (§"Interdit : options, crypto..."). Ordre SELL market sur BTCUSD. Même si montant négligeable, la règle est inviolable. Consigner en trade_log.md et learnings.md.
+1. Noter le prix d'ouverture SPY + QQQ → baseline benchmark blend (à consigner dans portfolio.md au market-close).
+2. **Liquider le résidu BTCUSD ($3,76, 0,000049999 BTC)** : position crypto hors-univers equities. Ordre SELL market sur BTCUSD. Même si montant négligeable, la règle est inviolable. Consigner en trade_log.md et learnings.md.
 3. Surveiller réaction STLD (contexte steel/materials plus large).
 **Ordres conditionnels pour plus tard cette semaine** :
 - **GEV** : WATCH, pas d'ordre avant 22 avril post-earnings. Si beat et pas de bull-trap, starter 3% (~$2,900), trailing 10%.

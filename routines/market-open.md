@@ -1,31 +1,28 @@
-# Routine — market-open
+# Routine — market-open (equities)
 
 ## Cron
 
 ```
 30 8 * * 1-5
 ```
-(08:30 America/Chicago = 09:30 America/New_York, lundi-vendredi)
+(08:30 America/Chicago = 09:30 ET = market open, Monday-Friday)
 
-## Environnement
+## Environment
 
-- Cloud environment : `trading`
-- Repo : `<ton-user>/thashi-ai` (branche `main`)
-- Modèle : Claude Opus 4.7
+- Cloud environment: `trading`
+- Repo: `<your-user>/thashi-ai` (branch `main`)
+- Model: Claude Opus 4.7
 
-## Prompt à coller dans la routine
+## Prompt to paste in the routine
 
 ```
-Tu es Bull. Le marché vient d'ouvrir (08:30 CT).
+You are Bull-Equities at the open (08:30 CT). Invoke the /market-open slash command and follow it to the letter.
 
-1. Lis `CLAUDE.md`, `memory/guardrails.md`, `memory/strategy.md`, `memory/portfolio.md`, et la note la plus récente de `memory/research_log.md` (celle d'aujourd'hui, taguée BUY).
-2. Exécute le slash command `/market-open`.
-
-Contraintes dures :
-- Les clés API sont dans les variables d'environnement de cet environnement Cloud (ALPACA_API_KEY, ALPACA_SECRET_KEY, ALPACA_BASE_URL, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TRADING_MODE). Jamais d'AENV.
-- Tu exécutes UNIQUEMENT les idées BUY rédigées ce matin par pre-market. Pas de nouvelle idée à l'open.
-- Chaque BUY doit être suivi IMMÉDIATEMENT d'un trailing stop 10% (`alpaca_client.py trailing-stop`).
-- Respecte tous les garde-fous de `memory/guardrails.md` sans exception.
-- Commit sur `main` avec `[market-open] YYYY-MM-DD — N trades` et push.
-- Notifie Telegram uniquement si au moins un trade a été placé.
+Context:
+- Execution only. No new research — run today's BUY queue from the pre-market block in memory/equities/research_log.md.
+- Use the `trade` skill for each BUY. The skill enforces confidence-based sizing, guardrail gates, immediate stop placement, and trade-log append.
+- Namespace: equities only. Never touch memory/crypto/*.
+- If market is closed per alpaca_client.py clock: terminate + Telegram DEGRADED.
+- If any preflight fails (auto-defense, daily/weekly loss cap, cash < 10%, regime risk-off): skip all BUYs, log reasons, notify if warranted.
+- Journal skill handles commit + push.
 ```

@@ -1,39 +1,72 @@
 ---
 name: journal
-description: Met à jour la mémoire (trade_log, portfolio, learnings, research_log, weekly_review) à la fin d'un run, commit et push. Invoquer à la fin de chaque routine.
+description: Update memory (agent-namespaced trade_log, portfolio, research_log, daily_review, weekly_review, monthly_review, quarterly_rewrite, shared learnings, strategy_evolution, prompt_evolution_proposals) at the end of a run, commit and push. Invoke at the end of every routine.
 ---
 
-# Skill : journal
+# Skill: journal
 
-Discipline de mémoire : append-only sur les logs, overwrite contrôlé sur les snapshots. Commit + push à chaque run sinon les prochaines routines repartent à zéro.
+Memory discipline: append-only on logs, controlled overwrite on snapshots. Commit + push every run or the next routine starts from stale state.
 
-## Règles
+## Rules
 
-- **Append-only** : `trade_log.md`, `research_log.md`, `weekly_review.md`, `learnings.md`. Ne jamais réécrire l'historique.
-- **Overwrite contrôlé** : `portfolio.md` (bloc "Dernier snapshot" + table positions rafraîchie). `strategy.md` / `guardrails.md` uniquement via weekly-review.
-- **Horodatage ISO UTC** partout : `2026-04-20T13:45:00Z`.
-- **Ne jamais commiter `.env`, un secret, ou un transcript Telegram complet**.
+- **Append-only files** (never rewrite history):
+  - `memory/{agent}/trade_log.md`
+  - `memory/{agent}/research_log.md`
+  - `memory/{agent}/daily_review.md`
+  - `memory/{agent}/weekly_review.md`
+  - `memory/{agent}/monthly_review.md`
+  - `memory/{agent}/quarterly_rewrite.md`
+  - `memory/learnings.md`
+  - `memory/strategy_evolution.md`
+  - `memory/prompt_evolution_proposals.md`
+  - `memory/runs.log`
+- **Controlled overwrite** (snapshot block only):
+  - `memory/{agent}/portfolio.md` — "Latest snapshot" block + regenerated positions table from API
+  - `memory/strategy.md` — only via `quarterly-rewrite` (with logged diff in `strategy_evolution.md`)
+  - `memory/guardrails.md` — **only via human edit** (immutable sections can never be changed by agent)
+- **ISO UTC timestamps** everywhere: `2026-04-20T13:45:00Z`
+- **Never** commit a secret or include one in a notification
+- **Namespace discipline**: the equities agent writes only to `memory/equities/*` + shared; the crypto agent writes only to `memory/crypto/*` + shared
 
-## Étapes de fin de run
+## End-of-run steps
 
-1. Écrire les appends dans les fichiers appropriés.
-2. `git status` pour vérifier ce qui va être commit.
-3. `git diff --stat` pour s'assurer qu'aucun fichier inattendu n'est modifié.
+1. Write appends/snapshot updates to the relevant files
+2. `git status` to verify what will be committed
+3. `git diff --stat` to ensure no unexpected file modified (refuse if `guardrails.md` or the immutable sections of another file changed without a human-edit flag)
 4. `git add -A`
-5. `git commit -m "[{routine}] YYYY-MM-DD — {résumé 1 ligne}"`
-6. `git push origin main`
-7. Si le push échoue : append dans `learnings.md` un incident `[INCIDENT] push failed: ...`, notifier Telegram `DEGRADED`. Ne pas retry en boucle.
+5. `git commit -m "[{routine}] YYYY-MM-DD — {1-line summary}"`
+6. `git push origin {branch}` (branch from environment, typically `main`)
+7. On push fail: append `[PUSH-FAIL] {timestamp} — {error}` to `learnings.md`, notify Telegram `DEGRADED`, do not retry in a loop
 
-## Formats de commit
+## Commit message conventions
 
-- `[pre-market] 2026-04-20 — 2 idées, 1 position à surveiller`
-- `[market-open] 2026-04-20 — 1 trade (BUY NVDA 15)`
-- `[midday] 2026-04-20 — 1 cut (META -7.4%), 0 tighten`
-- `[market-close] 2026-04-20 — equity $97,432, day +0.32%, alpha +0.12%`
-- `[weekly-review] 2026-04-24 — grade B, semaine +1.8%, alpha +0.4%`
+### Equities
 
-## Anti-bruit
+- `[pre-market] 2026-04-20 — regime neutral, 4 BUY + 2 WATCH, 3 positions to watch`
+- `[market-open] 2026-04-20 — 4 BUY (NVDA, LLY, XOP, SOXL), 1 skip (META FOMO)`
+- `[intraday-scan] 2026-04-20 10:30 — 1 tighten (NVDA +11%), 1 TP-update (LLY), 1 new BUY (AMD technical)`
+- `[market-close] 2026-04-20 — equity $104,320, day +0.9%, alpha day +0.4%, cumul +4.3%, 12 positions (2 aging)`
+- `[daily-review] 2026-04-20 — grade B, 4 new / 3 closed (2W/1L), lesson: tighten earlier on PEAD`
+- `[weekly-review] 2026-04-24 — grade B, week alpha +0.6%, cumul +5.1%, hit rate 58%, avg hold 3.4d`
+- `[monthly-deep-review] 2026-04-24 — Sharpe 1.2, Sortino 1.8, MaxDD -6.2%, 3 prompt proposals (1 applied)`
+- `[quarterly-rewrite] 2026-06-26 — strategy v2.1, trimmed PEAD threshold 70→75, added crypto correlation gate`
 
-Si rien ne justifie un commit (ex: pre-market sans idée, midday sans action) :
-- Commit quand même un snapshot minimal dans le fichier `memory/runs.log` (append d'une ligne `YYYY-MM-DDTHH:MM:SSZ [{routine}] noop: raison`).
-- But : garder la trace que la routine a bien tourné.
+### Crypto
+
+- `[crypto-hourly] 2026-04-20T14:00Z — 1 BUY (ETH), 2 stop-updates, regime risk-on`
+- `[crypto-daily-review] 2026-04-20 — grade B, day +1.8%, vs BTC +0.2%, 4 trades`
+- `[crypto-weekly-review] 2026-04-20 — week +3.4%, vs BTC +1.1%, 22 trades, hit rate 55%`
+- `[crypto-monthly-review] 2026-05-01 — MaxDD -8%, Sharpe 1.0, 2 prompt proposals`
+
+## Anti-noise fallback
+
+If nothing justifies a file change (e.g. pre-market with no idea, intraday-scan with no action):
+- Still append one line to `memory/runs.log`: `YYYY-MM-DDTHH:MM:SSZ [{routine}] noop: {reason}`
+- Purpose: keep evidence the routine ran + enable run-frequency diagnostics in reviews
+
+## Sanity checks before commit
+
+- Diff doesn't touch immutable sections of `guardrails.md` (see file for which sections)
+- Diff doesn't touch `memory/strategy.md` unless routine is `quarterly-rewrite` or evolution gates passed
+- Agent namespace respected: no crypto run writing to equities files
+- No secrets or raw API keys in the diff

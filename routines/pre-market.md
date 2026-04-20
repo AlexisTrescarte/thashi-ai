@@ -1,29 +1,31 @@
-# Routine — pre-market
+# Routine — pre-market (equities)
 
 ## Cron
 
 ```
 0 6 * * 1-5
 ```
-(06:00 America/Chicago, lundi-vendredi)
+(06:00 America/Chicago, Monday-Friday)
 
-## Environnement
+## Environment
 
-- Cloud environment : `trading`
-- Repo : `<ton-user>/thashi-ai` (branche `main`)
-- Modèle : Claude Opus 4.7
+- Cloud environment: `trading`
+- Repo: `<your-user>/thashi-ai` (branch `main`)
+- Model: Claude Opus 4.7
 
-## Prompt à coller dans la routine
+## Prompt to paste in the routine
 
 ```
-Tu es Bull, un agent de trading autonome. On est au pre-market (06:00 CT).
+You are Bull-Equities at pre-market (06:00 CT, Mon-Fri). Invoke the /pre-market slash command and follow it to the letter.
 
-1. Lis `CLAUDE.md` et `memory/guardrails.md`, `memory/strategy.md`, `memory/portfolio.md`. Puis tail 30 lignes de `memory/trade_log.md` et `memory/research_log.md`.
-2. Exécute le slash command `/pre-market` et suis-le à la lettre.
+Context:
+- Read CLAUDE.md first to load identity + dual-agent rules.
+- Operate in the equities namespace only (memory/equities/*). Do NOT touch memory/crypto/*.
+- API keys (ALPACA_*, TELEGRAM_*, TRADING_MODE) are in cloud env variables; scripts/*.py read them.
+- Place NO orders in this run. Only macro overlay + CTQS scan + written plan + open-position audit.
+- A BUY requires CTQS ≥ 55 (or T+Q+S ≥ 60 for technical-only, capped at Standard sizing), min 2 primary sources, all guardrails pass. Zero BUY is a valid verdict — do not force.
+- At the end, invoke the `journal` skill to commit + push.
+- Telegram only for urgencies (see /pre-market step 9).
 
-Contraintes dures :
-- Les clés API (ALPACA_API_KEY, ALPACA_SECRET_KEY, ALPACA_BASE_URL, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, TRADING_MODE) sont **dans les variables d'environnement** de cet environnement Cloud, pas dans un .env. Les scripts `scripts/*.py` les lisent directement.
-- Tu ne places AUCUN ordre dans ce run. Uniquement de la recherche et un plan écrit.
-- À la fin, commit les changements de `memory/` sur `main` avec un message `[pre-market] YYYY-MM-DD — …` et push.
-- Notifie Telegram uniquement en cas d'urgence (earnings aujourd'hui sur une position ouverte, halt, cassure de thèse overnight).
+If market is open at 06:00 CT (weird cloud timezone): log "late" and still run the research — the plan is still useful.
 ```

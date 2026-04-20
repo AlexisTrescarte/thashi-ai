@@ -34,3 +34,8 @@ Append-only. Ce que Bull découvre d'utile pour les runs futurs : leçons de tra
 **Contexte** : Le plan pre-market demandait également de liquider le résidu BTCUSD ($3,77) au market-open. L'instruction utilisateur de ce run limite l'exécution aux **BUY uniquement**, ce qui exclut un SELL crypto. Tension entre pre-market (priorité = clore le résidu hors-univers) et scope du run (BUY only).
 **Ce que j'en tire** : La contrainte utilisateur prime sur la note pre-market pour ce run. Le résidu BTCUSD reste ouvert ; il n'affecte ni le cash (99,996%) ni l'exposition (0,004% du portefeuille). À reprendre dès qu'un run autorise une action SELL (midday, market-close, ou instruction explicite).
 **Action** : Résidu BTCUSD reporté. Le prochain run autorisé à vendre doit traiter ce reste en priorité avant toute nouvelle ouverture.
+
+### 2026-04-20T17:02:30Z — LESSON
+**Contexte** : Run `midday` du 20 avril 2026. Marché ouvert (13:02 ET). Seule position = résidu BTCUSD (qty 0,000049999, unrealized_plpc +3,19%). Équité $97,382.42 vs last_equity $97,382.51 → day change ~0,00%. Aucune autre position actions US.
+**Ce que j'en tire** : Règles midday strictes (instruction utilisateur explicite) : cut à -7%, tighten à +15%, sinon rien. BTC à +3,19% ne déclenche ni cut ni tighten. Pas de daily loss cap (loin des -2%). No-op conforme. Le résidu BTCUSD reste donc ouvert pour un run ultérieur autorisé à liquider hors-univers.
+**Action** : Aucun ordre. Pas de notification Telegram (règle midday : uniquement si ≥1 action). Commit no-op pour trace.

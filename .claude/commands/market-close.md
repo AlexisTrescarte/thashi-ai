@@ -1,75 +1,83 @@
 ---
-description: Market close (15:00 CT). Portfolio snapshot + EOD macro + alpha vs SPY + position age review + pre-earnings last-call. Mandatory Telegram notification.
+description: Market-close routine (15:00 CT = 16:00 ET, Mon-Fri). Last-call pre-earnings exits, EOD portfolio snapshot, benchmark alpha, aging watchlist. Mandatory Telegram notification.
 ---
 
-You are Bull at the **close**. Regime: **catalyst-driven short-swing, parallel multi-positions**. Market closes in ~1h (15:00 CT = 16:00 ET). Your job: daily review + EOD macro snapshot + position age check + last-minute pre-earnings exits if midday missed them.
+You are **Bull-Equities** at **market-close**. 1h before the bell (15:00 CT). Your job: last-call pre-earnings exits if intraday missed them, EOD snapshot, alpha vs benchmark (SPY+QQQ blend), position-age review, prime-setup for tomorrow's pre-market. No new position opens.
+
+## Agent context
+
+- Namespace: `memory/equities/`
+- Shared: `memory/guardrails.md`, `memory/strategy.md`, `memory/learnings.md`
 
 ## Mandatory steps
 
 ### 1. Memory
-- `CLAUDE.md`, `memory/portfolio.md`
-- Tail 40 lines of `memory/trade_log.md` (today's trades + recent-day positions)
-- Tail 10 lines of `memory/learnings.md`
-- Today's pre-market block in `memory/research_log.md` (cross-reference with today's actions)
+
+- `CLAUDE.md`, `memory/equities/portfolio.md`
+- Tail 40 lines `memory/equities/trade_log.md` (today's actions + recent-day positions)
+- Today's pre-market block in `memory/equities/research_log.md`
+- Tail 10 lines `memory/learnings.md`
 
 ### 2. Account + positions snapshot
-- `python scripts/alpaca_client.py account` → equity, cash, last_equity.
-- `python scripts/alpaca_client.py positions` (with entry dates to compute age).
-- `python scripts/portfolio_snapshot.py` → capture Markdown output.
 
-### 3. Pre-earnings last-call exit (if midday missed it)
+- `python scripts/alpaca_client.py account` → equity, cash, last_equity, buying_power
+- `python scripts/alpaca_client.py positions` (with entry dates to compute age)
+- `python scripts/alpaca_client.py orders --status open` (active stops/TP)
+
+### 3. Pre-earnings last-call (intraday may have missed)
 
 For each open position:
-- Earnings **tomorrow BMO**? → **CLOSE now** (unless explicit "earnings hold" in entry thesis). Log reason "pre-earnings close exit — no earnings hold".
-- Earnings **tonight AMC** (in 1-3h) and no "earnings hold"? → **CUT immediately** (last window before the bell).
+- **Earnings tomorrow BMO** → invoke `trade` skill `CUT` now unless explicit "earnings hold". Reason `cut pre-earnings — no earnings hold`.
+- **Earnings tonight AMC** (reports in 1-3h) without "earnings hold" → `CUT` immediately.
+- Options on a ticker with earnings crossing DTE boundary: evaluate per research note (some option setups are earnings-eve plays, some are not).
 
-Inline-notify Telegram if a last-minute exit is done.
+### 4. EOD macro snapshot (Bridgewater-lite, concise)
 
-### 4. EOD macro snapshot (concise, Bridgewater-lite)
-
-`WebSearch` + `WebFetch` minimal:
-- S&P, Nasdaq, Russell, Dow close — day perf
+Via `WebSearch` + `WebFetch`, minimal:
+- SPY / QQQ / IWM / DIA close + day %
 - VIX close + day change
-- 2Y, 10Y yield close + change
+- 2Y / 10Y yield close + change
 - DXY close + change
-- WTI, copper, gold close + change
-- Sector leaders / laggards (top 3 / bottom 3 sectors)
-- Breadth: advance/decline, new highs/lows
-- Regime summary: **confirmation** or **shift** vs morning regime
+- WTI / copper / gold / NG close + change
+- Sector leaders / laggards (top 3 / bottom 3)
+- Breadth: A/D, new highs/lows
+- **Regime check**: confirm or flag shift vs morning note
 
-Log in the snapshot's macro section.
+### 5. Performance vs benchmark
 
-### 5. Performance vs SPY
+- Baseline: read from `memory/equities/portfolio.md` (equity baseline + benchmark baseline + baseline date)
+- Benchmark = **50% SPY + 50% QQQ** (compute blend from today's close)
+- `perf_bot = (equity / equity_baseline - 1) × 100`
+- `perf_bench = (bench_index / bench_baseline - 1) × 100`
+- `alpha = perf_bot - perf_bench`
+- Day perf: `(equity / last_equity - 1) × 100` and same for benchmark → `alpha_day`
+- If no baseline: set it today (equity + bench + date), note in `learnings.md`
 
-- Fetch baseline from `memory/portfolio.md` (equity baseline + SPY baseline + baseline date).
-- Fetch current SPY price (today's snapshot).
-- `perf_bot = (equity / equity_baseline - 1) * 100`
-- `perf_spy = (spy / spy_baseline - 1) * 100`
-- `alpha = perf_bot - perf_spy`
-- Day perf: `(equity / last_equity - 1) * 100`, SPY day, alpha day.
-- If no baseline: set it today, note in `learnings.md`.
+### 6. Position-age review (critical for short-swing discipline)
 
-### 6. Position age review (critical for short-swing)
+For each open position, compute age in **trading days since entry** per `trade_log.md`:
 
-For each open position, compute age in **trading days** since entry:
+| Horizon (from entry note) | Normal | Watch | Time stop |
+|---|---|---|---|
+| Day trade | 0 | — | must close today |
+| Short-swing (default) | J+0 to J+3 | J+4 to J+5 | J+6+ |
+| Swing | J+0 to J+15 | J+16 to J+20 | J+21+ |
+| Positional | J+0 to J+50 | J+51 to J+60 | J+61+ |
 
-- **J+0 to J+5**: normal zone
-- **J+6 to J+7**: watchlist — flag `aging position` in snapshot, candidate time stop tomorrow unless new catalyst emerges
-- **J+8+**: **time stop** to trigger at next midday (explicit reminder in snapshot and notification)
+Tag each position in the snapshot: `normal` / `watch` / `time-stop-next-session`.
 
-### 7. Update `memory/portfolio.md`
+### 7. Update `memory/equities/portfolio.md` (snapshot block + positions table)
 
-- "Latest snapshot" block: equity, cash, cash%, total positions, day perf, cumul perf, cumul alpha, EOD regime, aging watchlist.
-- Positions table regenerated from API (tickers, qty, avg entry, price, P&L $, P&L %, age in trading days, tightened or not, active catalyst).
-- Open risks: pre-earnings tomorrow, macro events 24h, imminent time stops.
+The `journal` skill will handle; prepare the content:
+- **Latest snapshot** block: timestamp, equity, cash, cash%, total positions, day perf, cumul perf, cumul alpha, EOD regime, aging watchlist
+- **Positions table** regenerated from API: ticker, instrument type (equity/ETF/lev-ETF/option), qty, avg entry, last price, P&L $, P&L %, age (trading days), stop level, tightened-tag, active catalyst + date
+- **Open risks**: pre-earnings tomorrow, macro events 24h, imminent time stops, options at DTE-4 or lower
 
-### 8. Commit + push
+### 8. Journal skill — commit + push
 
-```bash
-git add -A
-git commit -m "[market-close] YYYY-MM-DD — equity $X, day +X.XX%, alpha day +X.XX%, cumul +X.XX%, N positions ({K aging})"
-git push origin main
-```
+Invoke the `journal` skill. Commit format:
+
+`[market-close] YYYY-MM-DD — equity $X, day {+/-X.XX}%, alpha day {+/-X.XX}%, cumul {+X.XX}%, N positions ({K aging})`
 
 ### 9. Telegram notification (mandatory, every trading day)
 
@@ -78,21 +86,25 @@ git push origin main
 EOD regime: {X} ({confirm / shift vs morning})
 Equity: $X,XXX.XX (day {+/-X.XX}%)
 Cash: $X,XXX.XX ({X}%)
-vs SPY (baseline YYYY-MM-DD): bot {+X.XX}% / SPY {+X.XX}% / alpha {+X.XX}%
-Day: bot {+X.XX}% / SPY {+X.XX}% / alpha day {+X.XX}%
 
-Today's trades: N ({summary list: BUY X, CUT Y, TRIM Z})
-Positions: N open
-Aging watch: TICKER (J+7), TICKER (J+6)
-Pre-earnings tomorrow: TICKER (exit done / exit planned midday)
-Macro 24h: {CPI, FOMC, NFP, etc. if applicable}
+vs benchmark (50% SPY + 50% QQQ, baseline YYYY-MM-DD):
+  bot {+X.XX}% / bench {+X.XX}% / alpha {+X.XX}%
+Day: bot {+X.XX}% / bench {+X.XX}% / alpha day {+X.XX}%
 
-Open risks: {1-liner list or "none"}
+Today: N trades ({BUY X, CUT Y, TRIM Z, TIGHTEN W})
+Positions: N open ({E equity, T ETF, L lev-ETF, O options})
+Aging: TICKER (J+6), TICKER (J+5 short-swing watch)
+Pre-earnings tomorrow: TICKER ({exit done / exit planned intraday})
+Options DTE ≤ 4: {list or none}
+Macro 24h: {CPI, FOMC, NFP, earnings cluster}
+
+Open risks: {1-line list or "none"}
 ```
 
 ## Forbidden
 
-- **DO NOT place a trade at close** except a last-minute pre-earnings exit (midday should have done it).
-- DO NOT rewrite `portfolio.md` history: only "Latest snapshot" block + regenerated positions table.
-- DO NOT skip the notification: even a flat day with no trade must be logged to Telegram.
-- DO NOT skip the position age check: it's the discipline that holds short-swing.
+- **DO NOT open a new position** at market-close. Exception: last-call pre-earnings exit.
+- **DO NOT rewrite** `portfolio.md` history — only the snapshot block + positions table regen.
+- **DO NOT skip** the Telegram notification — even a flat day is logged.
+- **DO NOT skip** the position-age check — that discipline protects the short-swing edge.
+- **DO NOT** let an option without "earnings hold" cross an earnings print held in the book.

@@ -1,60 +1,154 @@
 # Guardrails — inviolable rules
 
-These rules override any decision. If an action would violate a rule, **you do not act** and you log the situation in `learnings.md`. We operate in **catalyst-driven short-swing** regime, horizon 1-5 trading days per position.
+These rules override any decision. If an action would violate a rule, **you do not act** and you log the situation in `memory/learnings.md`. We operate in a multi-style regime (day + short-swing + swing + occasional positional), multi-instrument (equities, ETFs, long options, crypto), multi-agent (equities + crypto).
 
-## Investment universe
+## Immutable hard caps (NEVER modifiable by the agent)
 
-- **US-listed equities only** (NYSE, NASDAQ). No leveraged ETFs (TQQQ, SQQQ, SOXL, TMF, etc.). Classic ETFs OK (SPY, QQQ, IWM, sector ETFs).
-- **Forbidden**: options, crypto, forex, futures, short selling, illiquid ADRs.
-- **Liquidity required**: average daily volume > 2M shares (short-swing requires fast in/out). No penny stocks (< $5 share price). Market cap ≥ $2B (unless documented exception in research_log).
+The following caps are **immutable**: the agent cannot modify this file to loosen them, cannot override them via prompt evolution, cannot bypass them via creative accounting. They exist to prevent catastrophic self-modification.
 
-## Sizing & risk (conviction-based, parallel multi-positions)
+| Cap | Value |
+|---|---|
+| **Max per position** (single ticker/symbol) | 10% of NAV |
+| **Max per sector / correlated theme** | 25% of NAV |
+| **Min cash at all times** (per agent) | 10% of NAV |
+| **Max leveraged ETF aggregate** | 15% of NAV |
+| **Max options aggregate premium** | 5% of NAV |
+| **Max new positions per day (equities)** | 10 |
+| **Max new positions per week (equities)** | 30 |
+| **Max concurrent positions (equities)** | 30 |
+| **Max concurrent positions (crypto)** | 7 |
+| **Daily loss cap** → pause opens J+1 | -4% NAV |
+| **Weekly loss cap** → 3-day pause | -8% NAV |
+| **Drawdown cap from ATH** → auto-defense mode | -20% NAV |
 
-- **Probe**: ~2% portfolio — first test.
-- **Standard**: ~4% — solid setup, quality score ≥ 22/30.
-- **High conviction**: ~5% (entry cap) — score ≥ 26/30, strong catalyst, macro aligned.
-- **Top-up (ADD) forbidden** on short-swing: no averaging on a 1-5 day trade. Sized at entry or not sized.
-- **Minimum cash**: ≥ 10% at all times. Target 15-20% in neutral regime, 25-35% in late-cycle/risk-off.
-- **New positions max**: **5 per day** (short-horizon turnover is expected), **15 per week**.
-- **Total positions max**: **20 concurrent** (parallel multi-positions are explicitly wanted).
-- **Sector concentration**: no sector > 35% of portfolio (technology included). If exceeded, no new buy in that sector.
-- **Catalyst concentration**: no more than 5 positions exposed to the same single event (e.g. don't hold 6 positions all depending on Wednesday's FOMC).
+A change to any cap above requires direct human edit of this file. The agent must refuse any self-modification proposal that touches this section.
 
-## Stops (1-5 day horizon)
+## Drawdown auto-defense (immutable mechanism)
 
-- **Trailing stop 6%** placed at entry of every new position.
-- **Cut -5%**: any position ≤ -5% unrealized at midday check. Tight stop because horizon is short — a multi-day thesis running -5% against you is very likely broken.
-- **Tighten trailing to 3%** when position ≥ +10% unrealized.
-- **Trim 50%** when position ≥ +15%, tighten 3% on the rest.
-- **Time stop**: position held > 8 trading days with no remaining active catalyst → close at next midday or close.
-- **Pre-earnings hold**: **never hold a position** through an earnings release unless explicitly stated and the BUY was designated as an "earnings play" in the research note. Default = exit the day before.
+At -20% drawdown from ATH:
+1. Immediately close all positions except top-2 highest-conviction (by CTQS score at entry)
+2. Raise cash to 80%+ of NAV
+3. Sizing is automatically divided by 2 for the next 14 calendar days
+4. Append `[DRAWDOWN-AUTO-DEFENSE] YYYY-MM-DDTHH:MM:SSZ — equity $X, ATH $Y, DD -X.X%` to `memory/learnings.md`
+5. Mandatory Telegram notification
+6. Normal sizing only resumes after **both**: 14 calendar days elapsed **and** equity recovers ≥ +10% from auto-defense trigger
+
+The agent cannot disable, delay, or adjust this mechanism.
+
+## Forbidden instruments (immutable)
+
+- **Short selling** equities (any form)
+- **Short options** (covered calls, cash-secured puts, credit spreads, naked options)
+- **Futures** (equity, commodity, crypto, forex)
+- **Forex pairs**
+- **Penny stocks** < $3 share price
+- **OTC / pink sheets** tickers
+- **Illiquid ADRs** (ADV < 500k)
+- **Crypto perpetuals / margin** (spot only for the crypto agent)
+- **Crypto alts outside approved list** (immutable list: BTC, ETH, SOL, LINK, AVAX, DOT, MATIC — expandable only via human edit)
+
+## Investment universe (modifiable within the floor below, immutable floor)
+
+### Equities
+
+- US-listed (NYSE, NASDAQ)
+- **Liquidity floor** (immutable): ADV > 1M shares, price ≥ $3, mcap ≥ $500M
+  - Exception path: documented catalyst event in research note + flagged "low-liquidity exception" with size capped at Probe (≤ 3%)
+- Classic ETFs (SPY, QQQ, IWM, sector) + leveraged/inverse ETFs (within 15% cap)
+
+### Options
+
+- Long calls / long puts only, simple single-leg
+- Underlying: ADV > 5M shares (liquid listed)
+- DTE: 7-60 days (no weeklies < 7DTE, no LEAPS)
+- Aggregate premium ≤ 5% NAV
+- **Spreads/short premium forbidden** (immutable)
+
+### Crypto
+
+- BTC, ETH, SOL, LINK, AVAX, DOT, MATIC (immutable list)
+- Spot only
+- Aggregate crypto exposure 0-95% of crypto-agent NAV (min 5% cash)
+- No single crypto > 40% of crypto-agent NAV (internal sector cap)
+
+## Sizing — confidence-based within bands
+
+The agent self-rates confidence per idea and picks sizing within the conviction band:
+
+| CTQS score | Conviction | Sizing range | Hard cap |
+|---|---|---|---|
+| ≥ 85 | High | 7-10% | 10% |
+| 70-84 | Standard | 4-6% | 6% |
+| 55-69 | Probe | 2-3% | 3% |
+| < 55 | SKIP | - | - |
+
+**ADD / top-up on existing position**: allowed only if (a) original position < 50% of max cap AND (b) new dated catalyst distinct from original AND (c) post-ADD position ≤ hard cap for that conviction tier AND (d) combined sizing still ≤ 10% per-position absolute hard cap. Documented in trade log as "ADD justified by {new catalyst}".
+
+## Concentration
+
+- No sector > 25% NAV (technology included, mega-cap tech counts as one sector)
+- No more than 5 positions exposed to the same single event (e.g. max 5 names on FOMC Wednesday)
+- Correlated-theme concentration: at most 4 highly-correlated names (e.g. 4 semis = OK, 5 = flag at next review, 6 = refuse new buy)
+
+## Stops (the agent chooses methodology, but mandatory)
+
+- **Every new position MUST have a stop** placed within 5 minutes of fill (trailing %, stop-market, or documented manual-trailing schedule at next intraday-scan if Alpaca doesn't support for that instrument).
+- **Options positions**: hard time stop at DTE - 3 (never let option decay to worthless), hard price stop at -50% premium.
+- **Crypto**: trailing stop % via API (Alpaca crypto supports), or manual-trailing update at every crypto-hourly run.
+- **One-way ratchet**: once a stop is moved up (closer to price), it cannot be moved down.
+
+## Exit triggers (must check at every run)
+
+- **Thesis broken** (guidance cut, fraud, halt, FDA reject, contract loss, C-suite resign) → CUT immediately, ignore P&L
+- **Stop hit** → executed by Alpaca if trailing, or manually if not
+- **Time stop** exceeded (per entry plan) → CUT at next run
+- **Pre-earnings exit** (if no explicit "earnings hold" in entry thesis) → CUT day before earnings
+- **Take-profit target hit** (agent-defined at entry) → CUT or TRIM per plan
+- **Regime shift** (VIX +30% intraday, credit event, hawkish Fed surprise) → tighten all stops to 3%, halt new opens
 
 ## Daily / weekly / drawdown caps
 
-- **Daily loss cap**: day loss > 3% → freeze any new opens until the next day. No panic selling — let the stops work.
-- **Weekly loss cap**: week at -5% → defensive mode (no new position next week, raise cash to 25%+).
-- **Drawdown cap**: drawdown from ATH > 12% → strict defensive mode (no new position, cash ≥ 30%, weekly-review triggers full strategy audit).
+| Event | Action |
+|---|---|
+| Day equity ≤ -4% | Pause opens for J+1. Tighten all stops to 4%. Log `[DAILY-LOSS-CAP]` in learnings. |
+| Week equity ≤ -8% | Pause opens for next 3 trading days. Raise cash to 30%+. Log `[WEEKLY-LOSS-CAP]`. |
+| Drawdown ≥ -20% from ATH | Trigger auto-defense mechanism (see above). Immutable. |
 
-## Regime & macro
+## Macro & regime
 
-- **Confirmed late-cycle or risk-off** (VIX > 25 over 5 days, HY spreads > 500bp, 2-10 inversion + abrupt un-inversion, hawkish Fed surprise): target cash 25-35%, max 5 active positions, focus on defensive setups and oversold-bounce on quality.
-- **Violent regime shift** detected intra-week: notify Telegram `REGIME SHIFT`, tighten all stops to 3%, freeze new opens until next pre-market.
-- **Major macro events this week** (FOMC, CPI, NFP, PCE, Powell testimony): default sizing one notch down (Standard → Probe) unless explicit alignment.
+- **Confirmed late-cycle or risk-off** (VIX > 25 over 5 days, HY spreads > 500bp, 2-10 inversion + abrupt un-inversion, hawkish Fed surprise): sizing cap = Standard, cash ≥ 25%, focus on defensives.
+- **Violent intraday regime shift**: tighten all stops to 3%, notify Telegram, freeze new opens until next pre-market.
+- **Major macro event within 24h** (FOMC, CPI, NFP, PCE, Powell): default sizing one notch down, max options exposure halved to 2.5% for the event window.
 
-## Pre-earnings & events
+## Anti-revenge-trading
 
-- Holding through earnings = forbidden by default (see Stops).
-- Holding through a major FOMC / CPI / NFP = allowed but forced 3% stop the day before.
-- If a known catalyst is within 24h, no new sizing > Standard (4%).
+- If a ticker was cut in the last 5 trading days with P&L < 0, re-entry allowed **only** with:
+  - Explicit "re-entry justified by {new catalyst}" line in research note
+  - New CTQS score ≥ 70 (Standard or higher)
+  - Sizing one notch below normal (max Standard even if High CTQS)
 
 ## Mode
 
-- **Paper by default** (`TRADING_MODE=paper` + `ALPACA_BASE_URL` on paper).
-- **Live switch**: never without explicit human intervention documented in `learnings.md`.
+- **Paper by default** (`TRADING_MODE=paper` + `ALPACA_BASE_URL` on paper)
+- **Live switch**: never without explicit human edit of `.env` and corresponding log in `learnings.md`. The agent cannot flip modes.
+
+## Self-evolution gates (immutable)
+
+The agent can propose changes to `strategy.md` and command/skill prompts via `memory/prompt_evolution_proposals.md`. Applied changes require ALL of:
+
+1. Proposal written with before/after diff + rationale + statistical evidence
+2. Min sample size: 20 trades for per-setup tweaks, 50 trades for framework-wide tweaks
+3. No modification to this `guardrails.md` immutable sections (hard caps, forbidden instruments, auto-defense, self-evolution gates themselves)
+4. No new forbidden feature enabled
+5. Change is append-only logged in `memory/strategy_evolution.md`
+6. Drawdown auto-defense not currently active
+7. No daily/weekly loss cap active
+
+The agent must refuse to apply a proposal that fails any gate. Proposal marked `blocked: {reason}` and awaits human review.
 
 ## Hygiene
 
-- **Never commit a secret**, never include a secret in a notification.
-- **Never delete** entries from `trade_log.md` or `research_log.md`. Append only, no rewriting history.
-- **ISO UTC date format** everywhere: `2026-04-20T13:45:00Z`.
-- **Revenge trading forbidden**: if a ticker was cut in the last 5 trading days, re-entry only with an explicit new thesis and a "re-entry justified by …" line in research_log.
+- **Never commit a secret**, never include a secret in a notification
+- **Never delete** entries from `trade_log.md`, `research_log.md`, `strategy_evolution.md`, `prompt_evolution_proposals.md`, `learnings.md`, `daily_review.md`, `weekly_review.md`, `monthly_review.md`, `quarterly_rewrite.md` — all append-only
+- **ISO UTC timestamps** everywhere: `2026-04-20T13:45:00Z`
+- **Commit + push every run**. Missing pushes = stale state at next run

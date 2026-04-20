@@ -1,125 +1,175 @@
 ---
 name: research
-description: Short-horizon institutional research (Goldman/Morgan Stanley-grade rigor, 1-5 trading day horizon) with dated catalyst, quality light score, light valuation, short-window scenarios, execution plan. Verdict BUY / WATCH / SKIP / AVOID. Invoke at each pre-market or on demand.
+description: Institutional multi-factor research using the CTQS framework (Catalyst + Technical + Quantitative + Sentiment, /100). Works for equities, ETFs, long options, and crypto. Produces BUY / WATCH / SKIP / AVOID verdict with explicit sizing target. Invoke from pre-market, intraday-scan, and crypto-hourly.
 ---
 
 # Skill: research
 
-Produce a research note matching the schema of `memory/research_log.md`. You play a senior analyst at an event-driven hedge fund — the note must stand up to a demanding PM, **but calibrated to short-swing (1-5 trading days)**, not to a long-term hold.
+Produce a research note using the **CTQS /100** framework. You play a senior analyst at a multi-strat hedge fund — the note must stand up to a demanding PM across multiple horizons (day / short-swing / swing / positional).
 
-> You write for a short-horizon PM. Dated catalyst + coherent macro + clean setup = a note that matters. No 10-year DCF here: what matters at this horizon is flow, catalyst, and the skew of the setup.
+> You are a **discretionary trader with a systematic scorecard**. The score bounds your conviction, the narrative explains why the score is valid, the plan is executable at the next run.
+
+## Scope
+
+One ticker/symbol per note. If screening multiple, produce multiple notes.
+
+Works for:
+- **Equities / ETFs / leveraged ETFs** (use benchmark = SPY+QQQ blend)
+- **Long options** (add DTE + Greeks + underlying CTQS)
+- **Crypto** (BTC, ETH, SOL, LINK, AVAX, DOT, MATIC — use benchmark = BTC)
 
 ## Steps
 
-1. **Scope** the work: single ticker or thematic shortlist (max 5 tickers to screen individually).
+1. **Gather primary sources** (min 2) with `WebSearch` + `WebFetch`:
+   - Equities: IR pages, 8-K/10-Q, earnings call transcripts, FDA/DoD calendars, CME FedWatch, FRED
+   - Options: underlying data (spot, IV, term structure), option chain (bid/ask, OI, volume), earnings calendar
+   - Crypto: on-chain (Glassnode-style metrics via public), exchange news, whitepapers, CoinGecko fundamentals
+2. **Complement** with 1-2 quality tertiary sources (Bloomberg/Reuters/WSJ/FT/Barron's for equities; The Block/CoinDesk for crypto).
+3. **Score CTQS** (4 dimensions, 25 each = /100).
+4. **Run valuation red-flag** (for equities) or **technical-structure sanity** (for crypto).
+5. **Write scenarios** over the chosen horizon (bull / base / bear).
+6. **Filter against guardrails** (universe, concentration, revenge trade, caps, auto-defense).
+7. **Append** to `memory/{agent}/research_log.md` with ISO UTC timestamp and clear verdict.
 
-2. **Gather primary sources** (minimum 2) with `WebSearch` then `WebFetch`:
-   - Investor relations (latest earnings release, recent 8-Ks, presentations)
-   - Earnings call transcripts (SeekingAlpha, Motley Fool, direct IR)
-   - Official filings (FDA, DoD, SEC filings 13D/13G, 8-K)
-   - Catalyst calendars (Earnings Whispers, IR calendars, FDA advisory calendar)
-   - Macro data: FRED (yields, CPI, unemployment), EIA (energy), CME FedWatch.
+## CTQS scoring rubric
 
-3. **Complement** with 1-2 quality tertiary sources (Bloomberg, Reuters, WSJ, FT, Barron's). Never forums/Twitter as primary source.
+### C — Catalyst (/25)
 
-4. **Synthesize** with the template below (disciplined, compact, clear verdict).
+| Points | Signal |
+|---|---|
+| 20-25 | Primary-source dated catalyst within horizon (earnings date, FDA PDUFA, FOMC, DoD announce, product launch) |
+| 15-19 | Secondary but credible catalyst (analyst cluster, strong PEAD setup, crypto upgrade, sector rotation confirmed) |
+| 10-14 | Narrative catalyst without hard date (theme in vogue, sector flows) |
+| 5-9 | Weak / stale catalyst |
+| 0-4 | None |
 
-5. **Filter against strategy and guardrails**:
-   - Universe compliance (US-listed, volume > 2M, price ≥ $5, mcap ≥ $2B unless documented exception).
-   - Quality light score ≥ conviction threshold (Probe 18 / Standard 22 / High 26).
-   - **Dated catalyst ≤ 5 trading days** (mandatory for BUY).
-   - Macro regime alignment OK, or deviation justified.
-   - Not a revenge trade (check `trade_log.md` over last 5 trading days).
-   - At least 2 of the 3 key signals (catalyst fuse, quality floor, technical setup).
+### T — Technical (/25)
 
-6. **Append** to `memory/research_log.md` with ISO UTC timestamp.
+| Points | Signal |
+|---|---|
+| 20-25 | Clean structure (trend intact, MA stack aligned 20>50>200 or well-defined base), volume confirming, RSI 40-70, price near entry zone |
+| 15-19 | Decent setup, 1 minor flag (RSI > 70 or volume lighter, still reasonable) |
+| 10-14 | Choppy but tradeable (range, pre-breakout wedge) |
+| 5-9 | Broken trend, below key MAs, weak volume |
+| 0-4 | Downtrend + high volume selling |
+
+### Q — Quantitative (/25)
+
+| Points | Signal |
+|---|---|
+| 20-25 | Top-decile momentum (3M > +15% relative) + strong quality (ROIC > 15%, clean balance sheet) + liquid (ADV > 5M eq / top-5 crypto) |
+| 15-19 | Good momentum + decent quality, liquid enough |
+| 10-14 | Mixed (either momentum OR quality, not both) |
+| 5-9 | Weak on both axes |
+| 0-4 | Negative momentum + weak fundamentals |
+
+### S — Sentiment (/25)
+
+| Points | Signal |
+|---|---|
+| 20-25 | Multi-signal convergence: bullish options flow + insider buying + analyst upgrades + institutional flow positive |
+| 15-19 | 2 of 4 signals positive |
+| 10-14 | 1 signal positive, neutral elsewhere |
+| 5-9 | Neutral to slightly negative |
+| 0-4 | Heavy negative (insider selling + downgrades + outflows) |
+
+**Total /100** → conviction:
+- ≥ 85 → **High** (sizing 7-10%)
+- 70-84 → **Standard** (4-6%)
+- 55-69 → **Probe** (2-3%)
+- < 55 → **SKIP** (no BUY)
+
+**Exception** — technical-only trade: if C < 10 but T+Q+S ≥ 60/75, allowed as a technical trade, capped at Standard sizing.
 
 ## Note template (follow strictly)
 
 ```markdown
-### {YYYY-MM-DDTHH:MM:SSZ} — {TICKER} {Short name} — {VERDICT}
+### YYYY-MM-DDTHH:MM:SSZ — {SYMBOL} {Short name} — {VERDICT}
 
-**Setup type**: {Pre-earnings momentum / PEAD / Analyst upgrade / Event-driven / Macro data play / Oversold bounce / Sector rotation}
-**Target horizon**: {typical 2-5 trading days, latest exit J+8}
-**Conviction**: Probe 2% / Standard 4% / High 5%
+**Instrument**: {equity | ETF | leveraged-ETF | option (call/put, strike, DTE) | crypto}
+**Style**: {day | short-swing | swing | positional}
+**Target horizon**: {exit window, e.g. 2-5 trading days}
+**Conviction**: {Probe / Standard / High} — confidence {xx}%
+**Proposed sizing**: {x.x}% NAV
 
-#### 1. Snapshot (numbers)
-- Price: $X | MCap: $XB | Sector: X | ADV: X M shares | Beta: X
-- EPS growth YoY: X% | Revenue growth YoY: X% | Gross margin: X%
-- Next earnings: {date + BMO/AMC} — {HOLD through earnings? yes/no}
+#### 1. Snapshot
+- Price: ${X} | Mcap/marketcap: $X | Sector: X | ADV: X | Beta: X
+- Key fundamentals (equity): EPS growth YoY X%, revenue growth YoY X%, gross margin X%, ROIC X%
+- Next earnings / major event: {date + BMO/AMC / pre-event window}
+- (Option): underlying $X, strike $X, DTE X, IV X%, OI X
+- (Crypto): BTC dominance X%, funding / open interest proxy, on-chain key metric
 
 #### 2. Thesis (3-5 lines)
-What has to happen within 1-5 days for this trade to pay off? What flow / narrative / repricing do we expect?
+What has to happen within {horizon} for this trade to pay off?
 
-#### 3. Catalyst(s) — fuse ≤ 5 days
-- {Event} — {precise date} — source
-- Why is the market **not yet** correctly pricing this catalyst?
+#### 3. CTQS Score (/100)
 
-#### 4. Quality Light Score (/30)
-| Dimension | Score /10 | Justification |
+| Axis | Score /25 | Justification |
 |---|---|---|
-| Catalyst clarity & fuse | X | precise date, known downside if missed |
-| Quality floor | X | decent moat / clean balance sheet / positive earnings growth |
-| Technical setup & liquidity | X | ADV > 2M, clean trend/base, RSI < 80, no >5% gap |
-| **Total** | **X/30** | |
+| C — Catalyst | X | {dated event / narrative} |
+| T — Technical | X | {trend, MA, RSI, volume, key levels} |
+| Q — Quantitative | X | {momentum rank, quality factor, liquidity} |
+| S — Sentiment | X | {options flow, insider, analyst, flow} |
+| **Total** | **X/100** | → Conviction {Probe/Standard/High} |
 
-#### 5. Valuation (red flag check only)
-- Fwd P/E: X (sector median X)
-- Growth YoY: X%
-- Red flag? (Fwd P/E > 2× median with no growth): yes / no
+#### 4. Valuation red-flag (equities only) / Structure sanity (crypto)
+- Equity: Fwd P/E {X} vs sector {Y} — red flag yes/no
+- Crypto: vs trend (above/below key MAs), vs BTC, vs sector leader
 
-#### 6. Scenarios (2-5 day window)
-- **Bull**: +X% (e.g. +12%) if catalyst plays as expected — assumptions: …
-- **Base**: +X% (e.g. +5%)
-- **Bear**: -X% (e.g. -5%, stop triggers) — assumptions: …
+#### 5. Scenarios ({horizon} window)
+- **Bull** ({+X%}): {assumptions}
+- **Base** ({+X%}): {assumptions}
+- **Bear** ({-X%}): {triggers}
 
-#### 7. Specific risks
-- Risk 1 (e.g. adverse macro data in the window)
-- Risk 2 (e.g. major peer's earnings in the window)
-- …
+#### 6. Specific risks
+- Risk 1
+- Risk 2
+- Risk 3 (if any)
 
-#### 8. Macro alignment
-- Current regime: {risk-on / neutral / late-cycle / risk-off}
-- Macro events in the trade window: {FOMC J+2, CPI J+3, …}
-- Compatible: **yes / partial / against-regime** — justification
+#### 7. Macro alignment
+- Regime: {risk-on / neutral / late-cycle / risk-off}
+- Events in window: {FOMC / CPI / NFP / earnings cluster / ...}
+- Compatible: {yes / partial / against-regime — justify}
 
-#### 9. Execution plan
-- **Entry zone**: $X-$Y (do not chase above, skip if > +2% vs plan)
-- **Sizing**: Probe 2% / Standard 4% / High 5%
-- **Initial trailing stop**: 6%
-- **Hard cut**: -5% unrealized at midday
-- **Tighten**: at +10% → stop 3%
-- **Trim 50%**: at +15%
-- **Time stop**: forced exit at J+8 if no trailing hit
-- **Earnings hold?**: no (default) / yes (explicit rationale)
+#### 8. Execution plan
+- **Entry zone**: ${X}-${Y} (skip above + {2}% = ${Z})
+- **Sizing**: {x.x}% NAV ({Probe / Standard / High})
+- **Stop type**: {% trailing / ATR / structural / time} — level: {X}
+- **Take-profit target**: ${X} or "trailing only"
+- **Time stop**: {date or n/a}
+- **Earnings hold**: {yes + rationale / no}
+- **Stop-update policy**: how to tighten at each intraday-scan (e.g. "if +5%, move stop to BE; if +10%, trailing 3%")
 
-#### 10. Sources
+#### 9. Sources (min 2 primary)
 - {url 1} (primary)
 - {url 2} (primary)
-- {url 3}
+- {url 3} (tertiary)
 
-#### 11. Verdict
-**BUY / WATCH / SKIP / AVOID** — 1-sentence summary.
+#### 10. Verdict
+**{BUY | WATCH | SKIP | AVOID}** — 1-sentence summary.
 ```
 
-## Possible verdicts
+## Verdicts
 
-- **BUY**: new position executable at the next `market-open`. Dated catalyst ≤ 5 days, score ≥ threshold, macro OK.
-- **WATCH**: valid setup but entry or timing not ready yet (price too high, catalyst J+6, regime to confirm). Re-check at next pre-market.
-- **SKIP**: fails a key criterion (score too low, no dated short catalyst, against-regime without justification, revenge trade).
-- **AVOID**: structural red flag (broken balance sheet, fraud flags, heavy regulation, halt risk). Don't touch.
+- **BUY**: executable at next market-open (equities) / next crypto-hourly (crypto) / next intraday-scan (opportunistic)
+- **WATCH**: valid setup, entry not ripe (price too high, catalyst too far, regime to confirm)
+- **SKIP**: fails a criterion (score < 55 and no technical-only path, guardrail violation, revenge trade)
+- **AVOID**: structural red flag (fraud flag, regulatory halt risk, broken balance sheet, liquidity collapse)
 
 ## Anti-bias checklist
 
-- Does the **catalyst** have a **precise date** within ≤ 5 trading days? (If not = SKIP or WATCH)
-- Do I know **why this trade resolves in 1-5 days** rather than "someday"? (If not = no short-swing thesis)
-- Does the thesis hold without looking at the price? (If not = FOMO)
-- Can I cite a **precise number** from a primary document? (If not = rumor)
-- Is the ticker absent from positions cut in the last 5 trading days? (If not = revenge trade)
-- Do I have **at least 2 primary sources**?
-- Does the setup survive VIX +20% intraday during the window? (light stress test)
-- Did I verify that **no earnings on the position** falls inside my window without an explicit plan?
+- Does the **score breakdown** match the numbers (not inflated to hit a threshold)?
+- If C < 10, did I explicitly mark this as a technical-only trade (capped at Standard)?
+- Does the thesis hold **without looking at the price**?
+- Can I cite a **precise number** from a primary source?
+- Is this a **revenge trade** (cut < 5 trading days ago without "re-entry justified")?
+- Am I respecting concentration (sector ≤ 25%, correlated theme ≤ 4 names)?
+- Did I pick the **right horizon** for this setup, not the one that rationalizes holding?
+- Is my stop methodology **documented** with a specific level, not vague?
+- For options: DTE ≥ 7, aggregated options ≤ 5% NAV?
+- For leveraged ETFs: aggregated ≤ 15% NAV?
+- For crypto: single coin ≤ 40% of crypto book, aggregate ≥ 5% cash?
 
 ## Output
 
-Append to `memory/research_log.md`. **Do not** produce a Telegram message — that's the parent slash command's job (pre-market only notifies on urgency for an open position).
+Append to `memory/{agent}/research_log.md`. The parent command decides Telegram notifications — not the research skill.

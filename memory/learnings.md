@@ -43,3 +43,9 @@ Append-only. What Bull discovers that's useful for future runs: trade lessons, t
 **Takeaway**: Règles midday legacy : cut à -7%, tighten à +15%. Sous Bull v2, `intraday-scan` remplace avec une grille P1-P8 (cut -5% equity / -8% crypto, trim +20%/+30% short-swing/swing+, tighten 3% trailing à +10%). Le résidu BTC reste ouvert pour un run ultérieur autorisé à liquider hors-univers equities.
 **Action**: Aucun ordre. Pas de notification Telegram. Commit no-op pour trace.
 **Agent**: equities
+
+### 2026-04-20T20:00:00Z — BASELINE-SET
+**Context**: First `market-close` run under Bull v2. `memory/equities/portfolio.md` had no baseline. Equity $97,382.46, cash 99.996%, zero equity positions, only BTCUSD $3.81 residue (out-of-universe).
+**Takeaway**: Baseline posé aujourd'hui — baseline_date=2026-04-20, baseline_equity=$97,382.46, SPY=707.80, QQQ=646.19, blend=676.995. ATH = baseline (first snapshot). Day perf ~flat (last_equity $97,382.51 → -0.00006%), blend bench -0.37% (SPY -0.33%, QQQ -0.41%) → alpha day **+0.37%** gratuit via 100% cash pendant que le marché corrige sur Iran headlines.
+**Action**: Toutes les perfs futures se calculent vs cette baseline. Aging watchlist vide (pas de positions). Résidu BTCUSD toujours ouvert — à clore par Bull-Crypto ou prochain run SELL-enabled.
+**Agent**: equities

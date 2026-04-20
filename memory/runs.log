@@ -1,1 +1,2 @@
 # Run log (append-only) — une ligne par run, même noop.
+2026-04-20T20:00:00Z [market-close] baseline-set equity=$97,382.46 SPY=707.80 QQQ=646.19 blend=676.995 day=0.00% alpha_day=+0.37% positions=0 agent=equities

@@ -43,3 +43,9 @@ Append-only. What Bull discovers that's useful for future runs: trade lessons, t
 **Takeaway**: Règles midday legacy : cut à -7%, tighten à +15%. Sous Bull v2, `intraday-scan` remplace avec une grille P1-P8 (cut -5% equity / -8% crypto, trim +20%/+30% short-swing/swing+, tighten 3% trailing à +10%). Le résidu BTC reste ouvert pour un run ultérieur autorisé à liquider hors-univers equities.
 **Action**: Aucun ordre. Pas de notification Telegram. Commit no-op pour trace.
 **Agent**: equities
+
+### 2026-04-20T20:06:00Z — LESSON
+**Context**: First Bull-Crypto v2 hourly run. Legacy residue BTCUSD (qty 0.000049999, value $3.81, avg $73,094, P&L +4.29%) now sits under the crypto agent namespace since BTC is in the approved crypto universe. Approved-universe script validator uses slash format `BTC/USD` (not `BTCUSD`) — both refer to the same Alpaca asset. Qty 0.000049999 is below Alpaca crypto min order size (0.0001 BTC) → standalone CUT will likely fail.
+**Takeaway**: Legacy orphan dust is untradeable standalone. Future clearing paths: (a) bundle with a fresh BTC BUY and exit combined qty on a winner, (b) try `close_position` endpoint which may ignore min-notional (untested), (c) accept as permanent accounting residue. Position logged as `legacy-orphan-dust` in `memory/crypto/portfolio.md` — 0.004% NAV, immaterial risk, held without stop (operationally impossible at this size). Not a Bull-Crypto conviction position. Regime neutral / mildly risk-on — BTC holding $75K support, ETF inflows constructive, total cap -1.3% (alt weakness). No firing dated catalyst across the 7-coin universe.
+**Action**: Initialized `memory/crypto/portfolio.md` with first-run baseline (equity $97,382.46, BTC $76,230). Seeded `memory/crypto/research_log.md` with regime pulse + 7-coin scan (all SKIP). No orders, no Telegram (no action trigger). Commit + push via journal skill.
+**Agent**: crypto

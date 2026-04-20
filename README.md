@@ -1,14 +1,14 @@
-# thashi-ai — Bull, agent de trading 24/7
+# thashi-ai — Bull, 24/7 trading agent
 
-Agent Claude Code qui tourne sur cron via les **Routines** Claude Code. Objectif : battre le S&P 500 en paper trading (ou live si tu veux) via Alpaca.
+A Claude Code agent running on cron via Claude Code **Routines**. Objective: beat the S&P 500 in paper trading (or live if you want) via Alpaca, using a **catalyst-driven short-swing** playbook (1-5 trading day horizon, parallel multi-positions allowed).
 
-## TL;DR — setup en 5 min
+## TL;DR — 5-minute setup
 
-1. **Comptes API à créer**
-   - Alpaca : https://alpaca.markets → Paper trading account → génère API key + secret
-   - Telegram : parle à **@BotFather**, `/newbot`, récupère le **token**. Envoie un message au bot, puis ouvre `https://api.telegram.org/bot<TOKEN>/getUpdates` pour lire ton **chat_id**
-2. **Pousser ce repo sur GitHub** (privé recommandé). Les routines remote en ont besoin.
-3. **Dans Claude Desktop** → `Routines` → `Cloud environments` → crée un env nommé `trading` avec accès réseau total et les variables suivantes :
+1. **API accounts to create**
+   - Alpaca: https://alpaca.markets → Paper trading account → generate API key + secret
+   - Telegram: talk to **@BotFather**, `/newbot`, grab the **token**. Send a message to the bot, then open `https://api.telegram.org/bot<TOKEN>/getUpdates` to read your **chat_id**
+2. **Push this repo to GitHub** (private recommended). Remote routines need it.
+3. **In Claude Desktop** → `Routines` → `Cloud environments` → create an env named `trading` with full network access and the following variables:
    ```
    ALPACA_API_KEY=...
    ALPACA_SECRET_KEY=...
@@ -17,60 +17,60 @@ Agent Claude Code qui tourne sur cron via les **Routines** Claude Code. Objectif
    TELEGRAM_CHAT_ID=...
    TRADING_MODE=paper
    ```
-4. **Crée les 5 routines** décrites dans `routines/` (copier-coller les cron + prompt). Pour chaque routine, dans les permissions, active **Allow unrestricted branch pushes** pour que Bull puisse commit sur `main`.
-5. **Lance un "Run now"** sur la routine `weekly-review` pour valider le bout-en-bout.
+4. **Create the 5 routines** described in `routines/` (copy-paste cron + prompt). For each routine, in the permissions, enable **Allow unrestricted branch pushes** so Bull can commit to `main`.
+5. **Launch a "Run now"** on the `weekly-review` routine to validate end-to-end.
 
 ## Architecture
 
 ```
 thashi-ai/
-├── CLAUDE.md                 # Instructions globales (personnalité + règles de fer)
-├── memory/                   # Mémoire persistante (commit à chaque run)
-│   ├── guardrails.md         # Règles inviolables
-│   ├── strategy.md           # Stratégie de trading
-│   ├── portfolio.md          # Snapshot du portefeuille (maj après chaque trade)
-│   ├── trade_log.md          # Journal chronologique des trades
-│   ├── research_log.md       # Journal de recherche
-│   ├── weekly_review.md      # Reviews hebdomadaires
-│   └── learnings.md          # Leçons, incidents, ajustements
-├── scripts/                  # Clients API (stdlib Python, zéro dépendance)
+├── CLAUDE.md                 # Global instructions (personality + iron rules)
+├── memory/                   # Persistent memory (committed each run)
+│   ├── guardrails.md         # Inviolable rules
+│   ├── strategy.md           # Trading strategy
+│   ├── portfolio.md          # Portfolio snapshot (updated after each trade)
+│   ├── trade_log.md          # Chronological trade journal
+│   ├── research_log.md       # Research journal
+│   ├── weekly_review.md      # Weekly reviews
+│   └── learnings.md          # Lessons, incidents, adjustments
+├── scripts/                  # API clients (Python stdlib, zero dependency)
 │   ├── alpaca_client.py
 │   ├── telegram_client.py
 │   └── portfolio_snapshot.py
 ├── .claude/
-│   ├── commands/             # Slash commands appelés par les routines
-│   └── skills/               # Skills custom (research, trade, journal)
-└── routines/                 # Cron + prompts à coller dans Claude Desktop
+│   ├── commands/             # Slash commands called by the routines
+│   └── skills/               # Custom skills (research, trade, journal)
+└── routines/                 # Cron + prompts to paste in Claude Desktop
 ```
 
-## Routines (timezone America/Chicago, comme dans la vidéo)
+## Routines (timezone America/Chicago)
 
-| Routine          | Cron            | Rôle                                                |
-|------------------|-----------------|-----------------------------------------------------|
-| `pre-market`     | `0 6 * * 1-5`   | Recherche catalyseurs, prépare les idées de trade   |
-| `market-open`    | `30 8 * * 1-5`  | Exécute les trades planifiés, pose trailing stops   |
-| `midday`         | `0 12 * * 1-5`  | Coupe les perdants -7%, resserre les stops gagnants |
-| `market-close`   | `0 15 * * 1-5`  | Snapshot portefeuille, notification Telegram        |
-| `weekly-review`  | `0 16 * * 5`    | Review de la semaine, mise à jour stratégie         |
+| Routine          | Cron            | Role                                                          |
+|------------------|-----------------|---------------------------------------------------------------|
+| `pre-market`     | `0 6 * * 1-5`   | Macro overlay, short-catalyst scan, written plan              |
+| `market-open`    | `30 8 * * 1-5`  | Execute planned trades, place 6% trailing stops               |
+| `midday`         | `0 12 * * 1-5`  | Cut ≤ -5%, tighten ≥ +10%, trim ≥ +15%, time-stop J+8         |
+| `market-close`   | `0 15 * * 1-5`  | Snapshot, EOD macro, alpha vs SPY, position age, Telegram     |
+| `weekly-review`  | `0 16 * * 5`    | Grade, risk audit, portfolio construction, next-week outlook  |
 
-Si tu es dans un autre fuseau, adapte les heures ou configure le TZ dans l'environnement de la routine.
+If you are in another timezone, adapt the hours or configure the TZ in the routine environment.
 
-## Test en local
+## Local testing
 
 ```bash
-# Active tes clés dans un fichier .env local (non versionné)
+# Activate your keys in a local .env file (not versioned)
 cp .env.example .env
-# Remplis .env, puis :
+# Fill .env, then:
 set -a && source .env && set +a
-python scripts/alpaca_client.py account       # vérifie Alpaca
-python scripts/telegram_client.py ping        # envoie un message "ping" sur Telegram
-python scripts/portfolio_snapshot.py          # affiche portefeuille vs SPY
+python scripts/alpaca_client.py account       # verify Alpaca
+python scripts/telegram_client.py ping        # send a "ping" message on Telegram
+python scripts/portfolio_snapshot.py          # display portfolio vs SPY
 ```
 
-## Garde-fous
+## Guardrails
 
-Lis `memory/guardrails.md`. Les règles par défaut : max 5% par position, pas d'options/crypto/short, daily loss cap -2%, max 3 nouvelles positions par semaine. Ajuste à ton profil avant de lancer en live.
+Read `memory/guardrails.md`. Default rules: conviction-based sizing (Probe 2% / Standard 4% / High 5% per position), no options/crypto/shorts, daily loss cap -3%, weekly -5%, drawdown cap -12%, max 20 concurrent positions, max 5 new/day and 15 new/week, sector concentration ≤ 35%. Tune to your profile before going live.
 
 ## Disclaimer
 
-Ce projet est une **expérimentation**. Aucun conseil financier. Commence et reste en paper trading jusqu'à ce que tu aies observé plusieurs semaines de comportement cohérent.
+This project is an **experiment**. No financial advice. Start and stay in paper trading until you have observed several weeks of coherent behavior.

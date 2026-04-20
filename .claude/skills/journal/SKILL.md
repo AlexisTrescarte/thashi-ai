@@ -1,39 +1,39 @@
 ---
 name: journal
-description: Met à jour la mémoire (trade_log, portfolio, learnings, research_log, weekly_review) à la fin d'un run, commit et push. Invoquer à la fin de chaque routine.
+description: Update memory (trade_log, portfolio, learnings, research_log, weekly_review) at the end of a run, commit and push. Invoke at the end of every routine.
 ---
 
-# Skill : journal
+# Skill: journal
 
-Discipline de mémoire : append-only sur les logs, overwrite contrôlé sur les snapshots. Commit + push à chaque run sinon les prochaines routines repartent à zéro.
+Memory discipline: append-only on logs, controlled overwrite on snapshots. Commit + push at every run or the next routine starts from stale state.
 
-## Règles
+## Rules
 
-- **Append-only** : `trade_log.md`, `research_log.md`, `weekly_review.md`, `learnings.md`. Ne jamais réécrire l'historique.
-- **Overwrite contrôlé** : `portfolio.md` (bloc "Dernier snapshot" + table positions rafraîchie). `strategy.md` / `guardrails.md` uniquement via weekly-review.
-- **Horodatage ISO UTC** partout : `2026-04-20T13:45:00Z`.
-- **Ne jamais commiter `.env`, un secret, ou un transcript Telegram complet**.
+- **Append-only**: `trade_log.md`, `research_log.md`, `weekly_review.md`, `learnings.md`. Never rewrite history.
+- **Controlled overwrite**: `portfolio.md` ("Latest snapshot" block + refreshed positions table). `strategy.md` / `guardrails.md` only via weekly-review.
+- **ISO UTC timestamps** everywhere: `2026-04-20T13:45:00Z`.
+- **Never commit `.env`, a secret, or a full Telegram transcript**.
 
-## Étapes de fin de run
+## End-of-run steps
 
-1. Écrire les appends dans les fichiers appropriés.
-2. `git status` pour vérifier ce qui va être commit.
-3. `git diff --stat` pour s'assurer qu'aucun fichier inattendu n'est modifié.
+1. Write appends to appropriate files.
+2. `git status` to verify what will be committed.
+3. `git diff --stat` to ensure no unexpected files modified.
 4. `git add -A`
-5. `git commit -m "[{routine}] YYYY-MM-DD — {résumé 1 ligne}"`
+5. `git commit -m "[{routine}] YYYY-MM-DD — {1-line summary}"`
 6. `git push origin main`
-7. Si le push échoue : append dans `learnings.md` un incident `[INCIDENT] push failed: ...`, notifier Telegram `DEGRADED`. Ne pas retry en boucle.
+7. If push fails: append in `learnings.md` an incident `[INCIDENT] push failed: ...`, notify Telegram `DEGRADED`. Do not retry in a loop.
 
-## Formats de commit
+## Commit formats
 
-- `[pre-market] 2026-04-20 — 2 idées, 1 position à surveiller`
-- `[market-open] 2026-04-20 — 1 trade (BUY NVDA 15)`
-- `[midday] 2026-04-20 — 1 cut (META -7.4%), 0 tighten`
-- `[market-close] 2026-04-20 — equity $97,432, day +0.32%, alpha +0.12%`
-- `[weekly-review] 2026-04-24 — grade B, semaine +1.8%, alpha +0.4%`
+- `[pre-market] 2026-04-20 — regime neutral, 3 BUY + 2 WATCH, 2 positions to watch`
+- `[market-open] 2026-04-20 — 3 BUY (NVDA, LLY, XOP), 1 skip (META FOMO)`
+- `[midday] 2026-04-20 — 1 cut (-5.2%), 2 tightens, 1 time stop J+9`
+- `[market-close] 2026-04-20 — equity $97,432, day +0.32%, alpha day +0.12%, cumul +0.8%, 12 positions (2 aging)`
+- `[weekly-review] 2026-04-24 — grade B, week +1.8%, alpha +0.4%, hit rate 55%, avg hold 3.2d`
 
-## Anti-bruit
+## Anti-noise
 
-Si rien ne justifie un commit (ex: pre-market sans idée, midday sans action) :
-- Commit quand même un snapshot minimal dans le fichier `memory/runs.log` (append d'une ligne `YYYY-MM-DDTHH:MM:SSZ [{routine}] noop: raison`).
-- But : garder la trace que la routine a bien tourné.
+If nothing justifies a commit (e.g. pre-market with no idea, midday with no action):
+- Still commit a minimal snapshot to `memory/runs.log` (append one line `YYYY-MM-DDTHH:MM:SSZ [{routine}] noop: reason`).
+- Purpose: keep evidence the routine actually ran.

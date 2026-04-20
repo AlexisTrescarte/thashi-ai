@@ -43,3 +43,15 @@ Append-only. What Bull discovers that's useful for future runs: trade lessons, t
 **Takeaway**: Règles midday legacy : cut à -7%, tighten à +15%. Sous Bull v2, `intraday-scan` remplace avec une grille P1-P8 (cut -5% equity / -8% crypto, trim +20%/+30% short-swing/swing+, tighten 3% trailing à +10%). Le résidu BTC reste ouvert pour un run ultérieur autorisé à liquider hors-univers equities.
 **Action**: Aucun ordre. Pas de notification Telegram. Commit no-op pour trace.
 **Agent**: equities
+
+### 2026-04-20T20:45:00Z — INCIDENT
+**Context**: Daily-review 20/04 (15:40 CT). `portfolio.md` est encore à l'état template vierge (baseline_date, baseline_equity, baseline_SPY, baseline_QQQ vides) malgré le passage théorique du `market-close` à 15:00 CT. `git log` confirme qu'aucun commit `[market-close]` n'existe pour 2026-04-20 — le routine n'a pas tourné, ou a tourné sans écrire le snapshot ni pousser. Résultat : daily-review force à grader sans baseline benchmark ni ATH initial, ce qui dégrade la comparabilité vs benchmark pour toutes les reviews suivantes.
+**Takeaway**: Le chaînage `market-close → daily-review` est critique. Sans snapshot, la comparaison benchmark, le tracking drawdown-auto-defense et le sizing des probes deviennent approximatifs. La daily-review ne doit jamais « proceed blind » : soit elle écrit elle-même la baseline à partir de l'API Alpaca, soit elle tag `[INCIDENT]` explicitement.
+**Action**: (1) Ajouter au prompt de `daily-review` : vérifier que `portfolio.md` a été mis à jour aujourd'hui, sinon écrire la baseline depuis l'état live avant de noter ; (2) demain 21/04 en pré-market, vérifier que `market-close` tourne bien à 16:00 ET (15:00 CT) et pousse ; (3) priorité absolue au market-close de demain = écrire baseline_date=2026-04-21, baseline_equity, baseline_SPY, baseline_QQQ dans `portfolio.md` + initialiser ATH.
+**Agent**: equities
+
+### 2026-04-20T20:46:00Z — INCIDENT
+**Context**: Résidu BTCUSD ($3.82, 0.000049999 BTC, +4.30% unrealized) non liquidé au 3e run consécutif après identification initiale au pre-market. Les scopes utilisateur (BUY-only au market-open) et l'absence d'appel `intraday-scan` ont reporté le SELL. La discipline demande qu'une position hors-univers soit purgée avant toute nouvelle ouverture — on accumule une dette de discipline qui ne coûte rien aujourd'hui mais invalidera la pureté du mandat dès le premier BUY actions.
+**Takeaway**: Une règle « clore hors-univers au prochain run SELL-autorisé » n'est pas suffisamment contraignante si aucun run SELL-autorisé ne se produit. Il faut un escalator : après N runs sans liquidation, le run suivant (quel que soit son scope) a l'obligation explicite de liquider avant toute autre action.
+**Action**: Proposer (via monthly-deep-review) un ajout au prompt `market-close` : « si une position hors-univers equities est détectée, la liquider systématiquement avant le snapshot ». En attendant, demain 21/04 : liquidation BTCUSD au premier run autorisé (intraday-scan ou market-close).
+**Agent**: equities

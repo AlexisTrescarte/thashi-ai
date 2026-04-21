@@ -63,7 +63,7 @@ Bull is split into **two agents**:
 
 | File | Cron (UTC) | Purpose |
 |---|---|---|
-| `crypto-hourly.md` | `0 * * * *` | Every hour — regime + manage + opportunistic BUY |
+| `crypto-hourly.md` | `0 */4 * * *` | Every 4h (00/04/08/12/16/20 UTC) — regime + manage + opportunistic BUY |
 | `crypto-daily-review.md` | `0 23 * * *` | 23:00 UTC — day vs BTC, stops discipline |
 | `crypto-weekly-review.md` | `0 23 * * 0` | Sunday 23:00 UTC — 7d audit |
 | `crypto-monthly-review.md` | `0 23 L * *` | Last day 23:00 UTC — Sharpe/Sortino vs BTC + evolve |

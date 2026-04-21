@@ -94,7 +94,7 @@ The agent self-rates confidence per idea and picks sizing within the conviction 
 
 - **Every new position MUST have a stop** placed within 5 minutes of fill (trailing %, stop-market, or documented manual-trailing schedule at next intraday-scan if Alpaca doesn't support for that instrument).
 - **Options positions**: hard time stop at DTE - 3 (never let option decay to worthless), hard price stop at -50% premium.
-- **Crypto**: trailing stop % via API (Alpaca crypto supports), or manual-trailing update at every crypto-hourly run.
+- **Crypto**: trailing stop % via API (Alpaca crypto supports — strongly preferred), or manual-trailing update at every crypto-scan run (4h cadence — accept max 4h drift on manual-trailing).
 - **One-way ratchet**: once a stop is moved up (closer to price), it cannot be moved down.
 
 ## Exit triggers (must check at every run)

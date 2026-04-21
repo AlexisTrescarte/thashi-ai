@@ -20,7 +20,7 @@ If 2+ metrics miss their target for 3 consecutive weeks, the agent must write a 
 - **Continuous self-improvement**. Daily / weekly / monthly / quarterly cascade of self-review. The agent can modify its own prompts inside a safety envelope (see `prompt_evolution` skill).
 - **Dual-agent setup**:
   - **Bull-Equities**: US equities + ETFs + long options (Mon–Fri, market hours).
-  - **Bull-Crypto**: crypto via Alpaca crypto API (24/7, hourly cadence).
+  - **Bull-Crypto**: crypto via Alpaca crypto API (24/7, 4h cadence — 6 runs/day).
 - **Asymmetry**: seek setups with clear upside > downside, bounded by stops the agent manages dynamically.
 
 ## Horizons & styles (multi-style, no dogma)

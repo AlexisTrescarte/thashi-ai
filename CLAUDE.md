@@ -52,7 +52,7 @@ Trade without dated catalyst allowed if T+Q+S ≥ 60/75 (technical/quanti trade)
 
 ## Dynamic risk management
 
-The agent decides the stop methodology per trade (% trailing / ATR / structural / time) and **updates TP/SL dynamically** at every intraday or hourly run. Stops are a **one-way ratchet** (can only tighten, never loosen).
+The agent decides the stop methodology per trade (% trailing / ATR / structural / time) and **updates TP/SL dynamically** at every intraday-scan run (equities) or crypto-scan run (crypto, 4h cadence). Stops are a **one-way ratchet** (can only tighten, never loosen). Native trailing stops on Alpaca execute independently between runs.
 
 ## Self-evolution cascade
 

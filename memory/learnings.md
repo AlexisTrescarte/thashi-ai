@@ -49,3 +49,9 @@ Append-only. What Bull discovers that's useful for future runs: trade lessons, t
 **Takeaway**: Règles midday legacy : cut à -7%, tighten à +15%. Sous Bull v2, `intraday-scan` remplace avec une grille P1-P8 (cut -5% equity / -8% crypto, trim +20%/+30% short-swing/swing+, tighten 3% trailing à +10%). Le résidu BTC reste ouvert pour un run ultérieur autorisé à liquider hors-univers equities.
 **Action**: Aucun ordre. Pas de notification Telegram. Commit no-op pour trace.
 **Agent**: equities
+
+### 2026-04-21T20:00:00Z — LESSON
+**Context**: Premier run `market-close` sous Bull v2 (equities namespace). Portefeuille 100% cash ($97,382.43, 0 positions). `portfolio.md` n'avait pas de baseline posée (le pre-market du 20/04 l'avait prévu au market-open mais le run market-open du 20/04 était restreint BUY-only et aucun BUY n'a été déclenché, donc baseline jamais écrite). SPX -0.63%, Nasdaq -0.59%, VIX 20.52 (+8.75%), WTI +4.5% sur tensions US-Iran, 10Y 4.30%.
+**Takeaway**: Baseline posée aujourd'hui 2026-04-21 avec SPY 706.96, QQQ 646.79, blend 676.875, equity $97,382.43. Cumul perf et alpha démarrent à 0% à partir de ce point. Day-alpha +0.48% techniquement (cash ne perd rien quand bench baisse) mais sans valeur informative (pas d'exposition). Plus d'aging à surveiller, pas de stop à gérer. Résidu BTCUSD déjà absorbé hors du namespace equities (positions Alpaca equities = vide, portfolio_value = cash = $97,382.43 exactement).
+**Action**: Baseline écrite dans `memory/equities/portfolio.md` (section Baseline + ATH). Tracking officiel démarre. Prochaine étape = pre-market 22/04 (GEV earnings BMO).
+**Agent**: equities

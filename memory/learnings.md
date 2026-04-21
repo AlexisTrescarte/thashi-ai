@@ -49,3 +49,9 @@ Append-only. What Bull discovers that's useful for future runs: trade lessons, t
 **Takeaway**: Règles midday legacy : cut à -7%, tighten à +15%. Sous Bull v2, `intraday-scan` remplace avec une grille P1-P8 (cut -5% equity / -8% crypto, trim +20%/+30% short-swing/swing+, tighten 3% trailing à +10%). Le résidu BTC reste ouvert pour un run ultérieur autorisé à liquider hors-univers equities.
 **Action**: Aucun ordre. Pas de notification Telegram. Commit no-op pour trace.
 **Agent**: equities
+
+### 2026-04-21T19:34:54Z — LESSON
+**Context**: Run `intraday-scan` 14:30 CT last-call du 21 avril 2026. Alpaca: equity $97,382.43, cash $97,382.43 (100%), last_equity $97,382.43, day P&L 0,00%. **Positions = 0** (vide — le résidu BTCUSD noté au run midday du 20 avril n'apparaît plus, apparemment liquidé entre-temps). Aucun ordre ouvert. Scan macro omis: pas d'effet actionnable (0 position à protéger + BUY interdit au slot last-call).
+**Takeaway**: Slot 14:30 last-call = exits only (P1-P10). Book vide → aucune décision per-position possible. Forbidden au 14:30: ouvrir une nouvelle position. Résultat: no-op discipliné, pas de Telegram (condition "≥1 action" non remplie). Benchmark 50/50 SPY+QQQ non mis à jour ce run (job du market-close).
+**Action**: Append runs.log + learnings.md. Pas de modification portefeuille/trade_log/research_log. Commit + push.
+**Agent**: equities

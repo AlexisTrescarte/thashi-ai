@@ -1,1 +1,2 @@
 # Run log (append-only) — une ligne par run, même noop.
+2026-04-21T19:34:54Z [intraday-scan] noop: 14:30 last-call, 0 positions, BUY forbidden at last-call, no action

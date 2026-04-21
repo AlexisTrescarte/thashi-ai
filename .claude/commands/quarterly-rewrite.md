@@ -178,20 +178,27 @@ Invoke the `journal` skill. Commit format:
 
 ### 11. Telegram notification (mandatory)
 
+Message in French, Telegram Markdown. Template:
 ```
-*quarterly-rewrite* — Q{N} YYYY
-Strategy: v{old} → v{new}
-Grade: *{X}*
-Quarter: bot {+X.XX}% | bench {+X.XX}% | alpha {+X.XX}%
-Cumul baseline: bot {+X.XX}% | bench {+X.XX}% | alpha {+X.XX}%
-Sharpe: X.X | Sortino: X.X | MaxDD: -X.X% | Calmar: X.X
+*🐂 Bull-Equities — Quarterly rewrite*
+_Q{N} YYYY · stratégie v{old} → v{new} · note *{X}*_
 
-Strategy changes: {N applied / M blocked}
-Top applied:
-- {1-liner per big change}
+📊 *Performance*
+• Trimestre : bot {+X.XX}% · bench {+X.XX}% · alpha {+X.XX}%
+• Cumul : bot {+X.XX}% · bench {+X.XX}% · alpha {+X.XX}%
 
-Setup library: {X dropped, Y tightened, Z added}
-Next-quarter bias: {1 line}
+📐 *Métriques*
+• Sharpe : X.X · Sortino : X.X
+• MaxDD : -X.X% · Calmar : X.X
+
+🧬 *Changements stratégie* ({N appliqués · M bloqués})
+• {1 ligne par changement majeur}
+
+🧪 *Bibliothèque de setups*
+• {X retirés · Y durcis · Z ajoutés}
+
+🎯 *Biais trimestre prochain*
+• {1 ligne}
 ```
 
 ## Forbidden

@@ -140,28 +140,33 @@ Invoke the `journal` skill. Commit format:
 
 ### 10. Telegram notification (mandatory)
 
+Message in French, Telegram Markdown. Template:
 ```
-*weekly-review* — week of YYYY-MM-DD
-Grade: *{X}*
-Equity: $X,XXX.XX (week {+/-X.XX}%)
-Bench week: {+/-X.XX}% | alpha: {+/-X.XX}%
-Cumul baseline: bot {+X.XX}% / bench {+X.XX}% / alpha {+X.XX}%
+*🐂 Bull-Equities — Weekly review*
+_Semaine du YYYY-MM-DD · note *{X}*_
 
-Trade stats
-- Closed: N | Hit rate: XX% | Avg R: X.X | Avg hold: X.X d
-- Best: TICKER (+X.X%) | Worst: TICKER (-X.X%)
-- Top setup: {type} / Weakest: {type}
+📊 *Semaine*
+• Équité : $X,XXX.XX ({+/-X.XX}%)
+• Bench : {+/-X.XX}% · alpha : {+/-X.XX}%
+• Cumul : bot {+X.XX}% · bench {+X.XX}% · alpha {+X.XX}%
 
-Risk (open positions)
-- Dominant sector: {X} XX% | Dominant catalyst: {Y} XX%
-- Cash: XX% | Lev-ETF: XX% | Options: XX%
+📋 *Stats trades*
+• Clos : N · Hit : {XX}% · Avg R : X.X · Avg hold : X.X j
+• Meilleur : TICKER (+X.X%) · Pire : TICKER (-X.X%)
+• Top setup : {type} · Plus faible : {type}
 
-Next week
-- Data: {FOMC Wed, CPI Tue, NFP Fri}
-- Expected regime: {X}
-- Earnings watchlist: {top 3-5}
+🛡️ *Risque (positions ouvertes)*
+• Secteur dominant : {X} {XX}%
+• Catalyseur dominant : {Y} {XX}%
+• Cash : {XX}% · Lev-ETF : {XX}% · Options : {XX}%
 
-Adjustments: {summary or "none"}
+🎯 *Semaine prochaine*
+• Data : {FOMC Mer · CPI Mar · NFP Ven}
+• Régime attendu : {X}
+• Watchlist earnings : {3-5}
+
+🔧 *Ajustements*
+• {résumé ou "aucun"}
 ```
 
 ## Forbidden

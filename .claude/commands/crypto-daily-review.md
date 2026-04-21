@@ -66,14 +66,29 @@ Invoke the `journal` skill. Commit format:
 
 Send **ONLY IF** grade D or F, risk-event tag, or discipline violation.
 
+Message in French, Telegram Markdown. Template:
 ```
-*crypto-daily-review* — YYYY-MM-DD — grade *{X}*
-Day: {+/-X.XX}% | vs BTC {+/-X.XX}%
-Closed: N ({W}W/{L}L) | Hit rate: XX% | Avg R: X.X
-Regime today: risk-on {X}h / neutral {Y}h / risk-off {Z}h
-{⚠️ tag line if risk-event}
-Lesson: {1-line}
-Crypto equity: $X,XXX.XX
+*₿ Bull-Crypto — Daily review*
+_YYYY-MM-DD · 23:00 UTC · note *{X}*_
+
+📊 *Jour*
+• Bot : {+/-X.XX}%
+• vs BTC : {+/-X.XX}%
+
+📋 *Trades clos* (N · {W}W/{L}L)
+• Hit rate : {XX}%
+• Avg R : X.X
+
+🌡️ *Régime sur 24h*
+• risk-on {X}h · neutre {Y}h · risk-off {Z}h
+
+💼 *Solde*
+• Équité crypto : $X,XXX.XX
+
+{🚨 *Événement* : tag}
+
+💡 *Leçon*
+{1 ligne actionnable}
 ```
 
 ## Forbidden

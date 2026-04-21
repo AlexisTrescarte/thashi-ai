@@ -77,13 +77,28 @@ Send **ONLY IF**:
 - Any risk-event tag appended to `learnings.md` today
 - Any discipline violation (missed stop, earnings hold without flag, revenge-trade attempt caught)
 
+Message in French, Telegram Markdown. Template:
 ```
-*daily-review* — YYYY-MM-DD — grade *{X}*
-Day: {+/-X.XX}% | bench {+/-X.XX}% | alpha {+/-X.XX}%
-Closed: N ({W}W/{L}L) | Hit rate today: XX% | Avg R today: X.X
-{⚠️ tag line if risk-event}
-Lesson: {1-line actionable}
-Equity: $X,XXX.XX | Cash: $X,XXX.XX
+*🐂 Bull-Equities — Daily review*
+_YYYY-MM-DD · 15:30 CT · note *{X}*_
+
+📊 *Jour*
+• Bot : {+/-X.XX}%
+• Bench : {+/-X.XX}%
+• Alpha : {+/-X.XX}%
+
+📋 *Trades clos* (N · {W}W/{L}L)
+• Hit rate jour : {XX}%
+• Avg R jour : X.X
+
+💼 *Solde*
+• Équité : $X,XXX.XX
+• Cash : $X,XXX.XX
+
+{🚨 *Événement* : tag}
+
+💡 *Leçon*
+{1 ligne actionnable}
 ```
 
 ## Forbidden

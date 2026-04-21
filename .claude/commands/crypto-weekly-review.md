@@ -116,25 +116,31 @@ Invoke the `journal` skill. Commit format:
 
 ### 9. Telegram notification (mandatory)
 
+Message in French, Telegram Markdown. Template:
 ```
-*crypto-weekly-review* — week ending YYYY-MM-DD
-Grade: *{X}*
-Crypto equity: $X,XXX.XX (week {+/-X.XX}%)
-BTC week: {+/-X.XX}% | alpha vs BTC: {+/-X.XX}%
-Cumul baseline: bot {+X.XX}% / BTC {+X.XX}% / alpha {+X.XX}%
+*₿ Bull-Crypto — Weekly review*
+_Semaine clôturant YYYY-MM-DD · note *{X}*_
 
-Closed: N | Hit: XX% | Avg R: X.X | Avg hold: X.X d
-Best: COIN (+X%) | Worst: COIN (-X%)
+📊 *Semaine*
+• Équité crypto : $X,XXX.XX ({+/-X.XX}%)
+• BTC : {+/-X.XX}% · alpha vs BTC : {+/-X.XX}%
+• Cumul : bot {+X.XX}% · BTC {+X.XX}% · alpha {+X.XX}%
 
-Risk
-- Top coin: {X} XX% | Aggregate crypto vs NAV: XX%
-- Correlation to BTC: X.X
+📋 *Stats trades*
+• Clos : N · Hit : {XX}% · Avg R : X.X · Avg hold : X.X j
+• Meilleur : COIN (+X%) · Pire : COIN (-X%)
 
-Next week
-- Calendar: {top 3 events}
-- Bias: {setup lean}
+🛡️ *Risque*
+• Top coin : {X} {XX}%
+• Agrégé crypto vs NAV : {XX}%
+• Corrélation BTC : X.X
 
-Adjustments: {summary or "none"}
+🎯 *Semaine prochaine*
+• Calendrier : {top 3 événements}
+• Biais : {setup lean}
+
+🔧 *Ajustements*
+• {résumé ou "aucun"}
 ```
 
 ## Forbidden

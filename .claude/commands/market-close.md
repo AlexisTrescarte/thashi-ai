@@ -81,24 +81,34 @@ Invoke the `journal` skill. Commit format:
 
 ### 9. Telegram notification (mandatory, every trading day)
 
+Message in French, Telegram Markdown. Template:
 ```
-*market-close* — YYYY-MM-DD
-EOD regime: {X} ({confirm / shift vs morning})
-Equity: $X,XXX.XX (day {+/-X.XX}%)
-Cash: $X,XXX.XX ({X}%)
+*🐂 Bull-Equities — Clôture*
+_YYYY-MM-DD · 15:00 CT_
 
-vs benchmark (50% SPY + 50% QQQ, baseline YYYY-MM-DD):
-  bot {+X.XX}% / bench {+X.XX}% / alpha {+X.XX}%
-Day: bot {+X.XX}% / bench {+X.XX}% / alpha day {+X.XX}%
+📊 *Portefeuille*
+• Équité : $X,XXX.XX ({+/-X.XX}% jour)
+• Cash : $X,XXX.XX ({X}%)
+• Positions : N ouvertes ({E actions · T ETF · L lev-ETF · O options})
 
-Today: N trades ({BUY X, CUT Y, TRIM Z, TIGHTEN W})
-Positions: N open ({E equity, T ETF, L lev-ETF, O options})
-Aging: TICKER (J+6), TICKER (J+5 short-swing watch)
-Pre-earnings tomorrow: TICKER ({exit done / exit planned intraday})
-Options DTE ≤ 4: {list or none}
-Macro 24h: {CPI, FOMC, NFP, earnings cluster}
+📈 *Benchmark* (50% SPY + 50% QQQ · base YYYY-MM-DD)
+• Jour : bot {+X.XX}% · bench {+X.XX}% · alpha {+X.XX}%
+• Cumul : bot {+X.XX}% · bench {+X.XX}% · alpha {+X.XX}%
 
-Open risks: {1-line list or "none"}
+⚡ *Activité*
+• N trades ({X BUY · Y CUT · Z TRIM · W TIGHTEN})
+• Régime EOD : {X} ({confirme / shift vs matin})
+
+🕒 *À surveiller*
+• Aging : TICKER (J+6) · TICKER (J+5)
+• Earnings demain : TICKER ({sortie faite / prévue intraday})
+• Options DTE ≤ 4 : {liste ou "aucune"}
+
+🌐 *Macro 24h*
+• {CPI · FOMC · NFP · cluster earnings}
+
+⚠️ *Risques ouverts*
+• {1 ligne par risque, ou "aucun"}
 ```
 
 ## Forbidden

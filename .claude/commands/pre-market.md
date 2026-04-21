@@ -157,15 +157,26 @@ An idea becomes **BUY** only if ALL:
 - Major macro event within 48h forcing sizing-cap adjustment
 - Auto-defense or loss-cap state active
 
-Format:
+Message in French, Telegram Markdown. Template:
 ```
-*pre-market* — YYYY-MM-DD
-Regime: {X}
-⚠️ {Urgent alerts, one per line}
-Plan: N BUY prepared for open, M WATCH, K positions action
-Risk-state: {normal | auto-defense Dn/14 | daily-cap | weekly-cap}
-Equity: $X,XXX.XX | Cash: $X,XXX.XX ({cash%}%)
-Positions: N open
+*🐂 Bull-Equities — Pre-market*
+_YYYY-MM-DD · 06:00 CT_
+
+📊 *Portefeuille*
+• Équité : $X,XXX.XX
+• Cash : $X,XXX.XX ({XX}%)
+• Positions : N ouvertes
+
+🌡️ *Régime* : {X}
+🛡️ *État risque* : {normal · auto-défense Jn/14 · cap quotidien · cap hebdo}
+
+🎯 *Plan du jour*
+• N BUY préparés pour l'open
+• M WATCH
+• K positions à traiter (tighten/trim/exit)
+
+⚠️ *Alertes*
+• {1 ligne par alerte urgente}
 ```
 
 ### 10. Journal skill — commit + push

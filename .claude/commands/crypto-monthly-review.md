@@ -140,21 +140,32 @@ Invoke the `journal` skill. Commit format:
 
 ### 9. Telegram notification (mandatory)
 
+Message in French, Telegram Markdown. Template:
 ```
-*crypto-monthly-review* — {YYYY-MM}
-Grade: *{X}*
-Month: bot {+X.XX}% | BTC {+X.XX}% | alpha {+X.XX}%
-Cumul baseline: bot {+X.XX}% | BTC {+X.XX}% | alpha {+X.XX}%
-Sharpe: X.X | Sortino: X.X | MaxDD: -X.X% | Calmar: X.X
-Closed: N | Hit: XX% | Avg R: X.X | Avg hold: X.X d
+*₿ Bull-Crypto — Monthly review*
+_{YYYY-MM} · note *{X}*_
 
-Best coin: {X} ({+Y%}) | Worst: {X} ({-Y%})
-Best setup: {X} | Worst: {X}
-Correlation to BTC: X.X
+📊 *Performance*
+• Mois : bot {+X.XX}% · BTC {+X.XX}% · alpha {+X.XX}%
+• Cumul : bot {+X.XX}% · BTC {+X.XX}% · alpha {+X.XX}%
 
-Evolution: {A} applied, {B} blocked, {C} pending
+📐 *Métriques*
+• Sharpe : X.X · Sortino : X.X
+• MaxDD : -X.X% · Calmar : X.X
 
-Next-month focus: {1-2 lines}
+📋 *Trades*
+• Clos : N · Hit : {XX}% · Avg R : X.X · Avg hold : X.X j
+
+🪙 *Par coin / setup*
+• Meilleur : {X} ({+Y}%) · Pire : {X} ({-Y}%)
+• Meilleur setup : {X} · Pire : {X}
+• Corrélation BTC : X.X
+
+🧬 *Évolution*
+• {A} appliquées · {B} bloquées · {C} en attente
+
+🎯 *Focus mois prochain*
+• {1-2 lignes}
 ```
 
 ## Forbidden

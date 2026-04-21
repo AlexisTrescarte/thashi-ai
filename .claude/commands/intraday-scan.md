@@ -125,17 +125,27 @@ Invoke the `journal` skill. Commit format:
 
 Send **ONLY IF** ≥ 1 action OR regime shift OR daily loss cap OR opportunistic BUY.
 
+Message in French, Telegram Markdown. Template:
 ```
-*intraday-scan HH:MM* — YYYY-MM-DD
-Regime: {X} ({confirm / shift})
-Day P&L: {+/-X.XX%}
-{⚠️ alert line if regime shift / loss cap}
-Cuts: TICKER (-X.X%, {reason}), …
-Tighten: TICKER (+X.X%), …
-Trim: TICKER (+X.X%, -Y% qty), …
-BUY: TICKER qty@price (~$v, X% NAV, {tier}) — {setup}
-Positions: N open
-Equity: $X,XXX.XX | Cash: $X,XXX.XX
+*🐂 Bull-Equities — Intraday scan {HH:MM}*
+_YYYY-MM-DD · {HH:MM} CT_
+
+📊 *Portefeuille*
+• Équité : $X,XXX.XX
+• Cash : $X,XXX.XX
+• P&L jour : {+/-X.XX}%
+• Positions : N ouvertes
+
+🌡️ *Régime* : {X} ({confirme / shift})
+
+⚡ *Actions*
+• 🔴 CUT : TICKER ({-X.X}%, {raison})
+• 🔒 TIGHTEN : TICKER ({+X.X}%)
+• ✂️ TRIM : TICKER ({+X.X}%, -Y% qty)
+• 🟢 BUY : TICKER qty@$price · ~$v · {X}% NAV · {tier} · {setup}
+
+⚠️ *Alertes*
+• {ligne si shift régime / cap quotidien / défense}
 ```
 
 ## Forbidden

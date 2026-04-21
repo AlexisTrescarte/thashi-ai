@@ -75,7 +75,19 @@ Use native tools (`WebSearch`, `WebFetch`). Prefer primary sources (SEC filings,
 
 ## Telegram notifications
 
-Every notification contains: **portfolio value**, **vs benchmark since baseline**, **run actions**, **open risks**. Never the API key list, never a full transcript. Use `scripts/telegram_client.py`.
+**Language: French** — every Telegram message sent to the user MUST be written in French. All other content (memory files, logs, commit messages, research notes, reviews, skill internals, code comments) stays in English. The French requirement applies only to the text sent to the user via `scripts/telegram_client.py`.
+
+**Format** — follow the per-routine template in each `.claude/commands/*.md` "Telegram notification" section. Style rules:
+- Telegram Markdown (`*bold*`, `_italic_`, `` `code` ``). Escape `_` `*` `` ` `` when they appear literally in values.
+- Header line: `*🐂 Bull-Equities — {Routine}*` or `*₿ Bull-Crypto — {Routine}*` (the bull/bitcoin glyph identifies the agent at a glance).
+- Subtitle line in italic: date + time + timezone + grade (if review).
+- Section headers with one emoji anchor: 📊 Portefeuille · 📈 Benchmark · ⚡ Actions/Exécutions · 🎯 Plan/Focus · 🛡️ Risque · 🌡️ Régime · 🧬 Évolution · 💡 Leçon · ⚠️ Alertes · 🚨 Événement.
+- Bullet lines start with `• `. Use `·` as in-line separator between short fields.
+- Action emojis inside bullets: 🟢 BUY · 🔴 CUT · 🔒 TIGHTEN · ✂️ TRIM.
+- Numbers formatted with thousands separator. Percentages with two decimals where relevant.
+- Keep it scannable: ≤ 15 lines for hourly/conditional, ≤ 30 lines for mandatory reviews.
+
+**Content invariants** — every notification contains: **portfolio value**, **vs benchmark since baseline**, **run actions**, **open risks** (as applicable to the routine). Never the API key list, never a full transcript.
 
 Notification policy per routine:
 - **Mandatory** every run: market-close, daily-review, weekly-review, monthly-deep-review, quarterly-rewrite, crypto-daily-review, crypto-weekly-review, crypto-monthly-review

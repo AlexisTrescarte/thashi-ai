@@ -119,13 +119,29 @@ Send **ONLY IF**:
 - Daily/weekly loss cap triggered
 - API degraded
 
+Message in French, Telegram Markdown. Template:
 ```
-*crypto-hourly UTC HH:MM* — YYYY-MM-DD
-Regime: {X} ({confirm / shift})
-Actions: {1-liner per action}
-Positions: N open ({list with P&L%})
-Crypto equity: $X,XXX.XX | Cash: $X,XXX.XX
-{⚠️ alert line if cap/defense}
+*₿ Bull-Crypto — Hourly {HH:MM} UTC*
+_YYYY-MM-DD_
+
+🌡️ *Régime* : {X} ({confirme / shift})
+
+⚡ *Actions*
+• 🟢 BUY COIN qty@$price · ~$v · {X}% NAV · {tier}
+• 🔴 CUT COIN ({raison})
+• 🔒 TIGHTEN COIN (trail {X}%)
+• ✂️ TRIM COIN (-Y% qty @ {+X.X}%)
+
+💼 *Positions* (N ouvertes)
+• COIN : {+/-X.X}%
+• COIN : {+/-X.X}%
+
+📊 *Solde crypto*
+• Équité : $X,XXX.XX
+• Cash : $X,XXX.XX
+
+⚠️ *Alertes*
+• {ligne si cap / défense / API dégradée}
 ```
 
 ## Forbidden

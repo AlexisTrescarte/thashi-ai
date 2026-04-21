@@ -79,16 +79,24 @@ Invoke the `journal` skill. Commit format:
 
 Send **ONLY IF** at least one trade placed OR a notable guardrail-driven skip OR a stop reconciliation was needed.
 
+Message in French, Telegram Markdown. Template:
 ```
-*market-open* — YYYY-MM-DD
-Regime: {X}
-N trades executed:
-- BUY TICKER qty@price (~$value, X% NAV, {High/Std/Probe}) — {setup} — stop {type/level}
-- BUY OPT {UNDERLYING MMDD STRIKE C/P} N contracts @ $mid (~$X premium, X% NAV) — DTE {N}
-- …
-K skip: TICKER ({reason})
-Equity: $X,XXX.XX | Cash: $X,XXX.XX ({cash%}%)
-Positions: N open
+*🐂 Bull-Equities — Market open*
+_YYYY-MM-DD · 08:30 CT_
+
+📊 *Portefeuille*
+• Équité : $X,XXX.XX
+• Cash : $X,XXX.XX ({XX}%)
+• Positions : N ouvertes
+
+🌡️ *Régime* : {X}
+
+⚡ *Exécutions* (N trades)
+• 🟢 BUY TICKER qty@$price · ~$value · {X}% NAV · {Haute/Standard/Probe} · stop {type/niveau} · {setup}
+• 🟢 BUY OPT {UNDERLYING MMDD STRIKE C/P} N contrats @ $mid · ~$X prime · {X}% NAV · DTE {N}
+
+⏭️ *Sautés* (K)
+• TICKER — {raison}
 ```
 
 ## Forbidden

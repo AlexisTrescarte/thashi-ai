@@ -130,7 +130,7 @@ Update proposal state to `blocked: {gate-id + reason}`. Do NOT delete it. It sta
 ## Post-run
 
 - Commit + push (journal skill handles)
-- Telegram: `*prompt-evolution* — {rhythm} — {n} applied, {m} blocked, {k} pending`
+- Telegram (French): `*🧬 Évolution prompts* — {rhythm}\n• {n} appliquées · {m} bloquées · {k} en attente`
 - If any block triggered G2/G4/G5 (hard-cap, forbidden-feature, evolution-gate attack): add an `[INCIDENT]` entry to `learnings.md` so it's visible in future reviews
 
 ## Refusal conditions

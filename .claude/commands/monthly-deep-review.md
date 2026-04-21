@@ -165,21 +165,30 @@ Invoke the `journal` skill. Commit format:
 
 ### 10. Telegram notification (mandatory)
 
+Message in French, Telegram Markdown. Template:
 ```
-*monthly-deep-review* — Month {N} (YYYY-MM)
-Grade: *{X}*
-Month: bot {+X.XX}% | bench {+X.XX}% | alpha {+X.XX}%
-Cumul baseline: bot {+X.XX}% | bench {+X.XX}% | alpha {+X.XX}%
-Sharpe: X.X | Sortino: X.X | MaxDD: -X.X% | Calmar: X.X
-Closed: N | Hit rate: XX% | Avg R: X.X | Avg hold: X.X d
+*🐂 Bull-Equities — Monthly review*
+_Mois {N} (YYYY-MM) · note *{X}*_
 
-Best setup: {type} (+X.X%) | Worst: {type} (-X.X%)
-Best instrument: {type} | Worst: {type}
-Discipline violations: N
+📊 *Performance*
+• Mois : bot {+X.XX}% · bench {+X.XX}% · alpha {+X.XX}%
+• Cumul : bot {+X.XX}% · bench {+X.XX}% · alpha {+X.XX}%
 
-Evolution: {A} applied, {B} blocked ({list of reasons}), {C} pending
+📐 *Métriques*
+• Sharpe : X.X · Sortino : X.X
+• MaxDD : -X.X% · Calmar : X.X
 
-Next-month focus: {1-2 lines}
+📋 *Trades*
+• Clos : N · Hit : {XX}% · Avg R : X.X · Avg hold : X.X j
+• Meilleur setup : {type} (+X.X%) · Pire : {type} (-X.X%)
+• Meilleur instrument : {type} · Pire : {type}
+• Violations discipline : N
+
+🧬 *Évolution*
+• {A} appliquées · {B} bloquées ({raisons}) · {C} en attente
+
+🎯 *Focus mois prochain*
+• {1-2 lignes}
 ```
 
 ## Forbidden

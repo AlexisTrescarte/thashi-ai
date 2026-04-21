@@ -49,3 +49,9 @@ Append-only. What Bull discovers that's useful for future runs: trade lessons, t
 **Takeaway**: Règles midday legacy : cut à -7%, tighten à +15%. Sous Bull v2, `intraday-scan` remplace avec une grille P1-P8 (cut -5% equity / -8% crypto, trim +20%/+30% short-swing/swing+, tighten 3% trailing à +10%). Le résidu BTC reste ouvert pour un run ultérieur autorisé à liquider hors-univers equities.
 **Action**: Aucun ordre. Pas de notification Telegram. Commit no-op pour trace.
 **Agent**: equities
+
+### 2026-04-21T15:31:38Z — LESSON
+**Context**: Run `intraday-scan` slot 10:30 CT (2026-04-21). Alpaca confirme : equity $97,382.43, cash $97,382.43 (100%), 0 positions, 0 open orders. Day P&L = 0,00% (equity == last_equity). Aucune note pre-market postée pour 2026-04-21 ; dernier plan pre-market est celui du 2026-04-20 (GEV WATCH jusqu'au 22/04, GOOGL WATCH jusqu'au 29/04, aucun BUY prévu). Macro check : VIX ~18,87 (clôture 20/04), SPY/QQQ futures légèrement positifs, TSMC a relevé sa guidance 2026 (semis rebond), mais Hormuz "fermé ce matin", brut +5%, actions -0,4% en early trading. Audition du nominé Fed Kevin Warsh à 10:00 ET aujourd'hui. Cluster earnings INTC/LMT/HON/AXP ce soir.
+**Takeaway**: Pas de regime-shift déclencheur (VIX pas +20%, pas de credit event, pas de surprise hawkish). Book vide → pas de décision P1-P10 à appliquer, pas de stop-update sweep. Opportunistic BUY bloqué : aucun nouveau catalyseur daté n'a émergé aujourd'hui, les WATCH (GEV/GOOGL) sont event-gated post-earnings. Discipline : ne pas forcer un BUY au sommet du marché sans note CTQS ≥ 70 dédiée. Cash 100% est cohérent avec "conviction over activity" face à ATH + Fed event risk + cluster earnings.
+**Action**: Aucun ordre. Aucune notification Telegram (policy conditionnelle, zéro action). Commit no-op pour trace. À reprendre : pre-market 2026-04-22 doit couvrir la réaction GEV post-earnings et le verdict de l'audition Warsh.
+**Agent**: equities

@@ -1,1 +1,2 @@
 # Run log (append-only) — une ligne par run, même noop.
+2026-04-21T13:35:00Z [market-open] noop: no pre-market BUY queue for 2026-04-21 (plan defers GEV to 22 Apr, GOOGL to 29 Apr); positions=0; cash 100%; regime late-cycle

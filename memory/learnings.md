@@ -49,3 +49,9 @@ Append-only. What Bull discovers that's useful for future runs: trade lessons, t
 **Takeaway**: Règles midday legacy : cut à -7%, tighten à +15%. Sous Bull v2, `intraday-scan` remplace avec une grille P1-P8 (cut -5% equity / -8% crypto, trim +20%/+30% short-swing/swing+, tighten 3% trailing à +10%). Le résidu BTC reste ouvert pour un run ultérieur autorisé à liquider hors-univers equities.
 **Action**: Aucun ordre. Pas de notification Telegram. Commit no-op pour trace.
 **Agent**: equities
+
+### 2026-04-21T13:35:00Z — LESSON
+**Context**: Run `market-open` du 21 avril 2026. Marché ouvert (09:35 ET). Équité $97,382.43, cash $97,382.43 (100%), `positions=[]`, orders=[]. Le résidu BTCUSD (0,000049999, $3,76) noté hier est désormais absent de l'API — probablement liquidé par l'agent crypto entre le midday legacy (20 avr 17:02Z) et ce run. `trade_log.md` equities reste vide (aucun SELL côté equities), ce qui est cohérent : l'action n'est pas attribuable à l'agent equities.
+**Takeaway**: Pas de file BUY pour aujourd'hui — aucun bloc pre-market daté 2026-04-21 dans `research_log.md`. La note pre-market du 20 avr (T12:28Z) est explicite pour la semaine : GEV WATCH jusqu'au post-earnings 22 avr, GOOGL WATCH scénario B post-29 avr. Aucune idée n'est échéance aujourd'hui. Mardi 21 avr = cluster earnings lourd (INTC, LMT, HON, AXP, TFC, NEE, CMCSA, VRSN, PGR, DOW, KDP, BLK, BX) → event-risk partout, raison supplémentaire d'attendre. Régime late-cycle maintenu. Préflight : auto-defense off, pas de loss cap, cash 100% > floor 10%, pas de macro data dans 24h (FOMC 28-29 avr), pas de shift risk-off overnight.
+**Action**: Aucun ordre. Aucune reconciliation de stop (positions=0). Pas de notification Telegram (règle : conditionnel, ≥1 trade ou skip notable). Commit no-op pour trace. Prochaine action planifiée : pre-market demain (22 avr) + décision GEV post-earnings.
+**Agent**: equities

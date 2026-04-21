@@ -35,7 +35,7 @@ Memory discipline: append-only on logs, controlled overwrite on snapshots. Commi
 3. `git diff --stat` to ensure no unexpected file modified (refuse if `guardrails.md` or the immutable sections of another file changed without a human-edit flag)
 4. `git add -A`
 5. `git commit -m "[{routine}] YYYY-MM-DD — {1-line summary}"`
-6. `git push origin {branch}` (branch from environment, typically `main`)
+6. `git push origin HEAD:main` (CCR runs on an isolated branch — always push explicitly to `main`)
 7. On push fail: append `[PUSH-FAIL] {timestamp} — {error}` to `learnings.md`, notify Telegram `DEGRADED`, do not retry in a loop
 
 ## Commit message conventions

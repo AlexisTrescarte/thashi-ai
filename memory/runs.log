@@ -1,1 +1,2 @@
 # Run log (append-only) — une ligne par run, même noop.
+2026-04-21T12:14Z crypto-hourly noop regime=neutral positions=0 cash=$97382.43 actions=0 (first crypto run, baseline regime logged in research_log)

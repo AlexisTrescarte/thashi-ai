@@ -49,3 +49,9 @@ Append-only. What Bull discovers that's useful for future runs: trade lessons, t
 **Takeaway**: Règles midday legacy : cut à -7%, tighten à +15%. Sous Bull v2, `intraday-scan` remplace avec une grille P1-P8 (cut -5% equity / -8% crypto, trim +20%/+30% short-swing/swing+, tighten 3% trailing à +10%). Le résidu BTC reste ouvert pour un run ultérieur autorisé à liquider hors-univers equities.
 **Action**: Aucun ordre. Pas de notification Telegram. Commit no-op pour trace.
 **Agent**: equities
+
+### 2026-04-22T00:17:35Z — [API-DEGRADED]
+**Context**: Run `crypto-hourly` (cycle 00:00 UTC). Tentative `python scripts/alpaca_crypto_client.py account` → HTTP 503 "DNS cache overflow" sur paper-api.alpaca.markets. Retry avec backoff 3s → même erreur. Impossible de rafraîchir l'état du compte, positions ou ordres.
+**Takeaway**: Panne API en amont d'Alpaca (DNS). Per guardrails § Errors: retry once with backoff → log + notify DEGRADED + terminate run. Aucun trade, aucune évaluation de régime (les données de prix crypto proviennent également d'Alpaca en amont). Le prochain run dans 4h retentera.
+**Action**: Run terminé en mode DEGRADED. Notification Telegram envoyée. Aucun ordre placé, aucune mémoire marché écrite (pas d'état de régime sans données fiables).
+**Agent**: crypto

@@ -49,3 +49,9 @@ Append-only. What Bull discovers that's useful for future runs: trade lessons, t
 **Takeaway**: Règles midday legacy : cut à -7%, tighten à +15%. Sous Bull v2, `intraday-scan` remplace avec une grille P1-P8 (cut -5% equity / -8% crypto, trim +20%/+30% short-swing/swing+, tighten 3% trailing à +10%). Le résidu BTC reste ouvert pour un run ultérieur autorisé à liquider hors-univers equities.
 **Action**: Aucun ordre. Pas de notification Telegram. Commit no-op pour trace.
 **Agent**: equities
+
+### 2026-04-22T13:38:30Z — LESSON
+**Context**: Run `market-open` du 22 avril 2026 (09:38 ET). Marché ouvert. Équité $97,382.43, cash $97,382.43 (100%), 0 positions, 0 ordres ouverts — le résidu BTCUSD observé les 20 avril n'apparaît plus côté API equities (présumé liquidé ou réattribué à l'agent crypto entre les runs). Aucun bloc pre-market du 21/04 ni du 22/04 dans `research_log.md` : la dernière entrée pre-market date du 20/04 et listait explicitement "AUCUN BUY" + GEV/GOOGL en WATCH (pas en BUY queue). GEV publie ses résultats Q1 ce matin pre-market mais le plan du 20/04 exigeait une ré-évaluation post-earnings avant toute entrée — cette ré-évaluation relève du pre-market, pas du market-open.
+**Takeaway**: Scope `market-open` = execution only. Sans bloc pre-market frais listant une BUY queue, le comportement correct est no-op. Ne pas improviser sur GEV même si le setup initial est validé : la règle "pas de nouvelle idée à l'open" prime. Preflight tous verts (pas d'auto-defense, pas de daily/weekly cap, cash 100% ≫ 10%, 0 positions ≪ 30).
+**Action**: Aucun ordre placé. Aucune réconciliation de stop (pas de position). Pas de notification Telegram (règle market-open : uniquement si ≥ 1 trade ou skip remarquable — ici, l'absence de queue n'est pas un skip mais un no-queue). Commit no-op pour trace. À surveiller au prochain pre-market : inclure GEV post-earnings dans la BUY queue si le setup tient.
+**Agent**: equities

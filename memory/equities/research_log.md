@@ -62,3 +62,88 @@ Append-only. Each run's research notes follow the CTQS template from `.claude/sk
 - **GOOGL** : WATCH, préférence entrée post-29 avril sur pullback. Scénario B (attente).
 **Cash après run** : $97,378 (99,996%) — largement > floor 10%. Dry powder intact.
 **Risques ouverts** : (1) résidu crypto à clore ; (2) baseline non posée (premier run) ; (3) market à ATH avec CPI chaud — un mauvais rapport earnings cette semaine pourrait déclencher une rotation. Plan défensif : laisser les stops travailler, ne pas forcer.
+
+---
+
+## 2026-04-22 — Pre-market plan (LATE — run lancé 10:41 CT, marché déjà ouvert depuis 2h)
+
+### Macro regime
+**late-cycle / risk-off tilt** — VIX 19,50 (+3% jour), QQQ open 648,41. **L'Iran ceasefire de 2 semaines expire AUJOURD'HUI 22 avril** (Trump l'avait étendue le 7 avril) — événement géopolitique binaire imminent. WTI oscille $96-114, IEA qualifie la perturbation Hormuz de "plus grande de l'histoire". DXY ferme, gold $4,700-5,000+ (zone record). FOMC 28-29 avril : 100% hold (CME FedWatch) au range 4,25-4,50%. Cluster earnings Mag-7/industrielles cette semaine. Per guardrails : "événement macro majeur sous 24h → sizing une encoche en-dessous, options divisées par 2 (cap 2,5%)". **Régime activé.**
+
+### Weekly catalyst calendar
+- **Mardi 21** (hier) : INTC, LMT, HON, AXP, TFC, NEE, COMCAST, VRSN, PGR, DOW, KDP, BLK, BX. LMT a manqué l'EPS (-1,6%), réaction confuse.
+- **Mercredi 22** (aujourd'hui) : **GEV BMO** (déjà reporté — beat massif EPS GAAP $17,44 vs ~$2,00 attendu, guidance 2026 relevée à $44,5-45,5B, mais stock -1,25% à $990 = sell-the-news). **BA BMO** (loss narrowed, "all systems are go" 737, options pricaient ±5,3%). **TSLA AMC** (consensus EPS $0,35-0,37, revenue $22,3B). **IBM AMC** (focus AI book). **ServiceNow AMC**. **Iran ceasefire deadline**.
+- **Jeudi 23** : HON BMO, GOOGL/MSFT pas encore (la semaine prochaine). 171 reports.
+- **Vendredi 24** : SLB, PG, CHTR, NSC, **NEM BMO** (gold producer).
+- **La semaine prochaine** : FOMC 28-29 avril (hold 100%), GOOGL 29 avril AMC, MSFT 29 avril AMC, META 30 avril AMC, AMZN 1er mai.
+
+### Risk-state
+- Auto-defense : non
+- Daily loss cap : non (équité $97,382.43 = last_equity, day move 0%)
+- Weekly loss cap : non
+- ATH tracking : équité actuelle = effective ATH ($97,382.43, baseline $100k → DD -2,6% depuis baseline mais aucun ATH "réel" établi — bot vient juste de démarrer)
+- Sizing adjustment actif : **OUI, une encoche en-dessous** à cause de l'Iran ceasefire deadline aujourd'hui + FOMC dans 7 jours. Probe → max 2%, Standard → max 4%, High → max 7%. Options cap réduit 5% → **2,5%**.
+
+### Open positions — actions for today
+**0 positions ouvertes**. 100% cash ($97,382.43). Aucun ordre stop/TP en cours. Aucun audit nécessaire. Le résidu BTCUSD observé les 20 avril n'apparaît plus sur l'API — présumé liquidé/réattribué crypto.
+
+### New ideas (8 candidats CTQS scannés)
+
+#### 1. GEV (GE Vernova) — WATCH (post-earnings, sell-the-news)
+**Catalyseur** : Q1 2026 publié ce matin. GAAP EPS $17,44 vs ~$2,00 attendu (beat colossal, probable gain one-time), revenue +16,3% YoY, guidance 2026 relevée à $44,5-45,5B. **Mais réaction prix : -1,25% à $990,18** (sell-the-news après run +200% YTD).
+**Sources primaires** :
+- https://www.gurufocus.com/news/8808543/ge-vernova-gev-reports-strong-q1-earnings-raises-2026-financial-guidance
+- https://www.gevernova.com/investors (IR primaire)
+**CTQS** : C 20/25 (catalyseur réalisé, guidance forte) · T 12/25 (sell-the-news + extension verticale 200%, MA200 +30% violé) · Q 20/25 (top-decile momentum, qualité industrielle, ROIC en hausse) · S 13/25 (analystes positifs mais sentiment exhausted, options expirent priced) = **65/100 → Probe** théorique.
+**Plan** : **WATCH**. La thèse pre-market du 20/04 disait "si overshoot post-earnings > 15%, attendre le retest de la première résistance cassée". Ici, sell-the-news : attendre que le prix trouve un support (premier niveau ~$960 puis MA50 ~$920). Re-évaluer au prochain pre-market. Pas d'entrée aujourd'hui. **Anti-FOMO check failed** sur extension MA200.
+
+#### 2. GOOGL (Alphabet) — WATCH (pré-earnings 29/04)
+**Catalyseur** : Earnings Q1 2026 le **29 avril AMC** (J+5 trading days). Gemini 3 traction, antitrust Mehta résolu sans divestiture forced.
+**Sources** : (cf entrée 2026-04-20T12:26:00Z dans ce log)
+**CTQS** : C 18/25 (earnings dated J+5) · T 14/25 (rotation hors tech, XLK lagging récemment) · Q 18/25 (qualité mega-cap, momentum mitigé) · S 15/25 (revisions positives mais flux mitigé) = **65/100 → Probe** théorique.
+**Plan** : **WATCH**. Préférence reste **Scénario B** (attendre post-earnings pullback) — un setup pre-earnings J-5 sur sizing une-encoche-en-dessous (Probe → 2% max) avec sortie obligatoire 28/04 close serait acceptable mais marginal. **Pas d'entrée aujourd'hui** : trop d'événements binaires concurrents (Iran today + AMC TSLA tonight) qui peuvent dérégler le setup avant 29/04. Re-scan pré-marché 23/04.
+
+#### 3. GLD (SPDR Gold) — WATCH (safe-haven, mais entrée tardive)
+**Catalyseur** : Iran ceasefire deadline aujourd'hui + flux safe-haven persistants depuis février 2026. Gold $4,700-5,000+ zone record.
+**Sources** :
+- https://markets.financialcontent.com/stocks/article/marketminute-2026-4-14-safe-haven-surge-gold-and-silver-hit-record-highs-as-islamabad-peace-talks-reshape-global-markets
+- https://www.jpmorgan.com/insights/global-research/commodities/gold-prices
+**CTQS** : C 16/25 (catalyseur géopolitique daté MAIS asymétrique inverse — un ceasefire stable ferait chuter le gold) · T 18/25 (record breakout en cours, structure haussière) · Q 17/25 (top-decile momentum, ETF mega-liquid, low-cost) · S 17/25 (Reuters note inflows hebdo continus depuis février, JPM target $5k+) = **68/100 → Probe** théorique.
+**Plan** : **WATCH**. Le setup est techniquement valide MAIS l'entrée pré-événement Iran (ceasefire deadline ce soir) est asymétriquement défavorable : le marché a déjà priced un risque élevé, un renouvellement du ceasefire ferait reculer GLD vers $4,700. Mieux d'attendre la résolution intraday/overnight et entrer sur soit (a) confirmation d'escalade avec breakout >$5,000 → Standard 4% (sizing one-notch-down depuis 6%), soit (b) pullback vers $4,600-4,650 sur ceasefire renouvelé → Probe 2%. Re-scan intraday-scan ou pré-marché 23/04.
+
+#### 4. BA (Boeing) — WATCH (PEAD post-earnings 22/04)
+**Catalyseur** : Q1 publié BMO aujourd'hui. Loss narrowed vs -$0,69 attendu, CEO "all systems are go" sur cadence 737, deliveries Q1 = 143 avions (vs Airbus 114 — première victoire trimestrielle depuis Q1 2019). Backlog solide.
+**Sources** :
+- https://www.cnbc.com/2026/04/22/boeing-ba-q1-2026-earnings.html
+- https://investors.boeing.com (IR primaire)
+**CTQS** : C 17/25 (PEAD valide si réaction positive à confirmer) · T ?/25 (à mesurer après la session — options pricaient ±5,3%) · Q 13/25 (encore en perte, FCF négatif, qualité dégradée mais en redressement) · S 16/25 (analystes Strong Buy avec PT moyen $274,92, +22% upside, mais sentiment "patience required") = **~63-68/100 → Probe** théorique.
+**Plan** : **WATCH**. PEAD nécessite une réaction propre J+0 (volume + clôture > intraday haut). **Pas d'entrée aujourd'hui** car (1) je n'ai pas la cotation EOD, (2) Iran event ce soir peut écraser tout setup industrial cyclique, (3) défense-aerospace lourd lié au pétrole. Re-scan pré-marché 23/04 : si BA ferme +3% avec volume en hausse et que l'Iran ne dégénère pas, candidat PEAD Standard (4% sizing capped one-notch-down).
+
+#### 5. NEM (Newmont) — SKIP (earnings 24/04 — trop proche)
+**Catalyseur** : Earnings Q1 vendredi 24/04 BMO. Production prévue 5,3M oz à coût favorable. Gold record.
+**CTQS non-scoré** : violation de la règle pre-earnings exit (entry dans la fenêtre J-2). Strategy.md interdit hold through earnings sans flag explicite "earnings hold". **SKIP** pour ce run. Re-scanner après le report.
+
+#### 6. XOM / CVX — SKIP (war premium fully priced)
+**Catalyseur** : Iran tensions, oil $96-114.
+**Raison SKIP** : XOM et CVX ont déjà fait +30% YTD en 2026 sur la prime de guerre. Le risque est désormais à la baisse (un ceasefire stable peut effacer 5-10% en quelques séances comme observé début avril). Anti-FOMO check failed. Sizing risk-reward défavorable post-rally. **SKIP**.
+
+#### 7. LMT (Lockheed Martin) — SKIP (post-earnings miss)
+**Catalyseur** : Q1 publié 21/04 — EPS $5,80 vs $6,33 attendu (miss), revenue $20,32B beat, stock -1,6% à $572,10. Backlog $194B record.
+**CTQS** : C 8/25 (post-earnings miss = catalyseur défavorable) · T 12/25 (sell-off post-earnings) · Q 17/25 (qualité défense premier ordre) · S 12/25 (sentiment mixte sur miss EPS) = **49/100 → SKIP**.
+
+#### 8. TSLA / IBM / ServiceNow — DEFER (AMC 22/04)
+**Catalyseur** : 3 reports AMC ce soir. TSLA EPS attendu $0,35-0,37, revenue $22,3B (+15% YoY), -20% YTD le stock. IBM focus AI book. ServiceNow attendu solide.
+**Plan** : Aucune entrée pré-AMC (event risk binary, sizing déjà one-notch-down imposerait pas plus que 2-3% qui ne justifie pas le risque). PEAD candidates pour le pre-market 23/04 si les réactions sont propres.
+
+### Risks to watch today
+- **18:00-22:00 UTC** : Iran ceasefire deadline — décision d'extension/escalade. Tail scenario : escalade → VIX +30%, gold +5%, oil +10%, equities -2 à -4%. Stops à 3% activés intraday-wide si VIX casse 25.
+- **20:00-21:30 UTC** : TSLA + IBM + ServiceNow AMC — réactions post-market alimenteront le pré-marché 23/04.
+- **Tail** : un mauvais TSLA sur deliveries + un Iran qui dérape = double choc tech + risk-off. Dry powder 100% est protection.
+
+### Summary
+- **0 BUY queued** pour la suite de la session ou le market-open de demain.
+- **4 WATCH** : GEV (post-earnings sell-the-news, attendre support), GOOGL (pré-earnings 29/04, scénario B), GLD (asymétrie événementielle ce soir), BA (PEAD à confirmer EOD).
+- **3 SKIP** : NEM (earnings J-2), XOM/CVX (war premium fully priced), LMT (post-earnings miss).
+- **3 DEFER** : TSLA/IBM/ServiceNow (AMC ce soir → re-scan 23/04).
+- **0 positions à traiter** (book vide).
+- **Sizing one-notch-down** activé jusqu'à résolution Iran + post-FOMC.

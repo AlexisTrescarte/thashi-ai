@@ -1,2 +1,3 @@
 # Run log (append-only) — une ligne par run, même noop.
 2026-04-22T13:38:30Z market-open equities noop — no pre-market block from today; last pre-market 2026-04-20 said AUCUN BUY; 0 positions, 0 orders; cash 100%
+2026-04-22T17:40:45Z [intraday-scan] equities 12:30 CT — 0 cut, 0 tighten, 0 trim, 0 BUY; GEV Pathway A blocked by MA200+56% filter

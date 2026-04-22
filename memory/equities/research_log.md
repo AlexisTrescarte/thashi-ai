@@ -62,3 +62,23 @@ Append-only. Each run's research notes follow the CTQS template from `.claude/sk
 - **GOOGL** : WATCH, préférence entrée post-29 avril sur pullback. Scénario B (attente).
 **Cash après run** : $97,378 (99,996%) — largement > floor 10%. Dry powder intact.
 **Risques ouverts** : (1) résidu crypto à clore ; (2) baseline non posée (premier run) ; (3) market à ATH avec CPI chaud — un mauvais rapport earnings cette semaine pourrait déclencher une rotation. Plan défensif : laisser les stops travailler, ne pas forcer.
+
+### 2026-04-22T17:40:00Z — INTRADAY-SCAN 12:30 CT — GEV post-earnings re-evaluation
+**Setup** : Midday slot du 22/04. GEV a publié Q1 2026 pre-market : GAAP EPS $17.44 (gain one-time Prolec), revenue $9.30B (+16% YoY), orders $18.3B (+71% YoY), data-center orders $2.4B sur Q1 seul (> 2025 entier), guidance 2026 **relevée** (revenue $44.5-45.5B, adj EBITDA margin 12-14% vs 11-13%). Action cotée ~$1,119, +13% sur la séance (départ ~$991).
+**Vérification du trigger pre-market du 20/04** :
+- Beat + guidance maintenue → **validé** (guidance même relevée).
+- Overshoot post-earnings < 15% → +13% satisfait (marginalement).
+- **Stock non > 30% au-dessus de la MA200 → ÉCHEC**. MA200 GEV ≈ $716.06 (données 20/04). À $1,119, le prix est **+56% au-dessus de la MA200**. Le filtre anti-FOMO du pre-market est binding.
+**Sources** :
+- https://www.gurufocus.com/news/8809823/ge-vernova-reports-strong-q1-2026-results-stock-surges-over-10
+- https://247wallst.com/investing/2026/04/22/ge-vernova-zooms-13-ge-aerospace-loses-5-as-earnings-day-fractures-the-family/
+- https://www.investing.com/equities/ge-vernova-llc-technical (MA50 $870, MA200 $716)
+**Décision** : **NO BUY**. Le trigger Pathway A n'est pas clean (MA200 filter fail). Pathway B/C également rejetés (le même filtre FOMO s'applique sur une thèse dont nous sommes déjà propriétaires intellectuels via le WATCH 20/04 — un pop de +13% sur un stock déjà +56% au-dessus de la MA200 est précisément le setup que l'anti-FOMO protège).
+**Plan suivi** : Attendre un pullback + consolidation. Prochaine étape = pre-market 23/04 : refresh CTQS avec prix post-earnings, définir niveau d'entrée post-pullback (retest de la résistance cassée, ou MA50 cross). Ne pas relâcher le filtre MA200+30% sans evidence écrite.
+**Temps de détention attendu** : inchangé vs pré-note (6-10 semaines une fois entrée).
+
+### 2026-04-22T17:40:00Z — INTRADAY-SCAN 12:30 CT — état du book
+**Positions** : 0 ouvertes. Cash $97,382.43 (100%). Équité $97,382.43 vs last_equity $97,382.43 → day P&L 0.00%. Aucun ordre pending.
+**Macro** : SPY +0.21%, QQQ +0.43%, marché à l'ATH. VIX normal. Brent +3% sur tensions géopol (risque marginal, pas de regime shift). Aucun event macro imminent ce midi (FOMC 28-29/04, CPI déjà publié).
+**Priorités P1-P10** : N/A (aucune position). Daily loss cap : N/A (P&L 0.00%). Auto-defense : off. Loss caps (daily/weekly) : off.
+**Actions ce run** : aucune. Commit no-op. Pas de notification Telegram (règle conditionnelle — no-action run).

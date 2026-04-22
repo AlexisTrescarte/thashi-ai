@@ -1,2 +1,3 @@
 # Run log (append-only) — une ligne par run, même noop.
 2026-04-22T13:38:30Z market-open equities noop — no pre-market block from today; last pre-market 2026-04-20 said AUCUN BUY; 0 positions, 0 orders; cash 100%
+2026-04-22T16:03:21Z crypto-hourly crypto noop — first crypto run; regime risk-on BTC-led (BTC +3% $77.6K, alt breadth weak); 0 positions, 0 orders, 100% cash; BTC CTQS 72 deferred (chase risk on +3% day, re-score 20:00Z)

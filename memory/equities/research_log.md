@@ -62,3 +62,15 @@ Append-only. Each run's research notes follow the CTQS template from `.claude/sk
 - **GOOGL** : WATCH, préférence entrée post-29 avril sur pullback. Scénario B (attente).
 **Cash après run** : $97,378 (99,996%) — largement > floor 10%. Dry powder intact.
 **Risques ouverts** : (1) résidu crypto à clore ; (2) baseline non posée (premier run) ; (3) market à ATH avec CPI chaud — un mauvais rapport earnings cette semaine pourrait déclencher une rotation. Plan défensif : laisser les stops travailler, ne pas forcer.
+
+### 2026-04-22T15:36:00Z — INTRADAY-SCAN 10:30 CT — observation GEV post-earnings
+**Contexte macro intraday** : VIX ~20,5 (pas de choc), SPY -0,41%, QQQ rouge modeste, pétrole +fort sur doutes Iran peace-talks. Aucun déclencheur de regime shift (pas de +20% VIX intraday, pas d'événement crédit, pas de surprise Fed). Régime = neutre, confirmé vs matin.
+**Événement ticker** : GEV publie Q1 2026 ce matin pre-market. GAAP EPS $17,44 (vs $1,79 consensus) — beat extrême, probablement gonflé par un gain one-time (attendre 10-Q/notes pour isoler). Guidance 2026 *relevée* à $44,5-45,5B revenue. Revenue Q1 +16,3% YoY.
+**Réaction prix** : prev close $1,002.75, day range $990.18-$1,009.89 → réaction ≈ flat à modestement rouge. Quote Alpaca intraday affichait un spread bid/ask croisé aberrant ($1,075/$1,181) = feed probablement stale, données web plus fiables.
+**Décision vs plan 20/04** : le plan pre-market exigeait (a) beat ✅, (b) guidance maintenue ✅ (relevée, mieux), (c) stock *non* > 30% au-dessus de la MA200 ❌ (GEV +200% YoY → quasi certainement > 30% au-dessus de la MA200, anti-FOMO échoue), (d) pas d'overshoot > 15% ✅. Gate (c) bloque. Réaction flat confirme catalyseur priced-in — pas d'edge à chasser intraday.
+**Verdict** : **SKIP BUY intraday**. Re-évaluation en pre-market 23/04 avec : (i) full CTQS avec prix + MA200 précis (script Alpaca bars pour MA200 200j), (ii) lecture du 10-Q pour isoler one-time, (iii) décision starter 3% si anti-FOMO passe OU WAIT retest première résistance cassée si fail.
+**Sources** :
+- https://www.gurufocus.com/news/8808543/ge-vernova-gev-reports-strong-q1-earnings-raises-2026-financial-guidance
+- https://www.techi.com/ge-vernova-vertiv-ai-data-center/
+- https://finance.yahoo.com/quote/GEV/
+**Plan pour l'après-midi 22/04** : laisser le livre à zéro, ne pas improviser. Prochaine décision = pre-market 23/04.

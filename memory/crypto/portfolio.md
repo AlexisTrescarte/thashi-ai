@@ -4,27 +4,27 @@
 
 ## Latest snapshot
 
-- **Date (UTC)**: _(filled on first run)_
-- **Equity total (USD)**: $—
-- **Cash (USD)**: $—
-- **Positions value**: $—
-- **Cash %**: —
-- **BTC benchmark price**: —
-- **Performance vs BTC since baseline**: —
-- **Regime (crypto)**: —
+- **Date (UTC)**: 2026-04-22T20:19:04Z (first crypto-hourly run — no positions)
+- **Equity total (USD)**: $97,382.43
+- **Cash (USD)**: $97,382.43
+- **Positions value**: $0.00
+- **Cash %**: 100%
+- **BTC benchmark price**: ~$78,500 (intraday 04/22, range $78,194–$79,033)
+- **Performance vs BTC since baseline**: 0.00% (baseline run)
+- **Regime (crypto)**: neutral / leaning risk-on
 - **Auto-defense active**: no
 
 ## Baseline
 
-- **Starting capital**: $— (crypto allocation)
-- **Baseline date (UTC)**: _(first live run)_
-- **BTC baseline**: _(BTC price at baseline)_
+- **Starting capital**: $97,382.43 (crypto allocation = full Alpaca paper account; equities agent currently 0 positions / 100% cash on same account)
+- **Baseline date (UTC)**: 2026-04-22T20:19:04Z
+- **BTC baseline**: ~$78,500 (mid-range of intraday Apr 22 quotes)
 
 ## ATH tracking
 
-- **ATH equity**: $—
-- **ATH date**: —
-- **Current drawdown from ATH**: —%
+- **ATH equity**: $97,382.43
+- **ATH date**: 2026-04-22
+- **Current drawdown from ATH**: 0.00%
 
 ## Open positions
 

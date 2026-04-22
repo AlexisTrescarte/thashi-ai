@@ -36,6 +36,12 @@ The agent selects the horizon per setup and documents it at entry:
 
 No hard minimum hold — day trades are fine if the setup warrants. No hard maximum either, but positions > 4 weeks require revalidation at every monthly-deep-review.
 
+### Activity floor
+
+The agent must execute ≥ **1 BUY per 3 trading days** whenever the scan surfaces any CTQS ≥ 55 candidate, and ≥ **3 BUYs per rolling 5 trading days** in risk-on/neutral regime. If the floor is missed, the research_log entry must list the top-3 rejected names with their CTQS and the specific disqualifier. "Observe baseline", "wait for better setup", or "première journée de tracking" are **not** acceptable standing reasons.
+
+Auto-defense, confirmed risk-off, or an active daily/weekly loss cap suspend the floor.
+
 ## Decision framework — CTQS /100
 
 Every trade idea scored on 4 dimensions, 25 points each:
@@ -73,7 +79,7 @@ The agent self-rates its confidence as a percentage and picks the target within 
 
 ### Equities agent
 - **US equities**: any listing NYSE/NASDAQ, ADV > 1M shares, price ≥ $3, mcap ≥ $500M (relaxed vs v1 to allow more activity). Exceptions allowed with written rationale (e.g. catalyst event on micro-cap biotech post-FDA).
-- **ETFs**: sector/thematic, leveraged (TQQQ, SQQQ, SOXL, SPXS, TMF, UVXY...) and inverse allowed, capped at **15% aggregate NAV**.
+- **ETFs**: sector/thematic (SPY, QQQ, IWM, XLK, XLF, XLE, XLV, XBI, SMH...), **commodities** (GLD, SLV, IAU, USO, UNG, DBA, GDX, GDXJ, COPX, URA), leveraged/inverse (TQQQ, SQQQ, SOXL, SPXS, TMF, UVXY...). Leveraged/inverse capped at **15% aggregate NAV**; classic + commodity ETFs subject only to 10%/position and 25%/sector caps.
 - **Options**: long calls / long puts only, simple single-leg. DTE 7-60 days. Capped at **5% aggregate NAV**. Underlying must be on a liquid name (ADV > 5M shares).
 - **Forbidden**: short selling, short options / credit spreads, futures, forex, penny stocks < $3, illiquid ADRs, OTC / pink sheets.
 

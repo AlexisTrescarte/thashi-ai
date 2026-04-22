@@ -103,6 +103,17 @@ If `git push` fails: log `[PUSH-FAIL]` in learnings, notify Telegram, continue (
 
 Work on the branch set by the environment (typically `main` once deployed). Commit per run with format `[{routine}] {YYYY-MM-DD HH:MM} — {1-line summary}`. Push immediately.
 
+## Routine scheduling
+
+Routines are scheduled via **claude.ai remote triggers** (managed by the `schedule` skill), not local cron. Each trigger wakes Claude in a fresh CCR sandbox on a dedicated branch, runs one slash command, commits + pushes (via `journal`), and terminates. Sessions are stateless — all continuity flows through `memory/`.
+
+Active triggers (14 total) — equities in America/Chicago, crypto in UTC:
+- **Equities daily** (Mon–Fri): pre-market 06:00 · market-open 08:30 · intraday-scan 10:30 / 12:30 / 14:30 · market-close 15:00 · daily-review 15:30
+- **Equities periodic**: weekly-review Fri 16:00 · monthly-deep-review last Fri 17:00 · quarterly-rewrite last Fri of Mar/Jun/Sep/Dec 18:00
+- **Crypto 24/7**: crypto-hourly every 4h (00/04/08/12/16/20 UTC) · crypto-daily-review 23:00 UTC · crypto-weekly-review Sun 23:00 UTC · crypto-monthly-review last day 23:00 UTC
+
+To inspect or update the schedule, use the `schedule` skill or call `RemoteTrigger` directly. Do **not** use `CronCreate` — it is session-local and won't survive. If a routine is missing from `memory/runs.log`: check the trigger is `enabled`, inspect `next_run_at`, and verify the branch in `outcomes.git_repository.git_info.branches`.
+
 ## Failure modes to refuse
 
 - Self-modify to raise hard caps, enable shorts, enable futures, reduce cash floor, disable auto-defense, disable self-evolution gates

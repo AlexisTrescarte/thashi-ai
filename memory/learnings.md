@@ -49,3 +49,9 @@ Append-only. What Bull discovers that's useful for future runs: trade lessons, t
 **Takeaway**: Règles midday legacy : cut à -7%, tighten à +15%. Sous Bull v2, `intraday-scan` remplace avec une grille P1-P8 (cut -5% equity / -8% crypto, trim +20%/+30% short-swing/swing+, tighten 3% trailing à +10%). Le résidu BTC reste ouvert pour un run ultérieur autorisé à liquider hors-univers equities.
 **Action**: Aucun ordre. Pas de notification Telegram. Commit no-op pour trace.
 **Agent**: equities
+
+### 2026-04-22T08:14:00Z — [PUSH-FAIL]
+**Context**: Run `crypto-hourly` à 08:11 UTC. Commit local OK (`ef825bb` — first-run baseline + regime scan note), mais `git push origin claude/beautiful-bell-CwWxt` échoue en boucle avec `fatal: could not read Password for 'http://local_proxy@127.0.0.1:65265'`. 3 tentatives (immédiat, +2s, +4s). Erreur = auth du proxy local, pas un transient réseau : backoff supplémentaire inutile.
+**Takeaway**: Infra push dégradée côté harness (credentials proxy absents). Le commit reste en local sur la branche de dev. Le prochain run `crypto-hourly` devra tenter de pousser la chaîne complète avant son propre commit.
+**Action**: Pas de Telegram (l'instruction de ce run limite les notifications à action/regime-shift/cap/API-degraded, et le scope explicite autorise seulement action/regime-shift/cap/defense — push-fail hors scope). Laisser le commit local, retry au prochain wake-up. Aucune perte de données : append-only préservé.
+**Agent**: crypto

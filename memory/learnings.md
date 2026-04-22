@@ -55,3 +55,9 @@ Append-only. What Bull discovers that's useful for future runs: trade lessons, t
 **Takeaway**: Infra push dégradée côté harness (credentials proxy absents). Le commit reste en local sur la branche de dev. Le prochain run `crypto-hourly` devra tenter de pousser la chaîne complète avant son propre commit.
 **Action**: Pas de Telegram (l'instruction de ce run limite les notifications à action/regime-shift/cap/API-degraded, et le scope explicite autorise seulement action/regime-shift/cap/defense — push-fail hors scope). Laisser le commit local, retry au prochain wake-up. Aucune perte de données : append-only préservé.
 **Agent**: crypto
+
+### 2026-04-22T08:14:45Z — [PUSH-FAIL resolved]
+**Context**: Follow-up à l'entrée précédente. Une 4e tentative de `git push` (après écriture du log [PUSH-FAIL] et commit du log lui-même) a **réussi** — la chaîne complète (`ef825bb` baseline + `6a5dd84` push-fail log) est désormais sur `origin/claude/beautiful-bell-CwWxt`.
+**Takeaway**: Le proxy local a probablement vu un timeout/init transitoire sur les 3 premières tentatives. À l'avenir, allonger la 3e tentative à +8s avant de logger [PUSH-FAIL] pour réduire les faux positifs. Le contrat append-only interdit de supprimer l'entrée [PUSH-FAIL] : elle reste honnête comme snapshot-du-moment, cette entrée la complète.
+**Action**: Aucun retry nécessaire au prochain run. État remote propre.
+**Agent**: crypto

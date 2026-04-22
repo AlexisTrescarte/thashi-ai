@@ -97,19 +97,35 @@ If day P&L ≤ -4%:
 - Notify Telegram `DEGRADED — daily loss cap`
 - Freeze any opportunistic BUY for the rest of the day
 
-### 6. Opportunistic BUY (10:30 and 12:30 slots only, strict criteria)
+### 6. Intraday BUY (10:30 and 12:30 slots; 14:30 = exits only)
 
-BUY allowed at 10:30 or 12:30 intraday **only if ALL**:
-- New dated catalyst surfaced today (earnings beat + raise, FDA approval, DoD award, major analyst cluster) — not a chart fantasy
-- `research` skill produces a full CTQS note with **score ≥ 70** (no technical-only intraday)
-- Regime risk-on or neutral (no opportunistic BUY in risk-off)
-- No daily/weekly loss cap active
-- No drawdown auto-defense active
-- Standard sizing or lower (no High-conviction first-time-seen intraday)
-- Position + sector + leveraged-ETF + options caps respected
-- **Not at 14:30 slot** — that slot is for exits only
+Three BUY pathways, each with its own gate. **Preflight (all pathways)**: regime risk-on/neutral · no daily/weekly loss cap active · no drawdown auto-defense active · position/sector/lev-ETF/options caps respected · not the 14:30 slot.
 
-If all met, invoke `trade` skill `BUY` with the note. Log in research_log + trade_log.
+**Pathway A — Pre-market WATCH queue execution** (preferred, deepest research)
+
+Today's pre-market research_log block may list tickers in `WATCH` with a **conditional trigger** (e.g. "GEV post-earnings beat + not > 30% over MA200 → starter 3%"). If the trigger fires intraday:
+- Re-read the pre-market note's CTQS score and trigger definition.
+- Verify the trigger condition is met *exactly* as written (price, level, event outcome).
+- No new research note required — the pre-market note is the research note.
+- Sizing per the pre-market note's recommendation, bounded by its CTQS tier.
+- Invoke `trade` skill `BUY`. Log as "pre-market WATCH trigger hit" in trade_log.
+
+**Pathway B — Opportunistic new catalyst** (surfaced today)
+
+New dated catalyst surfaced today (earnings beat + raise, FDA approval, DoD award, major analyst cluster). Requires:
+- `research` skill produces a full CTQS note with **score ≥ 60**.
+- Score ≥ 70 → Standard sizing OK. Score 60-69 → **Probe sizing only** (2-3%).
+- Standard sizing or lower overall (no High-conviction first-time-seen intraday).
+
+**Pathway C — Technical-only intraday** (no catalyst, Probe only)
+
+Clean technical setup surfacing intraday (breakout + volume, failed breakdown reclaim, key MA reclaim, VWAP reclaim with trend). Requires:
+- `research` skill produces a CTQS note with **T + Q + S ≥ 60 / 75** (C can be 0).
+- **Probe sizing only** (2-3%), hard cap 3%.
+- Note explicitly tagged `technical-only intraday` in research_log + trade_log.
+- Max 1 Pathway-C trade per day (prevents day-trader drift).
+
+For any pathway, invoke `trade` skill `BUY`. Log in research_log + trade_log. Stop placed within 5 min of fill (guardrails, non-negotiable).
 
 ### 7. Stop-update sweep on survivors
 

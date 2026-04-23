@@ -36,4 +36,20 @@ Append-only. **Never rewrite** a past entry. Reverse chronological (most recent 
 
 ## Entries
 
-_(empty — first run will append here)_
+### 2026-04-23T13:37:07Z — BUY GOOGL 7@$339.29
+- Order ID: 1e58b2d7-9039-45bf-8b10-06e39c32f2d1 (stop: 45d94a3c-d7c9-44f6-bc8d-e6d38c6afef0)
+- Value: $2,375.03
+- % NAV at entry: 2.44%
+- Instrument: equity
+- Style: short-swing (3-4 trading days, pre-earnings exit mandatory)
+- CTQS: C20/T19/Q18/S18 = 75/100 → Conviction Standard, downsized to Probe, confidence 55%
+- Setup type: pre-earnings momentum + TPU/Anthropic catalyst reinforcement
+- Catalyst: Earnings Q1 2026 on 2026-04-29 AMC (J-4 trading days). Secondary fuse: TPU 8t/8i launch + Anthropic multi-GW commitment announced 22/04.
+- Thesis: Gemini 3 traction (750M MAU, +87% in 9 months), antitrust Mehta resolved Sep 2025, Cloud accelerating, TPU validated by Anthropic → convergence of signals pre-earnings. Scenario A activated (vs prior preference for post-earnings entry) due to 22/04 catalyst cluster.
+- Stop: 8% trailing (Alpaca native, id 45d94a3c) @ $312.05 initial, hwm $339.185
+- Take-profit: trailing only
+- Time stop: 2026-04-28 close (mandatory pre-earnings exit)
+- Earnings hold: NO (exit 28/04 close)
+- Routine: market-open
+- Research note: memory/equities/research_log.md — 2026-04-23 pre-market block, BUY 3
+- Notes: Probe sizing $2,435 target; 7 shares × $339.29 = $2,375.03 (2.44% NAV — just under target but within Probe band 2-3%). GEV and VRT from the same BUY queue skipped at open due to wide spreads (GEV 4.66%, VRT 5.38% — early-open thin books) and FOMO guard on GEV (ask +14% vs plan $1,000).

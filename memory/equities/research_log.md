@@ -167,3 +167,29 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - **0 position à traiter** (book vide).
 - **Regime** : neutral lean risk-on. Pas d'auto-défense, pas de loss cap.
 - **Telegram** : pas d'urgence (pas de regime shift, pas de earnings sur position ouverte, pas d'auto-defense). **PAS de notification**.
+
+### 2026-04-23T15:39:00Z — INTRADAY-SCAN 10:30 CT — re-evaluation skips + macro confirm
+**Macro intraday** : SPY 711.92 / QQQ 656.27 — Indexes near intraday flat to slightly green (S&P +0.26%, NDX +0.49% per session estimates), making new ATH on TSMC raising 2026 AI revenue forecast (chip rally tailwind). VIX ~20-21 (technical pivot 20.86 per FX.co), well under +20% intraday shift trigger. Jobless claims and PMI flash digested without surprise. **No regime shift** — risk-state confirmed neutral lean risk-on. INTC AMC tonight remains the primary intraday event risk for semis.
+**Sources** :
+- https://streetstats.finance/markets/volatility (VIX/MOVE)
+- https://www.fx.co/en/analysis/185818 (VIX intraday pivot)
+- https://www.benzinga.com/Opinion/26/04/51996747/trade-strategy-for-spy-qqq-aapl-msft-nvda-googl-meta-and-tsla-11 (session recap)
+
+**Pathway A re-evaluation — GEV** : SKIP again. Quote 10:39 ET ask $1,159 / bid $1,145 → spread 1.21% (cap 0.5% violated) AND ask 13.6% above this morning's market-open FOMO guard ceiling $1,020. Both filters fail — entry refused. Note: even if spread narrows later today, the FOMO guard set at open ($1,020 hard ceiling) makes any GEV re-entry today impossible at current levels. Position deferred to tomorrow's pre-market for re-evaluation post-INTC.
+
+**Pathway A re-evaluation — VRT** : SKIP. Quote 10:39 ET ask $326.60 / bid $324.48 → spread 0.65% (cap 0.5% violated). Price has rallied ~5% since open (was $310.30 ask). Now also ~+8% above the pre-market plan zone (~$300-305 implied for $3,900 / 13 sh). Two failures: (1) spread cap, (2) entry would chase intraday momentum vs the "reset technique" thesis. Defer to 12:30 scan if spread normalizes AND price retreats — otherwise re-evaluate at tomorrow's pre-market.
+
+**Pathway B / C — opportunistic BUY** : NONE. No new dated catalyst surfaced this morning warranting fresh research note (TSMC tailwind already discounted in pre-market). Pathway C technical-only suspended into INTC AMC event risk tonight.
+
+**Open position — GOOGL (7 sh @ $339.29, +0.25%)** : HOLD per priority grid.
+- P1 thesis broken? NO — Wiz acquisition completion announced today is positive (cloud/security expansion), not adverse.
+- P2 pre-earnings? Earnings 2026-04-29 AMC reconfirmed (J+4 td). Pre-earnings exit only triggers at 14:30 slot; mandatory exit set for 28/04 close.
+- P3-P5 N/A (entered today; equity, no option).
+- P6 -5%? NO (+0.245%).
+- P7-P8 +20% / +10%? NO.
+- P9 stop coherent? Trailing 8% native (Alpaca id 45d94a3c), hwm $341.96, stop $314.60 — coherent vs current $340.12, no tighten warranted yet.
+- P10 → HOLD. No-action sweep, native trailing carries the position.
+
+**Day P&L** : (97388.28 / 97382.43 - 1) = +0.006%. Far from -4% daily cap. No degraded mode.
+
+**Decision summary** : 0 cut · 0 trim · 0 tighten · 0 BUY · 0 STOP-UPDATE. 1 position held (GOOGL). 2 re-evaluation skips logged (GEV FOMO+spread, VRT spread). No Telegram (no action, no shift, no cap).

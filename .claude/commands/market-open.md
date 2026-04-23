@@ -95,8 +95,18 @@ _YYYY-MM-DD · 08:30 CT_
 • 🟢 BUY TICKER qty@$price · ~$value · {X}% NAV · {Haute/Standard/Probe} · stop {type/niveau} · {setup}
 • 🟢 BUY OPT {UNDERLYING MMDD STRIKE C/P} N contrats @ $mid · ~$X prime · {X}% NAV · DTE {N}
 
+🧠 *Raisonnement*
+_Un bloc par BUY exécuté. 4-6 lignes vulgarisées en français, jargon minimal (explique brièvement les termes techniques si utilisés). Format :_
+*BUY {TICKER}*
+• *Catalyseur* : {événement + date, en 1 phrase vulgarisée — pourquoi ça compte maintenant}
+• *Score {XX}/100* : C{xx} catalyseur · T{xx} technique · Q{xx} fondamental · S{xx} sentiment — {1 phrase sur la dimension dominante}
+• *Taille {tier} {X}% NAV* : {pourquoi cette taille — ex. "événement binaire sous 4 jours → moitié d'une Standard pour borner le risque"}
+• *Stop* : {type + niveau + intuition — ex. "trailing 8% à $312 ; on tolère plus de bruit sur une Probe pour ne pas être stoppé par un pullback normal"}
+• *Sortie* : {TP, time stop, pre-earnings exit forcé, ou "trailing seul"}
+• *Risque #1* : {ce qui casserait la thèse en 1 phrase — ex. "si Meta guide capex en baisse mardi soir, bear case hyperscalers"}
+
 ⏭️ *Sautés* (K)
-• TICKER — {raison}
+• *TICKER* — {raison technique courte}. {1 phrase vulgarisée expliquant pourquoi le skip protège le book — ex. "acheter avec ce spread = payer 4% de cross avant même d'avoir un P&L"}.
 ```
 
 ## Forbidden

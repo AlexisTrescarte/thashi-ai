@@ -160,6 +160,26 @@ _YYYY-MM-DD · {HH:MM} CT_
 • ✂️ TRIM : TICKER ({+X.X}%, -Y% qty)
 • 🟢 BUY : TICKER qty@$price · ~$v · {X}% NAV · {tier} · {setup}
 
+🧠 *Raisonnement*
+_Un bloc par action. Vulgarisé français, 4-6 lignes par BUY, 2-3 lignes par CUT/TRIM/TIGHTEN. Formats :_
+*BUY {TICKER}* (pathway A/B/C)
+• *Catalyseur* : {événement + pourquoi maintenant}
+• *Score {XX}/100* : C{xx} · T{xx} · Q{xx} · S{xx} — {1 phrase}
+• *Taille {tier} {X}% NAV* : {pourquoi cette taille}
+• *Stop* : {type + niveau + intuition}
+• *Sortie* : {plan}
+• *Risque #1* : {1 phrase}
+
+*CUT {TICKER}* — {+/-X.X}%
+• *Trigger* : {stop hit / thèse cassée / time stop / pre-earnings / regime shift}
+• *Pourquoi maintenant* : {1-2 phrases vulgarisées — ex. "la guidance publiée à midi casse la thèse de croissance, pas d'intérêt à tenir"}
+
+*TIGHTEN {TICKER}* (trail {X}% → {Y}%)
+• *Pourquoi* : {locked profit / proche résistance / événement macro — 1 phrase vulgarisée}
+
+*TRIM {TICKER}* (-Y% qty @ {+X.X}%)
+• *Pourquoi* : {1 phrase — ex. "atteint TP1 à +15%, on sécurise la moitié et on laisse le reste courir sur le trailing"}
+
 ⚠️ *Alertes*
 • {ligne si shift régime / cap quotidien / défense}
 ```

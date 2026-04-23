@@ -135,6 +135,22 @@ _YYYY-MM-DD · cycle 4h_
 • 🔒 TIGHTEN COIN (trail {X}%)
 • ✂️ TRIM COIN (-Y% qty @ {+X.X}%)
 
+🧠 *Raisonnement*
+_Un bloc par action. Vulgarisé français. Formats :_
+*BUY {COIN}*
+• *Catalyseur / narrative* : {événement on-chain, flux ETF, macro crypto — 1 phrase}
+• *Score {XX}/100* : C{xx} · T{xx} · Q{xx} · S{xx}
+• *Taille {tier} {X}% NAV crypto* : {pourquoi}
+• *Stop* : trailing {X}% ({native ou manual-trailing 4h}) + {intuition}
+• *Risque #1* : {ex. "si BTC casse le support {niveau}, risk-off crypto général"}
+
+*CUT {COIN}* — {+/-X.X}%
+• *Trigger* : {stop hit / thèse cassée / regime crypto shift}
+• *Pourquoi* : {1 phrase vulgarisée}
+
+*TIGHTEN {COIN}* (trail {X}% → {Y}%) · *TRIM {COIN}* (-Y% qty @ {+X.X}%)
+• *Pourquoi* : {1 phrase — ex. "résistance historique à $Z, on sécurise"}
+
 💼 *Positions* (N ouvertes)
 • COIN : {+/-X.X}%
 • COIN : {+/-X.X}%

@@ -81,11 +81,11 @@ Use native tools (`WebSearch`, `WebFetch`). Prefer primary sources (SEC filings,
 - Telegram Markdown (`*bold*`, `_italic_`, `` `code` ``). Escape `_` `*` `` ` `` when they appear literally in values.
 - Header line: `*🐂 Bull-Equities — {Routine}*` or `*₿ Bull-Crypto — {Routine}*` (the bull/bitcoin glyph identifies the agent at a glance).
 - Subtitle line in italic: date + time + timezone + grade (if review).
-- Section headers with one emoji anchor: 📊 Portefeuille · 📈 Benchmark · ⚡ Actions/Exécutions · 🎯 Plan/Focus · 🛡️ Risque · 🌡️ Régime · 🧬 Évolution · 💡 Leçon · ⚠️ Alertes · 🚨 Événement.
+- Section headers with one emoji anchor: 📊 Portefeuille · 📈 Benchmark · ⚡ Actions/Exécutions · 🧠 Raisonnement · 🎯 Plan/Focus · 🛡️ Risque · 🌡️ Régime · 🧬 Évolution · 💡 Leçon · ⚠️ Alertes · 🚨 Événement · ⏭️ Sautés.
 - Bullet lines start with `• `. Use `·` as in-line separator between short fields.
 - Action emojis inside bullets: 🟢 BUY · 🔴 CUT · 🔒 TIGHTEN · ✂️ TRIM.
 - Numbers formatted with thousands separator. Percentages with two decimals where relevant.
-- Keep it scannable: ≤ 15 lines for hourly/conditional, ≤ 30 lines for mandatory reviews.
+- Keep it scannable: ≤ 15 lines for hourly/conditional when **no action** was taken (pure regime shift or alert), ≤ 40 lines when ≥ 1 action — every BUY/CUT/TRIM/TIGHTEN gets a 🧠 *Raisonnement* block (4-6 vulgarized French lines: catalyseur, score CTQS, taille, stop, sortie, risque #1). ≤ 30 lines for mandatory reviews. ⏭️ *Sautés* entries get 1 short vulgarized sentence explaining why the skip protected the book.
 
 **Content invariants** — every notification contains: **portfolio value**, **vs benchmark since baseline**, **run actions**, **open risks** (as applicable to the routine). Never the API key list, never a full transcript.
 

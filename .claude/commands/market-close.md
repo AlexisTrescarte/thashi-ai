@@ -99,6 +99,12 @@ _YYYY-MM-DD · 15:00 CT_
 • N trades ({X BUY · Y CUT · Z TRIM · W TIGHTEN})
 • Régime EOD : {X} ({confirme / shift vs matin})
 
+🧠 *Raisonnement* (si ≥ 1 action last-call exécutée)
+_Seulement pour les CUT last-call pre-earnings de la clôture (le routine market-close ne fait pas de BUY). 2-3 lignes vulgarisées par sortie._
+*CUT {TICKER}* — {+/-X.X}%
+• *Pourquoi* : earnings {date} AMC/BMO, pas d'"earnings hold" dans la thèse d'entrée → discipline anti-binaire, on sort avant le rapport pour ne pas jouer à pile ou face.
+• *Impact book* : cash +${X}, exposition {secteur} -{Y}pp.
+
 🕒 *À surveiller*
 • Aging : TICKER (J+6) · TICKER (J+5)
 • Earnings demain : TICKER ({sortie faite / prévue intraday})

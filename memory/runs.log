@@ -1,3 +1,4 @@
 # Run log (append-only) — une ligne par run, même noop.
 2026-04-22T13:38:30Z market-open equities noop — no pre-market block from today; last pre-market 2026-04-20 said AUCUN BUY; 0 positions, 0 orders; cash 100%
 2026-04-23T11:18:00Z pre-market equities ok — regime neutral lean risk-on; 3 BUY queued (GEV Probe 3%, VRT Standard 4%, GOOGL Probe 2.5%); 3 WATCH (SMH, NOW, IBM); 0 positions; activity-floor gap (0 BUY/4 TD) closed today
+2026-04-23T12:35:00Z crypto-hourly crypto ok — baseline init; regime neutral lean risk-on; BTC $78,017 (-0.40%), ETH/BTC 0.0303 10w high; 0 positions; 0 actions; no CTQS ≥ 60 candidate

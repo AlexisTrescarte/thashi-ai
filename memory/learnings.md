@@ -14,6 +14,12 @@ Append-only. What Bull discovers that's useful for future runs: trade lessons, t
 
 ## Entries
 
+### 2026-04-23T08:27:11Z — API-DEGRADED
+**Context**: `crypto-hourly` 08:00 UTC run. First call `python scripts/alpaca_crypto_client.py account` returned `Alpaca HTTP 503 on GET https://paper-api.alpaca.markets/v2/account: DNS cache overflow`. Retry after 3s backoff returned the identical error. Cannot fetch account / positions / open orders → cannot verify state, cannot manage stops, cannot dispatch BUYs.
+**Takeaway**: Alpaca paper API edge appears to have a DNS cache overflow issue surfacing as HTTP 503. This is upstream and not a code bug on our side. Per CLAUDE.md errors policy, log incident + notify Telegram DEGRADED + terminate run without inventing state. Next 4h-cadence run (12:00 UTC) will retry from a fresh sandbox; if still degraded then, escalate.
+**Action**: No Alpaca calls beyond the two failed account probes. No positions touched. No orders. No regime pulse (no point without state). Telegram DEGRADED notification sent. Commit + push the learnings entry + runs.log marker.
+**Agent**: crypto
+
 ### 2026-04-21T00:00:00Z — RULE-ADJUSTMENT
 **Context**: Claude Routines daily-run cap set at 15/day on the subscription plan; crypto-hourly at cadence `0 * * * *` (24 runs/day) alone blows the cap. Email received 2026-04-21 notifying that routines were paused.
 **Takeaway**: Operational cap is a hard constraint. Total daily budget must fit 15 runs: equities ~5–6 + crypto daily-review 1 + periodic reviews 1–3 = 6–10 non-crypto-hourly slots. Leaves 5–9 slots for crypto-hourly. Chose 6/day (cron `0 */4 * * *`, runs at 00/04/08/12/16/20 UTC) — tightest configuration that fits even quarter-end days (worst case: 5 equities + monthly + quarterly + crypto-daily + crypto-monthly + 6 crypto-hourly = 15).

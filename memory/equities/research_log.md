@@ -167,3 +167,42 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - **0 position à traiter** (book vide).
 - **Regime** : neutral lean risk-on. Pas d'auto-défense, pas de loss cap.
 - **Telegram** : pas d'urgence (pas de regime shift, pas de earnings sur position ouverte, pas d'auto-defense). **PAS de notification**.
+
+### 2026-04-23T17:40:00Z — INTRADAY-SCAN 12:30 CT (midday)
+
+**État compte** : équité $97,374.21, cash $95,007.40 (97.57%), 1 position (GOOGL 7 sh), day P&L -0.008% (quasi flat vs last_equity $97,382.43). Pas de cap quotidien / hebdo / drawdown actif. Buying power $192,381.61.
+
+**Macro intraday** : jobless claims 214k vs cons 210k (+7k, légèrement au-dessus mais labor market stable). PMI flash pas de données confirmées sur les searches mais aucun signal rouge. Alphabet a **finalisé l'acquisition Wiz** aujourd'hui (AI security / Cloud) — thèse GOOGL confirmée/légèrement renforcée. Google Cloud Next '26 continue (Cadence partnership + $750M fund + Broadcom/Palo Alto). VIX non surveillé à la minute mais pas de signal de stress. **Régime confirmé : neutral lean risk-on**. Aucun `[REGIME-SHIFT]`.
+
+**Per-position — GOOGL 7 @ $339.29 (entry 23/04 09:37)** :
+- Current price $338.15 · unrealized -0.336% · hwm trailing stop $341.96 (touched early session) · stop price $314.60 (trail 8%).
+- Priority 1 (thèse cassée) : non — Wiz close est positif, fuse TPU/Anthropic intacte.
+- Priority 2 (earnings imminent) : earnings 29/04 AMC, non ce soir ni demain. N/A au 12:30.
+- Priority 3 (time stop) : J+0, time stop 28/04 close — non atteint.
+- Priority 4-5 (options) : N/A (equity).
+- Priority 6 (-5%) : -0.34% >> -5%. Non.
+- Priority 7 (TRIM ≥ +20%) : non.
+- Priority 8 (TIGHTEN ≥ +10%) : non.
+- Priority 9 (structural) : trailing natif Alpaca fonctionne, hwm a déjà ratcheté de $339.29 → $341.96. Pas de level structurel neuf à jouer.
+- Priority 10 : **HOLD**.
+
+**Opportunistic BUY — re-check GEV / VRT (queue skipped au market-open)** :
+
+- **GEV** — ask $1,199 / bid $1,125 → **spread 6.37%** (>> cap 0.5%). Également ask +19.9% vs plan $1,000 — FOMO guard 10:30 explicite (interdit re-entry > $1,020 aujourd'hui). **SKIP** — double verrouillage (liquidity anomaly persistante + anti-FOMO). Le book post-gap +13.75% reste désordonné au midi. Ré-évaluable demain pré-market uniquement si recul < $1,020.
+
+- **VRT** — ask $318.00 / bid $317.19 → spread 0.255% (**clean**). MAIS : ask +8.27% vs bid $293.62 à l'ouverture. La thèse pré-market ("consolidation PEAD non-overshoot, slipped post-print") est invalidée — le titre a break out, pas consolidé. "Zone plan" autour de $290-295 abandonnée. Re-entrer à $318 = chasser le momentum, pas exécuter le setup. **SKIP** — plan zone left, discipline anti-FOMO discrétionnaire (le spread est OK mais le risk/reward s'est dégradé). Ré-évaluable sur pullback vers MA5-10 intraday ou demain pré-market si structure retient.
+
+- **Pathway B (nouveau catalyseur dated surfacé aujourd'hui)** : aucun nom CTQS ≥ 60 identifié. Pas de fuse nouveau sur le tape midi.
+- **Pathway C (technical-only Probe)** : aucun setup propre isolé ; le marché entier monte sur l'extension récente — chasser serait du momentum-drift. Pas de research skill invoqué.
+
+**Stop-update sweep** :
+- GOOGL : trailing natif 8%, hwm $341.96, stop $314.60 — fonctionne en one-way ratchet côté Alpaca. Pas de tightening à faire (unrealized -0.34%, pas au-dessus du seuil Priority 8 +10%). Aucune action.
+
+**Résumé actions** : 0 CUT · 0 TRIM · 0 TIGHTEN · 0 BUY · 0 STOP-UPDATE.
+
+**Notification Telegram** : aucune (conditionnelle, pas d'action, pas de shift régime, pas de cap quotidien).
+
+**À surveiller 14:30 last-call** :
+- GOOGL : pas de tightening prévu sauf mouvement +10% intraday (peu probable à J-4 earnings).
+- INTC AMC ce soir : event risk pour semis demain. Prévoir l'impact possible sur GEV/VRT re-entry demain pré-market.
+- Pas d'autre position → pas d'autre priorité.

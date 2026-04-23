@@ -2,3 +2,4 @@
 2026-04-22T13:38:30Z market-open equities noop — no pre-market block from today; last pre-market 2026-04-20 said AUCUN BUY; 0 positions, 0 orders; cash 100%
 2026-04-23T11:18:00Z pre-market equities ok — regime neutral lean risk-on; 3 BUY queued (GEV Probe 3%, VRT Standard 4%, GOOGL Probe 2.5%); 3 WATCH (SMH, NOW, IBM); 0 positions; activity-floor gap (0 BUY/4 TD) closed today
 2026-04-23T13:37:30Z market-open equities ok — 1 BUY filled (GOOGL 7@$339.29, $2,375, 2.44% NAV, trail 8% @ $312.05); 2 skips (GEV spread 4.66% + FOMO guard; VRT spread 5.38%); post-run cash 97.56%; 1 position
+2026-04-23T20:16:00Z crypto-hourly crypto noop — first crypto scan; regime neutral-defensive (BTC $77.7K -0.5%, dominance 58-62% rising, alts -2 to -3%, F&G 46, BTC ETFs +5d inflow streak); 0 crypto positions; 0 BUY (best CTQS BTC 45/100 < 60 threshold); no Telegram

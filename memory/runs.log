@@ -2,3 +2,4 @@
 2026-04-22T13:38:30Z market-open equities noop — no pre-market block from today; last pre-market 2026-04-20 said AUCUN BUY; 0 positions, 0 orders; cash 100%
 2026-04-23T11:18:00Z pre-market equities ok — regime neutral lean risk-on; 3 BUY queued (GEV Probe 3%, VRT Standard 4%, GOOGL Probe 2.5%); 3 WATCH (SMH, NOW, IBM); 0 positions; activity-floor gap (0 BUY/4 TD) closed today
 2026-04-23T13:37:30Z market-open equities ok — 1 BUY filled (GOOGL 7@$339.29, $2,375, 2.44% NAV, trail 8% @ $312.05); 2 skips (GEV spread 4.66% + FOMO guard; VRT spread 5.38%); post-run cash 97.56%; 1 position
+2026-04-23T20:05:00Z market-close equities ok — equity $97,379.63 (-0.003% day), bench ≈-0.65% (SPY -0.40% / QQQ -0.90%), alpha day +0.65pp; baseline J0 posted ($97,379.63 · SPY $688.15 · QQQ $652.88); 1 position (GOOGL J+0, trail 8% HWM $341.96 → stop $314.60, time stop 04/28 close); no last-call CUT; regime neutre → risk-off intraday (oil +4%)

@@ -36,6 +36,12 @@ Append-only. **Never rewrite** a past entry. Reverse chronological (most recent 
 
 ## Entries
 
+### 2026-04-24T19:38:34Z — STOP-UPDATE GOOGL
+- Previous stop: trailing 8% (Alpaca native id 45d94a3c), HWM $345.09, stop $317.48
+- New stop: unchanged — verified coherent
+- Reason: intraday-scan 14:30 CT last-call sweep. Position +1.51% ($344.42 vs avg $339.29), below TIGHTEN threshold (+10%). Alpaca native trailing is tracking correctly (HWM moved from $339.185 at entry to $345.09). One-way ratchet respected.
+- Routine: intraday-scan (14:30 last-call)
+
 ### 2026-04-23T13:37:07Z — BUY GOOGL 7@$339.29
 - Order ID: 1e58b2d7-9039-45bf-8b10-06e39c32f2d1 (stop: 45d94a3c-d7c9-44f6-bc8d-e6d38c6afef0)
 - Value: $2,375.03

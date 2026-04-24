@@ -1,6 +1,6 @@
 ---
 name: trade
-description: Execute BUY / TRIM / CUT / TIGHTEN / STOP-UPDATE / ADD on Alpaca (equities, options, crypto) with confidence-based sizing, dynamic stop management, and guardrail gates. Invoke from market-open, intraday-scan, market-close (last-call only), crypto-hourly.
+description: Execute BUY / TRIM / CUT / TIGHTEN / STOP-UPDATE / ADD on Alpaca (equities, options, crypto majors) with confidence-based sizing, dynamic stop management, and guardrail gates. Invoke from market-open, intraday-scan, market-close (last-call only).
 ---
 
 # Skill: trade
@@ -11,7 +11,7 @@ Execute an order on Alpaca or adjust a live position. Assumes a valid research n
 
 ## Preconditions (check before any action)
 
-1. Market open for equities (`alpaca_client.py clock`) OR crypto 24/7 endpoint available
+1. Market open for equities (`alpaca_client.py clock`). Crypto orders are placed inside the same US-hours window — we do not trade crypto outside equities session.
 2. API keys present + `TRADING_MODE` consistent with `ALPACA_BASE_URL`
 3. **Auto-defense not active** (no `[DRAWDOWN-AUTO-DEFENSE]` in last 14 days in `learnings.md`, or its conditions lifted)
 4. **No active daily/weekly loss cap** blocking opens
@@ -60,22 +60,24 @@ Execute an order on Alpaca or adjust a live position. Assumes a valid research n
    - Hard price stop: -50% of premium → cut
    - Hard time stop: DTE-3 → cut regardless
 
-### Crypto
+### Crypto (BTC / ETH / SOL only)
 
-1. Fetch `alpaca_crypto_client.py quote {SYMBOL}` → bid/ask
-2. Verify spread ≤ 1% (crypto liquidity)
-3. **Sizing** confidence-based, capped:
-   - 10% per coin hard cap, 40% of crypto-book per coin (whichever lower)
-   - Aggregate crypto ≥ 5% cash
-4. `qty = (target_pct × crypto_equity) / ask` (fractional allowed)
-5. Execute: `alpaca_crypto_client.py buy {SYMBOL} {QTY}`
-6. Stop: `alpaca_crypto_client.py trailing-stop {SYMBOL} {QTY} {pct}` if supported, else manual-trailing via update on each crypto-hourly run
-7. Log to `memory/crypto/trade_log.md`
+1. Verify symbol ∈ {BTC/USD, ETH/USD, SOL/USD}. Any other symbol → automatic skip with reason `crypto alt outside approved list`.
+2. Fetch `alpaca_crypto_client.py quote {SYMBOL}` → bid/ask
+3. Verify spread ≤ 1% (crypto liquidity)
+4. **Sizing** confidence-based, capped:
+   - Single-coin cap 10% NAV (same as equities per-position cap)
+   - Aggregate crypto cap 15% NAV (sum across BTC + ETH + SOL)
+5. `qty = (target_pct × equity) / ask` (fractional allowed)
+6. **Native trailing stop required**: verify Alpaca supports trailing-stop for this crypto symbol before ordering. If not supported → skip (no manual-trailing fallback: the agent is asleep outside US hours and cannot cover overnight / weekend gaps).
+7. Execute: `alpaca_crypto_client.py buy {SYMBOL} {QTY}`
+8. Immediately: `alpaca_crypto_client.py trailing-stop {SYMBOL} {QTY} {pct}` — default 5% BTC, 7% ETH/SOL (override per research note)
+9. Log to `memory/equities/trade_log.md` with `instrument=crypto`, `symbol={SYMBOL}`
 
 ## CUT (exit full position)
 
 Triggers:
-- Thesis broken (guidance cut, fraud, halt, FDA reject, contract loss, C-suite resign, rug on crypto)
+- Thesis broken (guidance cut, fraud, halt, FDA reject, contract loss, C-suite resign, crypto exploit / rug / SEC action / chain halt)
 - Stop hit (if manual-trailing)
 - Time stop exceeded
 - Pre-earnings exit (no "earnings hold")
@@ -108,7 +110,7 @@ Steps:
 3. **One-way ratchet**: new stop must be tighter than previous (closer to current price on a long). Never loosen.
 4. Log `STOP-UPDATE` entry with old and new level + reason
 
-## STOP-UPDATE (dynamic TP/SL management — called at every intraday-scan / crypto-hourly)
+## STOP-UPDATE (dynamic TP/SL management — called at every intraday-scan)
 
 For each open position:
 - If price advanced ≥ X% since last stop update, consider tightening (per stop-update policy in research note)
@@ -153,4 +155,5 @@ Steps:
 - Re-enter a ticker cut < 5 days ago without explicit new thesis + CTQS ≥ 70
 - ADD beyond per-position 10% hard cap
 - Options: hold past DTE-3 or let decay beyond -50% premium
-- Crypto: buy a symbol outside the approved immutable list
+- Crypto: buy a symbol outside {BTC, ETH, SOL}
+- Crypto: buy any symbol without native trailing stop support on Alpaca (overnight/weekend gap risk uncovered)

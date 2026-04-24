@@ -2,7 +2,7 @@
 
 ## Objective
 
-Beat a 50/50 blend of **SPY + QQQ** (total return) for the equities agent, and **BTC** (spot) for the crypto agent. Benchmark recomputed daily at close, consolidated at every weekly/monthly/quarterly review.
+Beat a 50/50 blend of **SPY + QQQ** (total return). Benchmark recomputed daily at close, consolidated at every weekly/monthly/quarterly review.
 
 **Targets (evaluated rolling 3 months)**:
 - Alpha > +5% annualised vs benchmark
@@ -18,9 +18,7 @@ If 2+ metrics miss their target for 3 consecutive weeks, the agent must write a 
 - **Think like a real trader, not a factor robot**. Multi-factor decision (Catalyst + Technical + Quantitative + Sentiment) with discretionary latitude within hard caps.
 - **Trade often, but never recklessly**. The edge is high-quality reps: the agent is explicitly tuned for *frequent* trades (day + short-swing + swing mix). The floor is quality; the target is activity.
 - **Continuous self-improvement**. Daily / weekly / monthly / quarterly cascade of self-review. The agent can modify its own prompts inside a safety envelope (see `prompt_evolution` skill).
-- **Dual-agent setup**:
-  - **Bull-Equities**: US equities + ETFs + long options (Mon–Fri, market hours).
-  - **Bull-Crypto**: crypto via Alpaca crypto API (24/7, 4h cadence — 6 runs/day).
+- **Single agent, multi-asset**: US equities + ETFs + long options + crypto majors (BTC/ETH/SOL) traded via Alpaca during US market hours (Mon–Fri). Crypto is scanned and executed inside the regular pre-market / market-open / intraday-scan routines — no separate 24/7 loop.
 - **Asymmetry**: seek setups with clear upside > downside, bounded by stops the agent manages dynamically.
 
 ## Horizons & styles (multi-style, no dogma)
@@ -77,15 +75,11 @@ The agent self-rates its confidence as a percentage and picks the target within 
 
 ## Universe
 
-### Equities agent
 - **US equities**: any listing NYSE/NASDAQ, ADV > 1M shares, price ≥ $3, mcap ≥ $500M (relaxed vs v1 to allow more activity). Exceptions allowed with written rationale (e.g. catalyst event on micro-cap biotech post-FDA).
 - **ETFs**: sector/thematic (SPY, QQQ, IWM, XLK, XLF, XLE, XLV, XBI, SMH...), **commodities** (GLD, SLV, IAU, USO, UNG, DBA, GDX, GDXJ, COPX, URA), leveraged/inverse (TQQQ, SQQQ, SOXL, SPXS, TMF, UVXY...). Leveraged/inverse capped at **15% aggregate NAV**; classic + commodity ETFs subject only to 10%/position and 25%/sector caps.
 - **Options**: long calls / long puts only, simple single-leg. DTE 7-60 days. Capped at **5% aggregate NAV**. Underlying must be on a liquid name (ADV > 5M shares).
-- **Forbidden**: short selling, short options / credit spreads, futures, forex, penny stocks < $3, illiquid ADRs, OTC / pink sheets.
-
-### Crypto agent
-- **Approved universe**: BTC, ETH, SOL, LINK, AVAX, DOT, MATIC (top-liquid on Alpaca crypto). Expandable at quarterly-rewrite if liquidity permits.
-- **Spot only**. No futures, no perpetuals, no leverage, no shorts.
+- **Crypto (opportunistic, inside the equities routines)**: **BTC, ETH, SOL** only (spot, via Alpaca crypto API). Aggregate crypto exposure capped at **15% of NAV**; single-coin cap 10% (same as equities per-position cap). Scanned at pre-market, executed at market-open, managed at intraday-scan. Stops: native trailing via Alpaca (5% default for BTC, 7% for ETH/SOL — higher vol premium vs equities 6%). No separate 24/7 loop — the agent does not wake up outside US market hours.
+- **Forbidden**: short selling, short options / credit spreads, futures, forex, penny stocks < $3, illiquid ADRs, OTC / pink sheets, crypto perpetuals / margin / leverage, crypto alts outside BTC/ETH/SOL.
 
 ## Risk & sizing
 
@@ -98,14 +92,14 @@ The agent self-rates its confidence as a percentage and picks the target within 
 | Min cash at all times | 10% NAV |
 | Max leveraged ETF aggregate | 15% NAV |
 | Max options aggregate | 5% NAV |
-| Max crypto aggregate (crypto agent) | 95% NAV of crypto book (5% cash min) |
+| Max crypto aggregate | 15% NAV (single-coin cap 10%) |
 
 The agent decides where to be inside these bands. Sizing is self-rated (confidence %) with range snapped to Probe/Standard/High buckets for sanity.
 
 ## Dynamic stops (agent-managed)
 
 The agent chooses the stop methodology per trade, documented at entry:
-- **% trailing stop**: default 6% equities / 8% crypto for short-swing / 4% for day trades / 10% for swing
+- **% trailing stop**: default 6% equities / 5% BTC / 7% ETH/SOL for short-swing · 4% for day trades · 10% for swing
 - **ATR-based**: 2× ATR(14) below entry for trend trades
 - **Structural**: below last swing low / breakout level / key MA
 - **Time-based**: hard exit at J+N if no trailing hit (prevents stale positions)
@@ -177,29 +171,20 @@ At -20% from ATH (equity):
 5. Notify Telegram mandatory
 6. Resume normal sizing only after 14 days AND equity recovers ≥ 10% from trigger
 
-## Daily cadence
-
-### Equities (America/Chicago)
+## Daily cadence (America/Chicago)
 
 | Time | Routine | Role |
 |---|---|---|
-| 06:00 | pre-market | Macro + CTQS scan + written plan |
-| 08:30 | market-open | Execute shortlist + stops |
-| 10:30, 12:30, 14:30 | intraday-scan | Opportunities + TP/SL management |
+| 06:00 | pre-market | Macro + CTQS scan (equities + ETFs + options + BTC/ETH/SOL) + written plan |
+| 08:30 | market-open | Execute shortlist + stops (incl. crypto orders via Alpaca crypto API) |
+| 10:30, 12:30, 14:30 | intraday-scan | Opportunities + TP/SL management across all instrument types incl. crypto |
 | 15:00 | market-close | Last-call exits + EOD snapshot |
 | 15:30 | daily-review | Analyze day + mini-lessons |
 | Fri 16:30 | weekly-review | Metrics + tune thresholds |
 | Last Fri 17:00 | monthly-deep-review | Deep metrics + prompt evolution |
 | End of quarter | quarterly-rewrite | Full strategy rewrite |
 
-### Crypto (UTC)
-
-| Time | Routine | Role |
-|---|---|---|
-| Every hour | crypto-hourly | Scan + trade + manage |
-| 00:00 daily | crypto-daily-review | Day review |
-| Sun 23:00 | crypto-weekly-review | Week metrics |
-| 1st of month 00:30 | crypto-monthly-review | Month metrics |
+Crypto positions are scanned/managed only inside these US-hours routines. Between 15:00 CT Friday and 06:00 CT Monday, crypto stops on Alpaca (native trailing) do the risk-management work autonomously — the agent does not wake up.
 
 ## What the agent is allowed to change
 
@@ -211,8 +196,8 @@ At -20% from ATH (equity):
 
 ## What the agent is NEVER allowed to change (immutable — see `guardrails.md`)
 
-- Hard caps: 10% per position / 25% sector / 10% cash / 15% leveraged / 5% options
-- Forbidden instruments (shorts, short options, futures, forex, penny < $3)
+- Hard caps: 10% per position / 25% sector / 10% cash / 15% leveraged / 5% options / 15% crypto aggregate
+- Forbidden instruments (shorts, short options, futures, forex, penny < $3, crypto perps/margin, crypto alts outside BTC/ETH/SOL)
 - Drawdown auto-defense trigger and mechanics
 - Self-evolution gates themselves
 - Commit/push discipline + memory append-only policy

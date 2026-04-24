@@ -1,6 +1,6 @@
 # Guardrails — inviolable rules
 
-These rules override any decision. If an action would violate a rule, **you do not act** and you log the situation in `memory/learnings.md`. We operate in a multi-style regime (day + short-swing + swing + occasional positional), multi-instrument (equities, ETFs, long options, crypto), multi-agent (equities + crypto).
+These rules override any decision. If an action would violate a rule, **you do not act** and you log the situation in `memory/learnings.md`. We operate in a multi-style regime (day + short-swing + swing + occasional positional), multi-instrument (equities, ETFs, long options, crypto majors BTC/ETH/SOL) — single agent during US market hours.
 
 ## Immutable hard caps (NEVER modifiable by the agent)
 
@@ -8,15 +8,15 @@ The following caps are **immutable**: the agent cannot modify this file to loose
 
 | Cap | Value |
 |---|---|
-| **Max per position** (single ticker/symbol) | 10% of NAV |
+| **Max per position** (single ticker/symbol, incl. single coin) | 10% of NAV |
 | **Max per sector / correlated theme** | 25% of NAV |
-| **Min cash at all times** (per agent) | 10% of NAV |
+| **Min cash at all times** | 10% of NAV |
 | **Max leveraged ETF aggregate** | 15% of NAV |
 | **Max options aggregate premium** | 5% of NAV |
-| **Max new positions per day (equities)** | 10 |
-| **Max new positions per week (equities)** | 30 |
-| **Max concurrent positions (equities)** | 30 |
-| **Max concurrent positions (crypto)** | 7 |
+| **Max crypto aggregate** (BTC + ETH + SOL combined) | 15% of NAV |
+| **Max new positions per day** | 10 |
+| **Max new positions per week** | 30 |
+| **Max concurrent positions** | 30 |
 | **Daily loss cap** → pause opens J+1 | -4% NAV |
 | **Weekly loss cap** → 3-day pause | -8% NAV |
 | **Drawdown cap from ATH** → auto-defense mode | -20% NAV |
@@ -44,8 +44,8 @@ The agent cannot disable, delay, or adjust this mechanism.
 - **Penny stocks** < $3 share price
 - **OTC / pink sheets** tickers
 - **Illiquid ADRs** (ADV < 500k)
-- **Crypto perpetuals / margin** (spot only for the crypto agent)
-- **Crypto alts outside approved list** (immutable list: BTC, ETH, SOL, LINK, AVAX, DOT, MATIC — expandable only via human edit)
+- **Crypto perpetuals / margin / leverage** (spot only)
+- **Crypto alts outside approved list** (immutable list: **BTC, ETH, SOL** — expandable only via human edit of this file)
 
 ## Investment universe (modifiable within the floor below, immutable floor)
 
@@ -64,12 +64,13 @@ The agent cannot disable, delay, or adjust this mechanism.
 - Aggregate premium ≤ 5% NAV
 - **Spreads/short premium forbidden** (immutable)
 
-### Crypto
+### Crypto (inside the equities routines)
 
-- BTC, ETH, SOL, LINK, AVAX, DOT, MATIC (immutable list)
-- Spot only
-- Aggregate crypto exposure 0-95% of crypto-agent NAV (min 5% cash)
-- No single crypto > 40% of crypto-agent NAV (internal sector cap)
+- **BTC, ETH, SOL** only (immutable list)
+- Spot only via Alpaca crypto API
+- Aggregate crypto exposure ≤ **15% NAV** (immutable cap)
+- Single-coin cap 10% NAV (same as per-position cap)
+- Scanned/managed only during US market hours; Alpaca native trailing stops handle overnight + weekend risk
 
 ## Sizing — confidence-based within bands
 
@@ -94,7 +95,7 @@ The agent self-rates confidence per idea and picks sizing within the conviction 
 
 - **Every new position MUST have a stop** placed within 5 minutes of fill (trailing %, stop-market, or documented manual-trailing schedule at next intraday-scan if Alpaca doesn't support for that instrument).
 - **Options positions**: hard time stop at DTE - 3 (never let option decay to worthless), hard price stop at -50% premium.
-- **Crypto**: trailing stop % via API (Alpaca crypto supports — strongly preferred), or manual-trailing update at every crypto-scan run (4h cadence — accept max 4h drift on manual-trailing).
+- **Crypto**: native trailing stop % via Alpaca crypto API (strongly preferred — stop executes 24/7 while the agent is asleep). If native unsupported for a given symbol, skip the buy entirely — no manual-trailing backup since the agent only wakes during US hours.
 - **One-way ratchet**: once a stop is moved up (closer to price), it cannot be moved down.
 
 ## Exit triggers (must check at every run)

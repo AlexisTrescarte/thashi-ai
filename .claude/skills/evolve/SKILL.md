@@ -12,7 +12,6 @@ Execute the controlled self-modification loop. Reads pending proposals, gate-che
 ## Invocation
 
 Inputs:
-- `agent`: `equities` or `crypto` (proposals can target agent-specific prompts or shared files)
 - `rhythm`: `monthly` or `quarterly` (quarterly is the only rhythm allowed to touch `memory/strategy.md`)
 
 ## Pipeline
@@ -53,7 +52,8 @@ Diff must not introduce (case-insensitive match on known keywords):
 - `cash minimum 0%`, `cash floor 0`, `cash = 0`, `cash >= 0%`
 - `disable auto-defense`, `disable drawdown`, `remove drawdown`, `bypass guardrails`
 - `override immutable`, `modify hard cap`, `raise hard cap`
-- Crypto symbols outside the approved list (BTC/ETH/SOL/LINK/AVAX/DOT/MATIC) being added as tradeable
+- Crypto symbols outside the approved list (BTC / ETH / SOL) being added as tradeable
+- Raising the 15% aggregate crypto cap or the 10% single-coin cap
 
 ### G5 — Evolution gates not disabled
 Diff must not remove or weaken any gate in this skill. A proposal targeting `evolve/SKILL.md` is automatically blocked (G1 would catch it; this is a second check).

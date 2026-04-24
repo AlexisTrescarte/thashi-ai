@@ -1,6 +1,6 @@
 ---
 name: research
-description: Institutional multi-factor research using the CTQS framework (Catalyst + Technical + Quantitative + Sentiment, /100). Works for equities, ETFs, long options, and crypto. Produces BUY / WATCH / SKIP / AVOID verdict with explicit sizing target. Invoke from pre-market, intraday-scan, and crypto-hourly.
+description: Institutional multi-factor research using the CTQS framework (Catalyst + Technical + Quantitative + Sentiment, /100). Works for equities, ETFs, long options, and crypto majors (BTC/ETH/SOL). Produces BUY / WATCH / SKIP / AVOID verdict with explicit sizing target. Invoke from pre-market and intraday-scan.
 ---
 
 # Skill: research
@@ -16,7 +16,7 @@ One ticker/symbol per note. If screening multiple, produce multiple notes.
 Works for:
 - **Equities / ETFs / leveraged ETFs** (use benchmark = SPY+QQQ blend)
 - **Long options** (add DTE + Greeks + underlying CTQS)
-- **Crypto** (BTC, ETH, SOL, LINK, AVAX, DOT, MATIC — use benchmark = BTC)
+- **Crypto majors** (BTC, ETH, SOL only — use benchmark = SPY+QQQ blend, same as the rest of the book; crypto is an opportunistic sleeve ≤ 15% NAV, not a separate book)
 
 ## Steps
 
@@ -29,7 +29,7 @@ Works for:
 4. **Run valuation red-flag** (for equities) or **technical-structure sanity** (for crypto).
 5. **Write scenarios** over the chosen horizon (bull / base / bear).
 6. **Filter against guardrails** (universe, concentration, revenge trade, caps, auto-defense).
-7. **Append** to `memory/{agent}/research_log.md` with ISO UTC timestamp and clear verdict.
+7. **Append** to `memory/equities/research_log.md` with ISO UTC timestamp and clear verdict.
 
 ## CTQS scoring rubric
 
@@ -57,7 +57,7 @@ Works for:
 
 | Points | Signal |
 |---|---|
-| 20-25 | Top-decile momentum (3M > +15% relative) + strong quality (ROIC > 15%, clean balance sheet) + liquid (ADV > 5M eq / top-5 crypto) |
+| 20-25 | Top-decile momentum (3M > +15% relative) + strong quality (ROIC > 15%, clean balance sheet) + liquid (ADV > 5M eq / top-3 crypto) |
 | 15-19 | Good momentum + decent quality, liquid enough |
 | 10-14 | Mixed (either momentum OR quality, not both) |
 | 5-9 | Weak on both axes |
@@ -151,7 +151,7 @@ What has to happen within {horizon} for this trade to pay off?
 
 ## Verdicts
 
-- **BUY**: executable at next market-open (equities) / next crypto-hourly (crypto) / next intraday-scan (opportunistic)
+- **BUY**: executable at next market-open (queued via pre-market) / next intraday-scan (opportunistic, all instruments incl. crypto)
 - **WATCH**: valid setup, entry not ripe (price too high, catalyst too far, regime to confirm)
 - **SKIP**: fails a criterion (score < 55 and no technical-only path, guardrail violation, revenge trade)
 - **AVOID**: structural red flag (fraud flag, regulatory halt risk, broken balance sheet, liquidity collapse)
@@ -168,8 +168,8 @@ What has to happen within {horizon} for this trade to pay off?
 - Is my stop methodology **documented** with a specific level, not vague?
 - For options: DTE ≥ 7, aggregated options ≤ 5% NAV?
 - For leveraged ETFs: aggregated ≤ 15% NAV?
-- For crypto: single coin ≤ 40% of crypto book, aggregate ≥ 5% cash?
+- For crypto: symbol ∈ {BTC, ETH, SOL}, aggregate crypto ≤ 15% NAV, single-coin ≤ 10% NAV, native trailing stop supported by Alpaca for this symbol?
 
 ## Output
 
-Append to `memory/{agent}/research_log.md`. The parent command decides Telegram notifications — not the research skill.
+Append to `memory/equities/research_log.md`. The parent command decides Telegram notifications — not the research skill.

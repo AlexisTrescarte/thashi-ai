@@ -10,28 +10,27 @@ Compute quantitative performance metrics for a given window + agent, distill int
 ## Invocation contract
 
 Inputs (from the calling routine):
-- `agent`: `equities` or `crypto`
 - `window_start`: ISO date
 - `window_end`: ISO date
 - `rhythm`: `daily` / `weekly` / `monthly` / `quarterly`
 
 Outputs:
-- A markdown block appended to `memory/{agent}/{rhythm}_review.md`
+- A markdown block appended to `memory/equities/{rhythm}_review.md`
 - A grade A/B/C/D/F (per the criteria table below)
 - Optional proposals queued to `memory/prompt_evolution_proposals.md` (monthly and quarterly only)
 
 ## Steps
 
 1. **Read inputs**:
-   - `memory/{agent}/trade_log.md` (all entries in window)
-   - `memory/{agent}/portfolio.md` (latest + equity series if available)
-   - `memory/{agent}/research_log.md` (for CTQS at entry, setup types)
-   - `memory/{agent}/daily_review.md` / `weekly_review.md` (for continuity)
+   - `memory/equities/trade_log.md` (all entries in window — includes crypto trades)
+   - `memory/equities/portfolio.md` (latest + equity series if available)
+   - `memory/equities/research_log.md` (for CTQS at entry, setup types)
+   - `memory/equities/daily_review.md` / `weekly_review.md` (for continuity)
    - `memory/learnings.md` (for violations, caps, regime shifts)
-   - Run `python scripts/metrics.py --agent {agent} --start {window_start} --end {window_end}` to get JSON of metrics
+   - Run `python scripts/metrics.py --start {window_start} --end {window_end}` to get JSON of metrics
 2. **Compute if not already**:
    - Total return (window, cumulative since baseline)
-   - Benchmark return (window, cumulative) — SPY+QQQ blend for equities, BTC for crypto
+   - Benchmark return (window, cumulative) — SPY+QQQ blend (unified benchmark across all instruments incl. crypto sleeve)
    - Alpha (window, cumulative)
    - Hit rate (winners / total closed)
    - Average R (avg_gain / |avg_loss|)
@@ -128,7 +127,7 @@ Per `.claude/commands/weekly-review.md` template (Bridgewater-lite risk audit, B
 - ETF: ...
 - Leveraged ETF: ...
 - Options: ...
-- Crypto (crypto agent only): ...
+- Crypto (BTC/ETH/SOL sleeve): ...
 
 ### By style
 - Day trades: N, P&L $X, hit rate XX%
@@ -180,7 +179,7 @@ All proposals follow the schema in `memory/prompt_evolution_proposals.md`.
 
 ## Guardrails for review itself
 
-- Never write to any file outside `memory/{agent}/{rhythm}_review.md` and `memory/prompt_evolution_proposals.md`
+- Never write to any file outside `memory/equities/{rhythm}_review.md` and `memory/prompt_evolution_proposals.md`
 - Never modify `trade_log.md` or `research_log.md`
 - Never delete past review entries
 - If metrics script fails: log `[API-DEGRADED]` in learnings and produce a qualitative review only, explicitly noting missing metrics

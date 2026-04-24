@@ -10,23 +10,23 @@ Memory discipline: append-only on logs, controlled overwrite on snapshots. Commi
 ## Rules
 
 - **Append-only files** (never rewrite history):
-  - `memory/{agent}/trade_log.md`
-  - `memory/{agent}/research_log.md`
-  - `memory/{agent}/daily_review.md`
-  - `memory/{agent}/weekly_review.md`
-  - `memory/{agent}/monthly_review.md`
-  - `memory/{agent}/quarterly_rewrite.md`
+  - `memory/equities/trade_log.md`
+  - `memory/equities/research_log.md`
+  - `memory/equities/daily_review.md`
+  - `memory/equities/weekly_review.md`
+  - `memory/equities/monthly_review.md`
+  - `memory/equities/quarterly_rewrite.md`
   - `memory/learnings.md`
   - `memory/strategy_evolution.md`
   - `memory/prompt_evolution_proposals.md`
   - `memory/runs.log`
 - **Controlled overwrite** (snapshot block only):
-  - `memory/{agent}/portfolio.md` — "Latest snapshot" block + regenerated positions table from API
+  - `memory/equities/portfolio.md` — "Latest snapshot" block + regenerated positions table from API (includes crypto positions)
   - `memory/strategy.md` — only via `quarterly-rewrite` (with logged diff in `strategy_evolution.md`)
   - `memory/guardrails.md` — **only via human edit** (immutable sections can never be changed by agent)
 - **ISO UTC timestamps** everywhere: `2026-04-20T13:45:00Z`
 - **Never** commit a secret or include one in a notification
-- **Namespace discipline**: the equities agent writes only to `memory/equities/*` + shared; the crypto agent writes only to `memory/crypto/*` + shared
+- **Namespace discipline**: writes only to `memory/equities/*` + shared. The `memory/crypto/` namespace no longer exists — crypto trades log into `memory/equities/trade_log.md` with `instrument=crypto`.
 
 ## End-of-run steps
 
@@ -41,23 +41,14 @@ Memory discipline: append-only on logs, controlled overwrite on snapshots. Commi
 
 ## Commit message conventions
 
-### Equities
-
 - `[pre-market] 2026-04-20 — regime neutral, 4 BUY + 2 WATCH, 3 positions to watch`
-- `[market-open] 2026-04-20 — 4 BUY (NVDA, LLY, XOP, SOXL), 1 skip (META FOMO)`
-- `[intraday-scan] 2026-04-20 10:30 — 1 tighten (NVDA +11%), 1 TP-update (LLY), 1 new BUY (AMD technical)`
+- `[market-open] 2026-04-20 — 4 BUY (NVDA, LLY, BTC, SOXL), 1 skip (META FOMO)`
+- `[intraday-scan] 2026-04-20 10:30 — 1 tighten (NVDA +11%), 1 TP-update (LLY), 1 new BUY (ETH technical)`
 - `[market-close] 2026-04-20 — equity $104,320, day +0.9%, alpha day +0.4%, cumul +4.3%, 12 positions (2 aging)`
 - `[daily-review] 2026-04-20 — grade B, 4 new / 3 closed (2W/1L), lesson: tighten earlier on PEAD`
 - `[weekly-review] 2026-04-24 — grade B, week alpha +0.6%, cumul +5.1%, hit rate 58%, avg hold 3.4d`
 - `[monthly-deep-review] 2026-04-24 — Sharpe 1.2, Sortino 1.8, MaxDD -6.2%, 3 prompt proposals (1 applied)`
-- `[quarterly-rewrite] 2026-06-26 — strategy v2.1, trimmed PEAD threshold 70→75, added crypto correlation gate`
-
-### Crypto
-
-- `[crypto-hourly] 2026-04-20T14:00Z — 1 BUY (ETH), 2 stop-updates, regime risk-on`
-- `[crypto-daily-review] 2026-04-20 — grade B, day +1.8%, vs BTC +0.2%, 4 trades`
-- `[crypto-weekly-review] 2026-04-20 — week +3.4%, vs BTC +1.1%, 22 trades, hit rate 55%`
-- `[crypto-monthly-review] 2026-05-01 — MaxDD -8%, Sharpe 1.0, 2 prompt proposals`
+- `[quarterly-rewrite] 2026-06-26 — strategy v2.1, trimmed PEAD threshold 70→75, refined crypto sleeve rules`
 
 ## Anti-noise fallback
 
@@ -69,5 +60,5 @@ If nothing justifies a file change (e.g. pre-market with no idea, intraday-scan 
 
 - Diff doesn't touch immutable sections of `guardrails.md` (see file for which sections)
 - Diff doesn't touch `memory/strategy.md` unless routine is `quarterly-rewrite` or evolution gates passed
-- Agent namespace respected: no crypto run writing to equities files
+- No writes to `memory/crypto/` (namespace decommissioned — crypto lives inside `memory/equities/`)
 - No secrets or raw API keys in the diff

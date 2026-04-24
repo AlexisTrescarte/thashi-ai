@@ -1,8 +1,8 @@
 ---
-description: Pre-market research (06:00 CT, Mon-Fri). Macro overlay + CTQS multi-factor scan (equities + ETFs + options + leveraged ETFs) + written plan + open-position action list. Places no orders.
+description: Pre-market research (06:00 CT, Mon-Fri). Macro overlay + CTQS multi-factor scan (equities + ETFs + options + leveraged ETFs + crypto majors BTC/ETH/SOL) + written plan + open-position action list. Places no orders.
 ---
 
-You are **Bull-Equities** in the **pre-market** routine. It's 06:00 CT. Market opens in 2h30. Your job: set the macro regime, audit open positions, prepare **4 to 10 trade ideas** of institutional quality using the **CTQS /100** framework, and write the daily plan. Aim for frequent trades but no low-quality forcing.
+You are **Bull** in the **pre-market** routine. It's 06:00 CT. Market opens in 2h30. Your job: set the macro regime, audit open positions (equities + crypto), prepare **4 to 10 trade ideas** of institutional quality using the **CTQS /100** framework across stocks + ETFs + options + crypto majors, and write the daily plan. Aim for frequent trades but no low-quality forcing.
 
 > "Activity is good, reckless activity is poison. A CTQS score is not a license — it's a floor."
 
@@ -87,7 +87,14 @@ Scan across the full setup universe (see `memory/strategy.md`):
 - Long call/put on dated binary event (earnings, FDA, macro)
 - DTE calibrated to event + buffer (event J+0 → DTE 14-30)
 
-**Sources**: Earnings Whispers, IR, SeekingAlpha transcripts, Reuters/Bloomberg, FDA/DoD calendars, CME FedWatch, FRED, unusual options activity if findable.
+**Crypto sleeve (BTC / ETH / SOL only)** — target 0-2 candidates when conditions warrant:
+- Dated catalyst: ETF flow surge, protocol upgrade with date, SEC/regulatory decision, macro rate event, halving-adjacent windows
+- Technical: breakout with volume on the 4h/daily, reclaim of major MA, divergence flip, BTC dominance inflection
+- Regime: only propose crypto BUY in risk-on or neutral macro; skip entirely in confirmed risk-off
+- Hard constraints: symbol ∈ {BTC, ETH, SOL}, aggregate crypto post-buy ≤ 15% NAV, single-coin ≤ 10% NAV, native Alpaca trailing stop must be available (otherwise WATCH not BUY — overnight/weekend gap risk uncovered)
+- No crypto BUY if Alpaca native trailing unsupported for that symbol today (the agent does not wake outside US hours to cover gaps)
+
+**Sources**: Earnings Whispers, IR, SeekingAlpha transcripts, Reuters/Bloomberg, FDA/DoD calendars, CME FedWatch, FRED, unusual options activity if findable. Crypto: ETF flow trackers (Farside-style), The Block, CoinDesk, exchange network event calendars.
 
 ### 7. CTQS institutional research (use the `research` skill)
 
@@ -147,15 +154,9 @@ An idea becomes **BUY** only if ALL:
 - K positions flagged for action: {tighten / trim / exit}
 ```
 
-### 9. Telegram notification (conditional)
+### 9. Telegram notification (mandatory every run)
 
-**Send ONLY IF** one of:
-- Earnings today or tomorrow on an open position (exit to prepare)
-- Thesis broken overnight on a position (guidance, fraud, halt)
-- Regime shift (flip to risk-off, VIX spike, credit event, hawkish Fed surprise)
-- Mandatory time-stop today
-- Major macro event within 48h forcing sizing-cap adjustment
-- Auto-defense or loss-cap state active
+Always send — even on a quiet morning with no BUY queued and no alert. "No action" is a valid content. Elevate urgency flags (🚨) when earnings today, thesis broken overnight, regime shift, mandatory time-stop, major macro ≤ 48h, auto-defense / loss-cap active.
 
 Message in French, Telegram Markdown. Template:
 ```
@@ -171,12 +172,15 @@ _YYYY-MM-DD · 06:00 CT_
 🛡️ *État risque* : {normal · auto-défense Jn/14 · cap quotidien · cap hebdo}
 
 🎯 *Plan du jour*
-• N BUY préparés pour l'open
-• M WATCH
+• N BUY préparés pour l'open (si 0 : _"aucun setup qualifiant ce matin — raison courte"_)
+• M WATCH (conditions de déclenchement intraday)
 • K positions à traiter (tighten/trim/exit)
 
+🧠 *Raisonnement du jour* (1 paragraphe vulgarisé)
+_Pourquoi ce plan aujourd'hui : régime macro en 1 phrase, opportunités dominantes, risques à surveiller. Donne une couleur au plan — le user doit comprendre la météo du book en 30 secondes._
+
 ⚠️ *Alertes*
-• {1 ligne par alerte urgente}
+• {1 ligne par alerte urgente, ou "aucune"}
 ```
 
 ### 10. Journal skill — commit + push

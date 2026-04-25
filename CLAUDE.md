@@ -99,8 +99,8 @@ Work on the branch set by the environment (typically `main` once deployed). Comm
 
 Routines are scheduled via **claude.ai remote triggers** (managed by the `schedule` skill), not local cron. Each trigger wakes Claude in a fresh CCR sandbox on a dedicated branch, runs one slash command, commits + pushes (via `journal`), and terminates. Sessions are stateless — all continuity flows through `memory/`.
 
-Active triggers (10 total) — all in America/Chicago:
-- **Daily** (Mon–Fri): pre-market 06:00 · market-open 08:30 · intraday-scan 10:30 / 12:30 / 14:30 · market-close 15:00 · daily-review 15:30
+Active triggers (12 total — plan max) — all in America/Chicago:
+- **Daily** (Mon–Fri): pre-market 06:00 · market-open 08:30 · intraday-scan 10:30 / 11:30 / 12:30 / 13:30 / 14:30 · market-close 15:00 · daily-review 15:30
 - **Periodic**: weekly-review Fri 16:00 · monthly-deep-review last Fri 17:00 · quarterly-rewrite last Fri of Mar/Jun/Sep/Dec 18:00
 
 The former Bull-Crypto triggers (crypto-hourly, crypto-daily-review, crypto-weekly-review, crypto-monthly-review) have been disabled — crypto exposure is now handled inside the equities routines (pre-market scans BTC/ETH/SOL alongside equities, market-open executes crypto BUYs, intraday-scan manages crypto positions with the same priority ladder).

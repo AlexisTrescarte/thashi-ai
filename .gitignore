@@ -9,3 +9,6 @@ node_modules/
 *.log
 !memory/runs.log
 .claude/settings.local.json
+memory/.rate_limit.jsonl
+memory/killswitch.flag
+memory/runs.jsonl

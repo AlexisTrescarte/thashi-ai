@@ -1,0 +1,44 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python scripts/alpaca_client.py:*)",
+      "Bash(python scripts/alpaca_crypto_client.py:*)",
+      "Bash(python scripts/options_client.py:*)",
+      "Bash(python scripts/telegram_client.py:*)",
+      "Bash(python scripts/metrics.py:*)",
+      "Bash(python scripts/portfolio_snapshot.py:*)",
+      "Bash(python scripts/prompt_evolution.py:*)",
+      "Bash(python scripts/pretrade_guards.py:*)",
+      "Bash(python scripts/microstructure.py:*)",
+      "Bash(python scripts/news_normalize.py:*)",
+      "Bash(python scripts/otel_log.py:*)",
+      "Bash(python scripts/killswitch.py:*)",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(git fetch:*)",
+      "Bash(git rebase:*)",
+      "Bash(ls:*)",
+      "Bash(cat memory/*)",
+      "Bash(tail memory/*)",
+      "Bash(head memory/*)",
+      "Bash(wc memory/*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)"
+    ]
+  },
+  "env": {
+    "BULL_PRETRADE_GUARDS": "1",
+    "BULL_OTEL_PATH": "memory/runs.jsonl"
+  }
+}

@@ -176,3 +176,23 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 **BUY pathways** : (A) **indisponible** — pas de pre-market block 04-27 (harness silencieux ce matin, gap incident continu) ; (B) aucun catalyseur frais surfacé aujourd'hui qualifiant CTQS ≥ 60 ; (C) pas de setup technique probe-worthy T+Q+S ≥ 60/75. **Aucun BUY**.
 **Stops sweep** : trail GOOGL OK (one-way ratchet held by Alpaca native).
 **Action** : 0 cut, 0 trim, 0 tighten, 0 BUY. Pure hold. Telegram envoyé conformément à la politique "mandatoire à chaque run".
+
+### 2026-04-27T19:38:00Z — INTRADAY-SCAN 14:30 CT (last-call)
+**Macro** : régime neutral lean risk-on inchangé. VIX ~19 (zone confort sub-20), SPY/QQQ proches ATH (sources WebSearch 27/04), pas de headline catastrophique, pas de regime-shift trigger. Cluster earnings mega-cap démarre demain (GOOGL 29/04 AMC, MSFT/META/AMZN semaine 29/04+).
+**Account** : equity $97,467.20, cash $95,007.40 (97.48%), buying_power $192,474.60, last_equity $97,418.20 → day P&L **+0.05%**. Très loin du daily-loss cap -4%.
+**Position GOOGL (1 ouverte)** : 7@$339.29 → $351.40, +3.57% / +$84.77 (intraday +2.03%). Native trailing 8% ratchet HWM $353.18 (stable depuis 13:30), stop $324.93 (au-dessus cost basis $339.29 ? non, $324.93 = -4.23% vs cost). Position en zone "no action" (priorité 10 hold).
+**Last-call priority ladder appliquée** :
+- P1 thesis-broken : NON (consensus Strong Buy, target $387 = +10%, pas de news négative 27/04, TPU 8t/8i + Anthropic deal toujours valides).
+- P2 earnings imminent (14:30 last-call) : NON — earnings GOOGL **mercredi 29/04 AMC** (= day-after-tomorrow). Tonight AMC ≠ GOOGL (lundi soir, pas d'earnings GOOGL). Tomorrow BMO = mardi 28/04 BMO ≠ GOOGL. **Le slot last-call qui déclenchera P2 est demain mardi 28/04 14:30 CT** (à T-quelques-heures de Wed AMC → "tomorrow AMC" avec "tonight AMC" sur Tuesday 14:30 = Tuesday night = 28/04 night ≠ GOOGL non plus, mais l'entry-note time-stop "28/04 close" est hard-binding via P3).
+- P3 time stop : NON aujourd'hui — short-swing J+2 (entrée 23/04, J+5 = 30/04). Time-stop entry-defined "28/04 close" déclenchera P3 demain au last-call.
+- P4 option DTE-3 / P5 option premium : N/A (equity).
+- P6 equity loss -5% : NON (à +3.57%).
+- P7 TRIM +20% : NON.
+- P8 TIGHTEN +10% : NON (à +3.57%, et trail natif déjà en place).
+- P9 structural stop-update : trail natif tient le HWM, pas d'override discrétionnaire à apporter (one-way ratchet déjà optimal).
+- P10 hold : **OUI** → aucune action.
+**Day-trade horizon** : aucune position taggée day-trade.
+**BUY** : interdit explicitement par la consigne du slot (last-call = exits only).
+**Stops sweep** : trail GOOGL inchangé (HWM $353.18, stop $324.93, trail 8%, GTC). Ratchet exchange-side actif 24/7.
+**Risque résiduel** (rappel learnings 04-24) : la sortie pré-earnings 28/04 close dépend du réveil du harness demain au slot 14:30 CT. Si gap d'incident similaire au 04-24, le trail à $324.93 maintiendra la position vivante jusqu'à Wed AMC = exposition earnings. Pas d'action corrective ce slot (la mise en place d'un GTD sell-limit + trail combo est un changement structurel queué pour monthly review). Reminder seulement.
+**Action** : 0 cut, 0 trim, 0 tighten, 0 BUY. Pure hold. Telegram envoyé (politique mandatoire).

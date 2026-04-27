@@ -81,3 +81,51 @@ Raw metrics suggest B (day +0.04%, 0 violations, 0 closes → hit/R undefined). 
 
 ### Lesson of the day (1 line)
 - When a routine misses fire, Alpaca-native trailing stops are the *only* line of defense → every new BUY must carry a native trail (not manual-tracked), and time-stops inside the horizon must be enforced via GTD limit-sell orders placed at fill, not reliance on future intraday-scan runs.
+
+## 2026-04-27 — Daily review (grade: C)
+
+### Performance
+- Equity: $97,461.46 (day +0.044%, +$43.26 vs last_equity $97,418.20)
+- Benchmark day (SPY+QQQ blend): ~+0.04% (SPY ~$714.90 vs Fri 714.05 = +0.12%; QQQ ~$663.80 vs Fri 664.06 = -0.04%) — intraday quotes captured 15:32 CT
+- Alpha day: ≈ +0.00% (flat to bench within rounding)
+- Cumul baseline: N/A (baseline never posted; 04-20 and 04-24 market-close both missed — this gap not closeable retroactively)
+
+### Activity
+- Trades opened today: 0
+- Trades closed today: 0 (W:0 / L:0 / BE:0)
+- Hit rate today: N/A | Avg R today: N/A
+- Stops set within 5min on all new positions: N/A (no new positions)
+
+### By setup (today)
+- None — no activity
+
+### Open positions (1)
+- GOOGL 7 @ $339.29 (entry 04-23, J+2 trading days) · mark $350.58 · +3.33% (+$79.03) · native trail 8% ratcheted (HWM $339.185 → $353.18 today, stop $312.05 → $324.93) · time stop 04-28 close pre-earnings 04-29 AMC.
+
+### What worked (2 lines)
+- Native trailing on GOOGL kept ratcheting autonomously through the 5 missed routines (HWM $345.23 Fri → $353.18 today, stop $317.61 → $324.93) — exchange-side discipline filled the gap left by the silent harness, exactly as the 04-21 RULE-ADJUSTMENT predicted.
+- Priority ladder held cleanly across the 3 scans that did fire (11:30/13:30/14:30): no premature TIGHTEN/TRIM/CUT on a +3.3% Probe — discipline of "P10 hold until P1-P9 trigger" prevented over-management of an in-thesis position.
+
+### What didn't (2 lines)
+- Pre-market 06:00 CT did not fire (3rd straight missing pre-market for equities — no 04-24, no 04-25 weekend, no 04-27) → BUY Pathway A blocked all day; with no fresh CTQS scan and no qualifying B/C catalyst, the agent ran cash 97.5% on a market that printed near ATH on QQQ — opportunity cost is unmeasured but real.
+- Market-open 08:30 CT, intraday-scan 10:30/12:30 CT and market-close 15:00 CT also absent from runs.log/git — 4 daytime routines plus pre-market = 5 missed of 9 expected, recurrence of the 04-24 harness-gap pattern (different routines missing this time but same root cause).
+
+### Discipline log
+- Guardrail violations: 0 — none (no trades placed)
+- Time stops honored: N/A today (GOOGL time-stop is 04-28 close, not 04-27)
+- Stop updates logged: 0 manual; 1 native auto-ratchet on GOOGL (HWM +$7.95, stop +$7.32 vs Fri ratchet)
+
+### Coherence adjustment
+Raw metrics: alpha ~0%, 0 violations, 0 closes (hit/R undefined). Strict reading of the table → B (alpha > 0 marginally, 0 violations) or C (alpha ±1%, hit/R undefined). Settled on **C** because: (a) hit/R cannot validate B-grade discipline, (b) recurring harness gap (3rd missing pre-market in a row) is an operational degradation worth flagging in the cumulative trend, (c) cash 97.5% on a near-ATH risk-on day is a missed deployment under strategy.md "conviction over activity" only when there's a fresh CTQS scan — without one, no valid B-grade case can be made.
+
+### Carry-forward for tomorrow (Tue 2026-04-28)
+- **GOOGL — CRITICAL**: mandatory pre-earnings exit **04-28 close** (earnings 04-29 AMC). Tomorrow 14:30 CT last-call slot is the binding window. **Pre-place the exit at 04-28 market-open as belt-and-suspenders**: convert the 8% trailing to either (a) a GTD market-on-close sell or (b) a tight stop-limit at $349 (≈ -0.4% from current mark) to bind the exit to the exchange — DO NOT rely solely on the 14:30 routine waking up. This addresses the 04-24 INCIDENT remediation that was queued.
+- **Aging watchlist**: GOOGL J+3 = exit day; no other names.
+- **Pre-earnings tomorrow (04-28)**: GOOGL only on book. AMC tomorrow includes various names (V, etc. — confirm pre-market) but no exposure on book.
+- **Macro 24h**: FOMC starts 04-28 (Tue) → decision 04-29 (Wed) AMC, hold ~94.8% probability. Sizing one notch down for any new BUY per guardrails. PCE core (Fri 04-25 print) — confirm reading at 04-28 pre-market.
+- **Re-queue from 04-23 skips**: GEV (FOMO bias > $1,020 still a guard) and VRT (re-check spread + price) — must be re-scored at 04-28 pre-market if it fires; PEAD window now J+4 since 04-22 print, narrowing fast.
+- **Regime note**: neutral lean risk-on confirmed today (VIX 18-19, SPY/QQQ near ATH). FOMC week → expect compression; tighten any new stop methodology from default trail by 1-2pp.
+- **Operational**: 04-28 pre-market 06:00 CT MUST fire for GOOGL exit pre-staging; if it doesn't, the agent at next-fire-routine must execute the pre-place action before any other work.
+
+### Lesson of the day (1 line)
+- **Pre-stage the GOOGL exit at 04-28 market-open** with a GTD market-on-close (or stop-limit at $349) — do not let the 14:30 last-call routine be the single point of failure for a mandatory pre-earnings exit, because today proved 50%+ of routines can miss in a single session and the exchange is the only reliable executor when the harness is silent.

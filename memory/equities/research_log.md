@@ -167,3 +167,37 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - **0 position à traiter** (book vide).
 - **Regime** : neutral lean risk-on. Pas d'auto-défense, pas de loss cap.
 - **Telegram** : pas d'urgence (pas de regime shift, pas de earnings sur position ouverte, pas d'auto-defense). **PAS de notification**.
+
+---
+
+## 2026-04-27 — Intraday-scan 10:30 CT (16:37 UTC)
+
+### State snapshot
+- Equity $97,461.92 · cash $95,007.40 · long mkt val $2,454.52 · day P&L +0.04% ($+43.72 vs last_equity $97,418.20).
+- Positions (1): **GOOGL 7 @ $339.29** · mark $350.615 · +3.34% ($+79.28) · trail 8% Alpaca natif ratcheté autonomement depuis 04-23 (HWM $339.185 → $345.23 → **$351.74**, stop $312.05 → $317.61 → **$323.60**) · time stop 04-28 close (pre-earnings 04-29 AMC).
+- Open orders (1): trailing_stop GOOGL id 45d94a3c (active, qty 7).
+
+### Macro / regime
+- SPY/QQQ proches ATH (QQQ 663.88 close 04-24 dans le 52-week high 664.51). VIX stabilisé après spike de mars (~25 puis tassement). Pas de move violent intraday — pas de regime-shift trigger (VIX +20%, credit, hawkish, geopol shock) détecté à 10:30 CT.
+- Semaine FOMC : 28-29 avril (hold ~95%). Pre-earnings cluster mega-cap : **GOOGL 04-29 AMC** (notre position), MSFT/META/AMZN 04-29 ou 04-30. PCE core 04-25 — print à valider sur prochain pre-market.
+- Confirme régime neutral lean risk-on de la note 04-23. Pas de TIGHTEN forcé sur le book.
+
+### Per-position decisions
+- **GOOGL** — priority ladder traversée : P1 thèse intacte (fuse TPU/Anthropic toujours valide, aucune news de breakage) · P2 N/A (slot 10:30, pas 14:30) · P3 time stop 04-28 non encore atteint (J+2 sur J+3 plan) · P4-P5 N/A (equity) · P6 +3.34% ≫ -5% · P7 +3.34% ≪ +20% pas de TRIM · P8 +3.34% ≪ +10% pas de TIGHTEN · P9 trail natif déjà en ratchet autonome → **HOLD (P10)**. Native trail couvre la fenêtre jusqu'à exit mandatoire 04-28 close.
+
+### Opportunistic BUY check
+- **Pathway A (pre-market WATCH queue)** : pas de bloc pre-market 04-27 dans research_log (le routine 06:00 CT du 27/4 n'a pas fired — même pattern que 04-24 incident). La queue 04-23 (GEV / VRT) est à J+4 trading days (PEAD window narrowing), et la daily-review 04-24 a explicitement écrit "Both must be re-scored Monday pre-market". Sans rescoring frais, **Pathway A indisponible** (règle "without fresh pre-market block, no-op" — learnings 2026-04-22).
+- **Pathway B (new catalyst surfaced today)** : aucun catalyseur daté frais matériel (pas de earnings beat+raise nouveau, pas de FDA/DoD, pas d'analyst cluster majeur). **SKIP**.
+- **Pathway C (technical-only Probe)** : aucun setup technique propre méritant un research note ad-hoc dans le contexte FOMC-week T-1. **SKIP**.
+- Hourly-cap inutilisé (0/3 opportunistic BUY consommés aujourd'hui).
+
+### Stop-update sweep
+- GOOGL : trail natif ratcheté côté Alpaca (stop $323.60). One-way ratchet respecté. Pas d'override manuel (loosening interdit).
+
+### Actions résumé
+- 0 CUT · 0 TIGHTEN · 0 TRIM · 0 BUY. Hold GOOGL, regime confirme.
+
+### Risques ouverts à surveiller (suite des slots)
+- **GOOGL exit binding 04-28 close** (pre-earnings 04-29 AMC). Si les routines 04-28 13:30 / 14:30 manquent comme 04-24/04-27, le trail natif est l'unique backstop — il ne déclenchera pas une sortie pré-earnings (il suit le prix). Carry-forward critique : flag à user si 04-28 14:30 ne fire pas.
+- **FOMC 28-29** : sizing one-notch-down attendu, options exposure halved en fenêtre.
+- **Re-queue GEV/VRT** : PEAD window à J+4, re-évaluer au prochain pre-market frais (04-28 si fire).

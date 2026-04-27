@@ -167,3 +167,12 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - **0 position à traiter** (book vide).
 - **Regime** : neutral lean risk-on. Pas d'auto-défense, pas de loss cap.
 - **Telegram** : pas d'urgence (pas de regime shift, pas de earnings sur position ouverte, pas d'auto-defense). **PAS de notification**.
+
+### 2026-04-27T18:33:00Z — INTRADAY-SCAN 13:30 CT
+**Macro** : régime neutral lean risk-on confirmé. SPY +0.27%, QQQ ~663.88 (proche ATH 664.51), DIA -0.34%, VIX ~18-19 (zone confort). Pas de regime-shift trigger, pas de macro headline catastrophique.
+**Account** : equity $97,475.60, cash $95,007.40 (97.47%), buying_power $192,483, last_equity $97,418.20 → day P&L +0.06%. Très loin du daily-loss cap -4%.
+**Position GOOGL (1 ouverte)** : 7@$339.29 → $352.62, +3.93% / +$93.31. Native trailing 8% ratchet HWM $339.185 → $353.18, stop $312.05 → $324.93 (autonomous, exchange-side). En zone "no action" (priorité 10 hold) : pas thesis-broken (+26% MTD, consensus Strong Buy, target $387), pas time-stop (J+2/J+3 limite 28/04 close), pas TIGHTEN (+10% requis, à +3.93%), pas TRIM (+20% requis), pas options.
+**Pre-earnings** : earnings Q1 2026 confirmées **mercredi 29/04 AMC**. Sortie mandatoire **mardi 28/04 close** au slot 14:30 CT (last-call) — pas de earnings hold. Aujourd'hui 13:30 ≠ 14:30 → pas d'exit pre-earnings sur ce slot.
+**BUY pathways** : (A) **indisponible** — pas de pre-market block 04-27 (harness silencieux ce matin, gap incident continu) ; (B) aucun catalyseur frais surfacé aujourd'hui qualifiant CTQS ≥ 60 ; (C) pas de setup technique probe-worthy T+Q+S ≥ 60/75. **Aucun BUY**.
+**Stops sweep** : trail GOOGL OK (one-way ratchet held by Alpaca native).
+**Action** : 0 cut, 0 trim, 0 tighten, 0 BUY. Pure hold. Telegram envoyé conformément à la politique "mandatoire à chaque run".

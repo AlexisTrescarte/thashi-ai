@@ -308,3 +308,29 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - (3) GOOGL MOC fill — vanishingly small risk on a name with ~$2T mcap, but if non-fill happens, position carries through earnings = guardrail violation. Monitor at 14:30 last-call (verify order still `new`/`accepted` and not `rejected`).
 **Telegram**: mandatory; no-action template (≤ 15 lines).
 
+### 2026-04-28T19:34:00Z — INTRADAY-SCAN 14:30 CT (last-call · exits-only)
+**Account**: equity $97,455.51 · cash $95,007.40 · last_equity $97,459.78 · day P&L **-0.0044%** (flat). No daily-loss-cap, no auto-defense, no weekly cap. Cash share 97.49% (single position GOOGL ≈ 2.51% NAV).
+**Routine continuity check**: 12:30 and 13:30 scans appear NOT to have written entries to research_log today (only 11:30 present). Continuation of the operational degradation pattern flagged in 04-24 INCIDENT and 04-27 daily-review. The 14:30 last-call thus carries the remaining verification weight for the GOOGL pre-earnings exit. Mitigation worked as designed: the MOC was placed at 08:42 CT (market-open routine), so even with 12:30/13:30 misses, the exit is exchange-bound and does not depend on the agent.
+**Macro snapshot** (WebSearch): VIX 18.02 (sub-20 comfort zone, no spike), SPY/QQQ stable, mid-week pre-FOMC compression confirmed. **No regime shift** vs morning read. Pre-market regime read holds: neutral lean risk-on, breadth deteriorating (semis overbought), FOMC tomorrow + Mag-7 AMC Wed-Thu remain scheduled events (not surprises).
+**Open positions**:
+- **GOOGL** 7@$339.29 · mark $349.73 · +$73.08 (+3.08%) · qty_available=**0** (reserved by MOC sell `33e1dd7d`, side=sell, type=market, TIF=cls, status=`new`, expires 2026-04-28T20:00:00Z = 16:00 ET = today's bell). MOC verified healthy ~26 min before close. Trail stop `45d94a3c` was canceled at market-open (13:41:54 UTC) when MOC was placed. **The mandatory pre-earnings exit (GOOGL Q1 04-29 AMC, no earnings hold flag) is exchange-bound and will execute at the bell**.
+**Per-position priority cascade (GOOGL)**:
+- P1 thesis broken: NO. No negative news today; position +3.08%, in-thesis (TPU 8t/Anthropic catalyst, Gemini 3 traction).
+- **P2 earnings imminent w/o hold: YES — already pre-staged via MOC 33e1dd7d** (this slot's nominal action was completed at 08:42 CT during market-open). No further CUT order possible: qty_available=0 (MOC reserves all 7 shares) and any new sell would be redundant (MOC binds the exit to a specific time = strictly tighter than any trailing %).
+- P3 time stop: confirmed J+3 short-swing exit window today (matches pre-market plan).
+- P4-P9: moot (P2 in flight; no qty available for stop/trim modifications).
+- P10 hold (verification only): **OUI** → 0 action.
+**Day-trade horizon**: no day-trade-tagged position.
+**BUY**: forbidden by slot rule (last-call = exits only). 0 BUYs evaluated. Cadence counter: Pathway B+C used today = 0 / 3 daily cap (now closed for today since 14:30 is exits-only).
+**Stops sweep**: GOOGL has no active trail (replaced by MOC at market-open). MOC is the binding exit; nothing tighter is technically possible. No STOP-UPDATE action.
+**Action**: 0 cut · 0 trim · 0 tighten · 0 BUY. **Verification slot — confirmed MOC `new` and healthy ~26 min before the bell. The 04-24 INCIDENT remediation (pre-stage exit at fill) prevented the 12:30/13:30 routine gaps from compromising the mandatory exit.**
+**Carry-forward to market-close 15:00 CT**:
+- (1) Verify GOOGL MOC `filled` post-bell (status should flip from `new` → `filled` between 15:00:00 and 15:00:30 CT).
+- (2) If `rejected` (vanishingly small probability on a $2T mcap name with ~30M ADV), this is a P0 emergency: position would carry through 04-29 AMC earnings = guardrail violation. The harness must wake at 15:00 CT exactly to handle. *Procedural risk only — execution risk on MOC is de minimis.*
+- (3) Daily-review 15:30 CT should: (a) record the realized P&L on GOOGL, (b) note the operational pattern (5/9 → 4/8 routines firing today if 12:30/13:30 confirmed missed; market-open + 11:30 + 14:30 + close + daily-review = 5 firing of 9), (c) re-emphasize the queued "GTD/MOC pre-stage at fill" rule for the next BUY (apply, don't defer further).
+**Risks**:
+- (1) MOC fill is the only meaningful operational risk. Vanishingly small on GOOGL (mega-cap, deep liquidity, MOC auction is the deepest liquidity event of the day). If non-fill, the agent must intervene at market-close routine.
+- (2) Late-day macro tail: any 14:45-15:00 hawkish leak / Iran headline could spike VIX, but GOOGL is bound to the bell regardless — no agent action required.
+- (3) Operational pattern: the 12:30 + 13:30 misses bring the day's tally to ~4/8 routines firing (consistent with 04-27's 5/9). Monthly review must confirm the "GTD/MOC at fill" rule is now de facto applied (it worked today) and promote it formally.
+**Telegram**: mandatory; no-action template (≤ 15 lines), explicit emphasis on the MOC pre-stage having de-risked the slot.
+

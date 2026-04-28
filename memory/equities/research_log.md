@@ -289,3 +289,29 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - **Activity floor**: 1 BUY closed in last 5td (GOOGL 04-23) — queueing 2 today brings the rolling 5td count to 3, satisfying floor (≥3 in risk-on/neutral). Floor compliance ✅.
 - **Telegram**: routine notification only (no urgency tag) — FOMC and earnings cluster are scheduled, not surprises.
 
+
+### 2026-04-28T13:43:30Z — MARKET-OPEN execution (08:43 CT)
+**Account at open**: equity $97,450.19, cash $95,007.40 (97.49%), buying_power $192,457.59, last_equity $97,459.78 → day P&L -0.01% (well within -4% daily cap).
+**Position GOOGL (1 ouverte)**: 7@$339.29 → mark $348.94, +$67.52 / +2.84% (intraday -0.40%). Native trail 8% HWM $353.18 / stop $324.93 was active going into the open.
+**Preflight**: ✅ all green — auto-defense NO, daily/weekly cap NO, cash 97.49% ≫ 10%, positions 1 < 30, FOMC < 24h → 1-notch sizing already applied in pre-market block (Probe sizing on both BUY candidates).
+
+**Action 1 — GOOGL pre-stage exit (CRITICAL, first action)**: cancelled trailing-stop 45d94a3c, placed market-on-close sell qty=7 GTD today (order 33e1dd7d, expires 2026-04-28T20:00:00Z). Position now exchange-bound to exit at the close auction regardless of routine wake-up. 04-24 INCIDENT remediation applied directly here per 04-27 daily-review carry-forward. STOP-UPDATE logged in trade_log.
+
+**Action 2 — VRT BUY queue → SKIP (spread guard)**: quote at 08:41 CT bid $291.65 / ask $309.62 → spread 5.81% (cap 0.5%). Mechanical reject identical to 04-23 (early-open thin book on PEAD leader, J+5 post-print). FOMO guard separately PASSED (ask $309.62 < plan price $323.46). Re-tentative possible at intraday-scan 10:30 if book settles to spread < 0.5% AND price still in zone (target ≤ $325). Note: PEAD window narrowing (J+5 = 05-05 final).
+
+**Action 3 — AMD BUY queue → SKIP (microstructure BLOCK)**: pretrade_guards passed (killswitch ok, fat-finger ok, notional ok, rate-limit ok). microstructure-confirm subagent at 08:43 CT: bid $310.28 / ask $325.00 → spread 463 bps (vs 30 bps cap). With CTQS 69 (Probe band), BLOCK is non-overridable. Note: my single direct quote pull seconds earlier showed bid $321.19 / ask $321.52 (10 bps) — the book is whiplashing in the first 15 minutes of the session. Re-tentative deferred to intraday-scan 10:30. AMD ask $321.52 well below plan $335.52 (FOMO guard would pass).
+
+**Stops sweep**: GOOGL is the only position. Trail cancelled, MOC sell placed (covered above). 0 missing-stop reconciliations to apply.
+
+**Crypto sleeve**: 0 BUY (per pre-market plan — defer post-FOMC clarity Thu/Fri).
+
+**Summary**: 0 BUY · 0 ADD · 1 STOP-UPDATE (GOOGL trail → MOC) · 2 SKIP (VRT spread, AMD microstructure BLOCK). Activity floor at 1 BUY in rolling 5td (GOOGL 04-23) — floor will only be at risk if 04-29 / 04-30 / 05-01 also produce 0 BUY (FOMC + Mag-7 cluster makes 04-30 / 05-01 the realistic re-entry windows for VRT/AMD if not captured at today's intraday-scan).
+
+**Re-queue for intraday-scan 10:30 CT**:
+- VRT @ ≤ $325 if spread < 0.5% (Probe 2.5% NAV ≈ 7-8 shares).
+- AMD @ ≤ $325 if microstructure subagent CONFIRMs or NEUTRAL with spread ≤ 20 bps (Probe = NEUTRAL needs micro CONFIRM, but a tight spread NEUTRAL passes per matrix line 1; rechecking the matrix: Probe + NEUTRAL = abort. Therefore AMD needs CONFIRM at 10:30).
+
+**Re-queue for tomorrow's pre-market** (if today's intraday-scan also fails to capture):
+- GEV remains WATCH-only (FOMO cap $1,020 still binding; current $1,115 — no re-entry today).
+- XLE post-FOMC trigger (Wed-PM or Thu).
+

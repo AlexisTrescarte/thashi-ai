@@ -53,3 +53,9 @@ Append-only. **Never rewrite** a past entry. Reverse chronological (most recent 
 - Routine: market-open
 - Research note: memory/equities/research_log.md — 2026-04-23 pre-market block, BUY 3
 - Notes: Probe sizing $2,435 target; 7 shares × $339.29 = $2,375.03 (2.44% NAV — just under target but within Probe band 2-3%). GEV and VRT from the same BUY queue skipped at open due to wide spreads (GEV 4.66%, VRT 5.38% — early-open thin books) and FOMO guard on GEV (ask +14% vs plan $1,000).
+
+### 2026-04-28T13:41:58Z — STOP-UPDATE GOOGL
+- Previous stop: trailing 8% (Alpaca native, id 45d94a3c-d7c9-44f6-bc8d-e6d38c6afef0), HWM $353.18, stop $324.93
+- New stop: market-on-close sell qty=7, GTD today (id 33e1dd7d-7c7f-4b2d-9d1f-2ecace102f20, expires 2026-04-28T20:00:00Z)
+- Reason: pre-staging mandatory pre-earnings exit on the exchange (earnings 2026-04-29 AMC, no earnings hold). Carry-forward from 04-27 daily-review + 04-24 INCIDENT remediation: convert the trail into a binding close-of-day exit so the routine doesn't depend on the 14:30 last-call waking up. Trade-off accepted: position is unprotected against intraday plunge between now and close (~6h), but the harness-gap pattern over the past week (5/9 missed routines on 04-27) made exchange-binding the dominant risk. Position currently +2.63% / +$67.52 mark $348.94, providing buffer.
+- Routine: market-open

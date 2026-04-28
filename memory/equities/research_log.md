@@ -289,3 +289,22 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - **Activity floor**: 1 BUY closed in last 5td (GOOGL 04-23) — queueing 2 today brings the rolling 5td count to 3, satisfying floor (≥3 in risk-on/neutral). Floor compliance ✅.
 - **Telegram**: routine notification only (no urgency tag) — FOMC and earnings cluster are scheduled, not surprises.
 
+### 2026-04-28T16:45:00Z — INTRADAY-SCAN 11:30 CT
+**Account**: equity $97,453.55 · cash $95,007.40 · last_equity $97,459.78 · day P&L -0.006% (essentially flat). No daily-loss-cap, no auto-defense, no weekly cap.
+**Macro snapshot**: SPY +0.21% / QQQ +0.43% intraday (modest risk-on). Semis/SMH +30% MTD (extreme overbought, options-chase noted). VIX sub-20 inferred (no spike). Regime confirmed neutral lean risk-on, breadth still deteriorating per pre-market read. **No regime shift** — FOMC tomorrow + Mag-7 AMC Wed = scheduled events.
+**Open positions**:
+- **GOOGL** 7@$339.29, mark $349.42, +$70.91 (+2.99%). qty_available=0 (reserved by MOC sell 33e1dd7d, TIF=cls, expires 20:00 UTC). Trail stop 45d94a3c canceled at 13:41:54 UTC by market-open when MOC was placed — pre-earnings exit is now exchange-bound to today's close. **Action: HOLD** (no further action available; MOC tighter than any trail). Position in-thesis (TPU/Anthropic catalyst, +2.99% P&L).
+**BUY pathway evaluation**:
+- **VRT** (Pathway A revival): quote ap $302.93 / bp $285.58 → spread **5.90%** (cap 0.5%) + price mid $294 = -11.7% below plan zone $323.46. **SKIP — mechanical** (spread guard + zone-plan failed). Same 04-23 book-anomaly pattern. Re-evaluate at 12:30 if spread normalizes.
+- **AMD** (Pathway A revival): quote ap $320.11 / bp $319.78 → spread 0.10% OK. **But** AMD spiked +13.9% pre-market to $347.81 ATH then reversed -8% intraday to $320.11 = textbook **climax distribution day**. Pre-market thesis assumed entry near $335.52 with shake-out completing into $304-310 base; current tape is the shake-out **in progress**, not completed. T leg of CTQS degrades from 16/25 to ~12/25 (distribution pattern + still-extended +50% MTD). New CTQS ≈ 65 (still Probe band) but qualitative entry quality deteriorated. FOMC < 24h tail compounds risk. **SKIP this slot**. Trigger to release at 12:30/13:30: AMD reclaims $328+ on stable tape (no further -2% legs) + spread holds < 0.5%.
+- **Pathway B (new opportunistic catalyst)**: none surfaced today. No earnings beat, FDA, DoD, or analyst-cluster trigger fresh in this scan window.
+- **Pathway C (technical-only Probe)**: none qualifying. Semis/AI overbought + breadth deteriorating + FOMC tail = poor environment for chasing technical breakouts. Hard cap 1/day reserved.
+**Cadence accounting**: 0 Pathway-B/C BUYs used today. Pathway-A revivals (VRT/AMD) deferred. Daily Pathway-B+C cap = 3 (untouched).
+**Stop-update sweep**: GOOGL qty_available=0 → no additional stop possible (MOC reserves qty). The MOC at today's close is the binding exit — strictly tighter than any trailing %. No action.
+**Action**: 0 cut · 0 trim · 0 tighten · 0 BUY. **Pure hold scan**. Carry-forward to 12:30: (a) re-check VRT spread, (b) re-check AMD price action for $328+ reclaim with stable tape. GOOGL MOC remains the binding exit at today's close.
+**Risks**:
+- (1) AMD knife-falling continues → if it breaks below $304 base before 12:30, the BUY thesis dies entirely (not just defers). Update CTQS down further at next scan.
+- (2) FOMC < 24h means even a successful AMD reclaim should be sized to the bottom of Probe band (2%, not 2.5%) given the +intraday volatility just seen.
+- (3) GOOGL MOC fill — vanishingly small risk on a name with ~$2T mcap, but if non-fill happens, position carries through earnings = guardrail violation. Monitor at 14:30 last-call (verify order still `new`/`accepted` and not `rejected`).
+**Telegram**: mandatory; no-action template (≤ 15 lines).
+

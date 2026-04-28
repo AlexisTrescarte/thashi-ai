@@ -308,3 +308,29 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - (3) GOOGL MOC fill — vanishingly small risk on a name with ~$2T mcap, but if non-fill happens, position carries through earnings = guardrail violation. Monitor at 14:30 last-call (verify order still `new`/`accepted` and not `rejected`).
 **Telegram**: mandatory; no-action template (≤ 15 lines).
 
+
+### 2026-04-28T20:15:00Z — MARKET-CLOSE 15:00 CT
+**Account**: equity $97,455.66 · cash $96,406.80 (98.92%) · positions $1,048.86 · last_equity $97,459.78 → day P&L **−0.00%** (essentially flat).
+**Macro EOD snapshot**:
+- SPY close ~$711.55 (day **−0.46%**) · QQQ close ~$658.23 (day **−0.86%**) · 50/50 blend day **−0.66%**.
+- Driver: WSJ report on OpenAI missing internal revenue targets → AI-chip jitters. Oracle −5.2% (OpenAI partnership exposure). GM up on Q1 beat + raised 2026 guidance.
+- VIX ~18 area (no spike from pre-market 18.02 reading).
+- 10Y ~4.31% (vs 4.34% pre-market, slight risk-on bid for duration on tech-led pullback).
+- Sector skew: defensives bid (utilities, staples), tech/semis sold, energy holding on Iran tail.
+- Breadth: still deteriorating (in-line with pre-market yellow flag); intraday S&P %>MA50 likely tested 50% line.
+- Regime: **neutral lean cautious** (no shift vs morning's "neutral lean risk-on, breadth deteriorating"). FOMC < 24h compressing risk appetite.
+**Performance vs benchmark (50% SPY + 50% QQQ)**:
+- **Baseline set today** (was missing): equity $97,455.66 · SPY $711.55 · QQQ $658.23 · date 2026-04-28.
+- Day: bot **−0.00%** · bench **−0.66%** → **alpha day +0.66%**.
+- Cumul since baseline: 0.00% / 0.00% / **+0.00%** (baseline day).
+**Position-age review**:
+- **GOOGL** 3 shares · entry 04-23 · J+3 trading days · short-swing horizon (J+0..J+3 normal) → still in normal window. Status: **binding-exit-tomorrow-open** — DAY market sell c9a545bd queued for 04-29 09:30 ET.
+**Last-call action**:
+- **CUT GOOGL 3 shares** via DAY market sell post-close (order c9a545bd accepted, executes 04-29 regular open). Reason: residual after MOC partial-fill at 04-28 close auction (4/7 filled at $349.85, 3/7 expired). Earnings 04-29 AMC, no earnings hold → must exit before AMC print. Tomorrow's 09:30 ET open is well before the 16:00 ET AMC release (≈6h margin).
+**EOD activity summary**: 0 BUY · 1 CUT (3 GOOGL queued for 04-29 open) · 0 TRIM new · 0 TIGHTEN · MOC partial-fill (4 GOOGL @ $349.85 close auction = realized +$42.24 on those 4 shares).
+**Risks/watch tomorrow**:
+- (1) FOMC 13:00 CT decision + Powell 13:30 CT — hawkish tail compresses tech.
+- (2) GOOGL DAY sell must fire at open; verify 09:35 ET, escalate if not filled.
+- (3) Mag-7 cluster AMC tomorrow (GOOGL · MSFT · META) — no positions held into the prints (clean book post-GOOGL exit).
+- (4) AMD 05-05 AMC: no current position; if BUY queued at next pre-market, must pre-stage exit per 04-24 INCIDENT remediation (GTD + last-call IOC fallback).
+**Telegram**: mandatory; post-close template with 1 last-call CUT block + baseline-set note.

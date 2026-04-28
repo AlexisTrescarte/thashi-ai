@@ -53,3 +53,21 @@ Append-only. **Never rewrite** a past entry. Reverse chronological (most recent 
 - Routine: market-open
 - Research note: memory/equities/research_log.md — 2026-04-23 pre-market block, BUY 3
 - Notes: Probe sizing $2,435 target; 7 shares × $339.29 = $2,375.03 (2.44% NAV — just under target but within Probe band 2-3%). GEV and VRT from the same BUY queue skipped at open due to wide spreads (GEV 4.66%, VRT 5.38% — early-open thin books) and FOMO guard on GEV (ask +14% vs plan $1,000).
+
+### 2026-04-28T19:59:57Z — TRIM GOOGL 4@$349.85 (MOC partial fill)
+- Order ID: 33e1dd7d-7c7f-4b2d-9d1f-2ecace102f20 (TIF=cls, qty=7 placed, qty=4 filled, qty=3 expired)
+- Replaces native trailing stop 45d94a3c (canceled 2026-04-28T13:41:54Z when MOC was placed at market-open)
+- Filled value: $1,399.40 (4 shares × $349.85 close auction)
+- Realized P&L on the 4 shares: ($349.85 − $339.29) × 4 = +$42.24 (+3.11%)
+- Reason: pre-earnings exit pre-staged at market-open per 04-27 daily-review carry-forward (post-04-24 INCIDENT remediation: exchange-bound exit not run-dependent). MOC partial-fill mechanics — 3/7 shares left unfilled at the close auction (Alpaca cls TIF expired at 20:02:20Z with filled_qty=4).
+- Routine: market-open (placed) → market-close (audit + residual-cleanup follow-up)
+- Notes: Partial fill is an unusual outcome on a $2T mcap name. Likely auction-imbalance routing chose to fill only 4/7 lots. Followup CUT for residual 3 shares queued same session — see 2026-04-28T20:10:26Z entry.
+
+### 2026-04-28T20:10:26Z — CUT GOOGL 3 shares (DAY market sell, queued for 04-29 open)
+- Order ID: c9a545bd-3caa-41ae-a9ef-a4d084c37255 (TIF=day, qty=3, market, status=accepted)
+- Submitted post-close (20:10 UTC = 15:10 CT, 10 min after the bell)
+- Expires: 2026-04-29T20:00:00Z (tomorrow's regular close) → will execute at tomorrow 13:30 UTC = 09:30 ET regular open
+- Mark at queue: $349.62 (last trade) → notional ≈ $1,048.86
+- Reason: cut pre-earnings — MOC partial-fill residual, no earnings hold. Earnings GOOGL Q1 2026 = 2026-04-29 AMC (~20:00 UTC tomorrow) → exit at tomorrow's regular open is well before the print and satisfies the no-earnings-hold guardrail.
+- Routine: market-close (last-call)
+- Notes: Considered extended-hours limit sell now (16:00-20:00 ET window) but Alpaca post-close quote was one-sided (bid $329.20 / ask $0) = no real liquidity at the moment of placement. DAY market sell is the safer mechanic — captures tomorrow's regular-session opening cross on a deep mcap. Reinforces the 04-24 INCIDENT remediation lesson: MOC TIF=cls is not deterministic on partial fills; for next pre-earnings exit, prefer queue-during-day market sell + GTD or use limit-IOC at the 14:30 last-call rather than rely on the close auction alone.

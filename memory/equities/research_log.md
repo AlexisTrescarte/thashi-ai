@@ -167,3 +167,41 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - **0 position à traiter** (book vide).
 - **Regime** : neutral lean risk-on. Pas d'auto-défense, pas de loss cap.
 - **Telegram** : pas d'urgence (pas de regime shift, pas de earnings sur position ouverte, pas d'auto-defense). **PAS de notification**.
+
+## 2026-04-28 — Intraday-scan 10:30 CT
+
+### State
+- Equity $97,459.57 · Cash $95,007.40 (97.48%) · Day P&L flat (-$0.21 = -0.00%) · 1 position (GOOGL).
+- ATH paper $97,459 (drawdown 0.0%). No auto-defense, no daily/weekly loss cap.
+- Open orders: 1 (GOOGL MOC sell 7 shares, id 33e1dd7d, submitted 2026-04-28T13:41:58Z, time_in_force=cls). The previous trailing stop was replaced this morning by a market-on-close — the pre-earnings exit is now bound to the exchange (applies the 2026-04-24 [INCIDENT] takeaway: bind dated exits to GTD orders, don't rely on a future routine waking up).
+- This is the **first 04-28 routine recorded in runs.log** (pre-market 04-28 missed; market-open 04-28 ran on a different branch — evidenced by the MOC sell created 13:41Z but no runs.log line). Trigger schedule reliability still degraded vs. spec.
+
+### Macro check
+- QQQ ~664 (flat near ATH), SPY consolidating near records. VIX subdued (no intraday spike). No credit event, no hawkish surprise yet.
+- **FOMC starts today, decision tomorrow 29/04 13:00 CT** (hold ~94.8% per Friday's read). Guardrails: "Major macro event within 24h (FOMC...): default sizing one notch down, max options exposure halved" → applies to any new BUY.
+- GOOGL earnings tomorrow 29/04 AMC ($2.64 EPS / $106.95B rev consensus per Seeking Alpha & MarketBeat) — no thesis-broken news today; analyst sentiment 61 buy / 6 hold / 0 sell.
+- **No regime shift detected** → no [REGIME-SHIFT] tag, no force-tighten cycle.
+
+### Per-position
+- **GOOGL** 7 @ avg $339.29, current $350.19, +$76.30 (+3.21%). HWM ratcheted by Alpaca to $345.23 last week (run 24/04 [INCIDENT]).
+  - P1 thesis broken: NO (no guidance cut, halt, fraud, FDA, contract loss, C-suite resign).
+  - P2 earnings: 14:30 slot only — N/A (this is 10:30).
+  - P3 time stop: 28/04 close — bound to MOC sell, will fire at 16:00 ET.
+  - P4 options DTE-3: N/A (equity).
+  - P5 option premium -50%: N/A.
+  - P6 equity loss cut -5%: NO (currently +3.21%).
+  - P7 TRIM big winner +20%: NO.
+  - P8 TIGHTEN medium winner +10%: NO (+3.21%).
+  - P9 structural stop update: stop replaced by MOC sell — qty_available=0, no separate stop possible without canceling the MOC. Coherent: MOC binds the dated exit, simpler than a parallel trailing whose hit would conflict with MOC sequencing.
+  - P10 → **HOLD**.
+
+### BUY pathways
+- **Pathway A** (pre-market WATCH queue): no fresh 04-28 pre-market block. Last pre-market was 04-23; its WATCH triggers (SMH on INTC AMC 23/04, NOW stabilization, IBM stabilization) are stale. → **N/A**.
+- **Pathway B** (opportunistic new catalyst surfaced today): no new dated catalyst surfacing today (no fresh beat+raise + cluster upgrade, no FDA, no DoD award seen). FOMC in <24h imposes sizing one notch down per guardrails — bar even higher. → **SKIP**.
+- **Pathway C** (technical-only intraday Probe): SPY/QQQ near ATH with FOMC tomorrow = poor risk/reward for a fresh technical Probe (binary event in <24h). Activity-floor pressure does NOT override macro discipline. → **SKIP**.
+- Total opportunistic BUYs today: **0/3 cap** (and 0/1 Pathway-C cap).
+
+### Decision
+- **0 CUT · 0 TIGHTEN · 0 TRIM · 0 BUY · 1 HOLD (GOOGL)**.
+- Stops: GOOGL exit bound by MOC sell 33e1dd7d. No survivors needing stop refresh.
+- Telegram: send quiet-scan notification (mandatory per CLAUDE.md, no silent runs). Single scannable block, 🧠 Raisonnement explains why nothing moved.

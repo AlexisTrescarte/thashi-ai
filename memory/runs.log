@@ -3,3 +3,4 @@
 2026-04-23T11:18:00Z pre-market equities ok — regime neutral lean risk-on; 3 BUY queued (GEV Probe 3%, VRT Standard 4%, GOOGL Probe 2.5%); 3 WATCH (SMH, NOW, IBM); 0 positions; activity-floor gap (0 BUY/4 TD) closed today
 2026-04-23T13:37:30Z market-open equities ok — 1 BUY filled (GOOGL 7@$339.29, $2,375, 2.44% NAV, trail 8% @ $312.05); 2 skips (GEV spread 4.66% + FOMO guard; VRT spread 5.38%); post-run cash 97.56%; 1 position
 2026-04-24T20:45:00Z daily-review equities ok — grade C, 0 trades, 1 open (GOOGL +1.42%), [INCIDENT] 6 routines missed 04-24
+2026-04-28T15:39:00Z intraday-scan equities ok — 10:30 CT slot; quiet scan; 1 position (GOOGL +3.21%, MOC sell bound for close pre-earnings); 0 cut/0 tighten/0 trim/0 BUY (no fresh 04-28 pre-market WATCH; FOMC <24h → no Pathway-B/C); regime neutral risk-on confirmed; day P&L flat

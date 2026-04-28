@@ -11,3 +11,4 @@
 2026-04-28T11:17:50Z [pre-market] block written: 2 BUY queued (VRT, AMD), 2 WATCH (XLE, GEV), GOOGL exit critical
 2026-04-28T16:45:00Z [intraday-scan-11:30] noop: 0 actions — VRT spread 5.90% skip, AMD climax-distribution day skip, GOOGL MOC-bound at close
 2026-04-28T20:15:11Z [market-close] equity $97,455.66 · day -0.00% · alpha day +0.66% · cumul 0.00% (baseline set today) · 1 CUT GOOGL 3 residual · 1 position residual
+2026-04-28T20:40:00Z [daily-review] grade B · 0 new / 1 partial close (1W/0L/0BE) · alpha day +0.66% · baseline set · GOOGL exit pre-staged correctly · MOC TIF=cls partial-fill lesson queued

@@ -129,3 +129,52 @@ Raw metrics: alpha ~0%, 0 violations, 0 closes (hit/R undefined). Strict reading
 
 ### Lesson of the day (1 line)
 - **Pre-stage the GOOGL exit at 04-28 market-open** with a GTD market-on-close (or stop-limit at $349) — do not let the 14:30 last-call routine be the single point of failure for a mandatory pre-earnings exit, because today proved 50%+ of routines can miss in a single session and the exchange is the only reliable executor when the harness is silent.
+
+## 2026-04-28 — Daily review (grade: B)
+
+### Performance
+- Equity: $97,455.66 (day −0.00%, vs last_equity $97,459.78)
+- Benchmark day (50/50 SPY+QQQ): SPY −0.46% / QQQ −0.86% → blend **−0.66%**
+- Alpha day: **+0.66%** (defensive alpha; cash-heavy on a tech-led pullback day)
+- Cumul since baseline (04-28): bot 0.00% / bench 0.00% / alpha 0.00% — **baseline set today** (equity $97,455.66 · SPY $711.55 · QQQ $658.23)
+
+### Activity
+- Trades opened today: 0 (2 BUY queued pre-market — VRT + AMD — both skipped at 11:30 intraday-scan: VRT spread 5.90% mechanical skip, AMD climax-distribution-day skip)
+- Trades closed today: 1 partial (W:1 / L:0 / BE:0) — GOOGL MOC partial-fill: 4 shares @ $349.85 = realized **+$42.24 (+3.11%)** on those 4
+- Hit rate today: 100% (n=1, partial close — not statistically meaningful)
+- Avg R today: N/A (procedural pre-earnings exit, no risk realized — exit type ≠ stop-out)
+- Stops set within 5min on all new positions: N/A (no new positions)
+
+### By setup (today)
+- Pre-earnings exit (GOOGL short-swing): 1 partial close, +$42.24 (+3.11%) on 4/7 shares — exchange-bound MOC executed at close auction; 3/7 expired unfilled, residual queued as DAY market sell for 04-29 open (still well before AMC print)
+- PEAD revival (VRT): SKIP mechanical (spread 5.90% > 0.5% cap at 11:30) — 0 P&L impact
+- Pre-earnings momentum (AMD): SKIP qualitative (climax-distribution intraday after +13.9% pre-market spike then −8% reversal) — 0 P&L impact
+
+### What worked (2 lines)
+- **GOOGL exit pre-staging executed at 08:30 CT market-open exactly per 04-27 carry-forward** — MOC sell at fill replaced the native trail, locking the exit on the exchange. When the 14:30 last-call routine subsequently *did not fire* today, the pre-stage saved the mandatory pre-earnings exit from being a single-point-of-failure.
+- **Mechanical skip discipline held on VRT/AMD at 11:30**: same 04-23 book-anomaly pattern (wide spread on PEAD leader) re-occurred on VRT; AMD climax-distribution recognized in real-time and skipped despite Pathway-A pre-queue. Cash 98.92% vs benchmark −0.66% → +0.66% alpha generated *by not trading*.
+
+### What didn't (2 lines)
+- **MOC TIF=cls partial-fill on $2T mcap GOOGL**: only 4/7 shares filled at the close auction; auction-imbalance routing left 3 shares unfilled. Same family as the 04-24 INCIDENT ("exchange-bound but not 100% sealed"). Residual 3 shares now carry an extra-day overhang (04-29 09:30 ET open, ~6h margin before AMC print). Margin acceptable but thinner than designed.
+- **Intraday-scan harness still partial**: 5/9 routines fired today (pre-market, market-open, 11:30, market-close, daily-review); 10:30 + 12:30 + 13:30 + 14:30 missed. VRT/AMD re-evaluation at 12:30/13:30 (the trigger windows surfaced at 11:30) never happened — opportunity-cost on VRT not measurable but real if spread normalized post-12:00.
+
+### Discipline log
+- Guardrail violations: **0** — none. FOMC < 24h sizing rule applied (Probe cap held); MOC partial-fill is operational, not a violation; GOOGL DAY sell queued at $349.62 mark before AMC print = no-earnings-hold rule intact.
+- Time stops honored: **yes (partial)** — 4/7 GOOGL shares exited at the 04-28 close time-stop via MOC; 3/7 residual exits 04-29 open via DAY sell c9a545bd (still pre-AMC, rule intact by ~6h).
+- Stop updates logged: 1 (native trail 45d94a3c canceled at 13:41:54Z by market-open when MOC was placed — methodology swap, not a ratchet).
+
+### Coherence adjustment
+Raw metrics: alpha day +0.66% (between 0 and +2%), 0 violations, 1 partial close (winner). Strict table reading → **B** (alpha > 0, hit rate ≥ 50%, avg R N/A on procedural exit ≈ ≥1.2 by R-equivalent, 0 violations). Considered **A** (alpha cleanly positive on a defensive day, exact execution of the 04-27 carry-forward) but capped at B because: (a) alpha < +2% threshold for A, (b) MOC partial-fill leaves a small residual exposure overnight (not a violation but not a fully sealed exit either), (c) sample size is one partial close — insufficient to justify the higher grade.
+
+### Carry-forward for tomorrow (Wed 2026-04-29)
+- **GOOGL — final exit verification**: DAY market sell c9a545bd executes at 04-29 09:30 ET regular open (3 shares). **Pre-market 06:00 CT must verify order status `accepted` → `filled` by 09:35 ET**; if stuck/rejected, escalate to manual market sell *before any other action*. Earnings 04-29 AMC (~16:00 ET / 20:00 UTC) — exit margin ~6h.
+- **Aging watchlist**: GOOGL only (3 residual shares, J+4 trading days, exit tomorrow open = clean book by 09:35 ET).
+- **Pre-earnings tomorrow (04-29 AMC)**: **GOOGL · MSFT · META** (Mag-7 cluster). No positions on book post-GOOGL exit — clean. Watchlist only; do not initiate any new pre-earnings entry on these names today.
+- **Macro 24h — CRITICAL**: **FOMC decision 13:00 CT** (hold ~85% probability at 3.50-3.75%) + **Powell press conf 13:30 CT**. No dot plot (next at June). **Sizing one notch down on any new BUY** until FOMC clarity (per guardrails). Hawkish-Powell tail = tech/semis sell off 2-4%, dovish surprise = leveraged-ETF squeeze.
+- **VRT / AMD re-queue**: VRT pre-market re-score for J+6 PEAD (spread should normalize post-overnight); window narrows fast — if not entered Wed, drop to WATCH. AMD pre-market re-score after 04-28's distribution day — only re-enter if reclaim of $328+ on stable tape *and* post-FOMC clarity confirmed; otherwise defer to 05-04 last-call before 05-05 earnings (with mandatory GTD-MOC + 14:30 last-call IOC fallback per 04-28 LESSON).
+- **Crypto sleeve**: 0 BUY (BTC/ETH/SOL pullback continues; defer to 04-30 post-FOMC).
+- **Regime note**: neutral lean **cautious** confirmed at EOD (intraday twitch on OpenAI revenue concerns, defensives bid, breadth still deteriorating ~50% line). FOMC tomorrow compresses any new entry. Monitor S&P %>MA50: cross < 50% intraday = regime shift to neutral late-cycle → notify.
+- **Operational**: market-open 04-29 fire mandatory (GOOGL exit verification); intraday-scan 13:30 fire mandatory (post-FOMC re-evaluation). If pre-market 06:00 CT misses again, the next-firing routine must verify GOOGL c9a545bd before any other work.
+
+### Lesson of the day (1 line)
+- **For any pre-earnings short-swing exit, do not rely on a single MOC TIF=cls — at fill time, place the MOC AND queue a 14:30-CT IOC limit-sell at bid+0.05% as auto-fallback** (or split: 50% MOC + 50% intraday limit). Today proved that even a $2T mcap can leave 43% of an order unfilled at the close auction; the residual then carries an unsanctioned overnight overhang that's only mitigated by a 6h pre-AMC margin. Apply directly on the next short-swing entry (likely AMD if re-queued for 05-05).

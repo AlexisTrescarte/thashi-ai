@@ -196,3 +196,96 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 **Stops sweep** : trail GOOGL inchangé (HWM $353.18, stop $324.93, trail 8%, GTC). Ratchet exchange-side actif 24/7.
 **Risque résiduel** (rappel learnings 04-24) : la sortie pré-earnings 28/04 close dépend du réveil du harness demain au slot 14:30 CT. Si gap d'incident similaire au 04-24, le trail à $324.93 maintiendra la position vivante jusqu'à Wed AMC = exposition earnings. Pas d'action corrective ce slot (la mise en place d'un GTD sell-limit + trail combo est un changement structurel queué pour monthly review). Reminder seulement.
 **Action** : 0 cut, 0 trim, 0 tighten, 0 BUY. Pure hold. Telegram envoyé (politique mandatoire).
+
+## 2026-04-28 — Pre-market plan (06:08 CT)
+
+### Macro regime
+**Neutral lean risk-on, breadth deteriorating** — VIX 18.02 (sub-20 comfort zone), 10Y 4.34% (+3bp), SPY/QQQ near ATH (QQQ closed 663.95 on 04-27). Sector rotation 04-27: financials + comm services led, semis lagged for first time in 3 weeks (NVDA/AVGO under-performed), oil/gas best (+0.9%) on Iran/Strait of Hormuz tensions (Brent ~$108). Breadth weakening: 53% SPX > MA50 (vs 60% one week ago) = yellow flag. A/D ratio 53.9/42.7 = positive but not strong. Crypto pullback: BTC ~$77k (-1.7%), ETH ~$2,300 (-2.5%), SOL ~$84 (-2.5%) — but spot ETF inflows still positive (BTC +$824M, ETH +$155M, SOL +$9M).
+
+### Weekly catalyst calendar
+- **Tue 04-28** (today): heavy AMC slate (V Visa, others). No top-tier macro print. **GOOGL position must exit by close pre-earnings (mandatory)**.
+- **Wed 04-29**: **FOMC decision 13:00 CT (14:00 ET)** — hold expected ~85% probability at 3.50-3.75%, no dot plot at this meeting (next at June). Powell press conf 13:30 CT. **Mag-7 cluster AMC: GOOGL · MSFT · META** (+ others).
+- **Thu 04-30**: PCE March (07:30 CT), Initial jobless claims (07:30 CT). **Mag-7 AMC: AAPL · AMZN**.
+- **Fri 05-01**: NFP April + ISM Manufacturing PMI (07:30 CT / 09:00 CT). **XOM Q1 BMO**.
+- Risk: 4 of Mag-7 reporting Wed-Thu = market correction/expansion catalyst. FOMC + earnings cluster compresses any new entry's hold window.
+
+### Risk-state
+- Auto-defense: **NO** (no `[DRAWDOWN-AUTO-DEFENSE]` in learnings).
+- Daily loss cap: **NO** (yesterday day P&L +0.04%).
+- Weekly loss cap: **NO** (week flat to slightly positive).
+- ATH tracking: portfolio.md template ($—). Implicit baseline ATH $100,000 (paper start). Current equity $97,458.66 → DD ≈ **-2.54%** from baseline. Far from -20% trigger. (TODO market-close: post a real ATH snapshot once equity > baseline.)
+- **FOMC < 24h**: per guardrails "Major macro event within 24h" → **default sizing one notch down** for any new BUY today; max options exposure halved 5% → **2.5%**.
+
+### Open positions — actions for today
+
+| Ticker | Qty | Avg cost | Mark | P&L | Age | Stop | Action |
+|---|---|---|---|---|---|---|---|
+| GOOGL | 7 | $339.29 | $350.18 | +$76.23 (+3.21%) | J+3 td | Native trail 8%, HWM $353.18, stop $324.93 | **CRITICAL: pre-stage exit at market-open today** |
+
+**GOOGL — mandatory pre-earnings exit today close** (earnings 04-29 AMC, no earnings hold). Carry-forward from 04-27 daily-review: convert the 8% trail into either (a) GTD market-on-close sell, or (b) tight stop-limit at ~$348 (≈ -0.4% from $350.18 mark) **at market-open 08:30 CT**. Do **not** rely solely on the 14:30 last-call routine waking up — repeated harness gaps over the past week mean exchange-binding is mandatory. Post-04/24 INCIDENT remediation that was queued must be applied here, not deferred. Position is in-thesis (TPU 8t/Anthropic catalyst, +3.21% P&L, strong-buy consensus PT $387) — exit is procedural (rule-based), not thesis-driven.
+
+### Re-queue from 04-23 skips
+- **GEV** ($1,115.60 04-27): FOMO guard from 04-23 ($1,020 cap) still applies — current price > cap → **WATCH only**, no re-entry today. BNP Paribas Exane downgrade Buy → Neutral 04-27 with PT $1,190 = mild sentiment hit; PEAD window now J+5 → narrow. Skip as BUY.
+- **VRT** ($323.46 04-26 close): see CTQS note below — re-queueing as a BUY.
+
+### New ideas (2 BUY · 2 WATCH)
+
+#### BUY 1 — VRT (Vertiv Holdings) — Probe 2.5% NAV
+- **Setup type**: PEAD (post-earnings drift) on a beat+raise, J+5 trading days post Q1 print 22/04.
+- **Catalyst** (C 18/25): Q1 2026 EPS $1.17 vs $1.00 est (+17% beat), revenue $2.65B (+30% YoY), Americas +53%. **FY2026 guidance raised**: adjusted EPS midpoint $6.35 (+51% YoY), revenue $13.75B (+34% YoY). Dated catalyst = the J+5 PEAD continuation; secondary fuse = next earnings printing Q3 2026 (no near event risk inside horizon). Window narrowing fast (5d post-print).
+- **Technical** (T 18/25): ATH $330.30 on 04-24, current $323.46 = -2% from ATH (healthy consolidation). 20/50/200 MA stack bullish, breakout above $300 confirmed post-earnings, base building near new highs. RSI ~62 (extended but not overbought).
+- **Quantitative** (Q 19/25): Top-decile momentum 12M (+200%+ YTD pre-print), top-decile FCF growth, ROIC expanding on data-center capex super-cycle. ADV ~6M shares ✅, mcap ~$120B ✅.
+- **Sentiment** (S 18/25): Analyst rating cluster #2 Buy, multiple PT raises post-print, AI infrastructure leadership theme. Options flow not pulled this morning (would surface at 10:30 if needed). No insider sales flagged.
+- **CTQS = 73 / 100** → Standard band (70-84) → **downsized to Probe 2.5%** given FOMC < 24h guardrail.
+- **Confidence**: 55% (probability of +5% move in 5td window).
+- **Style**: short-swing (3-5 trading days, exit on momentum exhaustion or +8% target).
+- **Sizing**: target 2.5% NAV ≈ $2,436. At $323.46 (last) = 7-8 shares ≈ $2,264-$2,588.
+- **Stop**: 6% trailing, Alpaca native (preferred). Below recent breakout shelf $304.
+- **Take-profit**: trailing only; soft target $345-$355 (test of next round + post-print extension).
+- **Time stop**: J+5 = 05-05 close (revisit Sat or earlier on momentum exhaustion).
+- **Earnings hold**: NO. Next earnings late July 2026 (well outside horizon).
+- **Risks**: (1) FOMC hawkish surprise tomorrow → semi/data-center sells off; (2) Mag-7 AMC cluster Wed could overshadow VRT-specific drift; (3) Iran-driven energy spike → margin compression narrative for rate-sensitive growth.
+- **Sources**: [Yahoo Finance VRT](https://finance.yahoo.com/quote/VRT/) · [Investing.com VRT](https://www.investing.com/equities/gs-acquisition-a) · [MarketBeat VRT](https://www.marketbeat.com/stocks/NYSE/VRT/) · [TheTrade.academy 28/04 brief](https://www.thetrade.academy/post/europe-morning-brief-28-april-2026) · prior research_log 04-22.
+
+#### BUY 2 — AMD (Advanced Micro Devices) — Probe 2.5% NAV
+- **Setup type**: pre-earnings momentum + analyst-upgrade catalyst, J-5 from Q1 print 05-05 AMC.
+- **Catalyst** (C 17/25): Earnings Q1 2026 confirmed **05-05 (Tue) AMC** (J-5 trading days). Secondary catalyst cluster 04-27: **DA Davidson upgrade Buy from Neutral, PT $220 → $375 (+70%)**, raising FY revenue +$2B and gross profit +$1.5B above consensus and AMD's own guidance. Agentic-AI tailwind + Intel read-through (INTC results 04-23) supporting AMD's CPU/AI-GPU narrative.
+- **Technical** (T 16/25): +65% MTD = extended; ATH $354.80 on 04-24; pulled back -3.79% on 04-27 to $335.52 (provides entry edge). 20/50/200 MA stack bullish, but RSI was overbought (>75) at ATH, now cooling. Risk: extended chart needs digestion before next leg.
+- **Quantitative** (Q 19/25): Top-decile 1M/3M momentum, AI data-center revenue accelerating, ROIC expanding, FCF improving. Q1 estimates: revenue $9.84B, EPS +33% YoY. ADV ~50M shares ✅, mcap ~$540B ✅.
+- **Sentiment** (S 17/25): Mixed — DA Davidson **upgrade Buy PT $375** (+70% bump, materially above consensus) offset by **Northland downgrade Market Perform PT $260** on 04-27. Net positive given DA Davidson's 70% PT bump dominates the magnitude, but mixed signal. UOA not pulled this morning.
+- **CTQS = 69 / 100** → Probe band (55-69) → 2.5% NAV (top of range 2-3%).
+- **Confidence**: 50% (binary risk = J-1 exit before 05-05 AMC; +65% MTD means most pre-earnings move already happened).
+- **Style**: short-swing (5 td, mandatory pre-earnings exit 05-04 close — no earnings hold).
+- **Sizing**: target 2.5% NAV ≈ $2,436. At $335.52 = 7 shares ≈ $2,348.
+- **Stop**: 6% trailing, Alpaca native.
+- **Take-profit**: trailing only; soft target $360-$375 (DA Davidson PT zone).
+- **Time stop**: 05-04 (Mon) close — mandatory pre-earnings exit. **Pre-stage with GTD MOC sell at fill** (apply 04-24 INCIDENT remediation directly on this BUY — don't repeat the GOOGL "rely on 14:30 last-call" mistake).
+- **Earnings hold**: NO.
+- **Risks**: (1) Northland downgrade signals analyst cohort split; (2) +65% MTD = extended setup, shake-out -5/-8% possible; (3) Mag-7 AMC Wed could compress AMD if MSFT/META capex narrative softens.
+- **Sources**: [TheStreet — DA Davidson upgrade $375](https://www.thestreet.com/investing/stocks/da-davidson-resets-amd-stock-price-target-for-the-rest-of-2026-intel-earning) · [StockTitan — Q1 date 05-05 AMC](https://www.stocktitan.net/news/AMD/amd-to-report-fiscal-first-quarter-2026-financial-cmceo5nn3h0t.html) · [24/7 Wall St — AMD +65% MTD context](https://247wallst.com/investing/2026/04/27/amd-is-up-65-in-april-its-not-just-intel-momentum/) · [24/7 Wall St — Northland downgrade](https://247wallst.com/investing/2026/04/27/northland-downgrades-amd-to-market-perform-is-the-chip-rally-running-on-fumes/).
+
+#### WATCH 1 — XLE (Energy Select SPDR)
+- Theme: Iran/Strait of Hormuz tail + Brent $108 + sector rotation hint (oil/gas best on 04-27 +0.9%). Dated catalyst = XOM Q1 BMO Fri 05-01 ; CVX 05-02. CTQS pre-score ≈ 62 (C12 / T16 / Q17 / S17). Trigger: intraday confirmation of breakout above 04-27 high + spread < 0.10% (ETF book is liquid). Sizing if triggered: Probe 2.5% post-FOMC clarity — defer entry to **Wed-post-FOMC or Thu** rather than today (avoid being long energy into a hawkish-Powell tail). Note: oil supply premium can deflate fast on a peace-talk headline → keep stop tight (5% trail).
+
+#### WATCH 2 — GEV (GE Vernova) — re-entry blocked by FOMO cap
+- 04-23 lesson: re-entry > $1,020 forbidden (FOMO discipline). Current $1,115.60 = $95 above cap → **no BUY today**. Trigger to release WATCH→BUY: price retraces below $1,020 on volume + thesis intact (no fresh negative catalyst). Note: BNP Paribas Exane downgrade Buy → Neutral PT $1,190 on 04-27 = sentiment cooling (still implies +6.6% upside). PEAD window narrowing (J+5).
+
+### Crypto sleeve — 0 BUY today
+- BTC $77k (-1.7%), ETH $2.3k (-2.5%), SOL $84 (-2.5%) on 04-27. Spot ETF inflows positive (BTC +$824M = strongest since February, ETH +$155M, SOL +$9M, XRP +$15M = continued institutional bid). Short-term setup is constructive (dip into ETF flows) but **FOMC < 24h + Iran tail = wait for post-FOMC clarity Thu or Fri**. Crypto re-evaluation deferred to 04-30 pre-market (or earlier if a clean BTC reclaim of $80k prints intraday with volume).
+
+### Risks to watch today
+- **GOOGL exit pre-staging**: if market-open 08:30 CT misses fire (5/9 routines missed yesterday), the 14:30 last-call routine becomes single-point-of-failure for a mandatory exit. Mitigation: stop $324.93 still holds the floor at -4.4% vs current mark.
+- **No top-tier macro print today** — Visa AMC + earnings flow only. Pre-FOMC compression likely.
+- **Tail scenario**: hawkish Powell tomorrow → tech/semis sell off 2-4%, dragging VRT/AMD entries placed today. Mitigation = 6% trailing stops + Probe sizing already 1-notch down.
+- **Iran headline risk**: any Strait of Hormuz peace-talk progress = oil collapses → energy ETF watchers reset; any escalation = oil +5% spike, risk-off.
+- **Breadth deterioration** (53% > MA50 vs 60% week ago): if it crosses below 50% intraday, regime shifts to neutral → late-cycle bias.
+
+### Summary
+- **2 BUY queued for open**: VRT (Probe 2.5% / ~$2,400) · AMD (Probe 2.5% / ~$2,400). Total deployment if filled: ~5% NAV ($4,800). Cash post-run: ~92.5% ($90k+).
+- **2 WATCH**: XLE (post-FOMC trigger) · GEV (FOMO release trigger).
+- **0 crypto BUY** (defer post-FOMC).
+- **1 critical action**: GOOGL exit pre-stage at 08:30 CT (GTD MOC or stop-limit at $348) — *first action of market-open routine*.
+- **Regime**: neutral lean risk-on, breadth deteriorating. FOMC < 24h forces 1-notch sizing down (Probe cap).
+- **Activity floor**: 1 BUY closed in last 5td (GOOGL 04-23) — queueing 2 today brings the rolling 5td count to 3, satisfying floor (≥3 in risk-on/neutral). Floor compliance ✅.
+- **Telegram**: routine notification only (no urgency tag) — FOMC and earnings cluster are scheduled, not surprises.
+

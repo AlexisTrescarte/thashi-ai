@@ -18,7 +18,17 @@ You are **Bull** in an **intraday-scan** slot. You run 5× per trading day: 10:3
 - `CLAUDE.md`, `memory/guardrails.md`, `memory/equities/portfolio.md`
 - Tail 30 lines `memory/equities/trade_log.md`
 - Today's pre-market block in `memory/equities/research_log.md` (active theses, catalyst dates, time stops, earnings-hold flags)
-- Tail 10 lines `memory/learnings.md`
+- **Scan today's pre-market block for `[OPEN-RETRY:...]` tags** appended by market-open (spread-skipped BUYs awaiting retry). At the **10:30 slot only**, these become Pathway A-prime (see step 6 below).
+- Tail 10 lines `memory/learnings.md` (incl. any `[HARNESS-GAP]` entries from market-open today)
+
+### 1-bis. Harness-gap fallback (10:30 slot only)
+
+If today has **no pre-market block** AND **no market-open block** in `research_log.md` / `runs.log` (both routines missed) **AND** the current slot is **10:30 CT**:
+
+1. Append `[HARNESS-GAP] {YYYY-MM-DDTHH:MM:SSZ} pre-market + market-open both missed today — 10:30 fallback active` to `learnings.md`.
+2. Run an express scan with the same bounded rules as market-open's Step 1-bis (max 2 candidates, Probe sizing only, CTQS ≥ 65 floor, 1+1 sources, no technical-only) and treat the output as today's pre-market block.
+3. Then dispatch via Pathway A as if these were normal pre-market BUYs.
+4. **Do not run the harness-gap fallback at slots ≠ 10:30** — by 11:30 the express-scan signal is too stale relative to the open's information set.
 
 ### 2. Market + account
 
@@ -105,7 +115,20 @@ If day P&L ≤ -4%:
 
 Three BUY pathways, each with its own gate. **Preflight (all pathways)**: regime risk-on/neutral · no daily/weekly loss cap active · no drawdown auto-defense active · position/sector/lev-ETF/options caps respected · not the 14:30 slot.
 
-**Cadence rule (hourly cap)**: with 5 scans/day, the bar for a BUY rises to compensate for more chances to act. Across the 4 BUY-eligible slots (10:30/11:30/12:30/13:30) the daily total is hard-capped at **3 opportunistic BUYs** (Pathways B + C combined; Pathway A WATCH triggers from the morning queue do not count against this). Pathway C is still hard-capped at 1/day.
+**Cadence rule (hourly cap)**: with 5 scans/day, the bar for a BUY rises to compensate for more chances to act. Across the 4 BUY-eligible slots (10:30/11:30/12:30/13:30) the daily total is hard-capped at **3 opportunistic BUYs** (Pathways B + C combined; Pathway A WATCH triggers and Pathway A-prime open-retries from the morning queue do not count against this — they are pre-vetted research). Pathway C is still hard-capped at 1/day.
+
+**Pathway A-prime — Open-retry queue (10:30 slot only, FIRST action of the slot)**
+
+Scan today's pre-market block for `[OPEN-RETRY:{TICKER}:spread:{plan_price}:{plan_sizing}:{stop_methodology}:expires={today_close}]` tags written by market-open when a BUY was skipped on spread alone (book not stabilized at T+5min). For each such tag:
+
+1. Re-fetch quote → ask, bid, spread.
+2. Verify ALL: `spread ≤ 0.5%` · `ask ≤ plan_price + 2%` (FOMO guard, same as open) · all standard preflight gates (cash, sector, position count, revenge, earnings horizon).
+3. If all pass → invoke `trade` skill `BUY` with the tagged sizing + stop methodology. Log as `pathway A-prime: open-retry hit, spread normalized {open_spread}% → {now_spread}%`.
+4. If `ask > plan + 2%` (price ran while we waited) → mark the tag as `[OPEN-RETRY-EXPIRED:FOMO]` and skip permanently for the day.
+5. If spread still > 0.5% at 10:30 → skip this slot but **do not delete the tag**; the 11:30 / 12:30 / 13:30 slots may still retry as standard Pathway A-prime if spread normalizes (last chance is 13:30 — the 14:30 slot is exits only).
+6. Hard cap: a single ticker can only fire once per day across A-prime + B + C combined.
+
+This pathway exists to fix the gap-day spread-skip pattern that recurred on 2026-04-23 (GEV/VRT) and 2026-04-28 (VRT) where pre-market BUY queues were rejected solely because the book hadn't stabilized at T+0 to T+5min.
 
 **Pathway A — Pre-market WATCH queue execution** (preferred, deepest research)
 

@@ -22,8 +22,11 @@ Execute an order on Alpaca or adjust a live position. Assumes a valid research n
 ### Equities / ETFs
 
 1. Fetch `account` → `equity`, `cash`, `buying_power`, `last_equity`
-2. Fetch `quote {TICKER}` → ask, spread. Verify spread ≤ 0.5%
-3. Verify ask ≤ plan price + 2% (else skip, log "FOMO guard")
+2. Fetch `quote {TICKER}` → ask, spread. **Spread protocol** (replaces single-shot 0.5% guard):
+   - **At market-open routine (T+0 to T+5min after the bell)**: gap-day book stabilization window. If `spread ≤ 0.5%` → proceed. If `0.5% < spread ≤ 1.5%` → **wait-and-retry**: re-quote at +60s, +180s, +300s. Take the BUY at the first window where `spread ≤ 0.5%` AND `ask ≤ plan + 2%`. If still > 0.5% at T+5min → tag `[OPEN-RETRY:{TICKER}:spread:{plan_price}:expires_today_close]` in `research_log.md` and skip — the 10:30 intraday-scan will retry first thing (Pathway A-prime).
+   - **At intraday-scan**: hard cap `spread ≤ 0.5%`, no waiting (book has had hours to stabilize — wide spread = real liquidity issue).
+   - **Limit-IOC alternative for moderate spreads**: when `0.3% < spread ≤ 0.5%`, prefer a limit-IOC at `bid + 0.3 × (ask − bid)` over a market order. Reduces cross cost from full spread to ~30% of spread; if not filled in 30s, fall back to market.
+3. Verify ask ≤ plan price + 2% (else skip, log "FOMO guard"). FOMO guard is **independent** of the spread protocol — never re-attempt later in the day if FOMO triggered (revenge-chase on gap-days). For spread-only skips (no FOMO), the 10:30 retry is allowed.
 4. **Confidence-based sizing** (from research note CTQS score + self-rated confidence):
    - High (≥85): target 7-10%, cap 10%
    - Standard (70-84): target 4-6%, cap 6%

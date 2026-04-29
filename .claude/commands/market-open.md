@@ -19,6 +19,22 @@ You are **Bull** at the **open**. Your job is **execution only**: run today's BU
 - **Today's pre-market block** in `memory/equities/research_log.md` (regime + BUY / WATCH notes with CTQS scores + sizing + stop methodology)
 - Tail 10 lines `memory/learnings.md` (yesterday's loss caps, regime shift, anomalies)
 
+### 1-bis. Harness-gap detection (self-healing)
+
+If today's pre-market block is **missing** from `research_log.md` (the routine did not fire at 06:00 CT):
+
+1. Append a `[HARNESS-GAP] {YYYY-MM-DDTHH:MM:SSZ} pre-market missed today` entry to `memory/learnings.md`.
+2. Run an **express scan** (target ≤ 10 minutes wall-time) bounded by these rules:
+   - Max **2 candidates** total (vs 4-10 in a normal pre-market scan)
+   - **Probe sizing only** (2-3% NAV) — no Standard, no High; truncated research → bounded risk
+   - Sources: 1 primary + 1 secondary minimum (vs 2+ primary in normal pre-market)
+   - CTQS score floor raised from 55 → **65** (compensate for shallow research with stricter conviction)
+   - No technical-only setups (require dated catalyst — too easy to over-fit on a rushed scan)
+   - Append the express scan output as `## YYYY-MM-DD — Pre-market plan (HARNESS-GAP express scan)` block in `research_log.md` with explicit `[express-scan]` tag on each idea
+3. Then proceed to step 2 below using the express block as today's BUY queue.
+
+If the express scan surfaces 0 candidates → terminate the run with a 0-BUY summary (no forced trades). The activity floor is suspended for the day in this case (logged as `[HARNESS-GAP-FLOOR-SUSPEND]` in `learnings.md`).
+
 ### 2. Market + account verify
 
 - `python scripts/alpaca_client.py clock`. If `is_open=false`: log, Telegram `DEGRADED`, terminate.
@@ -49,7 +65,9 @@ For each BUY note in today's pre-market block, in the order listed:
    - Execution (equity/ETF/option/crypto buy)
    - Immediate stop placement per note's stop methodology
    - Trade-log append with full schema
-3. On skip: record in this run's summary with reason (spread / FOMO guard / cash / sector cap / revenge / earnings horizon / etc.)
+3. On skip: record in this run's summary with reason (spread / FOMO guard / cash / sector cap / revenge / earnings horizon / etc.).
+   - **Spread-only skips** (after wait-and-retry window exhausted at T+5min): append a `[OPEN-RETRY:{TICKER}:spread:{plan_price}:{plan_sizing}:{stop_methodology}:expires={today_close}]` line at the end of today's pre-market block in `research_log.md`. The 10:30 intraday-scan will retry these as Pathway A-prime (first action of that slot).
+   - **FOMO / thesis / cash / sector / revenge** skips do NOT get the OPEN-RETRY tag — they are terminal for the day.
 
 **One idea at a time**. Never batch BUYs without re-checking cash + position count between each.
 
@@ -118,7 +136,7 @@ _Un bloc par BUY exécuté. 4-6 lignes vulgarisées en français, jargon minimal
 - **DO NOT create a new idea at the open**. Unexpected movers → `research_log.md` for tomorrow.
 - **DO NOT buy without the immediate stop** dispatch (trade skill enforces; if it fails, CUT the fresh position).
 - **DO NOT override conviction sizing** — bounded by CTQS score + self-rated confidence.
-- **DO NOT buy if spread > 0.5% equities / 1% crypto / 10% option mid-spread**.
+- **DO NOT buy if spread > 0.5% equities (after the wait-and-retry T+0/+60s/+180s/+300s window) / 1% crypto / 10% option mid-spread**. Spread-only skips at the open get a `[OPEN-RETRY]` tag for 10:30 retry; FOMO/thesis/cash skips do not.
 - **DO NOT chase** if ask > pre-market plan price + 2% (FOMO guard).
 - **DO NOT open a position on a ticker whose earnings fall in the horizon window** without explicit "earnings hold" in the note.
 - **DO NOT ADD** to an existing position here (ADD has its own routine + justification).

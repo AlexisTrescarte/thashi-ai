@@ -410,3 +410,37 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - (3) Pre-market silence pattern: 4 of last 6 weekday pre-market slots missed. Already on the monthly-deep-review queue alongside the GTD-exit-at-fill remediation.
 - (4) Activity floor: rolling 5td BUY count = 1 (GOOGL 04-23). Floor target ≥3 in risk-on/neutral. Still below — but the discipline is: a quality post-event entry beats 2 forced low-CTQS pre-event entries. Will close the floor gap with the post-FOMC + post-Mag-7 setup tomorrow.
 **Telegram**: mandatory; ≤ 15-line no-action template — empty book, mid-Powell compression, deferred-to-tomorrow rationale, alpha cumul +0.13%.
+
+### 2026-04-29T20:15:00Z — MARKET-CLOSE 15:00 CT
+**Account**: equity $97,443.92 · cash $97,443.92 (100.00%) · positions $0 · last_equity $97,456.13 → day P&L **−0.013%** (essentially flat). Book empty (0 positions, 0 open orders). Buying power $194,887.84.
+**Macro EOD snapshot (Bridgewater-lite)**:
+- SPY day **−0.20%** (~$710.13) · QQQ day **−0.41%** (~$655.53) · DIA day **−0.27%** · IWM day **−1.15%** → **50/50 SPY+QQQ blend day −0.305%**.
+- VXX bid/ask $28.11/$29.92 (proxy VIX flat; no spike — measured reaction even with the Fed dissent).
+- 10Y ~4.36% (slightly higher post-FOMC on hawkish dissent tilt; dovish-pivot consensus partially unwound).
+- DXY ~98.6 area (no material move).
+- WTI **+3%** intraday on Trump's confirmed Strait of Hormuz blockade; gold flat (~$417 GLD bid); copper unchecked.
+- Sector skew: rate-sensitives + small caps sold (Russell −1.15%), energy bid (oil), tech largely held (QQQ −0.41% vs Nasdaq −0.41%), defensives mixed.
+- **FOMC outcome**: Fed held 3.50-3.75%, **8-4 split** (4 dissents = first since 1992). Powell press conf — likely his **final** as chair (Senate Banking voted on Warsh confirmation today, expected installation 05-15).
+- Breadth: deteriorating consistent w/ pre-market read; Russell weakness reinforces.
+- **Regime**: **neutral lean cautious** (no shift vs morning's "neutral lean cautious / FOMC compression"). The hawkish-tilt dissent is inside the normal noise band — does not trigger regime-shift tag (VXX flat, no credit event, no >1.5% SPY breakdown).
+**Performance vs benchmark (50% SPY + 50% QQQ · base 04-28)**:
+- Day: bot **−0.013%** · bench **−0.305%** → **alpha day +0.29%**.
+- Cumul since 04-28 baseline: bot **−0.012%** · bench **−0.305%** → **alpha cumul +0.29%**.
+- Equity baseline $97,455.66 / SPY $711.55 / QQQ $658.23 — formal tracking day **2** (D+1 of baseline series).
+**Position-age review**: N/A — book empty (GOOGL closed at the open today via DAY market sell c9a545bd, +$61.50 / +2.59% net trade P&L over 4 trading days).
+**Last-call action**: **0 BUY · 0 CUT · 0 TRIM · 0 TIGHTEN · 0 STOP-UPDATE**. No pre-earnings exits to execute (empty book). All routine action today happened at the open (GOOGL CUT residual, executed 09:31 ET). market-close is exits-only; no last-call entries possible per routine scope.
+**EOD activity summary**: 0 BUY · 1 CUT (GOOGL 3 shares, executed 09:31 ET = market-open routine, audited here) · 0 TRIM new · 0 TIGHTEN. Day net realized P&L on closed trades: **+$19.26** (GOOGL residual 3 shares from 04-23 entry to 04-29 exit).
+**Risks/watch (overnight + tomorrow)**:
+- (1) Mag-7 AMC tonight (GOOGL · MSFT · META · AMZN) → overnight QQQ gap risk; tomorrow's pre-market is the main event for redeploying 100% cash book.
+- (2) Powell press conf overhang + Warsh transition risk (05-15) → next-week macro tone could shift; monitor at next pre-market.
+- (3) Iran/Hormuz oil tail keeps energy ETFs in play (XLE, USO).
+- (4) AMD earnings 05-05 AMC: if entered, MUST pre-stage GTD MOC at fill + 14:30 last-call IOC fallback (per 04-24 + 04-28 remediation).
+- (5) Pre-market silence pattern persists (4/6 missed weekday slots). On monthly-deep-review queue. Tomorrow's 06:00 CT slot is critical to capture Mag-7 print reactions.
+- (6) Activity floor: rolling 5td BUYs = 1 (GOOGL, now closed). Floor target ≥3. Will close the gap with post-FOMC/post-Mag-7 quality entries tomorrow, not with forced sub-CTQS-55 names.
+**Carry-forward to 04-30 pre-market** (if it fires):
+- (a) Re-score GOOGL post-print (BMO/AMC reaction, guide tone) — re-entry candidate if CTQS rebuilds and post-event drift opens.
+- (b) Score MSFT, META, AMZN post-print — Mag-7 PEAD setups have historically clean 1-3 day drifts.
+- (c) Apply GTD MOC at fill + 14:30 IOC fallback to any new BUY with a dated exit ≤ 5 trading days (now standard, pending formal monthly-review codification).
+- (d) V/SBUX/TMUS PEAD names from today's surface still candidates if not yet faded — re-check at pre-market.
+- (e) Watch Russell weakness — if breadth (% SPX > MA50) breaks 50%, downsize all entries one notch.
+**Telegram**: mandatory; post-close template — empty book, EOD snapshot, alpha day +0.29% / cumul +0.29%, neutral-lean-cautious regime, Mag-7 AMC + tomorrow pre-market focus, 0 last-call actions.

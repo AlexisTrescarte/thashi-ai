@@ -383,3 +383,24 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - (3) Pre-market silence pattern: surface in monthly-deep-review as part of operational-resilience evolution proposal alongside the GTD-exit-at-fill remediation already queued.
 - (4) Activity floor: rolling 5td BUY count = 1 (GOOGL 04-23). Floor target ≥3 in risk-on/neutral. Below floor — but the right correction is a quality entry post-FOMC/post-prints, not a forced low-CTQS BUY pre-FOMC.
 **Telegram**: mandatory; ≤ 15-line no-action template — empty book, FOMC compression, deferred-to-tomorrow rationale.
+
+### 2026-04-29T17:32:00Z — INTRADAY-SCAN 12:30 CT
+**Account**: equity $97,443.92 · cash $97,443.92 (100.00%) · last_equity $97,456.13 → day P&L **−0.0125%** (essentially flat). Book empty (0 positions, 0 open orders). Buying power $194,887.84.
+**Macro snapshot**: SPY ~$712 / QQQ ~$659.75 (consolidating, both pulled back from ATH on Tuesday close, defending recent levels). VIX sub-20 (no spike — pre-FOMC compression holding). 10Y ~4.31% area unchanged. **FOMC decision in ~30 min** (today 13:00 CT / 14:00 ET) at 3.50%-3.75% band — CME FedWatch 100% prob hold; Powell press conf 13:30 CT. Single-name flow stable from 11:30 (V +6%, SBUX +5%, TMUS +2% PEAD candidates · BKNG −5% Mid-East guide cut). Mag-7 AMC cluster tonight: **GOOGL · MSFT · META · AMZN**. **No regime shift trigger** (VIX flat sub-20, no credit event, no headline shock — Fed silent until 14:00 ET).
+**Performance vs benchmark since 04-28 baseline** (SPY $711.55 · QQQ $658.23): bot $97,443.92 vs $97,455.66 = **−0.012%** · blend ~+0.27% (SPY +0.06%, QQQ +0.23%) → **alpha ≈ −0.28%** (microscopic, noise-band on a baseline+1 day with FOMC pinning tape).
+**Per-position priority ladder**: N/A — book is empty. Nothing to cut, trim, tighten, or stop-update.
+**Daily-loss-cap check**: day P&L −0.0125% → cap −4% inactive. ✅
+**BUY pathway evaluation**:
+- **Pathway A (pre-market WATCH trigger)**: **unavailable** — no 04-29 pre-market block exists in research_log (extends the 11:30-scan finding; pre-market 06:00 CT slot did not fire today). No Pathway-A triggers to fire intraday.
+- **Pathway B (opportunistic catalyst CTQS ≥ 60)**: PEAD setlist (V/SBUX/TMUS) unchanged from 11:30 read. **FOMC < 30 min** (now), Powell < 60 min — worse R:R window than 11:30 (less time to react if hawkish surprise crushes the entry). Per guardrails "Major macro event within 24h → default sizing one notch down" + 12:30 ≠ exits-only-slot but the binary catalyst is now sub-30-min and any PEAD entry now is effectively a coin-flip on the Fed. **Same defer decision** as 11:30: V/SBUX/TMUS deferred to **tomorrow's pre-market** (post-FOMC + post-Mag-7-prints scan).
+- **Pathway C (technical-only Probe T+Q+S ≥ 60/75)**: pre-FOMC tape pinning tighter as decision approaches; volume drying up on most names per typical FOMC-day microstructure. Probe slot reserved (cap 1/day untouched). No qualifying breakout/reclaim with conviction — even a clean signal would be re-priced at 13:00 CT.
+- **Crypto sleeve**: BTC/ETH/SOL untouched. Pre-FOMC compression applies equally to crypto risk-on. No qualifying catalyst surfaced.
+- **Cadence accounting**: 0 Pathway-B/C BUYs used today (cap 3, untouched). Pathway-C cap 1/day untouched.
+**Stops sweep**: N/A — empty book.
+**Decision**: **0 BUY · 0 CUT · 0 TRIM · 0 TIGHTEN · 0 STOP-UPDATE**. Second consecutive quiet scan, by design. Empty book + FOMC < 30 min + no pre-market block = wait for post-FOMC clarity at 13:30 scan and post-Mag-7-prints clarity at tomorrow's pre-market.
+**Risks/watch (rest of session)**:
+- (1) **FOMC 13:00 CT (in ~30 min)** — base case is hold + dovish-leaning statement (markets price 100% hold, ~75% prob of two cuts by EOY); hawkish surprise (signals "higher for longer", strips a 2026 cut from the dot plot, or Powell hawkish in press) → tech/semis −2-4% in 30s, VIX spikes 20%+. **13:30 scan must explicitly check the regime-shift trigger** (VIX +20% intraday → tighten-all + freeze new opens).
+- (2) Mag-7 AMC tonight (GOOGL/MSFT/META/AMZN) — repriceable session. Tomorrow's pre-market is the main redeployment scan.
+- (3) Pre-market silence pattern persists — queued for monthly-deep-review proposal (operational-resilience evolution).
+- (4) Activity floor: rolling 5td BUY count = 1 (GOOGL 04-23). Below floor target ≥3 — but the right answer remains a quality entry post-FOMC/post-prints, not a forced low-CTQS BUY in the binary-catalyst window.
+**Telegram**: mandatory; ≤ 15-line no-action template — empty book, FOMC < 30 min, defer-to-tomorrow rationale, regime-shift watch flag for 13:30 scan.

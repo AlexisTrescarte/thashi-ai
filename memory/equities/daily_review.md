@@ -129,3 +129,47 @@ Raw metrics: alpha ~0%, 0 violations, 0 closes (hit/R undefined). Strict reading
 
 ### Lesson of the day (1 line)
 - **Pre-stage the GOOGL exit at 04-28 market-open** with a GTD market-on-close (or stop-limit at $349) — do not let the 14:30 last-call routine be the single point of failure for a mandatory pre-earnings exit, because today proved 50%+ of routines can miss in a single session and the exchange is the only reliable executor when the harness is silent.
+
+## 2026-04-29 — Daily review (grade: C)
+
+### Performance
+- Equity: $97,443.92 (day **−0.013%**, −$12.21 vs last_equity $97,456.13)
+- Benchmark day (SPY+QQQ blend): **+0.12%** (SPY $712.00 vs $711.55 = +0.063%; QQQ $659.42 vs $658.23 = +0.181%) → **alpha day −0.13%**
+- Cumul since 04-28 baseline: bot **−0.012%** · bench **+0.12%** · **alpha cumul −0.13%** (day-2, well within noise)
+
+### Activity
+- Trades opened today: 0
+- Trades closed today: **1 leg** — GOOGL CUT 3@$345.71 (filled 09:31 ET, residual from 04-28 MOC partial-fill); full GOOGL trade now sealed at +$61.50 / **+2.59%** on $2,375.03 over 4 trading days (J+0 → J+4)
+- Hit rate today: **100%** (1W/0L/0BE — sample of 1; full GOOGL trade was a +1.89% leg, +2.59% trade-level)
+- Stops set within 5min on all new positions: N/A (no new positions)
+
+### By setup (today)
+- Pre-earnings momentum (GOOGL short-swing exit): +$19.26 leg / +$61.50 trade-total · 4td hold · clean exit pre-AMC
+
+### What worked (2 lines)
+- **GOOGL DAY market sell c9a545bd (queued 04-28 post-close) filled at the open with a single tick** — the 04-24 INCIDENT remediation (queue-during-day market sell + DAY/GTD TIF rather than rely on MOC TIF=cls alone) executed exactly as designed; book empty 100% cash by 09:32 ET, ~6h margin before AMC print.
+- **Discipline through FOMC + Powell Q&A + Mag-7 AMC compression**: 0 forced entries across 11:30 + 13:30 intraday-scans despite live PEAD candidates (V +6%, SBUX +5%, TMUS +2%) — the right alpha posture for a 100%-cash book heading into a binary-event cluster (FOMC hold 8-4 dissents + 4 Mag-7 prints same session).
+
+### What didn't (2 lines)
+- **5/9 routines missed today** — pre-market 06:00, intraday-scan 10:30/12:30/14:30, market-close 15:00 all absent from runs.log; only market-open + 11:30 + 13:30 + this daily-review fired. 5th consecutive weekday with the harness gap (04-24 6/6, 04-27 5/9, 04-29 5/9) — recurring structural degradation.
+- **Activity floor at 1 BUY / 5td** (target ≥3) — book 100% cash on a near-baseline day means zero deployment despite a clean bench tape (+0.12%); the cost is unrealised opportunity, but forcing low-CTQS entries pre-event would have been worse R:R.
+
+### Discipline log
+- Guardrail violations: **0** — none (no trades placed; pre-earnings exit completed without earnings hold)
+- Time stops honored: **YES** — GOOGL 04-28 close time-stop satisfied (4/7 MOC + 3/7 DAY-open 04-29 = full exit before 04-29 AMC print, ~6h safety margin)
+- Stop updates logged: 0 manual, 0 native (book empty after 09:31 ET)
+
+### Coherence adjustment
+Raw reading: alpha day −0.13% (microscopic), 0 violations, 1W on a small leg-close, time-stop honored cleanly. Strict table → **B** (alpha within ±1%, 0 violations, hit > 50%). Settled on **C** because: (a) the recurring 5/9 harness gap (now 5 weekday slots in a row with ≥4 missed routines) is an operational degradation that nudges any borderline grade down by one notch — same precedent as 04-24 / 04-27, (b) market-close 15:00 CT did not fire today, so this daily-review is operating without a fresh portfolio.md snapshot (Alpaca API used as source-of-truth instead, but the chain is not pristine).
+
+### Carry-forward for tomorrow (Thu 2026-04-30)
+- **Tomorrow's pre-market is the highest-alpha slot of the week** — must incorporate (a) full FOMC tone (hold 8-4, easing-bias dissents), (b) **4 Mag-7 AMC prints** (GOOGL · MSFT · META · AMZN reporting tonight 04-29 AMC), (c) post-event sector rotation. Target: queue **≥3 BUYs** (PEAD on Mag-7 winners + V/SBUX/TMUS continuation candidates from 04-29 morning + post-FOMC sector setups) to close the activity-floor gap.
+- **Aging watchlist**: none — book is empty.
+- **Pre-earnings tomorrow (04-30)**: AAPL · AMZN AMC (AMZN already prints tonight); confirm at pre-market. No positions held into any prints tomorrow.
+- **Macro 24h**: post-FOMC digestion; jobless claims 04-30 07:30 CT; ECI Q1 (could surprise sticky); Powell speech follow-on if any. PCE deflator due 05-02.
+- **Re-queue**: AMD 05-05 AMC remains a candidate for the next pre-market (pre-stage GTD + 14:30 IOC fallback per 04-28 LESSON if filled).
+- **Regime note**: post-FOMC = **neutral with hawkish tilt** (4 dissents on easing-bias is mildly hawkish); Mag-7 prints will set the tape for next 5 sessions. Tighten any new stop methodology by 1pp from default trail until after the 4 prints digest.
+- **Operational**: 5/9 routines missed today including market-close. Already queued for monthly-deep-review alongside the GTD-exit-at-fill remediation. Tomorrow's pre-market 06:00 CT MUST fire to capture the post-Mag-7 / post-FOMC redeployment window — this is the **single most important routine of the rolling week**.
+
+### Lesson of the day (1 line)
+- **When pre-market 06:00 misses (now 5/last 7 weekday slots), the next-fired routine must run a compressed inline CTQS scan on ≥3 single-name catalysts before defaulting to no-op** — the 04-22 LESSON ("no fresh pre-market block → no-op") was correct in v1 but is now a structural alpha-leak under the recurring harness gap; queue this rule revision for monthly-deep-review prompt-evolution proposals.

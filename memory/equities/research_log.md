@@ -410,3 +410,36 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - (3) Pre-market silence pattern: 4 of last 6 weekday pre-market slots missed. Already on the monthly-deep-review queue alongside the GTD-exit-at-fill remediation.
 - (4) Activity floor: rolling 5td BUY count = 1 (GOOGL 04-23). Floor target ≥3 in risk-on/neutral. Still below — but the discipline is: a quality post-event entry beats 2 forced low-CTQS pre-event entries. Will close the floor gap with the post-FOMC + post-Mag-7 setup tomorrow.
 **Telegram**: mandatory; ≤ 15-line no-action template — empty book, mid-Powell compression, deferred-to-tomorrow rationale, alpha cumul +0.13%.
+
+### 2026-04-29T19:32:00Z — INTRADAY-SCAN 14:30 CT (last-call)
+**Account**: equity $97,443.92 · cash $97,443.92 (100.00%) · last_equity $97,456.13 → day P&L **−0.013%** (essentially flat). Book empty (0 positions, 0 open orders). Buying power $194,887.84.
+**Macro snapshot (post-Powell press conf, ~30 min to close)**:
+- Powell finished press conference confirming this was his **last as chair** (term ends May, Warsh nominated). 8-4 dissent on the rate hold (most since 1992) — the 4 dissenters (incl. 3 regional Fed presidents) wanted the *easing bias* removed, not a different rate decision. Net tone: measured, not a hawkish surprise.
+- SPY mid $710.61 (vs 04-28 close $711.55 → day **−0.13%**) · QQQ mid $660.62 (vs $658.23 → day **+0.36%**) · 50/50 blend day **+0.12%** (mild relief rally during/after Powell, QQQ leading into Mag-7 prints).
+- VXX $29.24 mid (vs $29.07 at 13:30 → essentially flat). No volatility spike, no credit event.
+- Sector skew: tech leading (QQQ green), financials/rate-sensitives modestly red on the easing-bias debate.
+- **No regime-shift trigger** (VIX/VXX flat, no credit event, decision was a hold-with-easing-bias = priced-in tone).
+**Performance vs benchmark since 04-28 baseline** (SPY $711.55 · QQQ $658.23): bot **−0.012%** vs blend **+0.116%** → **alpha cumul ≈ −0.13%** (microscopic, day-2 noise; flipped slightly negative as QQQ rallied post-Powell while bot held 100% cash).
+**Per-position priority ladder (last-call enforcement)**: N/A — book empty.
+- P1 thesis broken intraday: nothing to check.
+- P2 earnings imminent w/o hold: GOOGL already exited at the open today; no other positions report tomorrow BMO or tonight AMC.
+- P3 time stop exceeded: no open horizon to enforce (book empty).
+- P4 options DTE-3: no options open.
+- P5 option premium -50%: no options.
+- P6 equity loss cut -5%: no equity.
+- P6-bis crypto loss cut -8%: no crypto.
+- P7 TRIM big winner: no winners.
+- P8 TIGHTEN medium winner: no winners.
+- P9 structural stop update: nothing to update.
+- P10 hold: trivially satisfied — there is nothing to hold.
+**Daily-loss-cap check**: day P&L −0.013% → cap −4% inactive. ✅
+**Last-call BUY policy**: ⛔ Opportunistic BUY **forbidden at 14:30 slot** (slash command enforces). No Pathway A/B/C evaluation. Cadence accounting unchanged: 0 Pathway-B/C BUYs used today (cap 3, untouched). Pathway-C cap 1/day untouched.
+**Stops sweep**: N/A — empty book, nothing to verify.
+**Decision**: **0 BUY · 0 CUT · 0 TRIM · 0 TIGHTEN · 0 STOP-UPDATE**. Third consecutive no-action scan today (11:30 / 13:30 / 14:30). Book stays 100% cash into the bell and into the Mag-7 AMC cluster (GOOGL/MSFT/META/AMZN). The last-call enforcement (no opportunistic BUY) aligns with the right play anyway: redeploy cash from tomorrow's pre-market with full post-FOMC + post-AMC information.
+**Carry-forward to market-close & tomorrow's pre-market**:
+- (1) Mag-7 AMC cluster tonight (~15:00-15:10 CT prints). Overnight gap risk on QQQ — but no exposure, only opportunity ranking for tomorrow.
+- (2) Powell-finalité tone confirms current Fed regime through the May handover; first Warsh-led decision is two meetings out (June+). No immediate Fed-policy regime shift to price.
+- (3) Activity floor still gapped (1 BUY rolling 5td vs ≥3 target). Tomorrow's pre-market is the natural slot to close the gap with high-CTQS post-event entries (V, SBUX, TMUS PEAD candidates from this morning's note still on the board, plus whatever Mag-7 AMC dislocations open up).
+- (4) Pre-market 06:00 CT slot: 4 of last 6 weekday pre-markets missed — pattern persists. Already queued for monthly-deep-review.
+- (5) Alpha cumul drifted from +0.66% (day 1, 04-28) to ~−0.13% (mid-day 2) — the cost of staying 100% cash on a +0.12% blend day. Acceptable given the FOMC + Mag-7 compression window; tomorrow re-deploys with a much cleaner read.
+**Telegram**: mandatory; ≤ 15-line no-action template — empty book, last-call exits-only, post-Powell measured tone, deferred to tomorrow's pre-market.

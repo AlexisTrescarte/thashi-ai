@@ -383,3 +383,30 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - (3) Pre-market silence pattern: surface in monthly-deep-review as part of operational-resilience evolution proposal alongside the GTD-exit-at-fill remediation already queued.
 - (4) Activity floor: rolling 5td BUY count = 1 (GOOGL 04-23). Floor target ≥3 in risk-on/neutral. Below floor — but the right correction is a quality entry post-FOMC/post-prints, not a forced low-CTQS BUY pre-FOMC.
 **Telegram**: mandatory; ≤ 15-line no-action template — empty book, FOMC compression, deferred-to-tomorrow rationale.
+
+### 2026-04-29T18:35:00Z — INTRADAY-SCAN 13:30 CT
+**Account**: equity $97,443.92 · cash $97,443.92 (100.00%) · last_equity $97,456.13 → day P&L **−0.013%** (essentially flat). Book empty (0 positions, 0 open orders). Buying power $194,887.84.
+**Macro snapshot (post-FOMC, mid-Powell press conf)**:
+- **FOMC decision out** (13:00 CT / 14:00 ET): Fed held at 3.50-3.75% as expected. Vote **8-4** with 4 dissents — unusual: 3 regional Fed presidents (Hammack/Kashkari/Logan) opposed the *easing-bias language* in the statement (slight hawkish overtone vs the dovish consensus going in).
+- **Powell press conference live now** (started 13:30 CT / 14:30 ET, lasting ~1h) — slot lands directly inside the highest-volatility window of the day.
+- SPY mid $709.18 (vs 04-28 close $711.55 → day **−0.33%**) · QQQ mid $658.53 (vs $658.23 → day **+0.05%**) · 50/50 blend day **−0.14%**.
+- VXX $29.07 (proxy for VIX, no spike — measured reaction so far). 10Y unchecked but no obvious credit event.
+- Sector skew: dissent-driven micro-pullback on rate-sensitives, tech holding up (QQQ flat).
+- **No regime-shift trigger** (VIX/VXX flat, no credit event, no truly hawkish surprise — the 4 dissents are inside the noise band of a hold-with-easing-bias decision).
+**Performance vs benchmark since 04-28 baseline** (SPY $711.55 · QQQ $658.23): bot **−0.012%** vs blend **−0.14%** → **alpha cumul ≈ +0.13%** (microscopic, within day-2 noise).
+**Per-position priority ladder**: N/A — book empty. Nothing to cut, trim, tighten, or stop-update.
+**Daily-loss-cap check**: day P&L −0.013% → cap −4% inactive. ✅
+**BUY pathway evaluation**:
+- **Pathway A (pre-market WATCH trigger)**: still **unavailable** — no 04-29 pre-market block in research_log (06:00 CT slot did not fire today; pattern persists). No WATCH queue → no triggers to fire.
+- **Pathway B (opportunistic catalyst CTQS ≥ 60)**: V/SBUX/TMUS PEAD candidates from this morning still on the board. **But entering inside the Powell Q&A window is the worst slot of the day** — 30-90 second tape moves on each Powell sentence, the 8-4 dissent introduces unscripted risk to the press-conf tone, and *tomorrow's pre-market* can incorporate the full FOMC outcome **plus** the Mag-7 AMC cluster (GOOGL/MSFT/META/AMZN reporting at the close tonight). Same logic that deferred them at 11:30 CT applies even more directly now: the 13:30 slot is the eye of the storm, not the calm after.
+- **Pathway C (technical-only Probe T+Q+S ≥ 60/75)**: pinning the tape during Powell Q&A — any "breakout" on this tape is a false signal until 14:00-14:30 CT. The 14:30 slot is **exits-only**, so a Pathway-C entry started here would be evaluated against a stop placed during max-volatility. Pass. Cap-1/day untouched.
+- **Crypto sleeve**: BTC/ETH/SOL — same logic; macro-event compression applies. No qualifying intraday catalyst.
+- **Cadence accounting**: 0 Pathway-B/C BUYs used today (cap 3, untouched). Pathway-C cap 1/day untouched.
+**Stops sweep**: N/A — empty book.
+**Decision**: **0 BUY · 0 CUT · 0 TRIM · 0 TIGHTEN · 0 STOP-UPDATE**. Second consecutive no-action scan today. Right play remains: wait for **tomorrow's pre-market** which incorporates (a) full Powell press conf tone + market digest, (b) 4 Mag-7 AMC prints (GOOGL/MSFT/META/AMZN), (c) any post-FOMC sector re-pricing. That setup gives a much higher-quality CTQS read than chasing a 13:30 PEAD into Powell Q&A.
+**Risks/watch (rest of session)**:
+- (1) Powell Q&A continues to ~14:30 CT. Monitor at 14:30 last-call: if VXX spikes >+15% intraday or SPY breaks down through −1.5%, tag `[REGIME-SHIFT]` (book is empty so the only consequence is freezing tomorrow's BUYs — note in carry-forward).
+- (2) Mag-7 AMC cluster tonight — overnight gap risk on QQQ. Fresh pre-market tomorrow is the main event for redeploying the 100% cash book.
+- (3) Pre-market silence pattern: 4 of last 6 weekday pre-market slots missed. Already on the monthly-deep-review queue alongside the GTD-exit-at-fill remediation.
+- (4) Activity floor: rolling 5td BUY count = 1 (GOOGL 04-23). Floor target ≥3 in risk-on/neutral. Still below — but the discipline is: a quality post-event entry beats 2 forced low-CTQS pre-event entries. Will close the floor gap with the post-FOMC + post-Mag-7 setup tomorrow.
+**Telegram**: mandatory; ≤ 15-line no-action template — empty book, mid-Powell compression, deferred-to-tomorrow rationale, alpha cumul +0.13%.

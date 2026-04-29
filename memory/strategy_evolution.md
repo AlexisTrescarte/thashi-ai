@@ -26,6 +26,52 @@ Append-only. **Never rewrite** a past entry. Every change to `memory/strategy.md
 
 ## Log
 
+## 2026-04-29T22:30:00Z — human — Active intraday universe scan (mandatory) + opportunistic cap 3 → 5 BUYs/day
+
+**Actor**: human (user-directed, post-merge follow-up to address residual under-activity after spread/harness fix)
+**Scope**: `.claude/commands/intraday-scan.md` (cadence rule + new "Mandatory active universe scan" section)
+
+**Gates**: N/A (human edit). No hard-cap modification on guardrails.md. No change to forbidden instruments. No auto-defense / self-evolution gate touched. Quality filters (CTQS ≥ 60 Pathway B, T+Q+S ≥ 60/75 Pathway C, FOMO, spread, sector, position, revenge) all preserved.
+
+### Rationale
+
+After the 04-29 spread-protocol + harness-gap fix, residual concern: the existing intraday Pathway B/C language is **passive** ("if a catalyst surfaces"). Bot does not actively grate the universe at each wake-up — it only reacts to what enters its field of view. Combined with conservative filters this produces 1 BUY / 10 TD instead of the 3 BUY / 5 TD strategy floor.
+
+Two complementary changes:
+1. Make the universe scan **mandatory** at each BUY-eligible slot (10:30/11:30/12:30/13:30) with explicit minimum candidate count (5) and minimum research depth (top-2 through the `research` skill).
+2. Raise the hourly-cap daily total for Pathways B+C combined from 3 → **5 BUYs/day** to match the wider discovery surface; Pathway C stays capped at 1/day.
+
+Token cost is non-binding (user explicit). Routines/day cap (15) is non-binding (existing slots, no new wakes).
+
+### Evidence
+
+- 2-week post-launch sample (2026-04-20 → 2026-04-29): 1 BUY filled across 5 candidates dispatched, all 4 mechanical (non-thesis) skips. Activity floor target 3/5 TD missed by ~3×.
+- Pathway B/C language audit confirms passive framing: "new dated catalyst surfaced today" + "clean technical setup surfacing intraday" — no mandatory scan, no minimum candidate count, no documentation requirement when 0 promote.
+- Strategy.md philosophy "trade often, but never recklessly" + activity floor "≥1 BUY per 3 trading days when scan surfaces any CTQS ≥ 55 candidate" both presuppose the scan happens — the prompt did not enforce it.
+
+### Before → After (diff summary)
+
+**Before**: Pathway B/C are passive — bot evaluates if it happens to notice a setup. Daily cap 3 BUYs (B+C). No documentation requirement when nothing fires.
+
+**After**:
+- New "Mandatory active universe scan" block at the top of the BUY pathways section.
+- Each slot 10:30/11:30/12:30/13:30 must run news + technical + flow sweep targeting ≥ 5 candidates, top-2 through `research` skill for full CTQS.
+- Daily cap 5 BUYs (B+C); Pathway C still 1/day.
+- Scan output documented in `research_log.md` even on 0-promote slots (rejection trail = signal for weekly review tuning).
+
+### Follow-up
+
+**Metrics to watch (next 4 weeks)**:
+- BUY/day average (B+C): target 2-4, must not systematically hit the 5/day cap (signal of dilution).
+- Pathway B hit rate vs Pathway A baseline: must not drop more than 5pp (signal that mandatory scan is finding lower-quality setups).
+- 0-promote slot ratio: rejection trail should show that filters are working, not that the bot is just running through motions — weekly-review must inspect 5 random rejected candidates per week.
+- Activity floor compliance: ≥ 3 BUY / 5 TD in risk-on/neutral regime.
+
+**Revert criteria** (any triggers a revert at next monthly-deep-review):
+- Hit rate Pathway B falls > 5pp below Pathway A on equal sample.
+- Daily cap of 5 hit ≥ 3 days in a single week (dilution signal).
+- Average CTQS at entry drops > 5 points below pre-fix baseline.
+
 ## 2026-04-29T22:00:00Z — human — Spread protocol (wait-and-retry + open-retry pathway) + harness-gap self-healing
 
 **Actor**: human (user-directed fix after 2-week post-launch review identified two structural drags)

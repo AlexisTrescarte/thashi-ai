@@ -115,7 +115,26 @@ If day P&L ≤ -4%:
 
 Three BUY pathways, each with its own gate. **Preflight (all pathways)**: regime risk-on/neutral · no daily/weekly loss cap active · no drawdown auto-defense active · position/sector/lev-ETF/options caps respected · not the 14:30 slot.
 
-**Cadence rule (hourly cap)**: with 5 scans/day, the bar for a BUY rises to compensate for more chances to act. Across the 4 BUY-eligible slots (10:30/11:30/12:30/13:30) the daily total is hard-capped at **3 opportunistic BUYs** (Pathways B + C combined; Pathway A WATCH triggers and Pathway A-prime open-retries from the morning queue do not count against this — they are pre-vetted research). Pathway C is still hard-capped at 1/day.
+**Cadence rule (hourly cap)**: with 5 scans/day, the bar for a BUY rises to compensate for more chances to act. Across the 4 BUY-eligible slots (10:30/11:30/12:30/13:30) the daily total is hard-capped at **5 opportunistic BUYs** (Pathways B + C combined; Pathway A WATCH triggers and Pathway A-prime open-retries from the morning queue do not count against this — they are pre-vetted research). Pathway C is still hard-capped at 1/day.
+
+**Mandatory active universe scan (every BUY-eligible slot)**: at each of the 4 slots (10:30/11:30/12:30/13:30), the agent **must actively scan** the universe for new opportunities — this is no longer a "if something surfaces" passive watch. Procedure (target 5-15 min wall-time per slot):
+
+1. **News & catalyst sweep** (WebSearch + WebFetch):
+   - Earnings beats from this morning's BMO and last evening's AMC prints not yet in the book — look for guidance raises, positive surprises with day-1 clean reaction (PEAD candidates).
+   - Analyst upgrade clusters published since the previous slot (≥ 2 firms, PT bumps ≥ 15%).
+   - Event headlines: FDA approvals, DoD awards, M&A announcements, regulatory rulings, product launches.
+   - Geopol / macro headlines that move sectors (oil shock, central-bank surprise, tariff news).
+2. **Technical sweep**:
+   - Sector breakouts intraday (sector ETFs reclaiming key MAs with volume).
+   - Top-N momentum names (Russell 1000) testing breakout levels with volume confirmation.
+   - VWAP reclaims on quality names that gapped down at the open.
+3. **Flow sweep** (when accessible):
+   - Unusual options activity (call sweeps, put-buying anomalies).
+   - 13F-tracker recent updates if a quarter just turned.
+
+For each slot, surface a minimum of **5 candidates** through this scan. Run the top-2 (by raw catalyst strength + technical confluence) through the `research` skill for a full CTQS note. Promote to BUY any that score ≥ 60 (Pathway B) or T+Q+S ≥ 60/75 with no catalyst (Pathway C). Document the scan output in `research_log.md` even when 0 candidates promote — the trail of evaluated-and-rejected names is itself research signal (feeds weekly review on what filters too aggressively).
+
+**Quality discipline preserved**: all standard gates remain — CTQS ≥ 60 floor for Pathway B, T+Q+S ≥ 60/75 for Pathway C, FOMO guard, spread cap 0.5%, sector cap 25%, position cap 10%, revenge guard, earnings-horizon check, sizing bounded by conviction. The mandatory scan widens **discovery** without diluting **selection**.
 
 **Pathway A-prime — Open-retry queue (10:30 slot only, FIRST action of the slot)**
 

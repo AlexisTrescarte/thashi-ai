@@ -63,6 +63,16 @@ Append-only. **Never rewrite** a past entry. Reverse chronological (most recent 
 - Routine: market-open (placed) → market-close (audit + residual-cleanup follow-up)
 - Notes: Partial fill is an unusual outcome on a $2T mcap name. Likely auction-imbalance routing chose to fill only 4/7 lots. Followup CUT for residual 3 shares queued same session — see 2026-04-28T20:10:26Z entry.
 
+### 2026-04-29T13:31:25Z — CUT GOOGL 3@$345.71 (DAY market sell filled at the open)
+- Order ID: c9a545bd-3caa-41ae-a9ef-a4d084c37255 (status=filled, filled_qty=3, filled_avg_price=$345.71)
+- Submitted: 2026-04-28T20:10:26Z post-close · Filled: 2026-04-29T13:31:25Z (09:31 ET regular open, ~1 minute after the bell)
+- Filled value: $1,037.13
+- Realized P&L on the 3 shares: ($345.71 − $339.29) × 3 = +$19.26 (+1.89%)
+- Total realized P&L on the GOOGL trade (4 shares MOC 04-28 + 3 shares DAY 04-29): +$42.24 + $19.26 = +$61.50 on $2,375.03 entry = +2.59% return on the position
+- Reason: pre-earnings exit (no earnings hold). Earnings Q1 2026 = 2026-04-29 AMC (~20:00 UTC today). Exit at the regular open captured >6h margin before the print.
+- Routine: market-open (verify-and-confirm — order placed at market-close 04-28; verified filled and tallied this run)
+- Notes: GOOGL position fully closed. Net trade P&L +$61.50 / +2.59%; holding period 4 trading days (J+0 to J+4). Reinforces the 04-27 carry-forward and 04-24 INCIDENT remediation: queue-during-day market sell + DAY/GTD TIF + 14:30 last-call IOC fallback is the correct pre-earnings exit pattern (MOC TIF=cls alone can leave residual on partial fill). Book post-fill: 0 positions, 100% cash.
+
 ### 2026-04-28T20:10:26Z — CUT GOOGL 3 shares (DAY market sell, queued for 04-29 open)
 - Order ID: c9a545bd-3caa-41ae-a9ef-a4d084c37255 (TIF=day, qty=3, market, status=accepted)
 - Submitted post-close (20:10 UTC = 15:10 CT, 10 min after the bell)

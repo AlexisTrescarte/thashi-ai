@@ -309,6 +309,34 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 **Telegram**: mandatory; no-action template (≤ 15 lines).
 
 
+### 2026-04-29T13:38:00Z — MARKET-OPEN 08:30 CT
+**Account verify** (Alpaca API source-of-truth): equity $97,443.92 · cash $97,443.92 (100.00%) · buying_power $194,887.84 · last_equity $97,456.13 → day P&L **−0.013%** (essentially flat). 0 open positions, 0 open orders. Crypto status ACTIVE; options approved L3.
+**Market clock**: is_open=true, 09:37 ET → regular session active.
+**GOOGL exit verification (carry-forward from 04-28 market-close)**: order c9a545bd (DAY market sell, qty=3) **FILLED at 09:31 ET** at avg $345.71 → proceeds $1,037.13, realized P&L on those 3 shares = +$19.26 (+1.89%). Total trade P&L on the 7-share GOOGL position = +$61.50 / +2.59% on $2,375.03 entry, holding period 4 trading days. Pre-earnings guardrail satisfied with >6h margin before AMC print tonight. Book is now empty.
+**Preflight (all checks pass)**:
+- Auto-defense: NO (current DD from $100k baseline ≈ −2.56%, well above −20% trigger).
+- Daily-loss-cap: NO (yesterday close P&L −0.00%; today opens flat).
+- Weekly-loss-cap: NO (week is flat to slightly positive; well above −8%).
+- Cash floor: 100% ≫ 10% mandatory floor. ✅
+- Position count: 0 / 30. ✅
+- Sector cap, options aggregate, leveraged-ETF aggregate, crypto aggregate: 0% each (book empty). ✅
+- **Major macro event < 24h**: **YES** — FOMC decision today 13:00 CT + Powell press conf 13:30 CT. Per guardrails, sizing one notch down for any new BUY today (High→Standard, Standard→Probe, Probe→skip).
+- Regime: **neutral lean cautious** (yesterday's EOD read held overnight; pre-FOMC compression expected; Mag-7 AMC cluster tonight).
+**BUY queue evaluation**:
+- The **last pre-market block in this log dates from 2026-04-28** (yesterday). The 04-28 block listed VRT (Probe 2.5%) and AMD (Probe 2.5%) as 04-28 BUYs — both already evaluated and SKIPPED at 04-28's 11:30 intraday-scan (VRT spread 5.90%, price below zone; AMD climax distribution day). Those skips are 04-28's, not 04-29's.
+- **No pre-market block exists for 04-29** — pre-market 06:00 CT did not fire today (extends the operational degradation pattern flagged on 04-27: 4 of the last 5 weekday pre-market slots have now missed: 04-24 / 04-25 weekend / 04-27 / 04-29).
+- Per 2026-04-22 LESSON: *"Sans bloc pre-market frais listant une BUY queue, le comportement correct est no-op."* Market-open is execution-only — no improvisation. Even if a fresh idea were credible, the FOMC < 24h guardrail would shrink it (Probe→skip in many cases).
+- **Decision: 0 BUY today**. No skip-with-rationale either, because there is no concrete BUY plan to skip — the queue itself is empty. The activity-floor (≥3 BUYs per rolling 5td in risk-on/neutral) absorbs this miss against the 1 BUY (GOOGL 04-23) and 0 BUYs since.
+**Stop reconciliation**: book is empty → nothing to reconcile.
+**Crypto sleeve**: untouched. No fresh BTC/ETH/SOL pre-market read available; deferred to next pre-market that fires.
+**Risks/watch (rest of session)**:
+- (1) FOMC decision 13:00 CT + Powell 13:30 CT — hawkish surprise tail compresses tech/semis; could open BUY pathways at 14:30 last-call (post-FOMC clarity scan) but only via the intraday-scan routine, not market-open.
+- (2) Mag-7 AMC cluster tonight (GOOGL · MSFT · META) — no positions held into the prints (clean book). Pre-market tomorrow will need to react to whatever the prints leave behind.
+- (3) Pre-market silence pattern: surface to user as part of monthly-deep-review proposal queue alongside the GTD-exit-at-fill remediation. Without a fresh pre-market scan, BUY pathways at intraday-scan default to Pathway-B (opportunistic catalyst CTQS ≥ 60) and Pathway-C (technical-only Probe), both naturally compressed by FOMC < 24h.
+- (4) AMD 05-05 AMC remains queued for the next fresh pre-market re-evaluation; 04-28 plan tagged it for "GTD MOC at fill" pre-staging if it gets bought.
+**Action**: 0 BUY · 0 SKIP-of-concrete-plan · GOOGL exit verified filled. Pure no-op + audit + Telegram. Activity floor unchanged. Telegram mandatory per policy.
+**Telegram**: short ≤ 15-line template — empty book, FOMC < 24h compression context, GOOGL exit confirmation, no fresh pre-market block.
+
 ### 2026-04-28T20:15:00Z — MARKET-CLOSE 15:00 CT
 **Account**: equity $97,455.66 · cash $96,406.80 (98.92%) · positions $1,048.86 · last_equity $97,459.78 → day P&L **−0.00%** (essentially flat).
 **Macro EOD snapshot**:

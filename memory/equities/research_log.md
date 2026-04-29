@@ -309,6 +309,35 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 **Telegram**: mandatory; no-action template (≤ 15 lines).
 
 
+### 2026-04-29T15:34:00Z — INTRADAY-SCAN 10:30 CT
+**Account verify** (Alpaca API): equity $97,443.92 · cash $97,443.92 (100.00%) · last_equity $97,456.13 → day P&L **−0.013%** (essentially flat). 0 open positions, 0 open orders. Buying_power $194,887.84.
+**Macro check (5 min WebSearch)**:
+- SPY ~$716.26 (intraday +0.66% vs 04-28 close $711.55) printing fresh 52-week high pre-FOMC.
+- QQQ ~$665.35 (+1.08% vs 04-28 close $658.23) printing fresh 52-week high.
+- VIX ~18.02 (flat — no intraday spike, no regime shift signal).
+- 10Y yields stable, no credit/geopol shock.
+- FOMC: hold expected with 100% probability per CME FedWatch — 13:00 CT decision + 13:30 CT Powell presser.
+- **Regime: neutral lean risk-on (mild)** — confirms morning's "neutral lean cautious" with a slight positive twist as both indices print ATHs. No regime-shift trigger fired (VIX +20%? no. Credit event? no. Hawkish surprise? not yet — pre-FOMC).
+**Benchmark math (vs 04-28 baseline equity $97,455.66 / SPY $711.55 / QQQ $658.23)**:
+- 50/50 blend day ≈ +0.87% (SPY +0.66% / QQQ +1.08%).
+- Bot day −0.013% → **alpha day ≈ −0.88%** (cash-heavy book lagging on a risk-on day-1-since-baseline).
+- Cumul since baseline (1 td): bot −0.013% · bench +0.87% · alpha −0.88%.
+**Per-position scan**: 0 positions → no priority-1..10 evaluations needed. No tighten/trim/cut/stop-update sweep required. Book remains 100% cash post-GOOGL exit (filled at the open at $345.71, +1.89% on the residual 3 shares).
+**Daily-loss-cap check**: day P&L −0.013% ≫ −4% trigger. ✅ No degraded mode.
+**BUY pathway evaluation**:
+- **Pathway A** (pre-market WATCH queue): no pre-market block exists for 04-29 (pre-market 06:00 CT did not fire — extends the operational degradation pattern: 4 of last 5 weekday pre-markets missed). Empty queue → no Pathway-A trigger possible.
+- **Pathway B** (opportunistic new catalyst CTQS ≥ 60): no new dated catalyst has surfaced this morning that would qualify. Mag-7 cluster reports tonight AMC (GOOGL/MSFT/META) — pre-earnings buy without explicit "earnings hold" thesis is forbidden by guardrails. Per slot context, opportunistic BUY this slot requires CTQS ≥ 70 (a notch tighter than the skill's default ≥ 60), and FOMC < 2h additionally compresses sizing one notch down. No qualifying name.
+- **Pathway C** (technical-only intraday Probe): **forbidden by slot context** ("No technical-only intraday BUY"). Skip.
+- **Decision: 0 BUY**. The combination of (a) empty pre-market queue, (b) no fresh dated catalyst with CTQS ≥ 70, (c) FOMC in <2h compression, (d) Pathway-C forbidden, (e) Mag-7 AMC cluster tonight, all converge on no-op.
+**Crypto sleeve**: untouched. No fresh BTC/ETH/SOL read; pre-market did not fire. Aggregate crypto exposure 0% / 15% cap.
+**Risks/watch (rest of session)**:
+- (1) FOMC 13:00 CT decision + Powell 13:30 CT — could reset regime in either direction. If hawkish surprise → regime-shift protocol triggers at 13:30+ scan; if dovish-as-expected → 14:30 last-call would be exits-only anyway, no BUY.
+- (2) Mag-7 AMC tonight — book is clean, no exits to plan.
+- (3) AMD 05-05 AMC remains queued for next fresh pre-market re-evaluation.
+- (4) Pre-market silence pattern (4/5 weekday slots missed) — surface to monthly-deep-review proposal queue alongside GTD-exit-at-fill remediation. Without pre-market scans, BUY pathways at intraday-scan are structurally compressed (no fresh CTQS scoring done for the day).
+**Action**: 0 BUY · 0 CUT · 0 TIGHTEN · 0 TRIM · 0 STOP-UPDATE (book empty). Pure no-op + audit + Telegram.
+**Telegram**: quiet-scan template (no action) — header + portfolio + regime confirmation + 1-line rationale on why nothing moved.
+
 ### 2026-04-29T13:38:00Z — MARKET-OPEN 08:30 CT
 **Account verify** (Alpaca API source-of-truth): equity $97,443.92 · cash $97,443.92 (100.00%) · buying_power $194,887.84 · last_equity $97,456.13 → day P&L **−0.013%** (essentially flat). 0 open positions, 0 open orders. Crypto status ACTIVE; options approved L3.
 **Market clock**: is_open=true, 09:37 ET → regular session active.

@@ -35,11 +35,25 @@ CLAUDE_BIN="${CLAUDE_BIN:-claude}"
 MAX_TURNS="${HF_MAX_TURNS:-8}"
 TICK_TIMEOUT="${HF_TICK_TIMEOUT:-180}"
 
+# Detect timeout binary: GNU `timeout` on Linux, `gtimeout` on macOS (brew coreutils),
+# or fallback to no-timeout (dev only). systemd unit on VPS always has `timeout`.
+if command -v timeout >/dev/null 2>&1; then
+    TIMEOUT_BIN="timeout"
+elif command -v gtimeout >/dev/null 2>&1; then
+    TIMEOUT_BIN="gtimeout"
+else
+    TIMEOUT_BIN=""
+fi
+
 log() { printf '[%s] %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$*"; }
 
 trap 'log "SIGINT — stopping loop"; exit 130' INT TERM
 
-log "Bull-HF-BTC loop started · CLAUDE_BIN=$CLAUDE_BIN · MAX_TURNS=$MAX_TURNS"
+if [[ -z "$TIMEOUT_BIN" ]]; then
+    log "WARNING: no timeout binary found (install via 'brew install coreutils' for gtimeout) — claude will run without hard cap"
+fi
+
+log "Bull-HF-BTC loop started · CLAUDE_BIN=$CLAUDE_BIN · MAX_TURNS=$MAX_TURNS · TIMEOUT_BIN=${TIMEOUT_BIN:-none}"
 
 while true; do
     TICK_START=$(date +%s)
@@ -56,8 +70,14 @@ while true; do
         log "/tmp/hf_prompt.md missing after prepare — skipping LLM, post will SKIP"
         echo '{"result":""}' > /tmp/hf_decision_envelope.json
     else
-        log "invoking claude (timeout ${TICK_TIMEOUT}s)..."
-        if ! timeout "$TICK_TIMEOUT" "$CLAUDE_BIN" \
+        if [[ -n "$TIMEOUT_BIN" ]]; then
+            log "invoking claude (timeout ${TICK_TIMEOUT}s via $TIMEOUT_BIN)..."
+            CLAUDE_CMD=("$TIMEOUT_BIN" "$TICK_TIMEOUT" "$CLAUDE_BIN")
+        else
+            log "invoking claude (no timeout)..."
+            CLAUDE_CMD=("$CLAUDE_BIN")
+        fi
+        if ! "${CLAUDE_CMD[@]}" \
                 --output-format json \
                 --max-turns "$MAX_TURNS" \
                 -p "$(cat /tmp/hf_prompt.md)" \

@@ -557,3 +557,42 @@ LLY printed a textbook beat-and-raise on the GLP-1 franchise (Mounjaro +125% YoY
 - (3) Journal-commit failure risk — first-action priority of journal skill is ensuring the LLY trade gets committed (3rd journal failure this week would invalidate the audit trail).
 - (4) AMD 05-05 AMC remains queued for next fresh pre-market.
 **Telegram**: mandatory; action template — 1 BUY (LLY), 1 hold (GOOGL), portfolio + benchmark + reasoning block on LLY, harness-gap context note (12:30 missed but 13:30 caught the spread normalization).
+
+### 2026-04-30T19:41:00Z — INTRADAY-SCAN 14:30 CT (last-call, exits-only)
+**Account**: equity $97,517.34 · cash $90,158.23 (92.45%) · last_equity $97,443.91 → day P&L **+0.075%** (microscopic positive). Buying power $187,675.57. **2 open positions** (GOOGL J+0 +3.42%, LLY J+0 -0.32%). 2 open orders (native trail stops on both).
+**Macro snapshot**: VIX **17.10** (-9.10% intraday from prior close 18.81 — vol crush). SPY mid $718.95 (+1.04% vs 04-28 baseline / +0.08% from 13:30 reading). QQQ mid $667.91 (+1.47% vs baseline / +0.03% from 13:30). Calm-bullish grind into the bell, no regime shift (would need VIX +20% intraday — we're seeing the opposite). 10Y stable. **No regime shift**.
+**Performance vs benchmark since 04-28 baseline**: bot $97,517.34 → +0.0633% · SPY $718.95 → +1.04% · QQQ $667.91 → +1.47% · blend **+1.255%** → **alpha cumul ≈ -1.19%** (drag widened slightly from -1.11% at 13:30 — LLY entry has small unrealized loss -0.32% on D+0 entry, GOOGL trail still riding +3.42%).
+**Per-position priority ladder (last-call evaluation order)**:
+- **GOOGL** 7@$369.71, mark $382.35, **+3.42%** (faded from +3.83% at 13:30). J+0 short-swing (J+5 = 05-07 close).
+  - P1 thesis broken: NO (PEAD continuing, +9.26% vs 04-29 close $349.94).
+  - P2 earnings imminent (14:30 special check): NO (already reported 04-29 AMC; next ~late July 2026).
+  - P3 time stop: NO (J+0 < J+5).
+  - P4-5 N/A (equity, not option).
+  - P6 loss cut ≤-5%: NO (+3.42%).
+  - P7 trim winner ≥+20%: NO.
+  - P8 tighten ≥+10%: NO.
+  - **Decision: HOLD**. Native 7% trail HWM $385.84, stop $358.83 (unchanged from 13:30 — current mark below HWM, no further ratchet).
+- **LLY** 5@$939.54, mark $936.58, **-0.32%** (D+0 fade noise from +0.155% at fill). J+0 short-swing (J+5 = 05-07 close).
+  - P1 thesis broken: NO (PEAD thesis fully intact; -0.32% is noise on a +10% gap-up day).
+  - P2 earnings imminent (14:30 special check): NO (next ~late July 2026).
+  - P3 time stop: NO (J+0).
+  - P4-5 N/A (equity).
+  - P6 loss cut ≤-5%: NO (-0.32%, math requires fade to ~$893 for trigger).
+  - P7-8: not in winner zone yet.
+  - **Decision: HOLD**. Native 7% trail HWM **ratcheted from $938.34 → $945.50**, stop **$872.66 → $879.31** (HWM lifted +$7.16 since 13:30 placement — trail working as designed even on a slight intraday fade).
+**Last-call special directives (14:30 only)**:
+- Pre-earnings cuts (tomorrow BMO / tonight AMC, no earnings-hold flag): **none** — neither GOOGL nor LLY has earnings inside this window.
+- Options DTE-3: **none** — no option positions.
+- Day-trade horizon close-out: **none** — no positions tagged day-trade in entry notes.
+**Daily-loss-cap check**: day P&L +0.075% → cap -4% inactive ✅. No `[DAILY-LOSS-CAP]` tag triggered.
+**Pathway A / A-prime / B / C**: **forbidden at 14:30** — last-call slot is exits-only per command. Not evaluated.
+**Stops sweep on survivors**: 
+- GOOGL: native 7% trail running, no manual update needed (one-way ratchet enforced by Alpaca).
+- LLY: native 7% trail running, HWM ratcheted +$7.16 since 13:30 placement, stop ratcheted +$6.65 since placement. No manual update.
+**Decision**: **0 cut · 0 trim · 0 tighten · 0 BUY (forbidden)**. Quiet last-call as expected — both positions inside their normal post-entry zone, native trails handling the work, no last-minute pre-earnings or DTE-3 surprise. Cash 92.45% (sector exposure tech 2.74% + healthcare 4.80% = 7.54% NAV deployed, well under all caps).
+**Risks/watch (close + overnight)**:
+- (1) GOOGL J+0 close-auction compression risk if final 21 min sees Mag-7 deceleration headlines — trail $358.83 = -6.4% from $382.35, ample room.
+- (2) LLY J+0 same close-auction risk — trail $879.31 = -6.1% from $936.58, ample room. Native trail will execute overnight if any after-hours news hits.
+- (3) AMD 05-05 AMC remains queued for next fresh pre-market BUY consideration.
+- (4) Tomorrow 05-01 = Friday → weekly-review fires at 16:00 CT (post-bell). Pre-market 06:00 CT must clean-fire to avoid 5th journal-failure week.
+**Telegram**: per slot context "Telegram on action only" — 0 actions this slot, **NO Telegram sent** (slot-specific user instruction; market-close routine 30 min away will deliver the EOD snapshot).

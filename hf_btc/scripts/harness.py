@@ -611,6 +611,9 @@ def cmd_post(force_decision: dict[str, Any] | None = None) -> int:
         print("post error: missing /tmp/hf_context.json")
         return 1
     ctx = json.loads(CONTEXT_FILE.read_text())
+    # Refresh portfolio state — sim_portfolio mutates between prepare and post
+    # if a previous post opened/closed a trade in the same tick.
+    ctx["sim_portfolio"] = sim_portfolio.snapshot()
 
     decision = force_decision or _parse_envelope()
     if decision is None:

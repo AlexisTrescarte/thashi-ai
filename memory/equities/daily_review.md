@@ -129,3 +129,55 @@ Raw metrics: alpha ~0%, 0 violations, 0 closes (hit/R undefined). Strict reading
 
 ### Lesson of the day (1 line)
 - **Pre-stage the GOOGL exit at 04-28 market-open** with a GTD market-on-close (or stop-limit at $349) — do not let the 14:30 last-call routine be the single point of failure for a mandatory pre-earnings exit, because today proved 50%+ of routines can miss in a single session and the exchange is the only reliable executor when the harness is silent.
+
+## 2026-04-30 — Daily review (grade: C)
+
+### Performance
+- Equity: $97,519.12 (day +0.077%, +$75.21 vs last_equity $97,443.91)
+- Benchmark day (SPY+QQQ blend): +0.934% (SPY 711.59 → 718.41 = +0.958%; QQQ 661.59 → 667.61 = +0.910%; IEX feed)
+- Alpha day: **-0.857%**
+- Cumul since baseline 04-28: bot +0.065% · bench +1.195% (SPY 711.55 → 718.41 = +0.964%; QQQ 658.23 → 667.61 = +1.425%) · **alpha cumul -1.130%**
+
+### Activity
+- Trades opened today: 2 (GOOGL 7@$369.7114 BUY · LLY 5@$939.54 BUY) — both native 7% trailing stops attached within 11s of fill
+- Trades closed today: 0 (the GOOGL 3@$345.71 CUT was filled 04-29, not today)
+- Hit rate today: N/A | Avg R today: N/A
+- Stops set within 5min on all new positions: **yes** (GOOGL +10s, LLY +11s)
+
+### By setup (today)
+- PEAD Pathway-B opportunistic: 2 BUYs opened, 0 closed → unrealized GOOGL +$101.25 (+3.91% from fill), LLY -$27.75 (-0.59% from fill); net intraday position-level +$73.50
+
+### Open positions EOD (2)
+- **GOOGL** 7 @ $369.7114 (entry 04-30 J+0, PEAD post-Q1-beat) · mark $384.18 · +$101.25 (+3.91% from fill, +9.78% vs 04-29 close) · native trail 7% (id 74ec67e0) HWM $385.84, stop $358.83 · time stop 05-07 close.
+- **LLY** 5 @ $939.54 (entry 04-30 J+0, PEAD post-Q1-beat-and-raise) · mark $933.99 · -$27.75 (-0.59% from fill, +9.73% vs 04-29 close) · native trail 7% (id 8e54102c) HWM $945.50, stop $879.31 · time stop 05-07 close.
+
+### What worked (2 lines)
+- **Pathway-B PEAD execution textbook**: GOOGL fill at $369.71 (post-Q1-beat: revenue $109.9B / Cloud +63%) and LLY fill at $939.54 (post-Q1-beat-and-raise: revenue +56% YoY, FY guide raised) — both passed pretrade_guards + microstructure (LLY NEUTRAL 14.8 bps) and got their native trails attached within seconds; positions sized in their conviction tiers (GOOGL 2.65% Probe, LLY 4.82% Standard mid-band).
+- **Spread-defer-then-fire mechanic on LLY**: 11:30 scan flagged spread 2.14% (over 0.5% cap → defer); 13:30 scan re-fetched, spread had normalized to 0.097% → fire. Same lesson family as 04-23 GEV/VRT spread-skip but applied in reverse — patience on liquidity captured the late-day continuation.
+
+### What didn't (2 lines)
+- **Cumul alpha now -1.13%** since 04-28 baseline (bench +1.20% on Mag-7 earnings beats and risk-on rally; bot +0.07% from cash-heavy posture). Today bot day +0.08% on a +0.93% blend session = -0.86% alpha day — the cash drag has been measurable now that we have a dated baseline; 99% cash through 04-29 missed the GOOGL/MSFT/META cluster gap.
+- **3rd journal-commit failure in 5 trading days** ([HARNESS-GAP] 2026-04-30T16:35Z): pre-market 06:00 CT and market-open 08:30 CT both fired their slash commands but the journal step did not commit; GOOGL BUY only became visible to memory at 11:30 reconciliation. Pattern is recurring and the 04-30T16:35Z learnings entry already queues a journal-commit retry clause for the monthly evolution proposal.
+
+### Discipline log
+- Guardrail violations: 0 — none
+- Time stops honored: N/A today (GOOGL J+0 / LLY J+0; both time-stop 05-07 close, well in horizon)
+- Stop updates logged: 0 manual; 2 native auto-ratchets — GOOGL HWM $378.365 → $385.84 (stop $351.88 → $358.83), LLY HWM $938.34 → $945.4999 (stop $872.66 → $879.31)
+- Sector mix EOD: tech 2.76% (GOOGL) + healthcare 4.79% (LLY) = 7.55% total — well within 25% sector cap
+- Cash EOD: $90,158.23 (92.45%) — well above 10% floor
+
+### Coherence adjustment
+Raw metrics: alpha day -0.857% (within ±1%), 0 violations, hit/R undefined (no closes). Table strict reading → C (alpha within ±1% band; B requires alpha > 0; D starts at -1%). Settled **C**: today was a step up in execution vs the past week (2 clean BUYs with stops, microstructure-gated, sized properly) but the cumulative alpha drag (-1.13%) and the recurring HARNESS-GAP cap the grade. No upgrade to B because the day still printed negative alpha; no downgrade to D because every trade was disciplined.
+
+### Carry-forward for tomorrow (Fri 2026-05-01)
+- **GOOGL J+1**: PEAD continuation; native trail engaged. Action plan: hold while in-thesis; first TIGHTEN trigger at +10% trail-tightening per priority ladder (intraday-scan); time stop 05-07 close (J+5).
+- **LLY J+1**: PEAD continuation; native trail engaged. Action plan: monitor for healthcare sector confirmation (XLV); TRIM trigger at +20% (Standard tier); time stop 05-07 close.
+- **Aging J+6+**: none.
+- **Pre-earnings tomorrow (05-01)**: AAPL AMC, AMZN AMC — Mag-7 cluster night. No exposure on book; pre-market must scan for Pathway-B PEAD candidates if any of the prints surprise materially.
+- **Macro 24h**: NFP April release Fri 05-01 07:30 CT (typical first-Friday-of-May) → can swing pre-market; ISM Manufacturing 09:00 CT. Sizing one notch down on any new BUY before NFP per guardrails on dated event risk.
+- **Regime note**: today **confirmed neutral-lean-risk-on** (SPY/QQQ near ATH on Mag-7 beats, AI capex undamaged, breadth holding ~53%); the 04-28 "risk-off twitch on OpenAI revenue concerns" reversed cleanly. Not tagging [REGIME-SHIFT] (single-session reversal is regime confirmation, not flip — needs 2+ sessions of structural change to tag).
+- **Operational**: weekly-review fires Fri 16:00 CT after daily-review — must surface (a) 3 HARNESS-GAPs in 5 trading days, (b) cumul alpha -1.13% week-1 of formal baseline, (c) GOOGL+LLY PEAD stack into 05-07 horizon.
+- **No risk-event tag today**: no DAILY-LOSS-CAP, no DRAWDOWN-AUTO-DEFENSE (DD from ATH -2.48%), no REGIME-SHIFT, no fresh INCIDENT (HARNESS-GAP already logged at 11:30Z).
+
+### Lesson of the day (1 line)
+- **Spread-defer-then-fire is a real Pathway-B tactic**: when a PEAD candidate gaps with a wide open book (LLY 11:30 spread 214 bps), defer to the next intraday-scan and re-fetch — today the 13:30 re-eval caught LLY at 14.8 bps and 70% confidence; codify into next pre-market: any spread-skipped name at market-open auto-queues for re-eval at 11:30 / 12:30 / 13:30 with the same plan price + 2% FOMO guard, no new research required.

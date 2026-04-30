@@ -1,0 +1,27 @@
+[Unit]
+Description=Bull-HF-BTC continuous 5-min trading loop (sim-only)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=bull
+Group=bull
+WorkingDirectory=/opt/thashi-ai/hf_btc
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+Environment="CLAUDE_BIN=/usr/local/bin/claude"
+EnvironmentFile=/opt/thashi-ai/.env
+ExecStart=/opt/thashi-ai/hf_btc/run_loop.sh
+Restart=on-failure
+RestartSec=30
+StandardOutput=append:/var/log/bull-hf-btc.log
+StandardError=append:/var/log/bull-hf-btc.log
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=false
+ProtectSystem=strict
+ReadWritePaths=/opt/thashi-ai /var/log /tmp
+
+[Install]
+WantedBy=multi-user.target

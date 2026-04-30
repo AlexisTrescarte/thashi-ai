@@ -1,0 +1,17 @@
+{
+  "trades": [
+    {
+      "id": "d40394b0",
+      "side": "long",
+      "entry": 76344.843345,
+      "raw_price": 76306.69,
+      "qty": 0.00235772,
+      "sizing_pct": 6.0,
+      "tp": 76688.22,
+      "sl": 76077.77,
+      "opened_at": "2026-04-30T18:30:53.413183+00:00",
+      "reason": "Test E2E injection: rebound EMA20 5m + MACD hist flip + volume spike z=2.3, ETF inflow M overnight.",
+      "notional_at_open": 180.0
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "date_utc": "2026-04-30",
+  "baseline_used": 1,
+  "opportunistic_used": 2,
+  "baseline_cap": 24,
+  "opportunistic_cap": 24,
+  "hard_cap": 48,
+  "history": [
+    {
+      "ts": "20260430T181336Z",
+      "interval": "5m",
+      "reason": "baseline",
+      "file": "20260430T181336Z_5m_baseline.png"
+    },
+    {
+      "ts": "20260430T182352Z",
+      "interval": "5m",
+      "reason": "signal",
+      "file": "20260430T182352Z_5m_signal.png"
+    },
+    {
+      "ts": "20260430T183032Z",
+      "interval": "5m",
+      "reason": "signal",
+      "file": "20260430T183032Z_5m_signal.png"
+    }
+  ]
+}

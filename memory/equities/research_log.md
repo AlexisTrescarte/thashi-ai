@@ -459,4 +459,44 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - (4) AMD 05-05 AMC remains queued for next fresh pre-market re-evaluation.
 **Telegram**: mandatory; quiet-action template — 1 hold position (GOOGL J+0 +1.97%), 0 actions, harness-gap reconciliation note, brief macro context.
 
+### 2026-04-30T17:35:00Z — INTRADAY-SCAN 12:30 CT
+**Account**: equity $97,537.56 · cash $94,855.93 (97.25%) · positions $2,681.63 · last_equity $97,443.91 → day P&L **+0.096%**. Buying power $192,393.49. 1 open position (GOOGL J+0). 1 open order (GOOGL trail stop, ratcheted vs 11:30).
+**Macro snapshot**: SPY $716.27 (+~0.3% day) · QQQ $665.31 (+~0.4% day, recovering off Mag-7 dispersion) · VIXY $27.26 (no spike). Tape continues to digest the Mag-7 split (GOOGL/AMZN/QCOM/LLY beats vs MSFT/META misses). No regime shift trigger. Pre-FOMC overhang gone (yesterday cleared with hold + 8-4 dissent). Breadth still mid-50s (no fresh deterioration vs 11:30).
+**Performance vs benchmark since 04-28 baseline** (SPY $711.55 · QQQ $658.23): bot $97,537.56 → +0.084% · SPY $716.27 → +0.66% · QQQ $665.31 → +1.08% · blend **+0.87%** → **alpha cumul ≈ -0.79%** (slight widening of underperformance vs 11:30; book is still 97% cash while broad-market beta works, GOOGL Probe partially compensates).
+**Per-position priority ladder (1 position)**:
+- **GOOGL** 7@$369.71, mark $383.09, +$93.65 (+3.62%), J+0, qty_available=0 (reserved by trail). Trail HWM has ratcheted $378.365 → $384.30, stop $351.879 → $357.399 (one-way ratchet, native Alpaca trail engaged).
+  - Priority 1 (thesis broken): NO — Q1 beat in-thesis.
+  - Priority 2 (earnings imminent): NO — printed 04-29 AMC, next ~3 months.
+  - Priority 3 (time stop): NO — J+0, horizon J+5.
+  - Priority 4-5 (option DTE/premium): N/A.
+  - Priority 6 (-5% loss cut): NO — +3.62%.
+  - Priority 7 (TRIM ≥ +20%): NO — +3.62%.
+  - Priority 8 (TIGHTEN ≥ +10%): NO — +3.62%, well below threshold.
+  - Priority 9 (structural): trail already ratcheting, qty_available=0 confirms the engine is doing its job. No manual STOP-UPDATE.
+  - **Decision: HOLD**.
+**Daily-loss-cap check**: day P&L +0.096% → cap -4% inactive. ✅
+**Mandatory active universe scan** (per 2026-04-30 cmd update — target ≥ 5 candidates):
+1. **LLY** (carryover from 11:30) — quote ap $940.75 / bp $909.00 → spread **3.43%** (cap 0.5%). **WORSE than 11:30** (was 2.14%). **SKIP — mechanical**. The book on a $900+ stock with morning earnings gap remains untradeable for our microstructure rules.
+2. **QCOM** (carryover from 11:30) — quote ap $181.00 / bp $179.05 → spread **1.08%** (cap 0.5%). Improved vs 11:30 (was 2.34%) but still over cap. **SKIP — mechanical**. 13:30 slot may finally see normalization.
+3. **AMZN** — quote ap $260.10 / bp $259.99 → spread 0.042% (HEALTHY now). But intraday tape: still mixed/choppy after the +4% AH → -1.80% reversal earlier. The catalyst (revenue beat + AWS in-line) is being sold by the tape, not bought = degraded T leg. PEAD setup requires day-1 price action confirming the beat; here it's contradicting. **SKIP — entry quality** (poor T leg despite clean spread).
+4. **MSFT** — quote ap $401.27 / bp $401.06 → spread 0.052% (clean). But narrative is broken intraday (Azure decel, -5%+ off the print). Not a Pathway-B candidate; this is sell-side day. **SKIP — broken intraday narrative**.
+5. **META** — quote ap $610.00 / bp $607.00 → spread 0.49% (right at cap). Stock down ~9% on $135B 2026 capex guide. Knife-catch on capex spook = poor R:R, no clean technical reclaim level visible. **SKIP — broken intraday narrative**.
+6. **XLE** (sector check) — ap $59.36 / bp $59.34 → spread 0.034% (clean). Energy holding the Iran/Hormuz tail bid but no new catalyst since 04-27 high. **SKIP — no new dated catalyst**.
+7. **AAPL** (mega-cap reference) — ap $274.00 / bp $273.58 → spread 0.15% (clean). No fresh catalyst (next print 05-01 AMC tomorrow → earnings horizon < 24h, automatic SKIP for any opportunistic buy). **SKIP — earnings horizon**.
+- **Pathway A (pre-market WATCH)**: unavailable — no 04-30 pre-market block.
+- **Pathway A-prime (open-retry)**: no `[OPEN-RETRY:...]` tags exist (nothing to retry).
+- **Pathway B (opportunistic catalyst CTQS ≥ 70 per 12:30+ slot rules)**: none qualify — LLY/QCOM mechanical spread reject (LLY worse), AMZN tape rejects, MSFT/META broken narratives, XLE/AAPL no fresh catalyst (AAPL has earnings tomorrow).
+- **Pathway C (technical-only Probe)**: nothing surfaced. Tape is still earnings-distorted; chasing technicals into Mag-7 dispersion is poor R:R. Cap 1/day reserved.
+- **Crypto sleeve**: no 04-30 read available (no pre-market block); deferred to next pre-market that fires.
+- **Cadence accounting**: 0 Pathway-B/C BUYs used today via intraday-scan (cap 5/day). 1 Pathway-B BUY fired at market-open today (GOOGL, reconciled at 11:30) → 1/5 used cumulatively. Floor-progress: rolling 5td = 2 BUYs (GOOGL 04-23 close-out, GOOGL 04-30 fresh).
+**Stops sweep on survivors**: GOOGL trail is native + ratcheting (Alpaca-managed). New HWM $384.30, new stop $357.399 (-3.62% cushion below current $383.09 mark; -4.5% structural distance). qty_available=0 confirms full reservation. No additional STOP-UPDATE needed.
+**Decision**: **0 cut · 0 trim · 0 tighten · 0 BUY**. Pure hold scan. Same posture as 11:30 — single Probe-sized GOOGL position rides the native trail, no qualifying opportunistic setup, and the cash-heavy book continues to lag a +0.87% blend session by ~80bps.
+**Risks/watch (rest of session)**:
+- (1) LLY/QCOM spread tracking — last chance is 13:30 slot (14:30 is exits only). LLY trending wider (2.14% → 3.43%) suggests structural illiquidity at this price level not just opening-gap noise; QCOM normalizing toward 0.5%, may finally qualify at 13:30.
+- (2) GOOGL trail one-way ratchet active. Mark $383.09 vs HWM $384.30 (-0.31%); next ratchet up at any new HWM print. Stop currently $357.399, will tighten further only if mark sets new HWM above $384.30.
+- (3) AAPL earnings 05-01 AMC tomorrow → automatic SKIP zone for any new entry today.
+- (4) AMD 05-05 AMC remains queued for next fresh pre-market re-evaluation.
+- (5) Journal-commit failure pattern (3 this week) — surfacing in monthly-deep-review proposal queue.
+**Telegram**: mandatory per CLAUDE.md "no silent runs" rule; quiet-hold template — 1 hold position (GOOGL J+0 +3.62%, trail ratcheted), 0 actions, brief macro context, scan summary.
+
 

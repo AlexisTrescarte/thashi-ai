@@ -384,6 +384,70 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - (4) Activity floor: rolling 5td BUY count = 1 (GOOGL 04-23). Floor target ≥3 in risk-on/neutral. Below floor — but the right correction is a quality entry post-FOMC/post-prints, not a forced low-CTQS BUY pre-FOMC.
 **Telegram**: mandatory; ≤ 15-line no-action template — empty book, FOMC compression, deferred-to-tomorrow rationale.
 
+### 2026-04-30T15:39:00Z — INTRADAY-SCAN 10:30 CT (HARNESS-GAP fallback)
+**Account** (Alpaca API source-of-truth at 11:34 ET): equity **$97,488.81** · cash **$94,855.93** · positions $2,632.88 · last_equity $97,443.91 → day P&L **+0.046%** (essentially flat). Buying power $192,344.74. Crypto status ACTIVE; options approved L3.
+**Open positions**: 1 — GOOGL 7@$369.711429 · mark $376.135 · P&L +$44.96 / **+1.74%** · cost basis $2,587.98 · sizing 2.65% NAV (Probe band).
+**Open orders**: 1 — GOOGL trailing-stop sell 7 shares · trail_percent 7% · hwm $378.23 · stop $351.7539 · GTC.
+**HARNESS-GAP active**: today's pre-market 06:00 CT and market-open 08:30 CT both produced **no research_log block, no runs.log entry, no commit** — but Alpaca shows a successful market-open BUY (GOOGL 7@$369.71 at 13:47:33Z) + 7% trailing stop placement. So market-open *executed* but did not journal. New failure mode beyond the previous "total no-show" harness gaps. Documented in learnings.md 2026-04-30T15:39:00Z. Trade_log entry written retroactively.
+**Macro snapshot**:
+- SPY/QQQ lifting on Mag-7 prints: GOOGL +6% AH ($367 ATH), MSFT/META/AMZN AMC; AAPL reports tonight. QQQ ~$662 (intraday range $661.45-$665.31, 52w high zone). Major indexes "gathered steam early" per Schwab read. Eli Lilly +6-7% (LLY blow-out beat +56% rev / +26% EPS / raised guidance), Qualcomm +9-16% (QCOM hyperscaler custom-silicon engagement), Merck +3% (beat narrowed guidance).
+- VIX **17.83** (yesterday close, no spike) · stable contango term structure · VVIX controlled. No credit event signaled.
+- 10Y yields slightly down (Treasury yields drop, oil drop on the read).
+- PCE March + Initial jobless claims printed 07:30 CT today: **inflation in line, growth slightly below** = mild risk-on outcome.
+- Sector skew: tech/semis bid (Mag-7 + QCOM read-through), health-care leadership on LLY, oil pulled back.
+- **Regime: risk-on confirmed** (no shift from yesterday's neutral-lean-cautious — actually upgraded one notch on Mag-7 + LLY beats and PCE in-line).
+**Performance vs benchmark since 04-28 baseline** (SPY $711.55 · QQQ $658.23): bot $97,488.81 vs $97,455.66 = **+0.034%** since baseline. Bench needs the day's intraday SPY/QQQ but rough estimate: SPY ~$709 ($-0.36% cumul) / QQQ ~$662 ($+0.57% cumul) → blend ~+0.10% cumul → **alpha cumul ≈ -0.07%** (microscopic, within day-3 noise).
+**Per-position priority ladder**:
+- **GOOGL** 7@$369.71 · mark $376.13 · +1.74%:
+  - P1 thesis broken? **No** — Q1 print last night was a blow-out (+22% rev / +82% EPS / +63% Cloud / 350M paid subs / +$190B 2026 capex raise). Stock at new ATH $378.23 intraday. Thesis confirmed and accelerated.
+  - P2 earnings imminent? Just printed yesterday AMC. Next earnings late July 2026 → outside any horizon. NA.
+  - P3 time stop? Style = short-swing (3-5td), entry today J+0 → time stop = 2026-05-07 close (J+5). Far away.
+  - P4 options DTE-3? NA (equity).
+  - P5 option premium? NA.
+  - P6 -5% cut? P&L +1.74% > -5% threshold. NA.
+  - P7 TRIM ≥+20%? +1.74% << +20%. NA.
+  - P8 TIGHTEN ≥+10%? +1.74% << +10%. NA.
+  - P9 structural stop update? Native 7% trail with HWM auto-tracking is already optimal — Alpaca will ratchet stop-up as price climbs. No manual override warranted.
+  - **P10 → HOLD**. Action: 0.
+**Daily-loss-cap check**: day P&L +0.046% → cap −4% inactive. ✅
+**BUY pathway evaluation** (Pathway A unavailable: no pre-market block; A-prime unavailable: no [OPEN-RETRY:...] tag in research_log):
+- **Pathway A-prime — open-retry queue**: Scanned `OPEN-RETRY` tags in today's pre-market block — **none exist** (no pre-market block at all). NA.
+- **Pathway A — pre-market WATCH trigger**: NA — no pre-market block.
+- **Pathway B — opportunistic catalyst (CTQS ≥ 60)**: Two candidates surfaced today via the Mag-7 + earnings cluster sweep — running them through the **harness-gap bounded scan** (max 2 candidates, Probe sizing only, CTQS ≥ 65 floor, 1+1 sources, no technical-only):
+
+  **Candidate 1 — LLY (Eli Lilly)** — Probe 2.5% NAV (would-be sizing)
+  - Setup: PEAD on Q1 2026 beat-and-raise printed BMO today.
+  - Catalyst (C 20/25): Q1 2026 EPS **$8.55 vs $6.79 est** (+26% beat). Revenue $19.8B (+56% YoY) vs $17.8B est. **2026 guidance raised**: rev to $82-85B (vs prior $80-83B), EPS to $35.50-37. Mounjaro $8.66B (+125% YoY) vs $7.26B est. Zepbound $4.16B US (+80% YoY). Multiple drivers, GLP-1 leadership theme intact. Dated catalyst = J+0 PEAD post-print.
+  - Technical (T 17/25): +6-7% pre-market, near new ATH. Underlying uptrend over 3-6 months supportive. Needs intraday confirmation but pre-print base was clean.
+  - Quantitative (Q 18/25): top-decile rev growth (+56%), top-decile drug pipeline economics, mcap ~$700B+. ADV multi-million shares ✅.
+  - Sentiment (S 17/25): Multiple analyst PT raises expected post-print. GLP-1 theme bullish. No insider flag.
+  - **CTQS = 72/100** → would-be Standard tier; **harness-gap fallback caps at Probe 2.5%**.
+  - **SPREAD CHECK** at 10:37 ET: ask **$940**, bid **$924.54** → spread **1.64%** (cap 0.5%). **SKIP this slot** on the spread guard. Mid ~$932. Same anti-pattern as VRT/GEV 04-23 and VRT 04-28 — fresh post-print book hasn't normalized at 10:30 even on a mega-cap.
+  - **Retry tag**: `[OPEN-RETRY:LLY:spread:plan_price=$932.27:plan_sizing=Probe-2.5%:stop_methodology=7%-trailing:expires=2026-04-30-close]`. 11:30/12:30/13:30 slots can re-attempt if (a) spread normalizes < 0.5% AND (b) ask remains ≤ $940 × 1.02 = **$958.80** (FOMO guard) AND (c) all standard preflight gates pass.
+  - Sources (1+1 per harness-gap rule): [Eli Lilly Q1 2026 release (primary, prnewswire)](https://www.prnewswire.com/news-releases/lilly-reports-first-quarter-2026-financial-results-raises-full-year-guidance-and-highlights-momentum-of-new-medicines-302758113.html) · [CNBC LLY Q1 2026 earnings (secondary)](https://www.cnbc.com/2026/04/30/eli-lilly-lly-earnings-q1-2026.html).
+
+  **Candidate 2 — QCOM (Qualcomm)** — would-be Probe but **SKIPPED**.
+  - Catalyst (C 17/25): Q1 beat + hyperscaler custom-silicon engagement (multi-year, initial shipments by end of 2026). Investor Day in June = secondary fuse.
+  - Technical (T 14/25): **Day-1 climax volatility** — stock initially fell as much as -7% on guidance miss, then reversed to +9-16% on hyperscaler comments. This is exactly the same anti-pattern as AMD on 04-28 ("climax distribution day, T leg degrades"). Fresh post-print noise = poor entry-timing.
+  - Quantitative (Q 17/25): mcap ~$200B, ADV deep ✅, AI-PC + automotive growth narrative.
+  - Sentiment (S 16/25): mixed — hyperscaler bullish, memory-supply guidance bearish.
+  - **CTQS ≈ 64** → **below the 65 floor** for harness-gap bounded scan.
+  - Decision: **SKIP** (CTQS below floor + mixed guidance + day-1 climax pattern). Re-evaluate at next pre-market with full FY model rather than chasing a noisy day-1.
+  - Sources (informational): [CNBC QCOM hyperscaler 16% surge](https://www.cnbc.com/2026/04/29/qualcomm-qcom-stock-earnings-china.html) · [GuruFocus QCOM memory shortage concerns](https://www.gurufocus.com/news/8823240/qualcomm-qcom-faces-revenue-decline-amid-memory-shortage-concerns).
+
+- **Pathway C — technical-only Probe (T+Q+S ≥ 60/75)**: NA — harness-gap fallback explicitly forbids technical-only ("max 2 candidates, Probe sizing only, CTQS ≥ 65 floor, 1+1 sources, **no technical-only**"). Cap-1/day untouched.
+- **Crypto sleeve**: BTC/ETH/SOL — same risk-on tape, but no fresh pre-market read available and harness-gap rule still binds (no technical-only). No qualifying B candidate. Untouched.
+- **Cadence accounting**: 0 Pathway-B/C BUYs used today (cap 5/day, untouched). Pathway-A-prime not applicable. Today's only fill (orphaned GOOGL) is from the unjournaled market-open run, NOT counted against the 5/day Pathway-B+C cap (it's pre-vetted in the same sense as Pathway A — the catalyst was real).
+**Stops sweep**: GOOGL native 7% trailing-stop confirmed live (status=new, GTC, hwm $378.23, stop $351.7539, expires 2026-07-29T20:00:00Z). Trail will auto-ratchet on new HWMs. No manual override — already a one-way ratchet at 7% (consistent with the 04-24 INCIDENT learning to prefer 7% over 8% on PEAD entries with binding time stops). ✅
+**Decision**: **0 BUY · 0 CUT · 0 TRIM · 0 TIGHTEN · 0 STOP-UPDATE** this slot. 1 candidate (LLY) deferred via OPEN-RETRY tag for 11:30/12:30/13:30 retry on spread normalization. GOOGL HOLD.
+**Risks/watch (rest of session)**:
+- (1) AAPL prints AMC tonight. Last Mag-7 of the cluster. Tomorrow's pre-market is the main scan to digest the full Mag-7 + AAPL set.
+- (2) LLY spread retry at 11:30 / 12:30 / 13:30: target spread < 0.5%, ask ≤ $958.80 (FOMO cap). If spread tightens but ask runs above $958.80 = FOMO guard kicks in, mark `[OPEN-RETRY-EXPIRED:FOMO]`. If neither slot fits by 13:30, no last-call attempt at 14:30 (exits-only).
+- (3) GOOGL position continues holding the post-print bid; native trail handles any reversal (-7% from HWM = -4.92% from entry, well within the -5% cut threshold).
+- (4) Activity floor: rolling 5td BUY count = 2 (GOOGL 04-23 closed + GOOGL 04-30 orphaned). Floor target ≥3 in risk-on/neutral. Below floor — LLY retry would close the gap if it fires.
+- (5) Operational: market-open journaling failure recurring as a new failure mode. Surface in next monthly-deep-review for atomic-commit instrumentation proposal.
+**Telegram**: mandatory; **action template** with HARNESS-GAP alert (orphaned BUY documented + LLY retry tag) — not a no-action template since real audit work was done.
+
 ### 2026-04-29T18:35:00Z — INTRADAY-SCAN 13:30 CT
 **Account**: equity $97,443.92 · cash $97,443.92 (100.00%) · last_equity $97,456.13 → day P&L **−0.013%** (essentially flat). Book empty (0 positions, 0 open orders). Buying power $194,887.84.
 **Macro snapshot (post-FOMC, mid-Powell press conf)**:

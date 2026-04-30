@@ -410,3 +410,53 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - (3) Pre-market silence pattern: 4 of last 6 weekday pre-market slots missed. Already on the monthly-deep-review queue alongside the GTD-exit-at-fill remediation.
 - (4) Activity floor: rolling 5td BUY count = 1 (GOOGL 04-23). Floor target ≥3 in risk-on/neutral. Still below — but the discipline is: a quality post-event entry beats 2 forced low-CTQS pre-event entries. Will close the floor gap with the post-FOMC + post-Mag-7 setup tomorrow.
 **Telegram**: mandatory; ≤ 15-line no-action template — empty book, mid-Powell compression, deferred-to-tomorrow rationale, alpha cumul +0.13%.
+
+### 2026-04-30T16:35:00Z — INTRADAY-SCAN 11:30 CT
+**Account**: equity $97,495.00 · cash $94,855.93 (97.29%) · positions $2,639.07 · last_equity $97,443.91 → day P&L **+0.052%** (essentially flat). Buying power $192,350.93. 1 open position (GOOGL, J+0). 1 open order (trail stop on GOOGL).
+**State reconciliation — MISSED JOURNAL ENTRIES (pre-market 06:00 CT + market-open 08:30 CT today)**:
+- No 04-30 pre-market block exists in research_log; no 04-30 market-open commit in git log; runs.log last entry is 2026-04-29T18:35:00Z.
+- BUT Alpaca order history shows: **GOOGL 7 shares BUY filled at $369.71 / market order, 2026-04-30T13:47:31Z** (08:47 CT, ~17 min after market-open bell), followed 10 seconds later by a **trailing_stop sell 7 / 7% trail / TIF=GTC** (order 74ec67e0, HWM $378.365, stop $351.879).
+- This was clearly an opportunistic Pathway-B BUY at the market-open slot after GOOGL beat earnings AMC last night (+7.15% post-print). The market-open routine fired and traded but **failed to commit the journal** — third instance this week of journal-commit failure. Reconciliation entry written below to trade_log retroactively. `[HARNESS-GAP]` learnings entry added.
+**Macro snapshot**: VIX 19.50 (+3.34% intraday, no spike — measured), SPY mid $715.01 (+0.08% day), QQQ mid $663.53 (-0.18% day). Mag-7 earnings reaction digesting:
+- **GOOGL +7.15%** (Q1 beat: revenue $109.9B vs $107.2B est, Cloud +63% to $20.02B vs $18.05B est) — clean beat, in-thesis for our position.
+- **AMZN +4% AH** but trading -1.80% intraday (mixed retail/AWS read).
+- **MSFT -5.14%** (Azure deceleration concerns).
+- **META -8.84%** (capex 2026 guide $135B midpoint spooks).
+- Other movers: **LLY +6-7%** (Q1 EPS $8.55 vs $6.79 est, FY2026 raised to $82-85B; Mounjaro +125%, Zepbound +80%); **QCOM +11%** (EPS beat).
+- **No regime shift trigger** (VIX +3% well within noise; no credit/geopol shock; FOMC cleared yesterday with hold + 8-4 dissent already digested).
+**Performance vs benchmark since 04-28 baseline** (SPY $711.55 · QQQ $658.23): bot $97,495 → +0.040% · SPY $715.01 → +0.49% · QQQ $663.53 → +0.81% · blend **+0.65%** → **alpha cumul ≈ -0.61%** (mild underperformance — book was 100% cash through 04-29 while QQQ rallied +0.81% on Mag-7 prints; today's GOOGL position partially recovers, but 2.7% NAV exposure is small relative to broad-market beta).
+**Per-position priority ladder (1 position)**:
+- **GOOGL** 7@$369.71, mark $377.01, +$51.09 (+1.97%), J+0, qty_available=0 (reserved by trail stop).
+  - Priority 1 (thesis broken): NO — Q1 beat strong, Cloud +63%, in-thesis.
+  - Priority 2 (earnings imminent): NO — earnings printed last night; next earnings ~3 months.
+  - Priority 3 (time stop): NO — J+0, short-swing horizon J+5.
+  - Priority 4-5 (option DTE/premium): N/A — equity.
+  - Priority 6 (-5% loss cut): NO — +1.97%.
+  - Priority 7 (TRIM ≥ +20%): NO — +1.97%.
+  - Priority 8 (TIGHTEN ≥ +10% if not yet tightened): NO — +1.97%, well below threshold.
+  - Priority 9 (structural stop update): trail is already 7% native ratcheting (HWM $378.365 → stop $351.879 = -7.0% from HWM). One-way ratchet active. No manual STOP-UPDATE call needed (Alpaca's native trail is the engine).
+  - **Decision: HOLD**.
+**Daily-loss-cap check**: day P&L +0.052% → cap -4% inactive. ✅
+**Mandatory active universe scan** (target ≥ 5 candidates per BUY-eligible slot per the 2026-04-30 cmd update):
+1. **LLY** (Eli Lilly) — Pathway B candidate. Q1 beat+raise (Mounjaro +125%, Zepbound +80%, FY2026 $82-85B). Catalyst dated (Q1 print today AM). Quote ap $935.02 / bp $915.00 → spread **2.14%** (cap 0.5%). **SKIP — mechanical** (book post-gap not stabilized; same 04-23 GEV/VRT pattern). Re-eval at 12:30 if spread normalizes.
+2. **QCOM** (Qualcomm) — Pathway B candidate. EPS beat, +11% intraday. Quote ap $185.00 / bp $180.67 → spread **2.34%**. **SKIP — mechanical**. Re-eval at 12:30.
+3. **AMZN** (Amazon) — beat (EPS $2.78 vs $1.64 est, revenue $181.52B vs $177.3B est) but tape mixed (-1.80% intraday after +4% AH). Choppy sell-the-news price action = degraded T leg. **SKIP — entry quality** (wait for tape consolidation).
+4. **MSFT** (Microsoft) — Azure -5.14% on deceleration narrative. Thesis-degraded for fresh entry today; not a PEAD candidate, more like a sell-side day. **SKIP — broken intraday narrative**.
+5. **META** (Meta) — -8.84% on $135B 2026 capex guide. Fresh entry into a -8% knife-fall on capex spook = poor R:R. **SKIP — broken intraday narrative**.
+- **Sectors scanned (no qualifying): defensives flat (utilities/staples)**, **energy** holding on Iran tail (XLE no breakout vs 04-27 high seen), **financials** quiet (V already moved at 04-29, no fresh PEAD today).
+- **Pathway A (pre-market WATCH trigger)**: unavailable — no 04-30 pre-market block exists.
+- **Pathway A-prime (open-retry)**: 10:30-only-or-later but no `[OPEN-RETRY:...]` tags exist (no pre-market block to seed them).
+- **Pathway B (opportunistic catalyst CTQS ≥ 60)**: top-2 promotion = LLY + QCOM, both spread-skipped. No promotion to research-skill CTQS note this slot (mechanical reject before scoring).
+- **Pathway C (technical-only Probe T+Q+S ≥ 60/75)**: nothing surfaced. Tape post-Mag-7 prints is choppy and earnings-distorted; chasing technicals into this dispersion is poor R:R. Cap 1/day reserved.
+- **Crypto sleeve**: no 04-30 read; deferred to next pre-market that fires.
+- **Cadence accounting**: 0 Pathway-B/C BUYs used today (cap 5/day untouched). 1 Pathway-B BUY fired at market-open (GOOGL) but isn't yet logged in trade_log — counts as 1/5 used after reconciliation. Floor-progress: rolling 5td = 2 BUYs (GOOGL 04-23 close-out, GOOGL 04-30 fresh).
+**Stops sweep on survivors**: GOOGL trail stop is native + ratcheting (Alpaca-managed). qty_available=0 confirms order is reserving all 7 shares. No additional STOP-UPDATE needed (the engine is doing its job; one-way ratchet enforced by API). At +1.97% gain, no profit yet to lock — Priority 8 fires only at +10%.
+**Decision**: **0 cut · 0 trim · 0 tighten · 0 BUY**. Pure hold scan. Reconciliation work is administrative (logged below) — no Alpaca action.
+**Risks/watch (rest of session)**:
+- (1) LLY/QCOM spread normalization — track at 12:30 + 13:30 slots; if spread < 0.5% AND price still in viable PEAD continuation zone, promote one to a research-skill CTQS note and consider a Pathway-B Probe entry.
+- (2) GOOGL trail stop $351.879 = -4.5% from current $377.01 mark; if mark continues higher, HWM lifts and stop ratchets.
+- (3) Journal-commit failure pattern: 3 instances this week (04-25 weekend NO, 04-27 partial, **04-30 pre-market + market-open both missed**). Surface in monthly-deep-review evolution proposal queue alongside the GTD-exit-at-fill remediation.
+- (4) AMD 05-05 AMC remains queued for next fresh pre-market re-evaluation.
+**Telegram**: mandatory; quiet-action template — 1 hold position (GOOGL J+0 +1.97%), 0 actions, harness-gap reconciliation note, brief macro context.
+
+

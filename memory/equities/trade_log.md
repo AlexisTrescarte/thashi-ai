@@ -81,3 +81,14 @@ Append-only. **Never rewrite** a past entry. Reverse chronological (most recent 
 - Reason: cut pre-earnings — MOC partial-fill residual, no earnings hold. Earnings GOOGL Q1 2026 = 2026-04-29 AMC (~20:00 UTC tomorrow) → exit at tomorrow's regular open is well before the print and satisfies the no-earnings-hold guardrail.
 - Routine: market-close (last-call)
 - Notes: Considered extended-hours limit sell now (16:00-20:00 ET window) but Alpaca post-close quote was one-sided (bid $329.20 / ask $0) = no real liquidity at the moment of placement. DAY market sell is the safer mechanic — captures tomorrow's regular-session opening cross on a deep mcap. Reinforces the 04-24 INCIDENT remediation lesson: MOC TIF=cls is not deterministic on partial fills; for next pre-earnings exit, prefer queue-during-day market sell + GTD or use limit-IOC at the 14:30 last-call rather than rely on the close auction alone.
+
+### 2026-04-30T13:47:31Z — BUY GOOGL 7@$369.7114 (RECONCILIATION ENTRY — logged retroactively at 11:30 intraday-scan)
+- Order: market BUY filled 2026-04-30T13:47:31Z (08:47 CT, ~17 min after the 08:30 CT bell), qty=7, type=market, filled_avg_price=$369.7114, side=long.
+- Cost basis: $2,587.98 → **2.65% NAV at fill** (Probe band 2-3%).
+- Trail stop placed 10 sec later: order **74ec67e0-c744-45ca-a7dd-521b72caacf2** (trailing_stop sell, qty=7, trail_percent=7%, TIF=GTC, HWM $378.365 at quote time, stop $351.879). Native Alpaca trailing — one-way ratchet engaged.
+- Reason: post-earnings PEAD entry on **GOOGL Q1 2026 beat** (revenue $109.9B vs $107.2B est, Cloud +63% to $20.02B vs $18.05B est, EPS beat). Earnings printed 04-29 AMC; stock gapped up ~+5.7% from 04-29 close $349.94 to fill price. **Pathway B opportunistic catalyst** (catalyst surfaced overnight, executed at next routine).
+- **RECONCILIATION**: this trade was placed by the market-open routine on 04-30 but the journal failed to commit. No 04-30 pre-market block, no 04-30 market-open commit in git log (last commit before this run is 2949743 = the 04-30 prompt-evolution feat). The Alpaca order history is the source of truth for the fill. **Third journal-commit failure this week** — surfaced as `[HARNESS-GAP]` in learnings and queued for monthly-review evolution proposal alongside the GTD-exit-at-fill remediation.
+- Routine: market-open (placed) → intraday-scan 11:30 (reconciled this run).
+- Style/horizon: short-swing PEAD, J+0..J+5 (time stop on day J+5 = 2026-05-07 close); next earnings late July 2026 → no earnings-hold conflict.
+- Status at this scan (16:35 UTC = 11:35 CT): open J+0 · mark $377.01 · +$51.09 (+1.97%) · trail engaged · in-thesis. **Action this scan: HOLD** (no priority trigger, trail ratcheting natively).
+

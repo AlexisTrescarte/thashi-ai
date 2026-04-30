@@ -92,3 +92,20 @@ Append-only. **Never rewrite** a past entry. Reverse chronological (most recent 
 - Style/horizon: short-swing PEAD, J+0..J+5 (time stop on day J+5 = 2026-05-07 close); next earnings late July 2026 → no earnings-hold conflict.
 - Status at this scan (16:35 UTC = 11:35 CT): open J+0 · mark $377.01 · +$51.09 (+1.97%) · trail engaged · in-thesis. **Action this scan: HOLD** (no priority trigger, trail ratcheting natively).
 
+
+### 2026-04-30T18:41:35Z — BUY LLY 5@$939.54 (Pathway-B PEAD opportunistic, intraday-scan 13:30)
+- Order ID: **4173f753-7f94-462e-a889-46b56bc8cce4** (market BUY, TIF=day, qty=5, filled_avg_price=$939.54, status=filled).
+- Trailing stop placed 11 sec after fill: order **8e54102c-158f-4d66-bdd3-3270ebb7de39** (trailing_stop sell, qty=5, trail_percent=7%, TIF=GTC, HWM $938.34 at quote time, initial stop $872.6562). Native Alpaca trailing — one-way ratchet engaged.
+- Cost basis: $4,697.70 (5 × $939.54). Filled at ~+0.155% above ask quote ($938.09 → $939.54) — small market-order cross with NEUTRAL microstructure verdict (QI -0.333 ask pressure).
+- **Sizing: 4.82% NAV** ($4,697.70 / $97,543.02). Standard tier mid-band (4-6%).
+- CTQS: C22/T17/Q22/S19 = **80/100** → Standard conviction, confidence 70% (Late-day entry on D+0 PEAD discounts confidence 5pp from a clean-morning 75%).
+- Setup type: post-earnings drift (PEAD) on Q1 2026 beat+raise.
+- Catalyst: **Q1 2026 print today AM** — revenue $19.8B (+56% YoY) vs $17.5B est; EPS $8.55 vs $6.85 est (+24.82% beat); Mounjaro WW $8.66B (+125% YoY) vs $7.26B est; Zepbound US $4.1B (+79% YoY); FY2026 revenue raised $80-83B → $82-85B; FY2026 adj EPS raised to $35.50-$37 ($36.25 mid, +5.8%).
+- Thesis: Day-1 PEAD continuation on textbook beat-and-raise. Multi-day drift (3-5 sessions) backed by upgrade-cluster expectation, defensive sector fit (breadth 53% > MA50), GLP-1 monopoly with NVO. Target: capture $30-50 of continuation drift over horizon = +3 to +5% on the position ($150-250 unrealized).
+- Stop: 7% trailing (Alpaca native, GTC, id 8e54102c) @ $872.6562 initial, HWM $938.34.
+- Take-profit: trailing only (let PEAD run; one-way ratchet on the trail).
+- Time stop: **2026-05-07 close** (J+5, short-swing horizon). Earnings hold: NO (next earnings ~late July 2026, well outside window).
+- Routine: intraday-scan 13:30 (Pathway-B opportunistic — spread normalized from 2.14% at 11:30 to 0.097% at 13:37, qualifying for re-evaluation).
+- Pre-trade gate: pretrade_guards PASS (killswitch ✓, fat_finger ✓, notional ✓, rate_limit ✓); microstructure NEUTRAL with spread 14.8 bps ≤ 20 bps Standard-tier threshold → cleared.
+- Research note: memory/equities/research_log.md — 2026-04-30T18:40:00Z BUY verdict.
+- Notes: Late-day D+0 PEAD entry (~1h20 to close) — accepted risk. The 11:30 scan flagged LLY for spread re-eval; 12:30 missed (harness gap); 13:30 caught the spread normalization. Activity floor progress: rolling 5td now 3 BUYs (GOOGL 04-23 close-out, GOOGL 04-30 fresh, LLY 04-30) — meets ≥3 target. Daily Pathway-B/C cap usage: 2/5 (GOOGL morning + LLY now); 3 BUYs remaining today but slot 14:30 is exits-only so effective cap reached. Sector mix post-buy: GOOGL ~2.7% tech + LLY 4.82% healthcare = 7.52% total, well under all caps. Cash post-buy ~92.4%.

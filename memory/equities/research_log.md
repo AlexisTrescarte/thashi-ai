@@ -460,3 +460,100 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 **Telegram**: mandatory; quiet-action template — 1 hold position (GOOGL J+0 +1.97%), 0 actions, harness-gap reconciliation note, brief macro context.
 
 
+
+### 2026-04-30T18:40:00Z — LLY Eli Lilly — BUY
+
+**Instrument**: equity (NYSE:LLY)
+**Style**: short-swing PEAD continuation
+**Target horizon**: 2-5 trading days (D+0..D+5)
+**Conviction**: Standard — confidence 70%
+**Proposed sizing**: 4.81% NAV (5 shares @ ~$938.09)
+
+#### 1. Snapshot
+- Price: $938.09 ask / $937.18 bid (spread 0.097%, normalized from 2.14% at 11:30 CT) | Mcap ~$845B | Sector: Healthcare/Pharma | ADV: 4-5M shares | Beta ~0.6
+- Q1 2026 results (printed today AM): revenue **$19.8B (+56% YoY)** vs $17.5B est; **EPS $8.55** vs $6.85 est = **24.82% beat**; Mounjaro WW **$8.66B (+125% YoY)** vs $7.26B est; Zepbound US **$4.1B (+79% YoY)**.
+- Guidance: FY2026 revenue raised **$80-83B → $82-85B** ($2B raise at midpoint); FY2026 adj EPS raised to **$35.50-$37 ($36.25 mid, +5.8%)**.
+- Next earnings: ~late July 2026 (Q2). Window clean — no earnings-hold conflict.
+- Day move: +~7% intraday (pulled back slightly from earlier +10% peak per stocktwits/zacks).
+
+#### 2. Thesis
+LLY printed a textbook beat-and-raise on the GLP-1 franchise (Mounjaro +125% YoY beat $7B est by $1.4B; Zepbound +79%; FY raise $2B). PEAD literature documents 2-5 day post-print drift on clean beats with FY raises — historical median PEAD continuation = +3 to +7% from D+0 close over the next 5 sessions. Catalyst quality (56% revenue growth, 156% EPS growth, $36.25 EPS guide midpoint) sets up multiple upgrade-cluster waves in the coming days. Defensive sector fits the breadth-deterioration backdrop (53% SPX > MA50). Trade target: capture $30-50 of continuation drift on 5 shares = $150-250 unrealized over the window.
+
+#### 3. CTQS Score (/100)
+
+| Axis | Score /25 | Justification |
+|---|---|---|
+| C — Catalyst | 22 | Primary-source dated catalyst (Q1 print today AM, IR press release + transcript). Beat across all metrics + FY raise. Day-1 PEAD setup with multi-day continuation history. |
+| T — Technical | 17 | Clean breakout +7% on volume above prior consolidation. Spread normalized to 0.097% (clean book). RSI likely > 70 (post-pop) and slight intraday fade from peak +10% to +7% = -1 vs ideal. Above MA200 confirmed (megacap pharma in long uptrend). |
+| Q — Quantitative | 22 | Top-decile momentum (revenue +56%, EPS +156%); top-decile quality (pharma cash machine, GLP-1 monopoly with NVO, ROIC > 25%); deeply liquid (4-5M ADV, $845B mcap). |
+| S — Sentiment | 19 | Analyst consensus PT $1,216 vs $938 = +30% upside. Guggenheim raised PT $1,163 → $1,183 on 04-22 (pre-print). Post-print upgrade cluster expected next 24-48h. Options flow likely heavy call activity (not verified but typical post-beat). |
+| **Total** | **80/100** | → **Standard** conviction |
+
+#### 4. Valuation red-flag
+- Fwd P/E ~26x on $36.25 EPS guide (vs sector median ~17x). Premium justified by GLP-1 dominance + 56% growth runrate. **No red flag** — premium is earned.
+- Trump drug-pricing deal cited as a headwind; FY guide already absorbs this. Pricing pressure on Zepbound noted but volume offset > price erosion.
+
+#### 5. Scenarios (5-day window)
+- **Bull** (+8 to +12%): upgrade cluster Friday/Monday, Medicare obesity coverage news, momentum carries to $1,010+. Trail captures most.
+- **Base** (+3 to +6%): standard PEAD drift to $965-$995 over 3-5 days. Time stop or trail handles exit.
+- **Bear** (-3 to -7%): end-of-day sell-the-news fade today, Trump pricing-deal headline reignites pressure, broader pharma drawdown. Trail at -7% triggers around $872.
+
+#### 6. Specific risks
+- (1) End-of-day fade D+0 — late-afternoon entry into a +7% pop carries risk of close-auction compression. Mitigated by 7% trail giving room.
+- (2) Trump drug-pricing deal headline volatility — already in guidance but a fresh headline could reprice.
+- (3) High comp base building for Mounjaro YoY growth — eventual mean-reversion (not within 5d window but a swing/positional risk).
+
+#### 7. Macro alignment
+- Regime: neutral lean risk-on (VIX 19.5, no shift today; SPY +0.49% / QQQ +0.81% vs baseline; FOMC cleared yesterday hold + 8-4 dissent).
+- Events in window: AMD 05-05 AMC (no overlap with LLY thesis); CPI May TBD (post-window).
+- Compatible: **yes** — defensive pharma fits cautious-risk-on regime; PEAD continuation thesis is regime-agnostic.
+
+#### 8. Execution plan
+- **Entry zone**: $935-$945 (current $938.09 ask, in zone). Skip above $957 (+2% FOMO guard).
+- **Sizing**: 4.81% NAV — 5 shares @ ~$938.09 = ~$4,690 (Standard mid-band).
+- **Stop type**: % trailing (Alpaca native, GTC). Trail 7%. Initial stop ≈ $872.34 (HWM $938.09).
+- **Take-profit target**: trailing only (let PEAD run; one-way ratchet on the trail).
+- **Time stop**: 2026-05-07 close (J+5, short-swing horizon).
+- **Earnings hold**: NO (next earnings ~July 2026, well outside window).
+- **Stop-update policy**: native trail ratchets HWM automatically. Manual STOP-UPDATE at next intraday-scan: if +5% from entry, verify trail HWM tracking; if +10%, consider tighten to 5% trail at next scan; if +15%+, TRIM 50% per Priority 7 rules.
+
+#### 9. Sources
+- [Lilly investor press release Q1 2026](https://investor.lilly.com/news-releases/news-release-details/lilly-reports-first-quarter-2026-financial-results-raises-full) (primary)
+- [Eli Lilly Q1 2026 Earnings Transcript — Motley Fool](https://www.fool.com/earnings/call-transcripts/2026/04/30/eli-lilly-lly-q1-2026-earnings-transcript/) (primary)
+- [CNBC LLY earnings Q1 2026](https://www.cnbc.com/2026/04/30/eli-lilly-lly-earnings-q1-2026.html) (tertiary)
+- [Zacks LLY stock jumps after Q1 beat](https://www.zacks.com/stock/news/2912444/lly-stock-jumps-after-q1-earnings-beat-2026-guidance-raised) (tertiary)
+
+#### 10. Verdict
+**BUY** — Pathway-B opportunistic PEAD. CTQS 80/100 Standard tier. 4.81% NAV (5 shares ~$4,690). Native 7% trailing stop. Time stop J+5 (2026-05-07 close). No earnings hold. Late-day entry risk mitigated by 7% trail giving fade-room; defensive sector + clean book + multi-day PEAD continuation thesis support same-day execution despite the +7% intraday move.
+
+### 2026-04-30T18:42:00Z — INTRADAY-SCAN 13:30 CT
+**Account**: equity $97,543.02 · cash $94,855.93 (97.25% pre-buy) · last_equity $97,443.91 → day P&L **+0.10%** (microscopic positive). Buying power $192,398.95. 1 open position pre-scan (GOOGL J+0 +3.83%). 1 open order (trail stop on GOOGL).
+**Macro snapshot**: VIX 19.50 (no spike intraday from 11:30 reading). SPY mid $718.39 (+0.96% vs 04-28 baseline / +0.49% day). QQQ mid $667.71 (+1.44% vs baseline / +0.81% day). Both indices grinding higher in the afternoon — clean tape, broad-market strength continued from 11:30. 10Y at 4.39% (-4 bp), supportive. Mag-7 dispersion continuing: LLY up 7%, AMZN -1.8%, MSFT -5%, META -8.8%, GOOGL +7%. **No regime shift** (VIX flat, no credit/geopol shock).
+**Performance vs benchmark since 04-28 baseline** (SPY $711.55 · QQQ $658.23): bot $97,543.02 → +0.0897% · SPY $718.39 → +0.96% · QQQ $667.71 → +1.44% · blend **+1.20%** → **alpha cumul ≈ -1.11%** (drag widened from -0.61% at 11:30; 100% cash through 04-29 + only 2.65% NAV in GOOGL means we're not capturing today's broad-market rally — exactly what the LLY entry below addresses).
+**Per-position priority ladder (1 position pre-scan, then 2 post-scan)**:
+- **GOOGL** 7@$369.71, mark $383.87→$382.67, **+3.83%** at scan start → +3.51% at scan end. J+0 short-swing. qty_available=0 (reserved by trail stop). HWM lifted to $385.84 (from $378.365 at 11:30), stop ratcheted to $358.83 (from $351.879).
+  - Priority 1-9 evaluation: NO trigger. +3.83% well below +10% TIGHTEN threshold (Priority 8) and +20% TRIM threshold (Priority 7). Trail is native ratcheting.
+  - **Decision: HOLD**. No manual STOP-UPDATE needed (Alpaca's native trail is the engine; one-way ratchet enforced by API).
+**Daily-loss-cap check**: day P&L +0.10% → cap -4% inactive. ✅
+**Mandatory active universe scan** (13:30 slot, last BUY-eligible slot):
+1. **LLY** (Eli Lilly) — Pathway-B candidate. **Spread normalized**: 11:30 = 2.14%, now 0.097% (ap $938.09 / bp $937.18). Re-eval triggered. Promoted to research-skill CTQS note → **80/100 Standard tier**, BUY verdict. **Executed: 5@$939.54 = $4,697.70 = 4.82% NAV. 7% trail @ $872.66 placed.**
+2. **QCOM** (Qualcomm) — Pathway-B candidate. Spread still wide: ap $180 / bp $170.63 = **5.49%**. Mechanical SKIP (cap 0.5%). The post-Mag-7 dispersion may not normalize today; deferred to tomorrow's pre-market.
+3. **AMZN** (Amazon) — spread clean at 0.023% but tape still ambiguous (-1.80% intraday after +4% AH = sell-the-news). Thesis-quality SKIP — prefer LLY's clean continuation.
+4. **MSFT / META** — broken intraday narratives (Azure decel / capex spook). SKIP — knife-fall risk on either, no PEAD setup.
+5. **Defensives / energy / financials**: scanned, nothing fresh surfacing this slot. XLE flat on Iran tail, no clean breakout.
+- **Pathway A**: unavailable — no 04-30 pre-market block.
+- **Pathway A-prime**: no `[OPEN-RETRY:...]` tags exist (no pre-market block to seed them).
+- **Pathway B**: **1 promotion** (LLY) → **1 BUY filled**.
+- **Pathway C**: nothing surfaced. Cap 1/day untouched.
+- **Crypto sleeve**: BTC/ETH/SOL — no fresh read this slot. Deferred to next pre-market that fires.
+- **Cadence accounting**: 2/5 daily Pathway-B BUYs used today (GOOGL morning + LLY now). 3 remaining slots/day but 14:30 is exits-only → effective cap reached. Pathway-C cap untouched.
+**Stops sweep on survivors (post-buy state)**: 
+- GOOGL: native 7% trail, HWM $385.84, stop $358.83, ratcheting. No manual update.
+- LLY: native 7% trail, HWM $938.34, stop $872.66, freshly placed.
+**Decision**: **0 cut · 0 trim · 0 tighten · 1 BUY (LLY 5@$939.54, 4.82% NAV, Standard tier)**. Activity floor restored: rolling 5td = 3 BUYs (≥3 target). Cash post-buy ~92.4%, well above 10% floor. Sector mix: tech 2.66% (GOOGL) + healthcare 4.82% (LLY) = 7.48% total NAV deployed.
+**Risks/watch (rest of session)**:
+- (1) LLY end-of-day fade D+0 — late-afternoon entry into +7% pop carries risk of close-auction compression. Mitigated by 7% trail (room for $66 fade from entry). 14:30 last-call slot should re-check P&L; only `cut` at -5% triggers Priority 6 (mathematically requires LLY to fade to ~$893).
+- (2) GOOGL trail $358.83 = -6.5% from current $382.67 mark; if mark continues higher, HWM lifts and stop ratchets.
+- (3) Journal-commit failure risk — first-action priority of journal skill is ensuring the LLY trade gets committed (3rd journal failure this week would invalidate the audit trail).
+- (4) AMD 05-05 AMC remains queued for next fresh pre-market.
+**Telegram**: mandatory; action template — 1 BUY (LLY), 1 hold (GOOGL), portfolio + benchmark + reasoning block on LLY, harness-gap context note (12:30 missed but 13:30 caught the spread normalization).

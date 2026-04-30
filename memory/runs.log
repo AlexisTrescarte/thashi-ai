@@ -14,3 +14,4 @@
 2026-04-29T13:38:30Z [market-open] noop: 0 BUY (no 04-29 pre-market block) · GOOGL exit c9a545bd filled 3@$345.71 verified · book empty 100% cash
 2026-04-29T16:36:00Z [intraday-scan-11:30] noop: 0 actions — empty book · day P&L -0.01% · FOMC < 1h30 compression · no 04-29 pre-market block · V/SBUX/TMUS PEADs deferred to tomorrow post-FOMC + post-Mag-7-prints
 2026-04-29T18:35:00Z [intraday-scan-13:30] noop: 0 actions — empty book · day P&L -0.01% · post-FOMC hold 8-4 (4 dissents on easing-bias language) · mid-Powell Q&A compression · Mag-7 AMC tonight · deferred to tomorrow's pre-market
+2026-04-30T13:47:33Z [market-open] 1 BUY GOOGL 7@$369.71 ($2,587.98, 2.66% NAV, Probe via HARNESS-GAP express scan) · 7% trailing stop placed (id 74ec67e0, hwm $370.47, stop $344.54) · pre-market 06:00 CT slot missed (5/7 weekday slots out of last 7) · PEAD day-1 on Q1 blowout +105% EPS beat

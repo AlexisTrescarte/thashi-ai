@@ -36,6 +36,24 @@ Append-only. **Never rewrite** a past entry. Reverse chronological (most recent 
 
 ## Entries
 
+### 2026-04-30T13:47:33Z — BUY GOOGL 7@$369.711429
+- Order ID: b36d3bc6-1b30-407d-9f09-daef7a60de16 (stop: 74ec67e0-c744-45ca-a7dd-521b72caacf2)
+- Value: $2,587.98
+- % NAV at entry: 2.66%
+- Instrument: equity
+- Style: short-swing (1-5 trading days, PEAD window peaks J+2..J+5)
+- CTQS: C22/T18/Q22/S18 = 80/100 → Conviction Standard (tier 70-84), forced to Probe by HARNESS-GAP express-scan rule, confidence 65%
+- Setup type: post-earnings momentum (PEAD day-1)
+- Catalyst: Q1 2026 earnings 2026-04-29 AMC. EPS $5.11 vs $2.48 est (+105% beat). Revenue +21.8% YoY to $109.9B vs $106.98B est. Google Cloud unit strong. Stock gapped +7% AH and held into the open.
+- Thesis: Massive earnings beat — second consecutive quarter of cloud-led acceleration (TPU/Anthropic from 04-23 entry now confirmed by financial print). Day-1 PEAD entry on a clean book (spread 0.05%) with mega-cap quality + momentum convergence. Re-entry post pre-earnings exit — distinct catalyst from 04-23 entry (then = pre-earnings TPU/Anthropic; now = printed Q1 result).
+- Stop: 7% trailing (Alpaca native, id 74ec67e0). HWM $370.47, initial stop $344.5371. Slightly wider than default 6% to absorb day-1 PEAD volatility, tighter than the 8% used on 04-23 entry (this is a Probe, not a Standard).
+- Take-profit: trailing only — let PEAD run, ratchet stop at next intraday-scans
+- Time stop: J+5 (2026-05-07) re-evaluation if drift stalls; pre-Q2-earnings exit ~late July, well outside short-swing horizon
+- Earnings hold: no (Q2 ~12 weeks out, no horizon issue)
+- Routine: market-open (HARNESS-GAP express scan compensating for missing 06:00 CT pre-market slot)
+- Research note: 2026-04-30T13:42:00Z (research_log.md "Pre-market plan (HARNESS-GAP express scan)" block)
+- Notes: Anti-revenge cleared — GOOGL was cut 04-29 09:31 ET at $345.71 with P&L +2.59% on the position (anti-revenge rule triggers only on P&L < 0). No FOMO guard violation: no pre-market plan price (express scan) and the +7% gap is the catalyst itself, not a chase. Spread 0.05% clean. Cash post-trade $94,855.93 (97.34%) — well above 10% floor.
+
 ### 2026-04-23T13:37:07Z — BUY GOOGL 7@$339.29
 - Order ID: 1e58b2d7-9039-45bf-8b10-06e39c32f2d1 (stop: 45d94a3c-d7c9-44f6-bc8d-e6d38c6afef0)
 - Value: $2,375.03

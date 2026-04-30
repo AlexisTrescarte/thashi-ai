@@ -410,3 +410,57 @@ Le floor d'activité est "≥ 1 BUY / 3 jours & ≥ 3 BUY / 5 jours rolling en r
 - (3) Pre-market silence pattern: 4 of last 6 weekday pre-market slots missed. Already on the monthly-deep-review queue alongside the GTD-exit-at-fill remediation.
 - (4) Activity floor: rolling 5td BUY count = 1 (GOOGL 04-23). Floor target ≥3 in risk-on/neutral. Still below — but the discipline is: a quality post-event entry beats 2 forced low-CTQS pre-event entries. Will close the floor gap with the post-FOMC + post-Mag-7 setup tomorrow.
 **Telegram**: mandatory; ≤ 15-line no-action template — empty book, mid-Powell compression, deferred-to-tomorrow rationale, alpha cumul +0.13%.
+
+
+## 2026-04-30 — Pre-market plan (HARNESS-GAP express scan)
+
+### 2026-04-30T13:42:00Z — MARKET-OPEN harness-gap express scan
+**Context**: pre-market 06:00 CT slot did not fire today (5 of last 7 weekday pre-market slots missed). Express scan triggered at market-open per CLAUDE.md self-healing path. Bounds: ≤ 10min wall-time, max 2 candidates, Probe sizing only, CTQS floor raised to 65, sources 1 primary + 1 secondary minimum, no technical-only setups, dated catalyst required.
+
+**Macro snapshot (post-FOMC, post-Mag-7-prints)**:
+- FOMC 04-29 outcome digested: hold at 3.50-3.75%, 8-4 vote (3 dissents on easing-bias language — slightly hawkish overtone). Powell press conf concluded ~14:30 CT yesterday with no surprise. Market took it in stride.
+- Mag-7 AMC 04-29 reactions: **GOOGL +7%** (Q1 blowout — EPS $5.11 vs $2.48 est, rev +21.8% YoY $109.9B, cloud strength), **AMZN beat** (climbed AH), **MSFT beat**, **META -7%** ($135B 2026 capex guide spooked despite beat).
+- Today AAPL reports AMC = earnings horizon for AAPL only (no AAPL position).
+- Other earnings movers prior session: V (yesterday +6%), SBUX (yesterday +5%), TMUS (yesterday +2%), STX (Wed +11%), NXPI (Wed +25%).
+- Futures pre-open: S&P +0.40%, Nasdaq-100 +0.93%, Dow -0.32% (mixed, tech-led on GOOGL halo).
+- Regime: **neutral lean risk-on** post-Mag-7 (GOOGL halo) but with capex-guide overhang (META). No regime-shift trigger.
+
+**Account state**: equity $97,443.91 · cash $97,443.91 (100.00%) · last_equity $97,443.91. 0 positions, 0 orders. Buying power $194,887.82.
+
+**Express-scan candidates (≤ 2)**:
+
+#### 1. GOOGL — BUY Probe 2.5% NAV [express-scan]
+- **Catalyst**: Q1 2026 earnings 04-29 AMC. EPS $5.11 vs $2.48 est = **+105% beat**. Revenue +21.8% YoY to $109.9B vs $106.98B est. Google Cloud unit strong. Stock surged ~+7% AH and held into pre-market. Day-1 PEAD window (open 04-30).
+- **CTQS scoring**:
+  - C 22/25 — fresh dated catalyst (last night), massive magnitude beat, primary source quality (earnings release).
+  - T 18/25 — gap +7% above 50/200 MA stack, mega-cap tech leadership; risk = day-1 consolidation/gap-fill.
+  - Q 22/25 — top-decile quality (Alphabet ROIC, FCF, margin); ADV >> 1M; 21.8% revenue growth = momentum acceleration.
+  - S 18/25 — analyst upgrades expected post-print, institutional flow positive on cloud strength.
+  - **Total: 80/100 (Standard tier)** — forced to Probe 2.5% by HARNESS-GAP rule.
+- **Sizing**: Probe 2.5% NAV ≈ $2,436. At $368.73/share → 7 shares = $2,581 (2.65% NAV, top of Probe band).
+- **Stop methodology**: 7% trailing stop (Alpaca native) — wider than default 6% to absorb day-1 PEAD volatility, tighter than the 8% used on the 04-23 GOOGL entry (this is a Probe not a Standard).
+- **Style**: short-swing (1-5 trading days). PEAD window typically peaks J+2 to J+5.
+- **Anti-revenge check**: GOOGL was cut 04-29 09:31 ET (yesterday) at $345.71 with P&L **+2.59%** on the position. Anti-revenge rule triggers only on P&L < 0 → **does not apply**. The cut was a disciplined pre-earnings exit; re-entry is on a NEW dated catalyst (Q1 print result) distinct from the original entry's TPU/Anthropic thesis.
+- **FOMO guard**: no pre-market plan price (express scan), so the +2% guard is not directly applicable. Spread 0.05% is clean. Gap-up momentum is the catalyst itself, not a FOMO chase.
+- **Earnings horizon**: just reported. Q2 expected late July 2026 → 12+ weeks out. No earnings horizon issue.
+- **Sources**: heygotrade.com (primary — earnings figures), thestreet.com (secondary — cloud unit color), schwab.com / stocktwits.com (tertiary — futures/sector context).
+- **Risk #1**: day-1 PEAD gap-fill — if market re-prices GOOGL down -2% intraday on profit-taking, the 7% trail absorbs it; only a -7% reversal stops out, which would require thesis-breaking news (highly unlikely 12h post-print).
+
+#### 2. AMZN — DEFER (intraday-scan re-evaluation)
+- Catalyst valid (Q1 beat 04-29 AMC) but public detail thin — magnitude of beat unclear in the express-scan window.
+- CTQS estimate: 68/100 (Probe band, just above HARNESS-GAP floor 65 — marginal).
+- Spread clean (0.04%) at $258.37, but conviction insufficient under HARNESS-GAP "compensate shallow research with stricter conviction".
+- **Action**: NOT in today's express BUY queue. Re-evaluate at 10:30 intraday-scan if AMZN holds momentum + further detail surfaces. Pathway-B candidate.
+
+#### 3. MSFT — DEFER (spread-only)
+- Catalyst valid (beat 04-29 AMC) but spread 0.72% > 0.5% cap at the open. No express-scan entry.
+- **Action**: re-evaluate at 10:30 intraday-scan once spread tightens (typical first 30-60 min book-stabilization on PEAD prints).
+
+**Skipped (mechanical)**:
+- **STX** — spread ~9% (book broken on PEAD followup day), SKIP.
+- **NXPI** — spread ~9.4% (book broken), SKIP.
+- **META** — bear-side reaction (-7% AH on capex guide), no long entry.
+
+**Today's BUY queue**: 1 entry — **GOOGL Probe 2.5% NAV, 7 shares target, 7% trailing stop**.
+
+**Cadence note**: HARNESS-GAP express scan compensates for missing pre-market 06:00 CT slot. Activity floor: 1 BUY today closes the rolling 5td count toward target ≥3. Pathway-B/C cap on intraday-scans untouched (will host AMZN/MSFT re-evaluations).

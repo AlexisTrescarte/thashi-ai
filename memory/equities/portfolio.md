@@ -4,16 +4,16 @@
 
 ## Latest snapshot
 
-- **Date**: 2026-04-28 15:00 CT (post-close)
-- **Equity total**: $97,455.66
-- **Cash available**: $96,406.80
-- **Positions value**: $1,048.86
-- **Cash %**: 98.92%
-- **Benchmark (50% SPY + 50% QQQ)**: SPY $711.55 · QQQ $658.23 → blend index 100.00 (baseline set today)
-- **Day perf**: bot −0.00% · bench −0.66% (SPY −0.46% / QQQ −0.86%) → **alpha day +0.66%**
-- **Cumul perf since baseline (04-28)**: bot 0.00% · bench 0.00% · alpha 0.00% (baseline day)
-- **EOD regime**: neutral lean cautious — intraday risk-off twitch on OpenAI revenue concerns (Nasdaq −1%, Oracle −5.2%, AI-chip jitters), defensives bid; no regime shift, breadth still deteriorating. FOMC < 24h compresses any new entry.
-- **Aging watchlist**: GOOGL J+3 (binding-exit-tomorrow-open via DAY market sell pre-staged)
+- **Date**: 2026-04-30 15:00 CT (post-close)
+- **Equity total**: $97,529.08
+- **Cash available**: $90,158.23
+- **Positions value**: $7,370.85
+- **Cash %**: 92.44%
+- **Benchmark (50% SPY + 50% QQQ · base 04-28)**: SPY $715.67 · QQQ $662.23 → blend index 100.59
+- **Day perf**: bot +0.09% · bench +0.05% (SPY +0.11% / QQQ −0.02% est. from 04-29 inferred close) → **alpha day +0.04%**
+- **Cumul perf since baseline (04-28)**: bot +0.08% · bench +0.59% · **alpha −0.52%**
+- **EOD regime**: neutral lean risk-on — Mag-7 dispersion continued (LLY +9.7%, GOOGL +10.4% PEAD pops vs MSFT/META weakness), VIX ~18, 10Y ~4.39%, broad indices closed positive. FOMC cleared 04-29 (hold + 8-4 dissent). No regime shift; alpha drag is structural (cash-heavy book entered 04-28 baseline at 99% cash, only 7.6% deployed by today's close).
+- **Aging watchlist**: none — both positions J+0 (entered 04-30), normal short-swing band
 - **Auto-defense active**: no
 
 ## Baseline
@@ -37,13 +37,14 @@ _Regenerated from API at every `market-close`._
 
 | Ticker | Type | Qty | Avg cost | Last | Value | P&L $ | P&L % | Entry | Age (td) | CTQS | Style | Stop | TP | Catalyst | Status |
 |--------|------|-----|----------|------|-------|-------|-------|-------|----------|------|-------|------|----|----------|--------|
-| GOOGL | equity | 3 | $339.29 | $349.62 | $1,048.86 | +$30.99 | +3.04% | 2026-04-23 | J+3 | 75 | short-swing | DAY market sell pre-staged 04-29 open (order c9a545bd) | trailing-only (replaced by MOC then DAY) | Earnings 04-29 AMC (no earnings hold) | binding-exit-tomorrow-open |
+| GOOGL | equity | 7 | $369.71 | $386.26 | $2,703.83 | +$115.85 | +4.48% | 2026-04-30 | J+0 | 75 (Probe) | short-swing PEAD | 7% trailing GTC (74ec67e0) HWM $385.84 stop $358.83 | trailing-only | PEAD on Q1 2026 beat (rev $109.9B, Cloud +63%) — next earnings ~late July 2026 | normal |
+| LLY | equity | 5 | $939.54 | $933.63 | $4,668.15 | −$29.55 | −0.63% | 2026-04-30 | J+0 | 80 (Standard) | short-swing PEAD | 7% trailing GTC (8e54102c) HWM $945.50 stop $879.31 | trailing-only | PEAD on Q1 2026 beat+raise (rev $19.8B +56% YoY, FY raised) — next earnings ~late July 2026 | normal |
 
 ## Open risks
 
-- **GOOGL pre-earnings (04-29 AMC)**: 3 residual shares from MOC partial-fill (4/7 filled at close auction $349.85, 3/7 expired). DAY market sell order c9a545bd queued for 04-29 09:30 ET open — well before AMC print. Risk: order not filled at open (negligible for $2T mcap) or earnings leak overnight; mitigation = order is exchange-bound, not run-dependent.
-- **FOMC < 24h**: 04-29 13:00 CT decision + Powell 13:30 CT. Hawkish surprise tail-risk on tech/semis.
-- **Mag-7 AMC cluster 04-29**: GOOGL · MSFT · META reporting. GOOGL exit by then is mandatory (handled).
-- **AMD earnings 05-05 AMC**: no position currently; if BUY queued at next pre-market, must pre-stage GTD MOC at fill (per 04-24 INCIDENT remediation queued for monthly review).
-- **Breadth deterioration**: 53% SPX > MA50 (vs 60% one week ago) — yellow flag if drops < 50% intraday.
-- **Iran/Strait of Hormuz tail**: Brent ~$108, peace-talk volatility could swing energy ETFs ±5%.
+- **LLY day-1 PEAD fade (J+0)**: late-day entry into +9.7% pop closed −0.63% from fill — moderate fade-risk overnight. Trail stop $879.31 = 5.8% room from current $933.63. Time stop 2026-05-07 close (J+5 short-swing). No earnings hold needed (next report late July).
+- **GOOGL D+1 PEAD continuation (J+0)**: +4.48% from fill, trail engaged with HWM $385.84 / stop $358.83. Native one-way ratchet. Time stop 2026-05-07 close.
+- **AMD earnings 05-05 AMC**: queued for next pre-market; if BUY surfaces, must pre-stage GTD MOC at fill (per 04-24 INCIDENT remediation).
+- **Sector concentration check**: GOOGL 2.77% NAV (tech) + LLY 4.79% NAV (healthcare) = 7.56% deployed. Tech sector cap 25% headroom intact; healthcare cap 25% headroom intact.
+- **Cash floor check**: 92.44% cash — well above 10% mandatory floor.
+- **Journal-commit health**: 3 commit failures in past 5 trading days flagged in learnings (04-25 / 04-27 / 04-30 pre-market+market-open). Monthly-review proposal queued.

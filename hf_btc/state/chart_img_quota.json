@@ -1,7 +1,7 @@
 {
   "date_utc": "2026-04-30",
   "baseline_used": 3,
-  "opportunistic_used": 5,
+  "opportunistic_used": 13,
   "baseline_cap": 24,
   "opportunistic_cap": 24,
   "hard_cap": 48,
@@ -53,6 +53,54 @@
       "interval": "5m",
       "reason": "baseline",
       "file": "20260430T200030Z_5m_baseline.png"
+    },
+    {
+      "ts": "20260430T200512Z",
+      "interval": "5m",
+      "reason": "signal",
+      "file": "20260430T200512Z_5m_signal.png"
+    },
+    {
+      "ts": "20260430T201010Z",
+      "interval": "5m",
+      "reason": "signal",
+      "file": "20260430T201010Z_5m_signal.png"
+    },
+    {
+      "ts": "20260430T201511Z",
+      "interval": "5m",
+      "reason": "signal",
+      "file": "20260430T201511Z_5m_signal.png"
+    },
+    {
+      "ts": "20260430T202011Z",
+      "interval": "5m",
+      "reason": "signal",
+      "file": "20260430T202011Z_5m_signal.png"
+    },
+    {
+      "ts": "20260430T202512Z",
+      "interval": "5m",
+      "reason": "signal",
+      "file": "20260430T202512Z_5m_signal.png"
+    },
+    {
+      "ts": "20260430T203010Z",
+      "interval": "5m",
+      "reason": "signal",
+      "file": "20260430T203010Z_5m_signal.png"
+    },
+    {
+      "ts": "20260430T203510Z",
+      "interval": "5m",
+      "reason": "signal",
+      "file": "20260430T203510Z_5m_signal.png"
+    },
+    {
+      "ts": "20260430T204010Z",
+      "interval": "5m",
+      "reason": "signal",
+      "file": "20260430T204010Z_5m_signal.png"
     }
   ]
 }

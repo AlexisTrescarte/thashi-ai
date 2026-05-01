@@ -129,3 +129,57 @@ Raw metrics: alpha ~0%, 0 violations, 0 closes (hit/R undefined). Strict reading
 
 ### Lesson of the day (1 line)
 - **Pre-stage the GOOGL exit at 04-28 market-open** with a GTD market-on-close (or stop-limit at $349) — do not let the 14:30 last-call routine be the single point of failure for a mandatory pre-earnings exit, because today proved 50%+ of routines can miss in a single session and the exchange is the only reliable executor when the harness is silent.
+
+## 2026-05-01 — Daily review (grade: C)
+
+### Performance
+- Equity: $97,614.06 (day +0.0915%, +$89.23 vs last_equity $97,524.83)
+- Benchmark day (SPY+QQQ blend): +0.6308% (SPY $718.41→$720.49 = +0.290%; QQQ $667.61→$674.10 = +0.972%)
+- Alpha day: **−0.539%** (cash-heavy book lagged a risk-on tape)
+- Cumul since baseline (04-28): bot +0.163% · bench +1.834% · **alpha cumul −1.671%** (deployment lag from 100% cash through 04-29 still drags the book)
+
+### Activity
+- Trades opened today: 1 (AAPL Pathway A PEAD, reconciled at 11:30 — see [HARNESS-GAP] tag)
+- Trades closed today: 0 (W:0 / L:0 / BE:0)
+- Hit rate today: N/A | Avg R today: N/A
+- Stops set within 5min on all new positions: yes — AAPL trail 6% native placed 13 sec after fill (order 43ed6c8b, GTC, HWM $287.22 / stop $269.99)
+
+### By setup (today)
+- PEAD (Pathway A): 1 BUY · AAPL 16@$282.83 · CTQS 84 Standard · 4.64% NAV · J+0 mark $279.78 (−1.08%)
+- Holds: GOOGL J+1 (+4.12% cumul, day +0.04%), LLY J+1 (+2.39% cumul, day +2.93%), AAPL J+0 (−1.08%)
+- Skipped: CAT (spread 6.85%→1.823% never normalized), AMZN (technical borderline), RDDT (FOMO +16%), EL/RBLX/WDC (FOMO/broken/bad-tape)
+
+### Open positions (3)
+- AAPL 16 @ $282.83 (J+0) · mark $279.78 · −1.08% (−$48.87) · trail 6% stop $269.99 · time stop 05-08 close
+- GOOGL 7 @ $369.71 (J+1) · mark $384.95 · +4.12% (+$106.67) · trail 7% stop $359.66 · time stop 05-07 close
+- LLY 5 @ $939.54 (J+1) · mark $962.01 · +2.39% (+$112.35) · trail 7% stop $915.54 (ratcheted on +2.93% day) · time stop 05-07 close
+
+### What worked (2 lines)
+- LLY day-2 PEAD continuation paid: +2.93% on the day, +$137.05 unrealized — vindicates the 04-30 13:30 Pathway-B late-day entry on the spread-normalization re-check (LLY 11:30 spread 2.14% → 13:37 0.097% → fill). Native 7% trail ratcheted autonomously through the run-day, exchange-bound discipline.
+- AAPL Pathway-A executed mechanically per pre-market plan (CTQS 84 / China+iPhone+GM trifecta / Standard 4.64% NAV / 6% trail placed 13 sec after fill) — reconciled cleanly at 11:30 after market-open journal-fail. The pattern "trades execute on Alpaca despite journal-commit fail" is now the *expected* HARNESS-GAP recovery shape and intraday-scan Step 2 (verify-via-API) caught it on the first pass.
+
+### What didn't (2 lines)
+- Cash-heavy book (87.7% post-trade) lagged the QQQ rally: bot +0.09% vs bench +0.63% = **−0.54% alpha day**, accumulating to −1.67% alpha cumul over the 4-day baseline window. The drag is structural, not single-trade — slow deployment from 100% cash on 04-29 through 04-30/05-01 missed the meat of the post-FOMC + Mag-7-PEAD impulse.
+- CAT Pathway-B (CTQS 76 beat-and-raise + record backlog) spread-skipped all of D+0 (6.85% at 11:30 → 1.823% at 13:30 — never under the 0.5% cap). 3rd same-pattern leader miss in 9 td (GEV/VRT 04-23, CAT 05-01) — the new "Pathway-B J+1 fallback" lesson exists exactly to absorb this; Monday pre-market must execute it on CAT.
+
+### Discipline log
+- Guardrail violations: 0 — none placed, none attempted
+- Time stops honored: N/A today (AAPL J+0, GOOGL J+1, LLY J+1 — all far from time stops)
+- Stop updates logged: 1 placed (AAPL initial trail 6% / stop $269.99, 13 sec after fill); 0 manual updates; 2 native ratchets on GOOGL/LLY (LLY HWM $938.34→$962.01, stop $872.66→$894.67 ≈ -7%; GOOGL trail tracked through book)
+- HARNESS-GAP tags appended today: 2 ([market-open journal-fail @ 13:47 UTC for AAPL], [12:30 intraday-scan no-fire]) — operational, not discipline. 5–6th and 7th in a 9-td rolling count. No risk-event tag warranted.
+
+### Coherence adjustment
+Raw metrics: alpha day −0.54% (within ±1% C-band), 0 violations, 0 closes (hit/R undefined). Strict reading → **C**. Not B (alpha negative + cumul lag worsening), not D (alpha < -1% threshold not breached, no discipline violation). Cumulative alpha drag (-1.67% in 4 td) is concerning and feeds the next weekly-review, but isolated to today the grade stands at **C**.
+
+### Carry-forward for Monday (2026-05-04)
+- **AAPL J+1**: native trail 6% / stop $269.99 (-3.7% buffer from $279.78). Pathway-A in-thesis on China+iPhone+GM trifecta. Watch reclaim of $283 = entry break-even; breakdown < $278 = early concern. Pre-market re-CTQS not needed (single-day trade).
+- **GOOGL J+2**: native trail 7% / stop ratcheted ~$359.66 area. Time stop 05-07 close (J+5). Up +4.12% cumul on Q1 PEAD. Hold per priority ladder; let trail run.
+- **LLY J+2**: native trail 7% / stop ratcheted to ~$894 area on today's +2.93% day. Time stop 05-07 close (J+5). Up +2.39% cumul. Hold; multi-day GLP-1 PEAD intact (target $30-50 of drift).
+- **Pathway-B J+1 fallbacks** (per today's LESSON 2026-05-01T18:36:00Z): re-CTQS at Monday pre-market for **CAT** (J+1 spread normalization expected, FOMO guard at the new mark, T-grade may improve on a J+1 base-build) and **AMZN** (J+1 technical confirmation if $270 reclaimed). Both have intact post-print theses; missed D+0 on mechanical guards.
+- **Macro 24h (Mon 05-04)**: ISM Mfg PMI 09:00 CT, Factory Orders 09:00 CT. No FOMC speakers scheduled. NFP confirmed rescheduled to **2026-05-08** (Friday next week) — pre-market 05-08 must apply confidence notch-down. NFP calendar source = BLS (https://www.bls.gov/schedule/news_release/empsit.htm).
+- **Pre-earnings this week**: AMD 05-05 AMC (no current position; if BUY queued at Monday pre-market, mandatory GTD-exit-at-fill per 04-24 INCIDENT remediation). PLTR 05-05 AMC. Several other tech names tail.
+- **Regime note**: neutral lean risk-on confirmed by today's tape (VIX < 17 print, broad +0.3/+0.6/+1.0 SPY/QQQ/RTY, 53% SPX > MA50 holds the breadth-yellow line). Watch for breadth crack < 50% as regime-shift trigger. NFP defer relieves immediate macro-fog through Thursday.
+- **Operational**: 4 of 6 trading days now show ≥ 1 journal-commit failure. Monthly-review proposal queue (promote-now): journal-commit retry + [JOURNAL-COMMIT-FAIL] direct-write fallback + slot-firing reliability diagnostic. **Today's 2 HARNESS-GAPs cost 0 P&L** (AAPL was reconciled cleanly at 11:30; the 12:30 no-action slot was zero blast-radius). The pattern remains structurally critical regardless of zero-cost individual events.
+
+### Lesson of the day (1 line)
+- **Calibration fix on macro-event days**: pre-market must validate the calendar source (BLS / Fed) BEFORE applying confidence notch-downs — today's NFP was already public-rescheduled to 05-08 at 06:00 CT, and the over-conservative −7pp notch (75% → 68%) cost AAPL ~36 bp of NAV by sizing 4.64% instead of upper-Standard 5.0% on a CTQS 84 idea. Add `WebFetch BLS schedule` to pre-market step 0 on any NFP/CPI/PCE day.

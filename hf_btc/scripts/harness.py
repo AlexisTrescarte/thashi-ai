@@ -47,7 +47,7 @@ RUNS_FILE = STATE_DIR / "runs.jsonl"
 # Guardrails (immutable in code, the LLM cannot widen them)
 SIZING_MIN_PCT = 2.0
 SIZING_MAX_PCT = 12.0
-RR_FLOOR = 1.3
+RR_FLOOR = 1.8
 COOLDOWN_MIN = 15
 DAILY_LOSS_CAP_PCT = -3.0
 MAX_OPEN = 1
@@ -239,7 +239,7 @@ def _build_prompt(ctx: dict[str, Any]) -> str:
         "- `action=SKIP` si conditions de marché floues / pas de setup net.",
         "- `action=CLOSE` si tu veux sortir avant TP/SL (ex. thèse cassée par news, ou trail manuel).",
         "- `action=OPEN_LONG/OPEN_SHORT` ne se fait que si AUCUNE position ouverte.",
-        "- `tp`/`sl` toujours présents pour OPEN_*. R/R = abs(tp-entry)/abs(entry-sl) ≥ 1.3 sinon le harness rejettera.",
+        "- `tp`/`sl` toujours présents pour OPEN_*. R/R = abs(tp-entry)/abs(entry-sl) ≥ 1.8 sinon le harness rejettera.",
         "- `reason_fr` doit citer 2-3 indicateurs précis ET 1 news. C'est le bloc que l'utilisateur lit en notif.",
         "- `confidence` 0-100. Sub-50 → SKIP de toute façon.",
         "- Pas de markdown autour du JSON, pas de prose dans le JSON.",

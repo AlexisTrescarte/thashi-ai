@@ -52,7 +52,7 @@ Pas de markdown autour, pas de prose dans le JSON. Le harness rejette tout JSON 
 ## Garde-fous immuables (codés dans `harness.py`, tu ne peux pas les contourner)
 
 - Sizing entre **2% et 12%** du equity courant. Hors range = rejet.
-- R/R ≥ **1.3** sinon rejet.
+- R/R ≥ **1.8** sinon rejet (relevé de 1.3 → 1.8 le 2026-05-01 pour forcer des moves matériels et compenser le slippage HF).
 - Cooldown **15 min** après une fermeture même direction.
 - Daily loss cap **-3% jour** (sim) → freeze des nouvelles positions jusqu'à 00:00 UTC.
 - **Max 1 position ouverte**. Si déjà ouverte, tes options se limitent à `CLOSE` / `HOLD`.
@@ -70,8 +70,8 @@ Pas de markdown autour, pas de prose dans le JSON. Le harness rejette tout JSON 
 
 ## TP / SL — règles de base
 
-- **LONG** : `sl < limit_price < tp`. R/R ≥ 1.3.
-- **SHORT** : `tp < limit_price < sl`. R/R ≥ 1.3.
+- **LONG** : `sl < limit_price < tp`. R/R ≥ 1.8.
+- **SHORT** : `tp < limit_price < sl`. R/R ≥ 1.8.
 - ATR-based recommandé : SL à `limit ± ATR(14)*1.0..1.5`, TP à `limit ± ATR*1.5..3.0`.
 - Time horizon réaliste : 30-180 min (HF, pas swing).
 

@@ -63,7 +63,7 @@ The service expects:
 ## Guardrails (immutable in `harness.py`)
 
 - Sizing 2-12% per trade
-- R/R ≥ 1.3
+- R/R ≥ 1.8
 - Cooldown 15 min same direction
 - Daily loss cap -3% sim → freeze new opens
 - Max 1 open position

@@ -39,7 +39,7 @@ Si le prompt mentionne `Chart visuel disponible` avec un path PNG, lis-le avec `
 - **Garde-fous** : aucune position ouverte ? cooldown OK ? loss cap pas hit ?
 
 Choisis **action** :
-- `OPEN_LONG` si confluence haussière nette + setup R/R ≥ 1.3 + confiance ≥ 60
+- `OPEN_LONG` si confluence haussière nette + setup R/R ≥ 1.8 + confiance ≥ 60
 - `OPEN_SHORT` si confluence baissière nette (même règles, mirroir)
 - `CLOSE` si position ouverte ET news invalide la thèse OU divergence majeure 15m
 - `HOLD` si position ouverte mais thèse intacte (laisse TP/SL faire)

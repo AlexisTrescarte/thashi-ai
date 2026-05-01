@@ -54,7 +54,7 @@ Count alignement sources (max 7) for the candidate direction:
 
 Use ATR(14) on 5Min for SL/TP placement:
 - SL distance: 1.0 to 1.5 × ATR (no tighter — gets eaten by noise)
-- TP distance: 1.5 to 3.0 × ATR (R/R ≥ 1.3 minimum, target 1.8-2.5)
+- TP distance: 2.0 to 3.5 × ATR (R/R ≥ 1.8 minimum — hard guardrail; target 2.0-2.5)
 - Limit price: current ask (LONG) or current bid (SHORT) ± 0.05% buffer for fill
 
 If a key level (BB upper/lower, EMA50, VWAP) sits between entry and TP/SL — adjust to respect it.
@@ -96,7 +96,7 @@ Output structure (strict — harness parses with regex `\`\`\`json\\s*(\\{...\\}
 ## Forbidden
 
 - Don't open if a position is already in `sim_portfolio.open_trades` — say HOLD or CLOSE.
-- Don't widen R/R below 1.3 — even with strong conviction, structure first.
+- Don't widen R/R below 1.8 — hard guardrail; even with strong conviction, harness will reject.
 - Don't size > 12% — harness rejects.
 - Don't recommend instruments other than BTC/USD — out of scope.
 - Don't invent indicators not present in the prompt.

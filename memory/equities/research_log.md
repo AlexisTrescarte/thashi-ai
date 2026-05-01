@@ -751,3 +751,88 @@ Options traders pre-expected only "small move" → upside vol mispriced going in
 - **Cash post-AAPL fill (estimated)**: ~87.5% (well above 10% floor)
 - **Sector mix post-fill**: tech ~7.45% + healthcare ~4.84% = 12.29% deployed (87.71% cash) → still very defensive, room to add if confirmation builds
 
+
+### 2026-05-01T16:45:00Z — INTRADAY-SCAN 11:30 CT
+
+**Run metadata**: Mon 05-01 fired the pre-market (commit 96638cf at 06:27 CT) and the market-open executed AAPL BUY (filled 08:47 CT, order 191486fb, 16@$282.834375 = 4.64% NAV, 6% native trail GTC) — but **market-open journal failed to commit** (4th harness-gap in 6 td). This 11:30 scan reconciles the AAPL fill in trade_log retroactively + runs the standard active-management ladder + universe scan.
+
+### Account state at scan
+- Equity $97,677.33 · cash $85,632.88 (87.67%) · day P&L = (97,677.33 / 97,524.83 − 1) = **+0.156%** · last_equity $97,524.83
+- 3 open positions ($12,044.45 = 12.33% NAV deployed) · 3 native trailing stops engaged (1 per position, all GTC) · 0 BUYs in flight · day-1 PEAD (AAPL) + day-2 PEADs (GOOGL, LLY)
+
+### Open positions at 11:40 CT (16:40 UTC)
+| Ticker | Qty | Avg cost | Mark | P&L $ | P&L % | J | Trail | HWM | Stop | Verdict |
+|---|---|---|---|---|---|---|---|---|---|---|
+| AAPL | 16 | $282.83 | $283.39 | +$8.89 | **+0.20%** | J+0 | 6% | $287.22 | $269.99 | **HOLD** (P10) |
+| GOOGL | 7 | $369.71 | $385.33 | +$109.33 | **+4.22%** | J+1 | 7% | $386.74 | $359.66 | **HOLD** (P10) |
+| LLY | 5 | $939.54 | $962.58 | +$115.20 | **+2.45%** | J+1 | 7% | $984.45 | $915.54 | **HOLD** (P10) |
+
+Priority ladder verdict: every position falls cleanly to P10 (no thesis break, no pre-earnings, no time stop, no option DTE-3, no -5% loss, no +10% TIGHTEN trigger, no +20% TRIM trigger, no structural-stop-update need beyond what natives are doing). Native trails are doing their job (one-way ratchet ✓ on all 3).
+
+### Macro confirmation (5-min sweep)
+- **VIX**: <17, ~2-week low. Falling vol = risk-on lean, no shift.
+- **SPY/QQQ intraday**: SPY +0.54%, NDX/QQQ +0.69%, Russell 2000 +2.21% (broad-tape participation, breadth improving on the day).
+- **NFP April REVISION**: per WebSearch on multiple sources, the **April NFP was rescheduled to 05-08, not released today** — pre-market plan's "NFP within 1h of open" rule was over-conservative. AAPL fill notch-down to 4.64% (instead of 5.0% upper band) was honored on the information available at 06:00 CT but the actual macro fog never materialized. Calibration data point logged in learnings.
+- **ISM Manufacturing 10:00 ET**: forecast 53.1 vs prior 52.7 (constructive read on growth), Manufacturing PMI 54.0 unchanged. Supports the AAPL/AMZN PEAD setup tape.
+- **Headlines**: Iran shared a new proposal to end the conflict — geopol tail compresses. AAPL +3% premarket → faded slightly to +0.2% intraday (PEAD gap-fill in progress, normal pattern). EL +12% on cosmetics beat, CAT analyst-cluster raises post-Q1 beat, RBLX -24% (FY guide cut), WDC -8.3% despite beat.
+- **Crypto**: BTC ~$78k zone (intraday recovery from $76k), no fresh ETF flow data this hour. Sleeve still risk-off micro per pre-market.
+- **Regime classification (intraday)**: NEUTRAL → **NEUTRAL lean RISK-ON** (NFP fog cleared, VIX <17, breadth improving, broad-tape participation). One notch friendlier than pre-market's "neutral lean cautious". Sizing cap stays Standard (no upgrade to High without breadth >55% confirmation). **No regime SHIFT trigger** (VIX did not +20%, no credit event, no hawkish surprise).
+
+### Active universe scan (mandatory ≥5 candidates per command)
+
+Surfaced via WebSearch + WebFetch sweep of: BMO morning catalysts · S&P/NDX gainers/laggards · earnings-print follow-throughs · analyst PT cluster moves · sector breakouts.
+
+| # | Symbol | Catalyst | Move | Initial verdict |
+|---|---|---|---|---|
+| 1 | **CAT** | Q1 print 04-30 AMC: revenue $17.4B (+22%), adj EPS $5.54 (+30%), power-gen +41% to $2.82B on AI data center demand, **record backlog $62.7B (+$11.5B QoQ, +$27.7B YoY)**, raised 2030 power-gen target to 3x 2024 (from 2x), trimmed tariff cost guide $2.6B → $2.2-2.4B, analyst PT raises (BMO, others). | gap-up post-print | **CTQS draft 76/100 Standard** — Pathway B candidate. **Spread-skipped** (see below). |
+| 2 | **AMZN** | Day-2 PEAD watch (per pre-market trigger): 04-29 AMC clean beat (rev $181.5B +17%, AWS +28%, EPS beat 69%) but day-1 sold-the-news on $44.2B capex line. | $268.74 mark vs 04-30 close $265.06 = +1.39% intraday | **CTQS draft 71/100 Standard floor**. Spread 0.011% (clean), but no clear "intraday breakout" signal yet — barely above 04-30 close, not a confirmed reclaim with volume. **Defer to 12:30 re-eval**. |
+| 3 | **EL** | Q3 beat + FY raise on cosmetics. | **+12% intraday** | **SKIP** — FOMO-band tail violated (gap > +2%), spread 2.95% > 0.5% cap, no fit to strategy.md secular themes. |
+| 4 | **RBLX** | FY 2026 bookings guide CUT. | **−24%** | **AVOID** — broken-thesis pattern, falling-knife. Equity guardrail "thesis broken → CUT" applies if held; not held here. |
+| 5 | **WDC** | Q3 beat but tape rejecting. | **−8.3% despite beat** | **SKIP** — bad tape (sentiment red flag), HDD/cloud-storage capex narrative unfavorable, no entry. |
+| 6 | **AMD** | (Pre-market WATCH carry-over — J−2 to print Tuesday 05-05 AMC) | n/a | **HOLD WATCH** — Monday/Tuesday entry per pre-market plan, not Friday. |
+| 7 | **SMH/NVDA** | (Pre-market WATCH carry-over — Monday entry preferred) | n/a | **HOLD WATCH** — Monday pre-market re-eval. |
+
+**Top-2 deep-dive (CTQS notes)**:
+
+#### CAT — Pathway B candidate, **spread-skipped**
+
+- **C** (22/25): dated print J−1 (04-30 AMC), beat-and-raise quality (rev/EPS/margin all beat, FY guide raised), AI data-center power-gen +41% YoY confirms secular thesis explicitly named in strategy.md (AI infra/power), record backlog $62.7B, analyst PT cluster raises (BMO + several others).
+- **T** (14/25): stock has delivered "twice NVDA's stock returns" YTD 2026 per Benzinga — **stretched, gap-up post-print, likely +30%+ over MA200 zone** (anti-FOMO flag elevated; need to verify exact level at re-eval). Spread anomaly (6.85% at 11:40 CT) signals book not stabilized — same gap-day pattern as GEV/VRT 04-23 and LLY/QCOM 04-30.
+- **Q** (22/25): top-decile fundamentals — revenue +22% YoY, EPS +30%, record backlog, FCF strong. Top-quartile momentum in industrials. Liquidity ample (mega-cap industrial).
+- **S** (18/25): analyst PT cluster RAISES on the print, but **average PT $772 vs current ~$880 mid → price already ahead of consensus** (sentiment red flag — room to disappoint without fresh catalyst). −2pt on this overhang.
+- **Total: 22+14+22+18 = 76/100 → Standard tier** (Pathway B candidate, sizing 4-5% NAV target ~$4,000-5,000).
+- **Quote at 11:40 CT (16:40 UTC)**: ask $908.54, bid $848.35 → **spread 6.85%** (>> 0.5% cap, mechanical reject same as GEV/VRT 04-23). FOMO check is moot under spread skip.
+- **Verdict: SPREAD-SKIPPED at 11:30**. Tag for **Pathway B re-evaluation at 12:30 / 13:30** (last chance is 13:30 — 14:30 is exits-only). At re-eval, must re-verify (a) spread ≤ 0.5% (b) ask not > +2% above current mid (FOMO guard) (c) all standard preflight gates. If spread still anomalous at 13:30, **defer to Monday 05-04 pre-market** for full re-CTQS (gap may have priced in by then, T-grade may improve as the post-print volatility drains).
+
+#### AMZN — Day-2 PEAD WATCH carry-over from pre-market, **defer**
+
+- **C** (18/25): clean Q1 beat on 04-29 AMC (rev $181.5B +17%, AWS +28% to $37.6B fastest in 15Q, EPS +69% beat, Q2 guide raise) but day-1 fade dilutes catalyst purity (capex shock $44.2B spooked margin bears).
+- **T** (15/25): mark $268.74 at 11:40 CT — barely +1.39% above 04-30 close $265.06, +2.17% above 04-29 close $263.04 (sources differ on 04-29 close: $263.04 vs $268.36). Reclaim of pre-print level is borderline-confirmed on the lower estimate, **not** confirmed on the higher estimate. Day-2 PEAD trigger required "clean intraday breakout with volume" — without intraday tape detail, this is at best ambiguous.
+- **Q** (22/25): mega-cap top-decile, AWS acceleration confirms secular cloud thesis, top-quartile momentum.
+- **S** (16/25): capex narrative split (cloud bulls vs margin bears), analyst PT divergence post-print.
+- **Total: 18+15+22+16 = 71/100 → Standard floor** (Pathway B candidate if T grade firms up).
+- **Quote at 11:40 CT**: ask $268.76, bid $268.73 → **spread 0.011% (clean ✓)**. No spread issue.
+- **Verdict: DEFER to 12:30 re-eval**. Need to see (a) clear intraday breakout with volume confirmation on the day-2 tape, (b) reclaim of $270 zone as a clean level, (c) sector rotation supportive. If criteria firm up, Standard 4% NAV ~$3,900 with 6% trail. If still ambiguous at 12:30, defer further to 13:30 or skip entirely (day-2 PEAD is binary — if it doesn't break by mid-afternoon, the setup decays). **Sector check**: AMZN 4% + GOOGL 2.76% + AAPL 4.64% = 11.4% tech (well under 25% cap).
+
+### Activity-floor + cap usage check
+- Rolling 5td BUYs (post-AAPL fill 05-01): **5 BUYs in last 5 td** (04-23 GOOGL close-out, 04-30 GOOGL fresh, 04-30 LLY, 05-01 AAPL — wait, that's 4 unique BUY events; 04-23 GOOGL was BUY not close-out — let me recount: 04-23 GOOGL BUY, 04-30 GOOGL BUY, 04-30 LLY BUY, 05-01 AAPL BUY = **4 BUYs in last 5 td**) → ≥3 target ✓.
+- Pathway B/C cap usage today: 0/5 (AAPL is Pathway A, doesn't count). 5 slots remaining theoretically; 2 BUY-eligible scans left (12:30, 13:30) so effective usage will be ≤ 2 even if both fire.
+- Cash 87.67% (>> 10% floor ✓). Tech sector 7.45% (<< 25% cap ✓). Healthcare 4.93% (<< 25% cap ✓). 0 leveraged ETF, 0 options, 0 crypto.
+- No daily loss cap (+0.16% well above −4%). No weekly loss cap. No drawdown auto-defense (DD from $100k ATH = −2.32%).
+
+### Stop-update sweep on survivors (Step 7)
+All 3 positions have native Alpaca trailing_stop sell GTC orders engaged (qty_available=0 on each = trail reservation confirmed). No manual STOP-UPDATE needed:
+- AAPL trail 6% · HWM $287.22 · stop $269.99 · 4.65% buffer below mark $283.39 — appropriate for J+0 PEAD.
+- GOOGL trail 7% · HWM $386.74 · stop $359.66 · 6.66% buffer below mark $385.33 — appropriate for J+1 PEAD.
+- LLY trail 7% · HWM $984.45 · stop $915.54 · 4.88% buffer below mark $962.58 — note HWM is well above current mark (ran to $984 then pulled back), trail is one-way ratchet so stop $915.54 is locked. Appropriate for J+1 PEAD.
+
+The TIGHTEN gate (P8: +10%) is the next decision point: AAPL needs +9.8pp more, GOOGL needs +5.8pp more, LLY needs +7.6pp more before manual TIGHTEN to 3% would fire. Native trails will keep ratcheting in the meantime.
+
+### Summary
+- **0 BUY · 0 CUT · 0 TRIM · 0 TIGHTEN · 3 HOLD** — full quiet scan on the management ladder.
+- **1 reconciliation**: AAPL 16@$282.83 (Pathway A pre-market WATCH trigger hit at market-open 08:47 CT, journal failed to commit → reconciled here). 4th harness-gap in 6 td.
+- **0 BUYs at this slot**: CAT (Pathway B candidate, CTQS 76, spread-skipped at 6.85% — queued for 12:30/13:30 re-eval). AMZN (day-2 PEAD WATCH, CTQS 71, technical confirmation borderline — deferred to 12:30). EL/RBLX/WDC skipped on FOMO/broken thesis/bad tape.
+- **Day P&L +0.156%**, regime neutral lean risk-on (one notch friendlier than pre-market's neutral lean cautious — NFP rescheduled, VIX <17, breadth improving). No regime SHIFT.
+- **Activity floor**: 4 BUYs in 5td ≥3 target ✓.
+- **Cap usage**: cash 87.67% · tech 7.45% · healthcare 4.93% · all hard caps respected.
+- **Next slot (12:30 CT)**: re-evaluate CAT spread + FOMO band, re-evaluate AMZN day-2 breakout pattern, scan for any fresh BMO/AMC catalysts surfacing during the lunch hour.

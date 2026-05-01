@@ -36,6 +36,27 @@ Append-only. **Never rewrite** a past entry. Reverse chronological (most recent 
 
 ## Entries
 
+### 2026-05-01T13:47:06Z — BUY AAPL 16@$282.834375 (RECONCILIATION ENTRY — logged retroactively at 11:30 intraday-scan)
+- Order ID: **191486fb** (market BUY, TIF=day, qty=16, filled_avg_price=$282.834375, status=filled)
+- Trail stop placed 13 sec later: order **43ed6c8b-7221-419b-a8c9-9bf7d7de945c** (trailing_stop sell, qty=16, trail_percent=6%, TIF=GTC, HWM $287.22 at quote time, initial stop $269.9868). Native Alpaca trailing — one-way ratchet engaged.
+- Value: $4,525.35 (16 × $282.834375)
+- % NAV at entry: **4.64%** (vs equity $97,565 at fill — within 4.5-5.0% Standard plan band)
+- Instrument: equity
+- Style: short-swing, J+0..J+5 (time stop 2026-05-08 close)
+- CTQS: C23/T18/Q23/S20 = **84/100** → Standard tier (upper bound), confidence 68% per pre-market note (notched from 75% for NFP-fog + gap-up + Mag-7 capex spillover)
+- Setup type: PEAD (post-earnings drift) Pathway A — pre-market WATCH queue confirmed at open
+- Catalyst: AAPL Q2 FY26 print 04-30 AMC — EPS $2.01 vs $1.95 · revenue $111.18B vs $109.66B · iPhone +22% YoY (iPhone 17 demand) · **Greater China $20.5B vs $16B = +28% YoY** · Services $30.98B beat · gross margin 49.3% record · Q3 guide raise to +14-17% YoY revenue. Stock +1.86% AH on print, gapped up to ~$283 area at open.
+- Thesis: clean Mag-7 PEAD on the China + iPhone + GM trifecta, multi-day drift highly probable. 6-month range break setup (was ranging $245-280 since Nov 2025). Mega-cap defensive characteristics on a breadth-deteriorating tape = constructive.
+- Stop: 6% trailing native (Alpaca trailing_stop sell GTC, id 43ed6c8b) @ $269.9868 initial, HWM $287.22.
+- Take-profit: trailing only (let PEAD run; one-way ratchet on the trail).
+- Time stop: **2026-05-08 close** (J+5 short-swing horizon). Earnings hold: NO (next AAPL earnings late July 2026, well outside window).
+- Routine: market-open (placed) → intraday-scan 11:30 (reconciled this run).
+- Research note: memory/equities/research_log.md — 2026-05-01T11:27:37Z pre-market block, AAPL BUY queued verdict.
+- Pre-trade gate (inferred from fill — actual run lost): pretrade_guards must have passed (order is filled, no rejection). Spread at fill window expected <0.05% on AAPL super-liquid name; FOMO guard (ask ≤ $310) easily satisfied at $283; NFP deferral (catastrophic miss → defer) was a non-issue because **NFP was actually rescheduled to 05-08, not released today** — so the macro-fog notch-down was already over-conservative on the entry.
+- **RECONCILIATION**: this trade was placed by the market-open routine on 05-01 at 13:47:06Z (08:47 CT, 17 min after the 08:30 CT bell — same pattern as the GOOGL 04-30 reconciliation) but the journal failed to commit. **No 05-01 market-open block in research_log, no 05-01 market-open commit in git log** (last commit before this run is 96638cf = the 05-01 pre-market). The Alpaca order history (`alpaca_client.py orders --status all`) is the source of truth for the fill. **Fourth journal-commit failure in 6 trading days** (04-25 weekend, 04-27 partial pre-market, 04-30 pre-market+market-open both failed, 05-01 market-open). Surfaced as a fresh `[HARNESS-GAP]` entry in learnings and queued for monthly-review evolution proposal alongside the GTD-exit-at-fill remediation and journal-commit-retry remediation.
+- Status at this scan (16:40 UTC = 11:40 CT): open J+0 · mark $283.39 · +$8.89 (+0.20%) · trail engaged (HWM $287.22 / stop $269.99 = 4.65% buffer below mark) · in-thesis. **Action this scan: HOLD** (no priority trigger, native trail handling exit risk).
+
+
 ### 2026-04-23T13:37:07Z — BUY GOOGL 7@$339.29
 - Order ID: 1e58b2d7-9039-45bf-8b10-06e39c32f2d1 (stop: 45d94a3c-d7c9-44f6-bc8d-e6d38c6afef0)
 - Value: $2,375.03

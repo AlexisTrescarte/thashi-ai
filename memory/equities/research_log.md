@@ -751,3 +751,100 @@ Options traders pre-expected only "small move" → upside vol mispriced going in
 - **Cash post-AAPL fill (estimated)**: ~87.5% (well above 10% floor)
 - **Sector mix post-fill**: tech ~7.45% + healthcare ~4.84% = 12.29% deployed (87.71% cash) → still very defensive, room to add if confirmation builds
 
+
+## 2026-05-01T15:38:00Z — Intraday-scan 10:30 CT
+
+### Run metadata
+- ISO UTC: 2026-05-01T15:38:00Z (10:38 CT)
+- Routine: intraday-scan 10:30 (on-schedule, harness fired)
+- Account: equity $97,698.41 · cash $85,632.88 · last_equity $97,524.83 → **day P&L +0.18%** · 3 open positions ($12,065.53 = 12.35% NAV)
+- 3 native trailing stops engaged (AAPL/GOOGL/LLY), all GTC, qty_available=0 across the book
+- 0 OPEN-RETRY tags in pre-market block → **Pathway A-prime: nothing to retry**
+
+### Macro / regime
+- VIX broke below 17.84 support overnight, broke it again at the C-period (RTH open) — **calm-low regime, no shift**
+- SPY +0.08%, DOW +0.73%, Nasdaq 100 -0.18% (cyclicals/industrials bid on CAT print, mega-tech mixed-soft on Mag-7 capex digestion)
+- NFP April digested cleanly — no catastrophic miss reported, no spike in vol; AAPL gap-up confirmed at open
+- Lower crude → lower yields → supportive of stocks
+- Breadth: not directly observable intraday, but the SPY/QQQ split + VIX behavior indicates risk-on lean (industrials leading)
+- **Regime classification: NEUTRAL lean risk-on** — UPGRADE from pre-market's "neutral lean cautious" (NFP risk passed cleanly). No regime-shift trigger fired.
+
+### Per-position priority ladder
+
+**AAPL** (J+0, just filled at open)
+- Cost $282.834375, mark $283.66, +0.29% intraday, +$13.13 unrealized
+- Native 6% trail GTC (order 43ed6c8b): HWM $287.22, stop $269.99, qty_available=0
+- Time stop: 2026-05-08 close (J+5)
+- Earnings risk: none (next print late July 2026)
+- Thesis: PEAD on Q2 FY26 beat-raise (iPhone +22%, China +28%, GM 49.3% record) — **INTACT**
+- Priority: **P10 hold** (no P1-P9 trigger; +0.29% << P8 +10% threshold)
+- **Action: HOLD**
+
+**GOOGL** (J+1)
+- Cost $369.71, mark $385.91, +4.38%, +$113.42 unrealized
+- Native 7% trail GTC (order 74ec67e0): HWM $386.74, stop $359.66, qty_available=0
+- Time stop: 2026-05-07 close (J+5)
+- Earnings risk: none (next ~late July 2026)
+- Thesis: PEAD on Q1 cloud +63% beat-raise — **INTACT**
+- Priority: **P10 hold** (+4.38% << P8 +10% threshold)
+- **Action: HOLD**
+
+**LLY** (J+1)
+- Cost $939.54, mark $965.16, +2.73%, +$128.08 unrealized
+- Native 7% trail GTC (order 8e54102c): HWM $984.45, stop $915.54, qty_available=0
+- Time stop: 2026-05-07 close (J+5)
+- Earnings risk: none (next ~late July 2026)
+- Thesis: PEAD on Mounjaro/Zepbound beat-raise — **INTACT**
+- Priority: **P10 hold** (+2.73% << P8 +10% threshold; trail HWM ratcheted overnight from $945.50 → $984.45 = native one-way ratchet active)
+- **Action: HOLD**
+
+### Daily loss cap check
+- Day P&L +0.18% — well above -4% trigger. No DAILY-LOSS-CAP. Proceed normally.
+
+### Active universe scan (mandatory, ≥5 candidates)
+
+**Candidates evaluated this slot**:
+
+1. **CAT — REJECT (FOMO + spread)**. Q1 2026 print 04-30 AMC: EPS $5.54 vs $4.55 (+19.7% beat), revenue $17.4B (+22% YoY), record backlog $63B, FY guide raised to low double-digit growth. Stock +9.95% intraday to $890.65 (close 04-30 was $810.05). Quote at scan: ask $908.54 / bid $848.35 → **spread 7.10% >> 0.5% cap = mechanical hard block**. Even with normalized spread, T discounted heavily for day-1 chase risk on a +10% gap → CTQS estimate ~70-72 with T capped at 12. SKIP — wait for spread normalization at 11:30 / 12:30 OR Monday morning entry preferred for clean PEAD continuation. Sized 0% NAV.
+
+2. **AMZN — REJECT (trigger not met)**. Pre-market WATCH conditional was "AMZN reclaims its 04-29 close" before day-2 PEAD entry. AMZN at $269.85 mid (ask $269.88 / bid $269.83, spread 0.019% clean). 04-29 close was ~$272-273 → AMZN BELOW pre-print level, day-1 fade pattern continuing. Trigger NOT MET. SKIP. Re-check at 11:30 / 12:30.
+
+3. **AMD — REJECT (timing)**. Pre-market WATCH for J-1 entry Monday 05-04 close or Tuesday 05-05 morning (print Tuesday AMC). Today is J-2 from print, entry window not optimal. NFP-day whipsaw risk also discourages Friday entry. Quote: ask $354.51 / bid $350.82, **spread 1.05%** > 0.5% cap (semis basket wide intraday). SKIP. Re-evaluate Monday pre-market.
+
+4. **SMH — REJECT (timing)**. Same logic as AMD — Monday 05-04 entry preferred (J-1 to AMD print). Quote: ask $508.47 / bid $508.28, spread 0.037% clean. No catalyst surfacing today; the AMD-tailwind catalyst is dated 05-05 not 05-01. SKIP.
+
+5. **NVDA — REJECT (no breakout signal)**. Pre-market WATCH conditional was "clean breakout above 50d MA on volume" (technical-only T+Q+S ≥ 60/75 trade allowed). Quote: ask $198.88 / bid $198.83, spread 0.025% clean. Nasdaq -0.18% intraday → no clear breakout signal on tape today; NVDA ranging without volume confirmation. Per slot context "no technical-only intraday BUY" — Pathway C is suspended this slot anyway. SKIP. Re-evaluate at next intraday-scans if tape confirms.
+
+6. **QCOM — REJECT (day-1 PEAD already extended + chase)**. Beat AH 04-30 (Q2 adj rev strong), already +6%+ in pre-market 04-30. Today still up modestly. Mark $173.25 mid, spread 0.069% clean. CTQS estimate: C20 (clean beat) · T~13 (day-1 PEAD chase, +6% already extended) · Q21 · S~17 = ~71/100 — would qualify on score floor but the chase-on-the-pop pattern matches the pre-market risk #2 warning. With AAPL already filling its own Standard slot, QCOM stacks tech sector concentration and forfeits diversification. SKIP — could re-evaluate Monday on pullback.
+
+7. **INTC — REJECT (PEAD already digested)**. Earlier-this-week beat (Q1 EPS $0.29 vs $0.01 = significant surprise) triggered upgrade cluster (UBS PT $83, MS $56, Freedom $100, KeyBanc $110). Stock has already absorbed most of the day-1/day-2 PEAD impulse. No fresh dated catalyst surfacing today. SKIP — would be a stale-PEAD chase.
+
+**Net candidates promoted**: 0/7. Pathway A-prime: 0 tags. Pathway A WATCH triggers: 0 met (AMZN reclaim not confirmed). Pathway B opportunistic: 0 (CAT spread-blocked, others rejected on quality). Pathway C technical-only: SUSPENDED at the 10:30 slot per slot context (only Pathway A WATCH triggers + Pathway B at CTQS ≥ 70 allowed).
+
+### Sector mix post-scan (unchanged)
+- Tech: AAPL 4.64% + GOOGL 2.77% = 7.41% NAV
+- Healthcare: LLY 4.94% NAV
+- Industrials: 0%
+- Crypto: 0%
+- Total deployed: 12.35% · Cash 87.65% (well above 10% floor)
+- Activity floor: rolling 5td post-AAPL fill = 4 BUYs (≥3 target ✓)
+
+### Stop-update sweep
+All 3 native trails verified coherent + ratcheting:
+- AAPL: trail 6%, HWM $287.22 (ratcheted from $282.83 entry → $287.22 mark high), stop $269.99
+- GOOGL: trail 7%, HWM $386.74 (ratcheted from entry HWM $378 → $386.74), stop $359.66
+- LLY: trail 7%, HWM $984.45 (ratcheted overnight from $938.34 entry-day high → $984.45 today's high), stop $915.54
+- All one-way ratchets active. No manual STOP-UPDATE fired (would only loosen).
+
+### Operational note — HARNESS-GAP #4
+- 05-01 market-open routine fired on the exchange (AAPL fill at 13:47:19Z + trail order placed) but **journal failed to commit** — no `runs.log` market-open entry, no git commit. **4th journal-commit failure in 5 trading days**. Logged in `learnings.md` under `2026-05-01T15:37:00Z — [HARNESS-GAP]`. Reconciled in `trade_log.md` retroactively.
+- AAPL stop coverage intact via Alpaca-native trail — no risk gap. Step-2 reconciliation pattern (verify Alpaca API state) caught the gap as designed.
+
+### Summary
+- **0 cut · 0 trim · 0 tighten · 0 BUY** · 3 holds (AAPL/GOOGL/LLY all P10)
+- **1 reconciliation** (AAPL BUY logged retroactively)
+- Day P&L +0.18% · regime confirmed neutral lean risk-on (NFP digested cleanly, VIX <17.84)
+- 0 candidates promoted from active universe scan (CAT spread-blocked + chase, AMZN trigger not met, AMD/SMH/NVDA timing, QCOM/INTC stale-chase)
+- Activity floor: 4 BUY/5td (≥3 target met ✓). Cash 87.65%. Sector mix tech 7.41% + healthcare 4.94% = 12.35%. All caps respected.
+- Operational: HARNESS-GAP #4/5td flagged for weekly-review (today 16:00 CT)
+

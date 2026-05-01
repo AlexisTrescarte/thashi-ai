@@ -836,3 +836,68 @@ The TIGHTEN gate (P8: +10%) is the next decision point: AAPL needs +9.8pp more, 
 - **Activity floor**: 4 BUYs in 5td ≥3 target ✓.
 - **Cap usage**: cash 87.67% · tech 7.45% · healthcare 4.93% · all hard caps respected.
 - **Next slot (12:30 CT)**: re-evaluate CAT spread + FOMO band, re-evaluate AMZN day-2 breakout pattern, scan for any fresh BMO/AMC catalysts surfacing during the lunch hour.
+
+
+### 2026-05-01T17:41:00Z — INTRADAY-SCAN 12:30 CT
+
+**Run metadata**: midday slot. No harness gap (11:30 reconciliation block immediately precedes — committed). Active management + universe scan as standard.
+
+### Account state at scan
+- Equity $97,667.07 · cash $85,632.88 (87.68%) · day P&L = (97,667.07 / 97,524.83 − 1) = **+0.146%** · last_equity $97,524.83
+- 3 open positions ($12,034.19 = 12.32% NAV deployed) · 3 native trailing stops engaged (1 per position, all GTC) · 0 BUYs in flight
+
+### Open positions at 12:40 CT (17:40 UTC)
+| Ticker | Qty | Avg cost | Mark | P&L $ | P&L % | J | Trail | HWM | Stop | Verdict |
+|---|---|---|---|---|---|---|---|---|---|---|
+| AAPL | 16 | $282.83 | $282.41 | −$6.79 | **−0.15%** | J+0 | 6% | $287.22 | $269.99 | **HOLD** (P10) |
+| GOOGL | 7 | $369.71 | $385.23 | +$108.63 | **+4.20%** | J+1 | 7% | $386.74 | $359.66 | **HOLD** (P10) |
+| LLY | 5 | $939.54 | $963.85 | +$121.53 | **+2.59%** | J+1 | 7% | $984.45 | $915.54 | **HOLD** (P10) |
+
+Priority ladder verdict (per command, first-match-wins): every position falls cleanly to **P10 HOLD**.
+- AAPL J+0 PEAD slight intraday drag (gap fading per the 11:30 forecast); no thesis break, no time stop, no -5% loss, +10% TIGHTEN gate not hit.
+- GOOGL J+1 PEAD running the trail; +4.20% needs +5.8pp more before P8 TIGHTEN fires.
+- LLY J+1 PEAD running the trail; +2.59% needs +7.4pp more before P8 TIGHTEN fires. HWM $984.45 (peak earlier in session) ratcheted stop one-way to $915.54 — locked.
+
+### Macro confirmation (5-min sweep)
+- **VIX/VIXY proxy**: VIXY $27.14 (mid), no spike — vol calm. Per WebSearch, VIX "calm" through midday (consistent with the 11:30 read of <17). No regime SHIFT trigger (no VIX +20%, no credit event, no hawkish surprise).
+- **SPY/QQQ intraday**: SPY mid $722.97 (intraday +0.08%), QQQ mid $675.15 (intraday +1.11%, prior close $667.74) — **tech-led tape**. Russell broad-tape participation continues. Blend day perf ≈ +0.60%.
+- **Today's catalyst tape**: GOOGL +5%+ on Q1 ex-TAC $94.57B beat (already in book, +4.20% from cost), QCOM +6%+ on Q2 beat (CEO China-bottom + hyperscaler chip ship), Iran proposal compresses oil tail (Brent down) → lower yields supportive of tech.
+- **Regime classification (intraday update)**: NEUTRAL → **NEUTRAL lean RISK-ON confirmed** (same as 11:30 read, slightly firmer on QCOM/GOOGL beat-and-drift confirming AI-infra secular thesis). No SHIFT.
+
+### Active universe scan (mandatory ≥5 candidates)
+
+Surfaced via WebSearch + Alpaca quote sweep of: 11:30 deferred candidates (CAT, AMZN), fresh midday catalysts (QCOM beat-and-drift), broader tape (no new BMO surprises during lunch hour).
+
+| # | Symbol | Catalyst | Move | Spread | Initial verdict |
+|---|---|---|---|---|---|
+| 1 | **CAT** | Q1 print 04-30 AMC, AI data-center power-gen +41%, record backlog $62.7B (re-eval from 11:30) | gap-up post-print | ask $908.54 / bid $888.35 = **2.25%** | **STILL SPREAD-SKIPPED** — improved from 6.85% → 2.25% but still 4.5x cap. Queue for 13:30 last-chance re-eval; if still > 0.5% at 13:30, defer to Monday 05-04 pre-market. |
+| 2 | **AMZN** | Day-2 PEAD WATCH carry (re-eval from 11:30) | mark $269.27 vs 04-30 close $265.06 = +1.59% intraday (+0.19% drift since 11:30 mark $268.74) | 0.019% (clean) | **DEFER to 13:30 last chance** — clean spread but the breakout test "clear intraday breakout with volume" is **not met**. +0.19% drift in an hour is sluggish, not a clean reclaim. CTQS unchanged at 71/100. If at 13:30 AMZN has not staged a $270 reclaim with volume, skip and defer to Monday for re-CTQS post-froth. |
+| 3 | **QCOM** | Q2 FY26 print 04-29 AMC: EPS $2.65 vs $2.56 est, rev $10.6B, automotive +50% YoY guide, CEO Amon "China bottomed" + hyperscaler data-center chip shipment ahead of schedule. Stock surged +16% post-print; today (J+2) +6% intraday continuation. | gap-up day-1 + day-2 continuation | ask $179.58 / bid $178.70 = **0.49%** (right at 0.5% cap edge) | **DEFER to Monday pre-market** — fresh Pathway-B PEAD candidate but: (a) +24% from pre-print close is **textbook FOMO-band stretch** (T-grade penalty), (b) day-2 chase entry is mid-tape risk, (c) spread 0.49% is borderline pass at the cap, (d) we already have 3 PEAD positions stacked (AAPL/GOOGL/LLY) — adding QCOM compounds setup-correlation. CTQS rough estimate 22+13+22+18 = **75/100 Standard tier**. Discipline play: defer to Monday post-froth re-CTQS — let the gap settle, get analyst PT cluster confirmed, enter cleaner. |
+| 4 | **EL** | Q3 beat carry from 11:30 | +12% intraday | spread 2.95% (per 11:30 quote) | **STILL SKIP** (FOMO band + spread cap, no fit). |
+| 5 | **RBLX** | FY 2026 bookings guide CUT carry | -24% | n/a | **STILL AVOID** (broken thesis, falling-knife). |
+| 6 | **WDC** | Q3 beat tape rejecting carry | -8.3% | n/a | **STILL SKIP** (bad tape). |
+| 7 | **AMD/SMH/NVDA** | Pre-market WATCH carry | n/a | n/a | **HOLD WATCH** — Monday/Tuesday entry per pre-market plan. |
+
+**Decision**: 0 candidates promoted to BUY this slot. CAT and AMZN both queued for 13:30 last chance. QCOM deferred to Monday (FOMO band stretch + correlation overload).
+
+### Activity-floor + cap usage check
+- Rolling 5td BUYs: still **4 BUYs in last 5 td** (04-23 GOOGL, 04-30 GOOGL, 04-30 LLY, 05-01 AAPL) → ≥3 target ✓.
+- Pathway B/C cap usage today: **0/5** (AAPL was Pathway A). 5 theoretical slots remain; 1 BUY-eligible scan left (13:30) so effective max usage ≤ 1.
+- Cash 87.68% (>> 10% floor ✓). Tech sector 7.39% (AAPL 4.63% + GOOGL 2.76%) · healthcare 4.94% (LLY) · all hard caps respected. 0 leveraged ETF, 0 options, 0 crypto.
+- No daily loss cap (+0.146% well above −4%). No weekly loss cap. No drawdown auto-defense (DD from $100k ATH = −2.33%).
+
+### Stop-update sweep on survivors (Step 7)
+All 3 positions have native Alpaca trailing_stop sell GTC orders engaged (qty_available=0 confirms reservation). No manual STOP-UPDATE needed — trails already tighter than any structural-stop alternative would dictate.
+- AAPL: trail 6% · HWM $287.22 · stop $269.99 · mark-to-stop buffer 4.40% (mark $282.41).
+- GOOGL: trail 7% · HWM $386.74 · stop $359.66 · mark-to-stop buffer 6.64% (mark $385.23).
+- LLY: trail 7% · HWM $984.45 · stop $915.54 · mark-to-stop buffer 5.01% (mark $963.85). HWM well above mark = trail is one-way-ratchet locked.
+
+TIGHTEN gate (P8: +10%) decision points: AAPL needs +10.15pp more; GOOGL needs +5.80pp more; LLY needs +7.41pp more.
+
+### Summary
+- **0 BUY · 0 CUT · 0 TRIM · 0 TIGHTEN · 3 HOLD** — full quiet scan on the management ladder, second consecutive scan of the day with no manual action.
+- **0 BUYs at this slot**: CAT spread still 2.25% (skip, queue 13:30); AMZN +0.19% drift = no clean breakout (defer 13:30); QCOM +24% post-print stretch = FOMO band (defer Monday); no fresh midday catalyst surfaced beyond the GOOGL/QCOM/CAT prints already evaluated.
+- **Day P&L +0.146%**, regime neutral lean risk-on (confirmed, no shift).
+- **Activity floor**: 4 BUYs/5td ≥3 ✓.
+- **Cap usage**: cash 87.68% · tech 7.39% · healthcare 4.94% · all hard caps respected.
+- **Next slot (13:30 CT)**: re-evaluate CAT spread (last chance — if still > 0.5%, defer to Monday) + AMZN day-2 breakout signal (last chance — defer to Monday otherwise) + QCOM if FOMO band normalizes (unlikely intraday). 14:30 is exits-only.

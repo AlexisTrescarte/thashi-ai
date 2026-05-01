@@ -1,3 +1,17 @@
 {
-  "trades": []
+  "trades": [
+    {
+      "id": "8378bccf",
+      "side": "short",
+      "entry": 78010.975,
+      "raw_price": 78050.0,
+      "qty": 0.00115393,
+      "sizing_pct": 3.0,
+      "tp": 77565.0,
+      "sl": 78200.0,
+      "opened_at": "2026-05-01T12:41:18.960692+00:00",
+      "reason": "Mean-reversion probe SHORT \u2014 RSI extr\u00eame triple-TF (5m 82.6, 15m 79.9, 1h 73.9), %B > 1.0 sur 5m/15m/1h (price hors BB s",
+      "notional_at_open": 90.0191
+    }
+  ]
 }

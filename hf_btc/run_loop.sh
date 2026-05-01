@@ -4,7 +4,7 @@
 #   1. harness.py prepare              — pulls data, builds /tmp/hf_prompt.md
 #   2. claude -p (non-interactive)     — emits JSON decision to /tmp/hf_decision_envelope.json
 #   3. harness.py post                 — parses, validates, executes, telegram, commit
-#   4. harness.py sleep_until_next     — aligns to next 5-min UTC boundary
+#   4. harness.py sleep_until_next     — aligns to next 15-min UTC boundary
 #
 # Daily report at 23:55 UTC (handled inside post when minute >= 55).
 #
@@ -31,7 +31,13 @@ set +a
 
 cd "$ROOT" || exit 1
 
-CLAUDE_BIN="${CLAUDE_BIN:-claude}"
+if [[ -n "${CLAUDE_BIN:-}" ]]; then
+    :  # honor explicit override
+elif [[ -x "/root/.local/bin/claude" ]]; then
+    CLAUDE_BIN="/root/.local/bin/claude"
+else
+    CLAUDE_BIN="claude"
+fi
 MAX_TURNS="${HF_MAX_TURNS:-8}"
 TICK_TIMEOUT="${HF_TICK_TIMEOUT:-180}"
 
@@ -108,6 +114,6 @@ while true; do
     TICK_END=$(date +%s)
     log "tick complete in $((TICK_END - TICK_START))s"
 
-    # Phase 4 — sleep until next 5-min boundary
+    # Phase 4 — sleep until next 15-min boundary
     "$PYTHON_BIN" "$ROOT/scripts/harness.py" sleep_until_next || sleep 60
 done

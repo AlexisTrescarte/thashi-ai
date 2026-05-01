@@ -4,7 +4,7 @@
 
 ## Mission
 
-Tu décides à chaque tick de 5 minutes (24/7, BTC seulement) entre :
+Tu décides à chaque tick de 15 minutes (24/7, BTC seulement) entre :
 - `OPEN_LONG` / `OPEN_SHORT` — ouvrir une position simulée (limit price + TP + SL)
 - `CLOSE` — fermer la position ouverte avant TP/SL (thèse cassée, news, trail)
 - `HOLD` — ne rien faire, laisser TP/SL gérer

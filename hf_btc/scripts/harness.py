@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bull-HF-BTC harness — orchestrates each 5-min tick.
+"""Bull-HF-BTC harness — orchestrates each 15-min tick.
 
 Sub-commands (called by run_loop.sh in order):
 
@@ -7,7 +7,7 @@ Sub-commands (called by run_loop.sh in order):
     post                 parse /tmp/hf_decision_envelope.json (claude output),
                          validate, execute in sim, check TP/SL hits on opens,
                          mark-to-market, telegram (anti-spam gated), git commit.
-    sleep_until_next     align to next 5-min boundary UTC.
+    sleep_until_next     align to next 15-min boundary UTC.
     tick_dry             prepare + fake HOLD decision + post (no claude call) — for testing.
     daily                end-of-day stats report (call at 23:55 UTC).
 """
@@ -43,6 +43,7 @@ ENVELOPE_FILE = Path("/tmp/hf_decision_envelope.json")
 DECISION_FILE = Path("/tmp/hf_decision.json")
 LAST_NOTIF_FILE = STATE_DIR / "last_notif.json"
 RUNS_FILE = STATE_DIR / "runs.jsonl"
+TICK_INTERVAL_MIN = 15
 
 # ───────── mode toggle (HF_TEST_MODE=1 in .env to loosen selectivity) ─────────
 TEST_MODE = os.environ.get("HF_TEST_MODE", "0").strip() == "1"
@@ -174,7 +175,7 @@ def _build_prompt(ctx: dict[str, Any]) -> str:
         "🛡 **MODE PROD** — sélectivité standard. Confluence ≥4/7, confiance ≥50, cooldown 15min."
     )
     lines = [
-        "# Bull-HF-BTC — décision du tick (5-min cadence)",
+        "# Bull-HF-BTC — décision du tick (15-min cadence)",
         "",
         f"**Tick UTC** : `{ctx['tick_utc']}`",
         "**Mission** : décider d'ouvrir LONG/SHORT, fermer une position ouverte, ou HOLD/SKIP. Sim-only ($3000).",
@@ -646,7 +647,7 @@ def cmd_tick_dry() -> int:
 
 def cmd_sleep_until_next() -> int:
     now = _utc()
-    next_min = ((now.minute // 5) + 1) * 5
+    next_min = ((now.minute // TICK_INTERVAL_MIN) + 1) * TICK_INTERVAL_MIN
     if next_min >= 60:
         nxt = (now.replace(minute=0, second=0, microsecond=0) + timedelta(hours=1))
     else:

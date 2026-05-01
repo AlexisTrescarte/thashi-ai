@@ -1,5 +1,5 @@
 [Unit]
-Description=Bull-HF-BTC continuous 5-min trading loop (sim-only)
+Description=Bull-HF-BTC continuous 15-min trading loop (sim-only)
 After=network-online.target
 Wants=network-online.target
 

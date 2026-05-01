@@ -23,7 +23,7 @@ STATE_DIR = Path(__file__).resolve().parent.parent / "state"
 PORT_FILE = STATE_DIR / "sim_portfolio.json"
 LOG_FILE = STATE_DIR / "trade_log.jsonl"
 
-TICKS_PER_YEAR = 288 * 365  # 5min ticks, 24/7
+TICKS_PER_YEAR = 96 * 365  # 15min ticks, 24/7
 
 
 def _read_log() -> list[dict[str, Any]]:

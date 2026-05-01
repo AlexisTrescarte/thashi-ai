@@ -1,15 +1,15 @@
 # Bull-HF-BTC — high-frequency BTC trading agent (sim-only)
 
-Sister project of Bull-equities. Runs a 5-minute decision loop on **BTC/USD only**, **simulation-only** (`$3000` paper portfolio, no Alpaca order execution). Long + short virtual positions. Multiple trades per day expected.
+Sister project of Bull-equities. Runs a 15-minute decision loop on **BTC/USD only**, **simulation-only** (`$3000` paper portfolio, no Alpaca order execution). Long + short virtual positions. Multiple trades per day expected.
 
 > **Distinct from Bull-equities** — own CLAUDE.md, own state, own Telegram header (`*🐂 BullHF-BTC*`). Same chat ID, no API keys.
 
-## What runs each tick (5 min)
+## What runs each tick (15 min)
 
 1. **`harness.py prepare`** — pulls Alpaca crypto OHLCV (1m/5m/15m/1h × 200 bars), computes 8 indicators (RSI, MACD, Bollinger, ATR, EMA20/50/200, VWAP, Volume z-score), gates a chart-img fetch (50/day quota), builds `/tmp/hf_prompt.md` + `/tmp/hf_context.json`.
 2. **`claude -p` non-interactive** — Claude Sonnet 4.6 receives the prompt, calls `WebSearch` once for BTC news, optionally `Read`s the chart, emits a strict JSON decision (`OPEN_LONG/OPEN_SHORT/CLOSE/HOLD/SKIP` + entry/TP/SL/sizing/confidence/reason_fr).
 3. **`harness.py post`** — parses JSON, validates against guardrails, executes in `sim_portfolio` (with 0.05% slippage), checks any TP/SL hit on open trades since last tick, marks-to-market, sends Telegram (anti-spam: trade events always; heartbeat once/h; daily report at 23:55 UTC), commits + pushes if material change.
-4. **`harness.py sleep_until_next`** — sleeps to next 5-min UTC boundary.
+4. **`harness.py sleep_until_next`** — sleeps to next 15-min UTC boundary.
 
 ## Quick start (Mac)
 
@@ -83,7 +83,7 @@ TEST = collect data (more trades, lower-conviction allowed). PROD = standard sel
 
 ## Cost expectations
 
-~288 ticks/day × ~10-15k token Sonnet 4.6 input + ~2k output ≈ **$7-12/day** API cost. WebSearch tool calls included.
+~96 ticks/day × ~10-15k token Sonnet 4.6 input + ~2k output ≈ **$2-4/day** API cost. WebSearch tool calls included.
 
 Chart-img: 48/50 daily limit budget — 24 baseline (1/h) + 24 opportunistic (gated on signal_score ≥ 2).
 
@@ -92,4 +92,4 @@ Chart-img: 48/50 daily limit budget — 24 baseline (1/h) + 24 opportunistic (ga
 - **No Alpaca order execution.** Alpaca is data-only here. Sim portfolio is the only book.
 - **Stateless between ticks** — full continuity flows through `state/` files.
 - **Crash recovery** — `Restart=on-failure` on systemd; bash loop continues on partial failures (logs degraded ticks).
-- **Time alignment** — every tick aligns to a 5-min UTC boundary. If a tick takes > 5 min (e.g. claude slow), the next one fires immediately to catch up.
+- **Time alignment** — every tick aligns to a 15-min UTC boundary. If a tick takes > 15 min (e.g. claude slow), the next one fires immediately to catch up.

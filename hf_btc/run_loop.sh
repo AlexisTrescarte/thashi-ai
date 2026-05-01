@@ -35,6 +35,18 @@ CLAUDE_BIN="${CLAUDE_BIN:-claude}"
 MAX_TURNS="${HF_MAX_TURNS:-8}"
 TICK_TIMEOUT="${HF_TICK_TIMEOUT:-180}"
 
+# Detect python binary: Debian/Ubuntu only ship `python3`, macOS has both.
+if [[ -n "${PYTHON_BIN:-}" ]]; then
+    :  # honor explicit override
+elif command -v python3 >/dev/null 2>&1; then
+    PYTHON_BIN="python3"
+elif command -v python >/dev/null 2>&1; then
+    PYTHON_BIN="python"
+else
+    echo "[bull-hf-btc] no python interpreter found (need python3)"
+    exit 1
+fi
+
 # Detect timeout binary: GNU `timeout` on Linux, `gtimeout` on macOS (brew coreutils),
 # or fallback to no-timeout (dev only). systemd unit on VPS always has `timeout`.
 if command -v timeout >/dev/null 2>&1; then
@@ -53,13 +65,13 @@ if [[ -z "$TIMEOUT_BIN" ]]; then
     log "WARNING: no timeout binary found (install via 'brew install coreutils' for gtimeout) — claude will run without hard cap"
 fi
 
-log "Bull-HF-BTC loop started · CLAUDE_BIN=$CLAUDE_BIN · MAX_TURNS=$MAX_TURNS · TIMEOUT_BIN=${TIMEOUT_BIN:-none}"
+log "Bull-HF-BTC loop started · CLAUDE_BIN=$CLAUDE_BIN · PYTHON_BIN=$PYTHON_BIN · MAX_TURNS=$MAX_TURNS · TIMEOUT_BIN=${TIMEOUT_BIN:-none}"
 
 while true; do
     TICK_START=$(date +%s)
 
     # Phase 1 — prepare context
-    if ! python "$ROOT/scripts/harness.py" prepare; then
+    if ! "$PYTHON_BIN" "$ROOT/scripts/harness.py" prepare; then
         log "prepare failed — sleeping 60s"
         sleep 60
         continue
@@ -89,7 +101,7 @@ while true; do
     fi
 
     # Phase 3 — post
-    if ! python "$ROOT/scripts/harness.py" post; then
+    if ! "$PYTHON_BIN" "$ROOT/scripts/harness.py" post; then
         log "post failed — continuing"
     fi
 
@@ -97,5 +109,5 @@ while true; do
     log "tick complete in $((TICK_END - TICK_START))s"
 
     # Phase 4 — sleep until next 5-min boundary
-    python "$ROOT/scripts/harness.py" sleep_until_next || sleep 60
+    "$PYTHON_BIN" "$ROOT/scripts/harness.py" sleep_until_next || sleep 60
 done

@@ -1,3 +1,17 @@
 {
-  "trades": []
+  "trades": [
+    {
+      "id": "8992e989",
+      "side": "short",
+      "entry": 78560.7,
+      "raw_price": 78600.0,
+      "qty": 0.0015278,
+      "sizing_pct": 4.0,
+      "tp": 78050.0,
+      "sl": 78870.0,
+      "opened_at": "2026-05-01T15:31:51.552780+00:00",
+      "reason": "Probe SHORT fade upper BB 1h: RSI 1h 72.3 overbought, %B 0.97 coll\u00e9 bande haute, 5m MACD hist tourne n\u00e9gatif (-8.94) mom",
+      "notional_at_open": 120.0247
+    }
+  ]
 }

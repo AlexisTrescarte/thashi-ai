@@ -1,3 +1,17 @@
 {
-  "trades": []
+  "trades": [
+    {
+      "id": "23418487",
+      "side": "long",
+      "entry": 76498.23,
+      "raw_price": 76460.0,
+      "qty": 0.0011765,
+      "sizing_pct": 3.0,
+      "tp": 76760.0,
+      "sl": 76255.0,
+      "opened_at": "2026-05-01T00:36:41.321399+00:00",
+      "reason": "Volume spike 5m z+4.1 sur cassure +300pts, MACD haussier align\u00e9 5m/15m/1h (hist +19/+10/+32), RSI 58 (room), prix au-des",
+      "notional_at_open": 90.0
+    }
+  ]
 }

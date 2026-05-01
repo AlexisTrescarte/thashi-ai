@@ -751,3 +751,46 @@ Options traders pre-expected only "small move" → upside vol mispriced going in
 - **Cash post-AAPL fill (estimated)**: ~87.5% (well above 10% floor)
 - **Sector mix post-fill**: tech ~7.45% + healthcare ~4.84% = 12.29% deployed (87.71% cash) → still very defensive, room to add if confirmation builds
 
+
+### 2026-05-01T13:47:30Z — Market-open execution summary
+
+**Run**: market-open routine on schedule (08:30 CT = 13:30 UTC; quote-fetch at T+~14min, BUY filled at T+~17min after the bell).
+
+**Account at open (post-fill)**:
+- Equity $97,729.33 · Cash $85,632.88 (87.62%) · Long market value $12,096.45
+- Last equity yesterday $97,524.83 · Day change start +0.21%
+- 3 open positions post-fill (GOOGL · LLY · AAPL)
+- Buying power $187,891.81 · daytrade count 0 · no blocks
+
+**Preflight gates** (all pass):
+- Auto-defense: no (DD from $100k ATH = -2.32%)
+- Daily loss cap: no (yesterday +0.04%)
+- Weekly loss cap: no
+- Cash floor: 92.25% pre / 87.62% post (≥ 10%) ✓
+- New positions today: 0 → 1 (< 10) ✓
+- Total positions: 2 → 3 (< 30) ✓
+- Sector tech post-buy: 7.37% (< 25%) ✓
+- NFP April 08:30 ET notch-down rule applied to AAPL plan (4.5-5.0% within Standard band)
+- No regime risk-off shift overnight
+
+**Executions**:
+- 🟢 **BUY AAPL 16@$282.8344** = $4,525.35 = 4.63% NAV. Order 191486fb. Trail 6% GTC order 43ed6c8b @ stop $265.81 / HWM $282.78. CTQS 84 Standard. PEAD short-swing, time stop 05-08 close.
+
+**Skips**: 0. The pre-market block had AAPL as the sole BUY today; AMD/AMZN/SMH/NVDA were WATCH (no action queued for this run).
+
+**Holds (no action triggered)**:
+- GOOGL J+1: trail 7% engaged (HWM $385.84, stop $358.83), mark $381.90 (+3.30%). P10 hold.
+- LLY J+1: trail 7% engaged (HWM $983.01, stop $914.20), mark $980.41 (+4.35%). P10 hold. Trail ratcheted overnight from $945.50 HWM → $983.01 = +3.96 pts of one-way protection added passively.
+
+**Microstructure note**: AAPL first microstructure-confirm at T+13min returned BLOCK (spread 32 bps > 20 bps Standard threshold). Waited 75s — book tightened to spread 3.5 bps and microstructure verdict NEUTRAL (QI 0.0). Discipline-first wait paid off: avoided a 32-bp cross at fill. Spread protocol working as designed.
+
+**Activity floor**: rolling 5td = 4 BUYs (GOOGL 04-23 close-out, GOOGL 04-30, LLY 04-30, AAPL 05-01) ≥ 3 target ✓.
+
+**Risks/watch (rest of session)**:
+- (1) AAPL gap-up tail: mark $282.83 sits at lower edge of plan zone ($285-295) — entry favorable, but if intraday tape rejects $285 and trades back into 6mo range, the trail at $265.81 has 5.7% room to absorb a normal pullback before triggering.
+- (2) Mag-7 capex spillover: META -9% / MSFT -4% on 04-30 — if AAPL Services cost line gets re-rated, drift fades. Monitor at 10:30 / 11:30 / 12:30 intraday-scan.
+- (3) NFP print already absorbed (08:30 ET = ~30 min pre-this-fill). Spread normalization post-NFP confirms market digested data without panic. ISM Manufacturing 10:00 ET = next macro catalyst within session.
+- (4) Breadth deterioration <50% SPX > MA50 — if intraday < 45%, halt new opens (per pre-market plan risk #4).
+- (5) Crypto sleeve risk-off micro continues; 0 crypto BUY today, watching for regime shift.
+
+**Telegram**: mandatory; action template — 1 BUY (AAPL), 2 holds (GOOGL, LLY), portfolio + benchmark + reasoning block on AAPL, microstructure wait-and-retry note (the spread protocol caught and corrected the open-time book widening).

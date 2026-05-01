@@ -109,3 +109,23 @@ Append-only. **Never rewrite** a past entry. Reverse chronological (most recent 
 - Pre-trade gate: pretrade_guards PASS (killswitch ✓, fat_finger ✓, notional ✓, rate_limit ✓); microstructure NEUTRAL with spread 14.8 bps ≤ 20 bps Standard-tier threshold → cleared.
 - Research note: memory/equities/research_log.md — 2026-04-30T18:40:00Z BUY verdict.
 - Notes: Late-day D+0 PEAD entry (~1h20 to close) — accepted risk. The 11:30 scan flagged LLY for spread re-eval; 12:30 missed (harness gap); 13:30 caught the spread normalization. Activity floor progress: rolling 5td now 3 BUYs (GOOGL 04-23 close-out, GOOGL 04-30 fresh, LLY 04-30) — meets ≥3 target. Daily Pathway-B/C cap usage: 2/5 (GOOGL morning + LLY now); 3 BUYs remaining today but slot 14:30 is exits-only so effective cap reached. Sector mix post-buy: GOOGL ~2.7% tech + LLY 4.82% healthcare = 7.52% total, well under all caps. Cash post-buy ~92.4%.
+
+
+### 2026-05-01T13:47:07Z — BUY AAPL 16@$282.8344 (Pathway-A pre-market PEAD, market-open)
+- Order ID: **191486fb-7221-4e80-ace8-cad91c3ebd06** (market BUY, TIF=day, qty=16, filled_avg_price=$282.834375, status=filled).
+- Trailing stop placed 12 sec after fill: order **43ed6c8b-7221-419b-a8c9-9bf7d7de945c** (trailing_stop sell, qty=16, trail_percent=6%, TIF=GTC, HWM $282.78 at quote time, initial stop $265.8132). Native Alpaca trailing — one-way ratchet engaged.
+- Cost basis: $4,525.35 (16 × $282.834375). Filled at +6 cents above ask quote ($282.66 → $282.83) — small market-order cross.
+- **Sizing: 4.63% NAV** ($4,525.35 / $97,733.58). Standard tier mid-band (4-6% target, notched-down 4.5-5.0% per NFP-within-1h guardrail → 4.63% sits squarely in band).
+- CTQS: C23/T18/Q23/S20 = **84/100** → Standard conviction, confidence 68% (notched from 75% for NFP-within-1h fog + gap-up entry uncertainty + Mag-7 capex spillover risk).
+- Setup type: post-earnings drift (PEAD) on a clean Mag-7 print.
+- Catalyst: **Q2 FY26 print 04-30 AMC** — EPS $2.01 vs $1.95 (+3.1%) · revenue $111.18B vs $109.66B (+1.4%) · iPhone +22% YoY (extraordinary iPhone 17 demand) · **Greater China $20.5B vs $16B = +28% YoY** (huge surprise) · Services $30.98B beat · Mac $8.4B beat · gross margin 49.3% (record) · **Q3 guide raise to +14-17% YoY revenue**. Multi-line clean beat (China + iPhone + GM trifecta).
+- Thesis: PEAD short-swing, J+0..J+5. Coiled-spring break-out from 6-month $245-280 range. Defensive mega-cap fit on breadth-deterioration day. Multi-day drift expected; sell-side upgrade cluster expected over next 48h.
+- Stop: 6% trailing native (Alpaca trailing_stop GTC, id 43ed6c8b) @ $265.8132 initial, HWM $282.78.
+- Take-profit: trailing only (let PEAD run; one-way ratchet on the trail).
+- Time stop: **2026-05-08 close** (J+5, short-swing horizon). Earnings hold: NO (next earnings ~late July 2026, well outside window).
+- Routine: market-open (Pathway-A pre-market plan).
+- Pre-trade gate: market-clock OPEN ✓, account ACTIVE ✓, no auto-defense ✓, no daily/weekly loss cap ✓, cash 92.25% pre-trade (well above 10% floor).
+- Microstructure-confirm: first call BLOCKED at T+13min (spread 32 bps > 20 bps Standard threshold); waited 75s, re-quoted spread at 13.1 bps then 3.5 bps, microstructure verdict NEUTRAL (QI 0.0, no edge but no block) — proceeded.
+- FOMO check: ask $283 ≤ FOMO band ceiling $310 ✓. Spread protocol: market-open T+~17min, spread 3.5 bps << 50 bps cap ✓.
+- Research note: memory/equities/research_log.md — 2026-05-01 pre-market plan, AAPL Pathway-A BUY verdict.
+- Notes: Cash post-buy 87.62% (well above 10% floor). Sector mix post-buy: GOOGL 2.74% + AAPL 4.63% = 7.37% tech (under 25%) + LLY 5.02% healthcare = 12.39% deployed. Activity floor: rolling 5td now 4 BUYs (GOOGL 04-23 close-out, GOOGL 04-30, LLY 04-30, AAPL 05-01) — meets ≥3 target. Mag-7 capex spillover risk monitored. NFP April print due 08:30 ET (~30 min before this run); the BUY was placed AFTER NFP digestion — the spread BLOCK-then-PASS sequence reflects post-NFP book stabilization. Three confirmation gates met: spread ✓, FOMO ✓, microstructure NEUTRAL (PASS-equivalent).

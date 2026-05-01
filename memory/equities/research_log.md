@@ -557,3 +557,197 @@ LLY printed a textbook beat-and-raise on the GLP-1 franchise (Mounjaro +125% YoY
 - (3) Journal-commit failure risk — first-action priority of journal skill is ensuring the LLY trade gets committed (3rd journal failure this week would invalidate the audit trail).
 - (4) AMD 05-05 AMC remains queued for next fresh pre-market.
 **Telegram**: mandatory; action template — 1 BUY (LLY), 1 hold (GOOGL), portfolio + benchmark + reasoning block on LLY, harness-gap context note (12:30 missed but 13:30 caught the spread normalization).
+
+
+## 2026-05-01 — Pre-market plan
+
+### Run metadata
+- ISO UTC: 2026-05-01T11:27:37Z (06:27 CT)
+- Routine: pre-market (on schedule, harness fired)
+- Account snapshot: equity $97,565.32 · cash $90,158.23 (92.40%) · last_equity $97,524.83 → day perf yesterday +0.04% · 2 open positions ($7,407.09 = 7.59% NAV) · 2 native trailing stops engaged · 0 BUYs queued at run start
+
+### Macro regime — NEUTRAL lean cautious (NFP day)
+- **Fed**: held 3.50-3.75% on 04-29 with **8-4 dissent** (largest since Oct 1992) — sticky-inflation hawks vs growth-worry doves split. Markets price **zero cuts in 2026**, +25 bp Dec 2027. Powell tone neutral, no June pivot signaled.
+- **Today is NFP day** (April 2026 employment): release 08:30 ET = 1h before open. Last print March +178k / unemp 4.3% / AHE +0.2%m/+3.5%y (cooled). Consensus for April unknown from search but the print is binary; sizing ONE NOTCH DOWN per guardrails ("major macro within 24h").
+- **Curve / DXY / rates**: 10Y ~4.39% (intraday read 04-30), supportive of duration. DXY not flagged as moving. 2Y/10Y not inverted post-FOMC.
+- **VIX**: 17.32-18.73 04-30 session — calm-ish, not spiked. No regime shift trigger.
+- **Breadth**: <50% SPX > MA50 (deterioration continuing from 53% one week ago) — **rally is dangerously concentrated in mega-cap tech**. Yellow flag.
+- **Mag-7 dispersion (04-29 AMC + 04-30 AMC)**: GOOGL +6% (cloud +63%), AMZN +0.7% (AWS 28%, capex spook $44.2B), MSFT -4% (Azure decel/capex), META -9% (capex shock $113B FY guide), AAPL +1.86% AH (Q2 beat-and-raise — see CTQS note below). The capex thesis is splitting bulls (cloud rev) from bears (margin compression).
+- **Crypto**: BTC $76k (-1.14%), ETH $2.24k (-2.07%), SOL $82 (-0.3%) — 3rd consecutive day of US spot Bitcoin ETF outflows ($137M), Fear & Greed 33. **Risk-off micro** — no crypto BUY today.
+- **Geopol**: no fresh tariff shock, Iran/Strait tail dormant for now.
+- **Regime classification: NEUTRAL lean cautious**. Not risk-off (VIX <25, no credit shock), not risk-on (breadth deterioration + 8-4 FOMC dissent + AI capex jitters). Sizing cap: Standard (4-6%) for non-AAPL ideas; AAPL itself notch-down to 5% mid-Standard from a CTQS-84 High-floor. Cash floor 10% (room down from 92.4%).
+
+### Weekly catalyst calendar
+- **Friday 05-01 (TODAY)**: NFP April 08:30 ET · AAPL PEAD setup at open · ISM Manufacturing 10:00 ET
+- **Monday 05-04**: light data, several mid-cap earnings (Tyson, Vertex Energy)
+- **Tuesday 05-05**: **AMD earnings AMC** (key semi catalyst — see WATCH below) · ISM Services 10:00 ET
+- **Wednesday 05-06**: Disney earnings AMC, ARM earnings AMC
+- **Thursday 05-07**: jobless claims 08:30 ET, possible Fed speakers
+- **Friday 05-08**: light data, end of earnings rush
+
+### Risk-state
+- Auto-defense: **no** (DD from $100k ATH = -2.43%, well above -20% trigger)
+- Daily loss cap: **no** (yesterday +0.04%)
+- Weekly loss cap: **no** (no [WEEKLY-LOSS-CAP] tag in last 3 td)
+- ATH unchanged at $100k (equity $97,565.32 < $100k → no ATH update)
+- **NFP within 1h of open**: triggers sizing-one-notch-down rule for any new BUY today; max options exposure halved to 2.5% (no options BUY queued anyway)
+
+### Open positions — actions for today
+
+**GOOGL** (J+1 since 04-30 BUY · 7@$369.71 cost · mark $383.87 · +3.83%)
+- Native 7% trail GTC active (order 74ec67e0): HWM $385.84, stop $358.83. qty_available=0 (reserved by trail).
+- Time stop: 2026-05-07 close (J+5)
+- Earnings risk: none — Q1 just printed 04-29 AMC, next ~late July 2026
+- Thesis: PEAD on cloud +63% beat-raise — INTACT. Stock gapped from $349 → $370 entry, mark $383.87 = +3.83% from cost.
+- **Action today: HOLD**. Trail will ratchet natively at the open. No manual stop update needed unless +10% triggers Priority 8 TIGHTEN at intraday-scan.
+- Priority ladder: P10 hold (no P1-P9 trigger).
+
+**LLY** (J+1 since 04-30 BUY · 5@$939.54 cost · mark $944.00 · +0.475%)
+- Native 7% trail GTC active (order 8e54102c): HWM $945.50, stop $879.31. qty_available=0.
+- Time stop: 2026-05-07 close (J+5)
+- Earnings risk: none — Q1 just printed 04-30 AM, next ~late July 2026
+- Thesis: PEAD on Mounjaro/Zepbound beat-and-raise — INTACT. Late-day D+0 entry, mark $944 = +0.475% from cost (essentially flat overnight).
+- **Action today: HOLD**. Day-1 PEAD continuation expected. Trail engaged.
+- Priority ladder: P10 hold.
+
+### New ideas — CTQS shortlist
+
+#### 1. AAPL — BUY queued (Pathway A — pre-market PEAD)
+
+**Setup type**: post-earnings drift (PEAD) on a clean Mag-7 print
+**Style/horizon**: short-swing, J+0..J+5 (time stop 2026-05-08 close)
+
+**C — Catalyst (23/25)**
+AAPL Q2 FY26 print 04-30 AMC: EPS $2.01 vs $1.95 (+3.1%) · revenue $111.18B vs $109.66B (+1.4%) · iPhone sales +22% YoY (extraordinary iPhone 17 demand — Cook quote) · **Greater China $20.5B vs $16B = +28% YoY** (huge surprise after multi-quarter China weakness narrative) · Services $30.98B (vs $30.39B est) · Mac $8.4B beat · gross margin 49.3% (record, vs 48.4% est) · **Q3 guide raise to +14-17% YoY revenue**. Stock +1.86% AH. The China + iPhone + GM trifecta is a rare clean beat across all three lines — multi-day drift highly probable. Dated, primary-source catalyst.
+
+**T — Technical (18/25)**
+04-27 mark $271.06; 200d EMA $253.50 (support); resistance $273 (golden ratio) / $286 (previous high) / $289 (ATH). The stock "has gone nowhere for 6 months" article — ranging ~$245-280 since November 2025, recovered 12% in April off $245 low. Q2 print is the catalyst to break the 6mo range — coiled-spring setup. Gap-up open expected ~$275-280. T-grade discount 7pt because: (a) potential resistance pin at $286/$289, (b) 6mo range hasn't been technically broken yet (waiting for confirmation), (c) gap-and-fade tail risk on Mag-7 capex jitter spillover.
+
+**Q — Quantitative (23/25)**
+Top-decile quality: AAPL is the highest-quality balance sheet in mega-cap (FCF $90B+/yr, GM expanding to record 49.3%, capital return $200B+ run-rate). Top-quartile momentum post-print (12% MTD recovery + Q2 catalyst). Liquidity supreme (ADV >50M shares, options market the deepest single-name in the world). Mega-cap with defensive characteristics on a breadth-deterioration day = constructive. -2pt for the 6mo flat-zone signaling pre-print momentum was muted.
+
+**S — Sentiment (20/25)**
+Options traders pre-expected only "small move" → upside vol mispriced going in, now repricing higher. China +28% will trigger an upgrade cluster from sell-side over the next 48h. Cook → Ternus CEO succession (announced earlier, not new news today) is sentiment-neutral now that the print clears it. Buy-side positioning was light into the print per CNBC ("traders expect a wild ride"). -5pt for the Cook noise overhang + capex spillover risk from META/MSFT slams.
+
+**CTQS = 23+18+23+20 = 84/100 → Standard tier (upper bound)**, conviction 68% (notched from 75% for NFP-within-1h fog + gap-up entry uncertainty + Mag-7 capex spillover risk).
+
+**Sizing**: 4.5-5.0% NAV (~$4,400-4,880 = 15-17 shares at ~$285-295 plan zone). Notched DOWN one tier from CTQS-84 default (4-6%) by 1pt within band per guardrails major-macro-24h rule. Hard floor protected: 10% per-position cap, 25% sector cap (post-buy: GOOGL 2.75% + AAPL 4.7% = 7.45% tech, well under 25%).
+
+**Stop**: 6% trailing native (Alpaca trailing_stop sell, GTC, place within 5 min of fill — strategy.md default for short-swing equities). Initial stop ~$269 if fill $286.
+
+**Take-profit**: trailing only (let PEAD run, one-way ratchet on the trail).
+
+**Time stop**: 2026-05-08 close (J+5 short-swing horizon). **No earnings hold** — next AAPL earnings late July 2026, well outside window.
+
+**Confirmation gates for the open** (market-open routine MUST verify):
+- Spread ≤ 0.5% at fill window (AAPL is super-liquid — expect <0.05%)
+- FOMO guard: ask ≤ $310 (well above plan ~$285, leaves runway)
+- NFP reaction: if NFP prints catastrophic (e.g., −100k jobs or unemp ≥4.6%) AND SPY gaps -1.5%, downgrade to Probe (2.5%) or DEFER to intraday-scan
+- Microstructure-confirm subagent must return PASS (CTQS 84 is Standard-tier, threshold 20 bps spread)
+
+**Sources** (≥2 primary):
+1. CNBC AAPL Q2 2026 earnings report (04-30) — https://www.cnbc.com/2026/04/30/apple-aapl-q2-2026-earnings-report.html
+2. Yahoo Finance "Apple tops Q2 earnings estimates on strong iPhone, China sales" (04-30)
+3. Apple IR press release (04-30) — primary
+
+**Revenge check**: AAPL not cut in last 5 td. ✓
+**Sector/concentration**: tech post-buy = 7.45% NAV << 25% cap. ✓
+**Activity floor**: rolling 5td count post-AAPL = 4 BUYs (≥3 target). ✓
+
+**Verdict**: **BUY queued for 05-01 market-open**, Standard tier 4.5-5.0% NAV, with the 3 confirmation gates above as preflight.
+
+#### 2. AMD — WATCH (pre-earnings J-2 setup)
+
+**Setup type**: earnings momentum (J-5 to J-1 entry on quality semi name with positive revision trend) — **catalyst is AMD Q1 2026 print Tuesday 05-05 AMC**
+
+**Why WATCH not BUY today**:
+- Pathway-A queue is owned by AAPL today (one Pathway-A high-conviction pick is enough on a notched-down NFP day)
+- AMD print is J-2 from today (Tuesday AMC = 05-05) — entry window optimal Tuesday morning at intraday-scan or Monday close, NOT Friday open
+- The 04-24 INCIDENT remediation queued (GTD MOC at fill for any pre-earnings BUY) needs to be paired with the entry, easier on Mon/Tue when it's J-1
+- NFP today could whipsaw AMD ±3% on macro shock, making a clean Friday entry harder
+
+**Trigger conditions for entry**:
+- Monday 05-04 close OR Tuesday 05-05 morning intraday-scan (J-1)
+- Spread ≤ 0.5%, no FOMO bias above $345 (recent ATH zone)
+- Pair entry with **GTD market-on-close sell at fill, expiring 05-05 close** to bind pre-earnings exit (per 04-24 INCIDENT remediation that's still pending monthly-review applied promotion)
+- Sizing: Probe 2.5-3% NAV (pre-earnings momentum is binary; size for the mistake)
+- Stop: 5% trailing OR structural below 50d MA — to be decided at entry
+- Quick CTQS draft: C20 (dated print 05-05) + T~17 (AMD recently hit ATH, x86 CPU renaissance theme) + Q22 (top-decile semi quality) + S~16 (sentiment elevated, room to disappoint) = ~75/100 if all confirm. Re-score at entry.
+
+**No action today.** Re-evaluate at Monday's pre-market or Tuesday morning intraday-scan.
+
+#### 3. AMZN — WATCH (day-2 PEAD if intraday breakout)
+
+**Setup type**: PEAD (post-earnings drift) day-2 entry on a beat that initially sold-the-news
+
+**Context**: AMZN Q1 2026 print 04-29 AMC was **a textbook beat**: revenue $181.5B (+17%) · EPS $2.78 vs $1.64 (+69% beat) · **AWS +28% YoY (fastest in 15Q) to $37.6B** · advertising $17.24B · Q2 guide $194-199B (+16-19%). But stock printed -1.8% intraday on 04-30 — the +$44.2B capex line spooked margin-compression bears (free cash flow collapsed to $1.2B trailing). Day-1 sell-the-news pattern. Setup: if Friday tape shows AMZN reclaim of pre-print level + clean intraday breakout, day-2 PEAD entry valid.
+
+**Trigger conditions**:
+- AMZN reclaims its 04-29 close (need to verify Friday 09:30 ET)
+- Spread ≤ 0.5%
+- Standard tier 4% NAV if all conditions hit
+- 6% trail at fill
+- No earnings hold (next print late July 2026)
+- Quick CTQS draft: C18 (clean beat but day-1 fade dilutes catalyst purity) + T~14 (chart needs day-2 confirmation) + Q22 (mega-cap quality) + S~16 (capex narrative split) = ~70/100 — Standard floor if confirms.
+
+**No action today at open.** Re-evaluate at intraday-scan 10:30 / 11:30 if AMZN tape confirms breakout.
+
+#### 4. SMH — WATCH (semis basket, AMD catalyst tailwind)
+
+**Setup type**: sector rotation / thematic continuation — semis catalyst-stacking into AMD print
+
+**Context**: AI capex narrative split this week — META/MSFT slammed on capex shock, but the cloud rev acceleration confirms NVDA/AMD/SMH secular bull. With AMD reporting Tuesday AMC, semis basket ETF (SMH) offers diversified pre-earnings exposure with less binary risk than naked AMD.
+
+**Trigger conditions**:
+- Monday 05-04 morning entry preferred (J-1 to AMD)
+- Spread ≤ 0.3% (SMH is liquid)
+- Probe-Standard tier 3-4% NAV
+- 6% trail at fill
+- Quick CTQS draft: C18 (AMD/AVGO/INTC catalyst stack within 5 days) + T~17 (semis breakout zone, NVDA leading) + Q21 (top-decile sector momentum YTD) + S~16 (mixed) = ~72/100 Standard.
+
+**No action today.** Re-evaluate Monday pre-market.
+
+#### 5. NVDA — WATCH (capex-acceleration secular thesis, no dated catalyst this week)
+
+**Setup type**: trend-following swing — NVDA is the structural beneficiary of MSFT/META/AMZN capex acceleration that just printed this week
+
+**Context**: combined Mag-7 capex 04-29/30 prints showed META FY guide $113B+ · MSFT capex +50%+ · AMZN $44.2B Q1 alone → all flow to NVDA. Stock has been ranging — needs a technical breakout entry, not a pre-earnings setup (NVDA reports late May).
+
+**Trigger conditions**:
+- Clean breakout above 50d MA on volume
+- Spread ≤ 0.3%
+- Standard tier 4% NAV
+- 6% trail at fill OR ATR-2x stop
+- Quick CTQS draft: C16 (no dated catalyst within horizon — would be technical-only T+Q+S ≥ 60/75 trade) + T~18 (TBD on entry) + Q23 (top-decile) + S~22 (peer reads bullish) = T+Q+S = 18+23+22 = 63/75 → technical-only allowed at Standard cap.
+
+**No action today.** Watch for clean breakout signal at any intraday-scan.
+
+#### 6. Crypto sleeve (BTC / ETH / SOL) — SKIP today
+
+- BTC $75-76k, 3rd day of US spot ETF outflows (-$137M on 04-29), Fear & Greed 33
+- Risk-off micro across the sleeve
+- No qualifying dated catalyst (ETF flows negative, no protocol upgrade dated, no SEC decision pending this week)
+- Per guardrails: "only propose crypto BUY in risk-on or neutral macro" — sleeve micro is risk-off
+- **0 crypto candidates this morning**. Re-evaluate at Monday pre-market.
+
+### Risks to watch today
+1. **NFP April 2026 print 08:30 ET** — the binary macro event of the day. Catastrophic miss (e.g., -100k or unemp ≥ 4.6%) → tighten stops, defer AAPL BUY to intraday-scan. Strong beat (≥250k + low unemp) → growth-narrative re-asserts, AAPL PEAD setup confirms.
+2. **AAPL gap-up confirmation**: if AAPL opens above $290 (FOMO band tail), reduce sizing or skip — high-tape PEAD entry often leads to mid-day fade.
+3. **Mag-7 capex spillover**: META -9% / MSFT -4% on 04-30 — if the capex narrative spreads to AAPL (Services margin = AI cost question), AAPL could see-saw.
+4. **Breadth deterioration**: <50% SPX > MA50 — if intraday < 45%, flag yellow-to-red, halt new opens.
+5. **Crypto continued outflows**: 4th consecutive day would be a structural signal — affects risk-on appetite for tech.
+6. **Iran/Strait tail dormant for now**, monitoring.
+7. **Operational**: harness reliability (3 journal-commit failures in last 5 td) — critical that today's market-open routine fires AND commits the AAPL BUY (if executed) to memory.
+
+### Summary
+- **1 BUY queued for open**: AAPL (Pathway A PEAD on Q2 beat-raise · CTQS 84/100 · Standard tier 4.5-5.0% NAV · 6% trail · time stop 05-08 close)
+- **4 WATCH** (intraday or next-day re-evaluation): AMD (J-2 to print), AMZN (day-2 PEAD if confirms), SMH (J-1 to AMD), NVDA (technical breakout)
+- **2 positions to hold**: GOOGL (P10), LLY (P10) — both J+1 PEAD with native trails ratcheting
+- **0 actions** on existing positions today (no tighten/trim/cut triggers)
+- **0 crypto BUY** (sleeve risk-off micro, ETF outflows 3rd day)
+- **0 options BUY** (NFP-within-24h halves options cap to 2.5%, no high-conviction options idea)
+- **Macro flags**: NFP at 08:30 ET, breadth <50%, Mag-7 capex split. Notch-down sizing applied to AAPL.
+- **Activity floor**: rolling 5td post-AAPL fill = 4 BUYs (≥3 target ✓)
+- **Cash post-AAPL fill (estimated)**: ~87.5% (well above 10% floor)
+- **Sector mix post-fill**: tech ~7.45% + healthcare ~4.84% = 12.29% deployed (87.71% cash) → still very defensive, room to add if confirmation builds
+

@@ -836,3 +836,98 @@ The TIGHTEN gate (P8: +10%) is the next decision point: AAPL needs +9.8pp more, 
 - **Activity floor**: 4 BUYs in 5td ≥3 target ✓.
 - **Cap usage**: cash 87.67% · tech 7.45% · healthcare 4.93% · all hard caps respected.
 - **Next slot (12:30 CT)**: re-evaluate CAT spread + FOMO band, re-evaluate AMZN day-2 breakout pattern, scan for any fresh BMO/AMC catalysts surfacing during the lunch hour.
+
+
+### 2026-05-01T18:35:00Z — INTRADAY-SCAN 13:30 CT
+
+**Run metadata**: Mon 05-01 13:30 CT slot — last BUY-eligible scan of the day (14:30 = exits-only). Last commit `a6e1d50 [intraday-scan] 2026-05-01 11:30` — **the 12:30 CT scan never fired/committed** (no `[intraday-scan] 2026-05-01 12:30` in git log). Treating as 5th harness-gap in 6 td (logged in learnings). This 13:30 scan picks up the CAT/AMZN re-eval queue from the 11:30 scan + standard active-management ladder + universe sweep.
+
+### Account state at scan
+- Equity $97,637.11 · cash $85,632.88 (87.70%) · long_market_value $12,004.23 (12.30% deployed) · day P&L = (97,637.11 / 97,524.83 − 1) = **+0.115%** · last_equity $97,524.83
+- 3 open positions · 3 native trailing stops engaged (AAPL/GOOGL/LLY all GTC, qty_available=0 = reservation confirmed) · 0 BUYs in flight
+
+### Open positions at 13:34 CT (18:34 UTC)
+| Ticker | Qty | Avg cost | Mark | P&L $ | P&L % | J | Trail | HWM | Stop | Verdict |
+|---|---|---|---|---|---|---|---|---|---|---|
+| AAPL | 16 | $282.83 | $280.64 | −$35.11 | **−0.78%** | J+0 | 6% | $287.22 | $269.99 | **HOLD** (P10) |
+| GOOGL | 7 | $369.71 | $384.28 | +$101.98 | **+3.94%** | J+1 | 7% | $386.74 | $359.66 | **HOLD** (P10) |
+| LLY | 5 | $939.54 | $964.81 | +$126.33 | **+2.69%** | J+1 | 7% | $984.45 | $915.54 | **HOLD** (P10) |
+
+Priority ladder verdict: every position falls cleanly to P10 (no thesis break, no pre-earnings, no time stop, no option DTE-3, no -5% loss, no +20% TRIM, no +10% TIGHTEN). AAPL slipped from +0.20% to −0.78% intraday — normal day-1 PEAD gap-fill (premarket +3% faded to flat-then-red). Stop $269.99 is 4.0% below mark, native ratchet handles. GOOGL/LLY are well-behaved J+1 PEAD positions with trails ratcheting.
+
+### Macro confirmation (5-min sweep)
+- **VIX**: ~16-17, "risk-on trade returns" per 24/7 Wall St headline. Falling vol = no shift.
+- **SPY/QQQ intraday**: SPY +0.54% ($721.60), QQQ +0.69% ($674.30), IWM +2.21% ($279.32). Broad-tape participation, breadth strong on the day. Nasdaq + S&P "jump again after record closes" per TheStreet.
+- **Headlines**: AAPL "extraordinary iPhone 17 demand" narrative confirmed by Schwab market-update — but stock is fading the gap (premarket +3% → mark −0.78% intraday vs 04-30 close $271.35 → +3.42% lastday-comparison still positive though the unrealized P&L from our $282.83 fill is red). RBLX still −24%, EL still +12%, RDDT +16% on Q1 beat + Q2 guide raise. Iran "peace hopes" narrative continues to compress geopol tail.
+- **Crypto**: BTC ~$78k (per local hf-btc agent commits), no fresh ETF flow data this slot. Sleeve still risk-off micro per pre-market — no equities-routine crypto BUY this scan.
+- **Regime classification (intraday)**: NEUTRAL lean RISK-ON confirmed (one notch friendlier than pre-market's "neutral lean cautious" — NFP deferred to 05-08, VIX <17, broad breadth, record-close tape). **No regime SHIFT trigger** (VIX did not +20% intraday, no credit event, no hawkish surprise).
+
+### Active universe scan (mandatory ≥5 candidates per command)
+
+Surfaced via WebSearch sweep + queue carry-over from 11:30 scan:
+
+| # | Symbol | Catalyst | Move | Initial verdict |
+|---|---|---|---|---|
+| 1 | **CAT** | Q1 print 04-30 AMC — beat-and-raise + record backlog $62.7B + AI power-gen +41% (carry-over from 11:30, was spread-skipped at 6.85%) | Re-quote needed | **CTQS 76 Standard** — Pathway B candidate, last-chance re-eval. |
+| 2 | **AMZN** | Day-2 PEAD WATCH carry-over — 04-29 AMC clean beat, day-1 sold-the-news on capex shock | $269.57 mark vs 04-30 close $265.06 = +1.70% intraday | **CTQS 71 Standard floor** — needs $270 reclaim with volume. Re-eval. |
+| 3 | **RDDT** | Q1 2026 beat + upbeat Q2 revenue guide | **+16% intraday** | **SKIP** — FOMO band tail violated (gap > +5%), chase territory. Tag as Day-2 PEAD candidate for Monday 05-04 if tape holds. |
+| 4 | **EL** | (carry-over from 11:30) Cosmetics beat | **+12%** | **SKIP** — same FOMO + fit reasons. |
+| 5 | **RBLX** | (carry-over) FY guide CUT | **−24%** | **AVOID** — broken-thesis falling-knife. |
+| 6 | **WDC** | (carry-over) Beat but bad tape | **−8.3%** | **SKIP** — bad sentiment. |
+| 7 | **AMD/SMH/NVDA** | Pre-market WATCH carry-overs (Monday entry preferred) | n/a | **HOLD WATCH** — Monday pre-market re-eval. |
+
+**Top-2 deep-dive (CTQS notes — last-chance re-eval at 13:30)**:
+
+#### CAT — Pathway B candidate, **spread STILL anomalous, SKIP for the day**
+
+- Quote at 13:34 CT (18:34 UTC): **ask $908.54 / bid $892.00 → spread $16.54 = 1.823%** (improvement from 6.85% at 11:30 but still >> 0.5% cap, mechanical reject).
+- CTQS unchanged from 11:30: 22+14+22+18 = **76/100 Standard** (T grade still penalized for stretched +30% over MA200 and being "twice NVDA's stock returns" YTD per Benzinga; S grade penalized for analyst PT $772 average vs current ~$890 mid → already ahead of consensus).
+- FOMO check is moot under spread skip but would also fail (entry zone unclear post-gap).
+- **Verdict: SKIP for the day** — spread did not normalize across 3 slots (11:30 = 6.85%, 12:30 = harness-gap missed, 13:30 = 1.823%). 14:30 is exits-only. **Defer to Monday 05-04 pre-market** for a full re-CTQS — by then post-print volatility should drain, the T grade may improve as the chart rebuilds a base, and the analyst PT cluster may catch up to the current price.
+- **Lesson reinforcement**: this is the **3rd consecutive gap-day with mechanical spread skip on a leader PEAD name** (04-23 GEV/VRT @ 4.66/5.38%, 04-30 LLY @ 2.14% at 11:30 → normalized to 0.097% by 13:37 = caught it; 05-01 CAT stuck at 1.823% = missed it). The pattern suggests CAT-like stretched mega-cap industrials with low float-to-spread efficiency may simply not normalize same-session — different from LLY (which traded through the spread) or VRT (eventually normalized). Worth a weekly-review note: mega-cap industrials may need J+1 entry rather than J+0 chase.
+
+#### AMZN — Day-2 PEAD WATCH, **technical confirmation still borderline → SKIP**
+
+- Quote at 13:34 CT: **ask $269.58 / bid $269.55 → spread $0.03 = 0.011%** (clean ✓).
+- Mark $269.57 vs 04-30 close $265.06 = +1.70% intraday; vs 11:30 mark $268.74 = +0.31% over the last 2 hours (very slow grind, NOT a clear breakout).
+- **The $270 reclaim level was the key trigger from pre-market** — at $269.57, we are still ~$0.43 below it. No clear break, no volume signature.
+- Day-2 PEAD criteria from pre-market: "(a) clear intraday breakout with volume confirmation, (b) reclaim of $270 zone as a clean level, (c) sector rotation supportive." (a) and (b) both still failing at 13:34. (c) tech sector mixed — AAPL flat-to-red, GOOGL +1% intraday, MSFT slight green; not a clean rotation tailwind for AMZN specifically.
+- CTQS unchanged: 18+15+22+16 = **71/100 Standard floor**. T grade (15) still the weak link without a confirmed breakout pattern.
+- **Verdict: SKIP for the day**. Day-2 PEAD is binary — if it doesn't break by mid-afternoon, the setup decays into J+2 chop. With <2.5 hours to close at the 13:30 read and the level still not reclaimed, the asymmetry has flipped against us. **Defer to Monday 05-04 pre-market** for a fresh take — by then we'll have day-3 confirmation or rejection.
+
+#### RDDT — Pathway B candidate, **FOMO guard SKIP**
+
+- Quote at 13:34 CT: ask $171.08 / bid $170.50 → spread $0.58 = 0.339% (clean ✓).
+- **Stock +16% intraday** — well above the +5% FOMO band tail for opportunistic same-day entries.
+- Strategy.md anti-FOMO guard: skip opportunistic intraday entries with intraday gap > +5%. RDDT at +16% is firmly in chase territory.
+- Catalyst quality (Q1 beat + Q2 guide raise) is real but the entry mechanics make this a Day-2 PEAD candidate, not a same-day chase. Tag for **Monday 05-04 pre-market re-eval**: if stock holds the gap into Monday and offers a low-volatility consolidation entry, full CTQS workup. Quick draft would be C19/T13 (stretched)/Q21 (top-decile after print)/S20 (clean beat narrative) = ~73/100 Standard floor.
+- **Verdict: SKIP today, queue for Monday pre-market.**
+
+### Activity-floor + cap usage check
+- Rolling 5td BUYs (post-AAPL fill 05-01): GOOGL 04-23 BUY · GOOGL 04-30 BUY · LLY 04-30 BUY · AAPL 05-01 BUY = **4 BUYs in last 5 td** → ≥3 target ✓.
+- Pathway B/C cap usage today: 0/5 (AAPL is Pathway A). Effective remaining BUY-eligible slots: zero (14:30 = exits-only). **Day total = 1 BUY (Pathway A AAPL).**
+- Cash 87.70% (>> 10% floor ✓). Tech sector AAPL 4.60% + GOOGL 2.76% = 7.36% (<< 25% cap ✓). Healthcare LLY 4.94% (<< 25% cap ✓). 0 leveraged ETF, 0 options, 0 crypto.
+- No daily loss cap (+0.115% well above −4%). No weekly loss cap. No drawdown auto-defense (DD from $100k ATH = −2.36% post day-P&L).
+
+### Stop-update sweep on survivors (Step 7)
+All 3 positions have native Alpaca trailing_stop sell GTC orders engaged (qty_available=0 on each = trail reservation confirmed). No manual STOP-UPDATE needed:
+- AAPL trail 6% · HWM $287.22 · stop $269.99 · 3.79% buffer below mark $280.64 — buffer compressed slightly (vs 4.65% at 11:30) as mark drifted lower; one-way ratchet so HWM/stop locked. Appropriate for J+0 PEAD with normal gap-fill in progress.
+- GOOGL trail 7% · HWM $386.74 · stop $359.66 · 6.41% buffer below mark $384.28 — appropriate for J+1 PEAD.
+- LLY trail 7% · HWM $984.45 · stop $915.54 · 5.10% buffer below mark $964.81 — one-way ratchet on $915.54 stop is locked despite the HWM-to-mark gap. Appropriate for J+1 PEAD.
+
+The TIGHTEN gate (P8: +10%) is the next decision point: AAPL needs ~+10.8pp from −0.78%, GOOGL needs +6.1pp more, LLY needs +7.3pp more before manual TIGHTEN to 3% would fire. Native trails keep ratcheting in the meantime.
+
+### Pre-earnings positioning check (mandatory at 13:30 — last call before 14:30 exits-only slot)
+- AAPL: just printed 04-30 AMC. No conflict.
+- GOOGL: printed 04-29 AMC. No conflict.
+- LLY: prints late July 2026. No conflict.
+- **No pre-earnings exposure expiring before next session (Monday 05-04 open).**
+
+### Summary
+- **0 BUY · 0 CUT · 0 TRIM · 0 TIGHTEN · 3 HOLD** — full quiet scan on the management ladder for the second consecutive slot.
+- **0 new BUYs at this slot**: CAT (Pathway B, spread 1.823% > 0.5% cap → defer to Monday). AMZN (Day-2 PEAD, $270 reclaim still failing → defer to Monday). RDDT (Pathway B candidate, +16% gap = FOMO guard → defer to Monday). All 3 carry forward to Monday 05-04 pre-market.
+- **Day P&L +0.115%**, regime neutral lean risk-on (confirmed). No regime SHIFT.
+- **Pre-earnings positioning**: clean — no positions reporting before next session.
+- **Activity floor**: 4 BUYs in 5td ≥3 target ✓. Cap usage: cash 87.70% · tech 7.36% · healthcare 4.94% · all hard caps respected.
+- **Operational**: 12:30 CT scan missed (5th harness-gap in 6 td). Logged in learnings.
+- **Next slot (14:30 CT — last call, exits-only)**: re-verify the 3 trails are intact, no late-day pre-earnings exposure, no regime shift; then market-close at 15:00 CT. No BUYs allowed at 14:30.

@@ -1,17 +1,3 @@
 {
-  "trades": [
-    {
-      "id": "50b5218a",
-      "side": "long",
-      "entry": 78279.12,
-      "raw_price": 78240.0,
-      "qty": 0.001534,
-      "sizing_pct": 4.0,
-      "tp": 78540.0,
-      "sl": 78080.0,
-      "opened_at": "2026-05-01T22:46:19.961857+00:00",
-      "reason": "Momentum 5m solide post-TP: MACD hist +18.16, Vol z+1.60, %B 0.66. Structure 1H bullish: EMA20>EMA50>EMA200 (+0.59%/+1.3",
-      "notional_at_open": 120.08
-    }
-  ]
+  "trades": []
 }

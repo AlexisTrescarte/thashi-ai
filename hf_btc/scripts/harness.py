@@ -31,7 +31,6 @@ REPO = ROOT.parent  # thashi-ai/
 sys.path.insert(0, str(HERE))
 
 import btc_data  # noqa: E402
-import chart_img_client  # noqa: E402
 import sim_portfolio  # noqa: E402
 import stats  # noqa: E402
 import telegram_hf  # noqa: E402
@@ -52,12 +51,6 @@ RR_FLOOR = 1.3
 COOLDOWN_MIN = 15
 DAILY_LOSS_CAP_PCT = -3.0
 MAX_OPEN = 1
-
-# Heartbeat & anti-spam
-HEARTBEAT_QUIET_MIN = 10  # if a trade-event was sent in last 10min, skip heartbeat
-DAILY_REPORT_HOUR_UTC = 23
-DAILY_REPORT_MIN_UTC = 55
-
 
 def _utc() -> datetime:
     return datetime.now(timezone.utc)
@@ -100,34 +93,8 @@ def _signal_score(snap: dict[str, Any]) -> tuple[int, list[str]]:
     return score, reasons
 
 
-def _should_fetch_baseline(now: datetime) -> bool:
-    """True if we're in the first 5 minutes after each UTC hour AND haven't fetched baseline this hour yet."""
-    if now.minute >= 5:
-        return False
-    q = chart_img_client._load_quota()
-    today = now.strftime("%Y-%m-%d")
-    if q.get("date_utc") != today:
-        return True
-    hour = now.strftime("%H")
-    for h in q.get("history", []):
-        if h.get("reason") == "baseline" and h.get("ts", "").startswith(today.replace("-", "") + "T" + hour):
-            return False
-    return True
-
-
 def _build_chart_path(snap: dict[str, Any]) -> str | None:
-    now = _utc()
-    if _should_fetch_baseline(now):
-        time.sleep(1.1)
-        r = chart_img_client.fetch(symbol="BINANCE:BTCUSDT", interval="5m", reason="baseline")
-        if r.get("ok"):
-            return r["path"]
-    score, _ = _signal_score(snap)
-    if score >= 2:
-        time.sleep(1.1)
-        r = chart_img_client.fetch(symbol="BINANCE:BTCUSDT", interval="5m", reason="signal")
-        if r.get("ok"):
-            return r["path"]
+    """Disabled per user preference — no chart images in notifs or context."""
     return None
 
 
@@ -466,6 +433,7 @@ def _save_last_notif(d: dict[str, Any]) -> None:
 
 def _format_open_msg(t: dict[str, Any], decision: dict[str, Any]) -> str:
     side = t["side"].upper()
+    side_emoji = "🟢" if t["side"] == "long" else "🔴"
     rr = decision.get("rr_ratio", "?")
     horizon = decision.get("time_horizon_min", "?")
     conf = decision.get("confidence", "?")
@@ -475,77 +443,51 @@ def _format_open_msg(t: dict[str, Any], decision: dict[str, Any]) -> str:
     sign_tp = "+" if t["side"] == "long" else "-"
     sign_sl = "-" if t["side"] == "long" else "+"
     return (
-        f"*🐂 BullHF-BTC — Nouveau trade*\n"
-        f"_{_iso()[:19].replace('T',' ')} UTC_\n\n"
-        f"🎯 *Setup* : {side} · BTC/USD\n"
-        f"• Entrée : `${t['entry']:,.2f}`\n"
-        f"• TP : `${t['tp']:,.2f}` ({sign_tp}{tp_pct:.2f}%)\n"
-        f"• SL : `${t['sl']:,.2f}` ({sign_sl}{sl_pct:.2f}%)\n"
-        f"• R/R : `{rr}` · Taille : `{t['sizing_pct']}%` (`${t['notional_at_open']:.2f}`)\n"
-        f"• Horizon : `{horizon}` min · Conf : `{conf}/100`\n"
-        f"• CTQS : T{ctqs.get('T','?')} Q{ctqs.get('Q','?')} S{ctqs.get('S','?')} C{ctqs.get('C','?')}\n\n"
-        f"🧠 *Pourquoi*\n{telegram_hf.escape_md(decision.get('reason_fr','(pas de raison fournie)'))}\n\n"
-        f"📊 Sim equity : `${sim_portfolio._load_port()['equity']:,.2f}`"
+        f"🟠🟠🟠 *BTC-HF* 🟠🟠🟠\n"
+        f"*{side_emoji} OUVERTURE {side} · BTC/USD*\n"
+        f"_{_iso()[:19].replace('T',' ')} UTC · sim-only_\n\n"
+        f"💵 *Entrée* : `${t['entry']:,.2f}`\n"
+        f"🎯 TP : `${t['tp']:,.2f}` ({sign_tp}{tp_pct:.2f}%)\n"
+        f"🛑 SL : `${t['sl']:,.2f}` ({sign_sl}{sl_pct:.2f}%)\n"
+        f"⚖️ R/R `{rr}` · 📏 Taille `{t['sizing_pct']}%` (`${t['notional_at_open']:.2f}`)\n"
+        f"⏱ Horizon `{horizon}` min · 🎚 Conf `{conf}/100`\n"
+        f"🧮 CTQS T{ctqs.get('T','?')} Q{ctqs.get('Q','?')} S{ctqs.get('S','?')} C{ctqs.get('C','?')}\n\n"
+        f"🧠 *Thèse*\n{telegram_hf.escape_md(decision.get('reason_fr','(pas de raison fournie)'))}\n\n"
+        f"💼 Sim equity : `${sim_portfolio._load_port()['equity']:,.2f}`"
     )
 
 
 def _format_close_msg(t: dict[str, Any], reason: str) -> str:
-    pnl_sign = "+" if t["pnl_usd"] >= 0 else ""
-    emoji = "✅" if t["pnl_usd"] >= 0 else "🔴"
+    win = t["pnl_usd"] >= 0
+    emoji = "✅ GAIN" if win else "❌ PERTE"
+    pnl_usd_str = f"+${t['pnl_usd']:,.2f}" if win else f"-${abs(t['pnl_usd']):,.2f}"
+    pnl_pct_str = f"+{t['pnl_pct']:.2f}%" if win else f"{t['pnl_pct']:.2f}%"
     return (
-        f"*🐂 BullHF-BTC — Trade clos {emoji}*\n"
-        f"_{_iso()[:19].replace('T',' ')} UTC_\n\n"
-        f"• {t['side'].upper()} entry=`{t['entry']:.2f}` exit=`{t['exit']:.2f}`\n"
-        f"• P&L : `{pnl_sign}${t['pnl_usd']:.2f}` ({pnl_sign}{t['pnl_pct']:.2f}%)\n"
-        f"• Raison : {telegram_hf.escape_md(reason[:200])}\n\n"
-        f"📊 Sim equity : `${sim_portfolio._load_port()['equity']:,.2f}`"
-    )
-
-
-def _format_heartbeat(ctx: dict[str, Any] | None = None) -> str:
-    port = sim_portfolio.snapshot()
-    if ctx is None:
-        snap = btc_data.snapshot()
-        last = snap.get("5Min", {}).get("last_close", "?")
-    else:
-        last = ctx["snapshot"].get("5Min", {}).get("last_close", "?")
-    last_str = f"${last:,.2f}" if isinstance(last, (int, float)) else str(last)
-    open_str = "aucune"
-    if port["open_trades"]:
-        t = port["open_trades"][0]
-        unr = (port["last_mark_price"] - t["entry"]) * t["qty"] if t["side"] == "long" else (t["entry"] - port["last_mark_price"]) * t["qty"]
-        unr_pct = unr / t["notional_at_open"] * 100
-        open_str = f"{t['side'].upper()} ouverte (`{unr_pct:+.2f}%`)"
-    return (
-        f"*🐂 BullHF-BTC — Heartbeat*\n"
-        f"_{_iso()[:16].replace('T',' ')} UTC_\n\n"
-        f"• BTC : `{last_str}`\n"
-        f"• Position : {open_str}\n"
-        f"• Sim equity : `${port['equity']:,.2f}` ({port['all_time_pnl_pct']:+.2f}% all-time)\n"
-        f"• Trades clos : {port['closed_trades']} ({port['win_rate']}% WR)" if port["closed_trades"] else f"• Trades clos : 0"
+        f"🟠🟠🟠 *BTC-HF* 🟠🟠🟠\n"
+        f"*{emoji} · {t['side'].upper()} clos*\n"
+        f"_{_iso()[:19].replace('T',' ')} UTC · sim-only_\n\n"
+        f"💵 Entry `${t['entry']:,.2f}` → Exit `${t['exit']:,.2f}`\n"
+        f"💰 *P&L* : `{pnl_usd_str}` ({pnl_pct_str})\n"
+        f"📝 Raison : {telegram_hf.escape_md(reason[:200])}\n\n"
+        f"💼 Sim equity : `${sim_portfolio._load_port()['equity']:,.2f}`"
     )
 
 
 def _maybe_notify(events: dict[str, Any], ctx: dict[str, Any]) -> None:
+    """Notif policy: trade-events ONLY. No heartbeat, no daily report, no chart image."""
     notif = _load_last_notif()
-    now = _utc()
     sent_now = False
-    chart_path = ctx.get("chart_path")
 
-    # Trade events first (always notify)
+    # Auto-closed (TP/SL hit between ticks) — always notify
     for closed_ev in events.get("auto_closed", []):
-        msg = _format_close_msg(closed_ev["trade"], closed_ev["event"]["reason"])
-        telegram_hf.send_message(msg)
+        telegram_hf.send_message(_format_close_msg(closed_ev["trade"], closed_ev["event"]["reason"]))
         sent_now = True
 
+    # Manual open / close from this tick's LLM decision
     exec_res = events.get("exec", {})
     if exec_res.get("executed"):
         if exec_res["kind"] == "open":
-            msg = _format_open_msg(exec_res["trade"], exec_res["decision"])
-            if chart_path and Path(chart_path).exists():
-                telegram_hf.send_photo(chart_path, msg)
-            else:
-                telegram_hf.send_message(msg)
+            telegram_hf.send_message(_format_open_msg(exec_res["trade"], exec_res["decision"]))
             sent_now = True
         elif exec_res["kind"] == "close":
             telegram_hf.send_message(_format_close_msg(exec_res["trade"], "manual CLOSE"))
@@ -554,33 +496,6 @@ def _maybe_notify(events: dict[str, Any], ctx: dict[str, Any]) -> None:
     if sent_now:
         notif["last_event_ts"] = _iso()
         _save_last_notif(notif)
-        return
-
-    # Heartbeat: top-of-hour, skip if event sent in last 10min
-    if now.minute < 5:
-        last_hb_hour = notif.get("last_heartbeat_hour")
-        cur_hour = now.strftime("%Y-%m-%dT%H")
-        last_event = notif.get("last_event_ts")
-        last_event_dt = datetime.fromisoformat(last_event.replace("Z", "+00:00")) if last_event else None
-        if last_hb_hour != cur_hour and (
-            last_event_dt is None or (now - last_event_dt) > timedelta(minutes=HEARTBEAT_QUIET_MIN)
-        ):
-            msg = _format_heartbeat(ctx)
-            if chart_path and Path(chart_path).exists():
-                telegram_hf.send_photo(chart_path, msg)
-            else:
-                telegram_hf.send_message(msg)
-            notif["last_heartbeat_hour"] = cur_hour
-            _save_last_notif(notif)
-
-    # Daily report at 23:55 UTC
-    if now.hour == DAILY_REPORT_HOUR_UTC and now.minute >= DAILY_REPORT_MIN_UTC:
-        last_date = notif.get("last_daily_report_date")
-        today = now.strftime("%Y-%m-%d")
-        if last_date != today:
-            telegram_hf.send_message(stats.report_fr("daily"))
-            notif["last_daily_report_date"] = today
-            _save_last_notif(notif)
 
 
 # ───────── git commit ─────────

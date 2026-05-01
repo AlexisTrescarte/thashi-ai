@@ -60,15 +60,26 @@ The service expects:
 | `runs.jsonl` | Per-tick log (prepare + post phases) |
 | `charts/` | PNG chart images (gitignored) |
 
-## Guardrails (immutable in `harness.py`)
+## Modes (`HF_TEST_MODE` env var)
+
+| Gate | PROD (`0` or unset) | TEST (`1`) |
+|---|---|---|
+| Confidence floor (hard) | 50 | 40 |
+| Cooldown same direction | 15 min | 5 min |
+| Confluence target | ≥4/7 | ≥3/7 |
+| Sizing 40-49 | SKIP | 2% probe-test |
+| Sizing 50-59 | SKIP | 3% probe-test |
+| Sizing 60-69 | 2-3% probe | 4% probe |
+
+TEST = collect data (more trades, lower-conviction allowed). PROD = standard selectivity.
+
+## Guardrails (NEVER softened, even in TEST)
 
 - Sizing 2-12% per trade
 - R/R ≥ 1.8
-- Cooldown 15 min same direction
 - Daily loss cap -3% sim → freeze new opens
 - Max 1 open position
 - Spread > 0.15% → SKIP forced
-- Confidence < 50 → SKIP forced
 
 ## Cost expectations
 

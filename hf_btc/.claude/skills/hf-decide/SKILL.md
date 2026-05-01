@@ -48,7 +48,7 @@ Count alignement sources (max 7) for the candidate direction:
 6. Volume z-score (positive = momentum confirm)
 7. News sentiment (positive flows / catalysts)
 
-**Need ≥ 4/7 confluence** to OPEN. < 4 → SKIP.
+**Confluence required to OPEN** : ≥4/7 in PROD mode, ≥3/7 in TEST mode (see prompt banner). Below threshold → SKIP.
 
 ### Step 4 — Levels
 
@@ -61,7 +61,9 @@ If a key level (BB upper/lower, EMA50, VWAP) sits between entry and TP/SL — ad
 
 ### Step 5 — Sizing by confidence
 
-Confidence (0-100) is YOUR estimate of edge quality:
+Confidence (0-100) is YOUR estimate of edge quality. The prompt banner tells you the active mode.
+
+**PROD mode**:
 
 | Confidence | Sizing | Use when |
 |---|---|---|
@@ -70,6 +72,17 @@ Confidence (0-100) is YOUR estimate of edge quality:
 | 60-69 | 2-3% (probe) | 4/7 confluence, no chart confirm |
 | 70-84 | 5-7% (standard) | 5/7 confluence, chart confirms |
 | 85+ | 8-12% (high) | 6/7 confluence + clear pattern + news catalyst |
+
+**TEST mode** (loosened to collect data):
+
+| Confidence | Sizing | Use when |
+|---|---|---|
+| < 40 | SKIP | sub-min, harness rejects |
+| 40-49 | 2% (probe-test) | 3/7 confluence borderline |
+| 50-59 | 3% (probe-test) | 3-4/7 confluence valid |
+| 60-69 | 4% (probe) | 4/7 confluence standard |
+| 70-84 | 5-7% (standard) | 5/7 + chart |
+| 85+ | 8-12% (high) | 6/7 + catalyst |
 
 ### Step 6 — Decide & emit JSON
 

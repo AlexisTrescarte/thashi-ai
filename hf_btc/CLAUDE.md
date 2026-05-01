@@ -49,24 +49,31 @@ Termine ta réponse avec UN bloc ```` ```json ... ``` ```` exactement :
 
 Pas de markdown autour, pas de prose dans le JSON. Le harness rejette tout JSON non parseable → la décision tombe sur `SKIP`.
 
-## Garde-fous immuables (codés dans `harness.py`, tu ne peux pas les contourner)
+## Mode TEST vs PROD (`HF_TEST_MODE` env var)
+
+L'harness lit `HF_TEST_MODE` au démarrage. Le mode actif est annoncé en haut du prompt à chaque tick — relis-le, c'est ta source de vérité.
+
+| Gate | PROD | TEST |
+|---|---|---|
+| Confluence min | ≥4/7 | ≥3/7 |
+| Confidence floor | 50 | 40 |
+| Cooldown même direction | 15 min | 5 min |
+| Sizing 40-49 | SKIP | 2% probe-test |
+| Sizing 50-59 | SKIP | 3% probe-test |
+| Sizing 60-69 | 2-3% probe | 4% probe |
+| Sizing 70-84 | 5-7% standard | 5-7% standard |
+| Sizing 85+ | 8-12% high | 8-12% high |
+
+**TEST** = collecter de la matière à analyser (plus de trades, conviction plus basse acceptée).
+**PROD** = sélectivité standard.
+
+## Garde-fous immuables (NEVER softened, même en TEST)
 
 - Sizing entre **2% et 12%** du equity courant. Hors range = rejet.
 - R/R ≥ **1.8** sinon rejet (relevé de 1.3 → 1.8 le 2026-05-01 pour forcer des moves matériels et compenser le slippage HF).
-- Cooldown **15 min** après une fermeture même direction.
 - Daily loss cap **-3% jour** (sim) → freeze des nouvelles positions jusqu'à 00:00 UTC.
 - **Max 1 position ouverte**. Si déjà ouverte, tes options se limitent à `CLOSE` / `HOLD`.
 - Spread > **0.15%** → SKIP forcé.
-- `confidence < 50` → traité comme SKIP.
-
-## Sizing par confiance (recommandation, le harness clamp)
-
-| Confiance | Taille |
-|---|---|
-| 50-59 | Skip — confiance trop basse |
-| 60-69 | Probe **2-3%** |
-| 70-84 | Standard **5-7%** |
-| 85+ | Conviction **8-12%** |
 
 ## TP / SL — règles de base
 
@@ -92,13 +99,11 @@ Pas de markdown autour, pas de prose dans le JSON. Le harness rejette tout JSON 
 
 ## Notifications Telegram
 
-Le harness envoie automatiquement les notifs (FR, header `*🐂 BullHF-BTC*`) :
-- Nouveau trade ouvert (avec image chart si dispo)
-- Trade clos (TP/SL hit, ou CLOSE manuel)
-- Heartbeat horaire (pile XX:00 UTC, skipé si event récent)
-- Daily report (23:55 UTC)
+Le harness envoie automatiquement les notifs (FR, header `🟠🟠🟠 BTC-HF`) — **uniquement sur événements de trade** :
+- Nouveau trade ouvert
+- Trade clos (TP/SL hit ou CLOSE manuel)
 
-Tu n'as **rien à envoyer toi-même**. Concentre-toi sur la décision.
+Pas de heartbeat, pas de daily report, pas d'image chart. Tu n'as **rien à envoyer toi-même**.
 
 ## Commit
 

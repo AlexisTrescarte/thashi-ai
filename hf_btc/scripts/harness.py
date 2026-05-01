@@ -44,13 +44,21 @@ DECISION_FILE = Path("/tmp/hf_decision.json")
 LAST_NOTIF_FILE = STATE_DIR / "last_notif.json"
 RUNS_FILE = STATE_DIR / "runs.jsonl"
 
-# Guardrails (immutable in code, the LLM cannot widen them)
+# ───────── mode toggle (HF_TEST_MODE=1 in .env to loosen selectivity) ─────────
+TEST_MODE = os.environ.get("HF_TEST_MODE", "0").strip() == "1"
+
+# Hard guardrails (NEVER softened — even in test mode)
 SIZING_MIN_PCT = 2.0
 SIZING_MAX_PCT = 12.0
 RR_FLOOR = 1.8
-COOLDOWN_MIN = 15
 DAILY_LOSS_CAP_PCT = -3.0
 MAX_OPEN = 1
+SPREAD_CAP_PCT = 0.15
+
+# Soft gates (loosened in TEST_MODE for sample-collection)
+CONFIDENCE_FLOOR = 40 if TEST_MODE else 50
+COOLDOWN_MIN = 5 if TEST_MODE else 15
+CONFLUENCE_MIN = 3 if TEST_MODE else 4  # informs the LLM via prompt; not enforced
 
 def _utc() -> datetime:
     return datetime.now(timezone.utc)
@@ -157,11 +165,21 @@ def _build_prompt(ctx: dict[str, Any]) -> str:
     score = ctx["signal_score"]
     quote = snap.get("latest_quote", {}) or {}
 
+    mode_banner = (
+        "🧪 **MODE TEST** — gates assouplis pour collecter de la matière. "
+        f"Confluence cible ≥{CONFLUENCE_MIN}/7 (au lieu de 4), confiance min `{CONFIDENCE_FLOOR}` "
+        f"(au lieu de 50), cooldown `{COOLDOWN_MIN}` min (au lieu de 15). "
+        "Prends plus de trades probe pour générer un échantillon — la qualité s'analysera après."
+        if TEST_MODE else
+        "🛡 **MODE PROD** — sélectivité standard. Confluence ≥4/7, confiance ≥50, cooldown 15min."
+    )
     lines = [
         "# Bull-HF-BTC — décision du tick (5-min cadence)",
         "",
         f"**Tick UTC** : `{ctx['tick_utc']}`",
         "**Mission** : décider d'ouvrir LONG/SHORT, fermer une position ouverte, ou HOLD/SKIP. Sim-only ($3000).",
+        "",
+        mode_banner,
         "",
         "## 1. Récupère 5-10 dernières news BTC",
         "Utilise `WebSearch` (1 appel) avec : `BTC bitcoin news {date} ETF flow funding sentiment`. Filtre la dernière fenêtre 6h. Synthétise en 3-5 puces. Tu DOIS faire ce search avant de décider.",
@@ -207,6 +225,26 @@ def _build_prompt(ctx: dict[str, Any]) -> str:
             t = r["trade"]
             lines.append(f"CLOSE {r['ts']}  {t['side']}@{t['exit']:.2f} pnl={t['pnl_usd']:+.2f} ({t['pnl_pct']:+.2f}%) reason={t.get('close_reason','')}")
     lines += ["```", ""]
+    sizing_band = (
+        "## 6b. Sizing par confiance (TEST MODE — bandes élargies)\n"
+        "| Confiance | Taille | Quand |\n"
+        "|---|---|---|\n"
+        "| <40 | SKIP forcé | sub-min, harness rejette |\n"
+        "| 40-49 | 2% (probe-test) | 3/7 confluence borderline, capter données |\n"
+        "| 50-59 | 3% (probe-test) | 3-4/7 confluence valide |\n"
+        "| 60-69 | 4% (probe) | 4/7 confluence standard |\n"
+        "| 70-84 | 5-7% (standard) | 5/7 confluence + chart |\n"
+        "| 85+ | 8-12% (high) | 6/7 + catalyseur news |\n"
+    ) if TEST_MODE else (
+        "## 6b. Sizing par confiance (PROD)\n"
+        "| Confiance | Taille | Quand |\n"
+        "|---|---|---|\n"
+        "| <50 | SKIP forcé | sub-min |\n"
+        "| 50-59 | SKIP (sub-min) | borderline |\n"
+        "| 60-69 | 2-3% (probe) | 4/7 confluence |\n"
+        "| 70-84 | 5-7% (standard) | 5/7 + chart |\n"
+        "| 85+ | 8-12% (high) | 6/7 + catalyseur |\n"
+    )
     lines += [
         "## 6. Garde-fous (en dur, infranchissables)",
         f"- Sizing : entre `{SIZING_MIN_PCT}%` et `{SIZING_MAX_PCT}%` du equity",
@@ -214,7 +252,10 @@ def _build_prompt(ctx: dict[str, Any]) -> str:
         f"- Cooldown : `{COOLDOWN_MIN}` min après une fermeture même direction",
         f"- Daily loss cap : `{DAILY_LOSS_CAP_PCT}%` jour → freeze new (HOLD-only)",
         f"- Max {MAX_OPEN} position ouverte. Si déjà ouverte, ta décision se limite à CLOSE/HOLD.",
-        "- Spread > 0.15% → SKIP forcé.",
+        f"- Spread > {SPREAD_CAP_PCT}% → SKIP forcé.",
+        f"- Confiance < `{CONFIDENCE_FLOOR}` → SKIP forcé par le harness.",
+        "",
+        sizing_band,
         "",
         "## 7. Format de réponse — JSON STRICT obligatoire",
         "Termine ta réponse avec UN SEUL bloc ` ```json ... ``` ` contenant exactement :",
@@ -255,7 +296,8 @@ def cmd_prepare() -> int:
     CONTEXT_FILE.write_text(json.dumps(ctx, indent=2, default=str))
     PROMPT_FILE.write_text(_build_prompt(ctx))
     _append_run({"phase": "prepare", "ts": _iso(), "score": ctx["signal_score"], "chart": ctx.get("chart_path")})
-    print(f"prepare ok · prompt={len(PROMPT_FILE.read_text())} chars · score={ctx['signal_score']['score']} · chart={'yes' if ctx['chart_path'] else 'no'}")
+    mode_tag = "TEST" if TEST_MODE else "PROD"
+    print(f"prepare ok · mode={mode_tag} · prompt={len(PROMPT_FILE.read_text())} chars · score={ctx['signal_score']['score']} · chart={'yes' if ctx['chart_path'] else 'no'}")
     return 0
 
 
@@ -362,11 +404,11 @@ def _validate(decision: dict[str, Any], ctx: dict[str, Any]) -> tuple[bool, str]
     quote = ctx["snapshot"].get("latest_quote", {}) or {}
     if quote.get("ap") and quote.get("bp"):
         spread_pct = (quote["ap"] - quote["bp"]) / quote["ap"] * 100
-        if spread_pct > 0.15:
-            return False, f"spread {spread_pct:.3f}% > 0.15%"
+        if spread_pct > SPREAD_CAP_PCT:
+            return False, f"spread {spread_pct:.3f}% > {SPREAD_CAP_PCT}%"
 
-    if (decision.get("confidence") or 0) < 50:
-        return False, f"confidence {decision.get('confidence')} < 50"
+    if (decision.get("confidence") or 0) < CONFIDENCE_FLOOR:
+        return False, f"confidence {decision.get('confidence')} < {CONFIDENCE_FLOOR}"
     return True, "ok"
 
 

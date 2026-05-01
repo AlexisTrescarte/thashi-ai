@@ -1,3 +1,17 @@
 {
-  "trades": []
+  "trades": [
+    {
+      "id": "86c2a082",
+      "side": "short",
+      "entry": 78536.712,
+      "raw_price": 78576.0,
+      "qty": 0.00114613,
+      "sizing_pct": 3.0,
+      "tp": 78050.0,
+      "sl": 78850.0,
+      "opened_at": "2026-05-01T18:31:45.064322+00:00",
+      "reason": "Mean-reversion probe SHORT 1H: RSI 70.1 overbought, BB %B 0.87 proche bande sup 1H, 15m MACD hist passe n\u00e9gatif (-25.48)",
+      "notional_at_open": 90.0134
+    }
+  ]
 }

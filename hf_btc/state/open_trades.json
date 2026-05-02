@@ -1,17 +1,3 @@
 {
-  "trades": [
-    {
-      "id": "0ab11642",
-      "side": "long",
-      "entry": 78199.08,
-      "raw_price": 78160.0,
-      "qty": 0.00115136,
-      "sizing_pct": 3.0,
-      "tp": 78460.0,
-      "sl": 78000.0,
-      "opened_at": "2026-05-02T05:47:00.492451+00:00",
-      "reason": "Probe LONG retest 78000 (zone o\u00f9 le LONG pr\u00e9c\u00e9dent s'est fait stopper \u00e0 05:00). 5m MACD hist flippe positif (+3.99 vs si",
-      "notional_at_open": 90.0353
-    }
-  ]
+  "trades": []
 }

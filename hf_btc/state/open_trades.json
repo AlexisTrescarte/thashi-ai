@@ -1,3 +1,17 @@
 {
-  "trades": []
+  "trades": [
+    {
+      "id": "4d0a8ede",
+      "side": "long",
+      "entry": 78719.34,
+      "raw_price": 78680.0,
+      "qty": 0.0015254,
+      "sizing_pct": 4.0,
+      "tp": 79080.0,
+      "sl": 78470.0,
+      "opened_at": "2026-05-02T22:46:04.882995+00:00",
+      "reason": "Probe LONG continuation. EMA stack haussier sur 5m/15m/1h (20>50>200), prix +0.40% au-dessus VWAP, 15m MACD hist +21.4 m",
+      "notional_at_open": 120.0784
+    }
+  ]
 }

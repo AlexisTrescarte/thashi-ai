@@ -1,17 +1,3 @@
 {
-  "trades": [
-    {
-      "id": "e60fe1db",
-      "side": "long",
-      "entry": 78439.2,
-      "raw_price": 78400.0,
-      "qty": 0.00114793,
-      "sizing_pct": 3.0,
-      "tp": 78680.0,
-      "sl": 78250.0,
-      "opened_at": "2026-05-02T14:46:30.707366+00:00",
-      "reason": "Probe LONG TEST mode. Squeeze BB 5m (BW 0.20%) + MACD 5m/15m hist positifs (cross frais +1.8/+18) + prix sur EMA20 5m + ",
-      "notional_at_open": 90.0429
-    }
-  ]
+  "trades": []
 }

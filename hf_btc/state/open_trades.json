@@ -1,3 +1,20 @@
 {
-  "trades": []
+  "trades": [
+    {
+      "id": "ac18d81d",
+      "side": "long",
+      "entry": 78702.8695,
+      "raw_price": 78695.0,
+      "qty": 0.01331525,
+      "sizing_pct": 35.0,
+      "tp": 79000.0,
+      "sl": 78550.0,
+      "opened_at": "2026-05-03T14:46:26.155188+00:00",
+      "reason": "Pullback dans uptrend 1h: MACD hist +23.80, RSI 60, EMA stack haussier (20<50<200). BB squeeze 5m \u00e0 0.22% annonce un bre",
+      "notional_at_open": 1047.9485,
+      "fee_model": "binance_futures_taker",
+      "fee_rate_pct": 0.05,
+      "open_fee_usd": 0.524
+    }
+  ]
 }

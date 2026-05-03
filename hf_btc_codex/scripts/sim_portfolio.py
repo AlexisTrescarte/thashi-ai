@@ -173,12 +173,13 @@ def close_position(trade_id: str, price: float, reason: str = "") -> dict[str, A
     port["realized_pnl"] = port.get("realized_pnl", 0.0) + pnl
     port["fees_paid"] = round(port.get("fees_paid", 0.0) + close_fee, 4)
     port["closed_trades_count"] += 1
-    if pnl > 0:
+    trade_pnl = float(t["pnl_usd"])
+    if trade_pnl > 0:
         port["wins"] += 1
-        port["gross_win"] = round(port.get("gross_win", 0.0) + pnl, 4)
+        port["gross_win"] = round(port.get("gross_win", 0.0) + trade_pnl, 4)
     else:
         port["losses"] += 1
-        port["gross_loss"] = round(port.get("gross_loss", 0.0) + pnl, 4)
+        port["gross_loss"] = round(port.get("gross_loss", 0.0) + trade_pnl, 4)
     _recompute_equity(port, opens, fill)
     _save_port(port)
     _append_log({"ts": _now(), "type": "close", "trade": t, "equity_after": port["equity"]})
@@ -208,6 +209,9 @@ def snapshot() -> dict[str, Any]:
         "wins": port["wins"], "losses": port["losses"],
         "win_rate": round(wr * 100, 2) if wr is not None else None,
         "profit_factor": round(pf, 3) if pf is not None else None,
+        "fees_paid": port.get("fees_paid", 0.0),
+        "fee_model": f"binance_futures_{EXECUTION_LIQUIDITY}",
+        "fee_rate_pct": _fee_rate_pct(),
         "open_trades": opens["trades"],
         "last_mark_ts": port.get("last_mark_ts"),
         "last_mark_price": port.get("last_mark_price"),
@@ -219,6 +223,7 @@ def reset() -> None:
         "starting_equity": 3000.0, "cash": 3000.0, "equity": 3000.0,
         "peak_equity": 3000.0, "max_dd_pct": 0.0,
         "realized_pnl": 0.0,
+        "fees_paid": 0.0,
         "closed_trades_count": 0, "wins": 0, "losses": 0,
         "gross_win": 0.0, "gross_loss": 0.0,
         "equity_curve": [], "last_mark_ts": None, "last_mark_price": None,

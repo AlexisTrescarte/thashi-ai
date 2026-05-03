@@ -1,3 +1,20 @@
 {
-  "trades": []
+  "trades": [
+    {
+      "id": "75d17f31",
+      "side": "long",
+      "entry": 78781.27734,
+      "raw_price": 78773.4,
+      "qty": 0.01902054,
+      "sizing_pct": 50.0,
+      "tp": 79070.0,
+      "sl": 78610.0,
+      "opened_at": "2026-05-03T15:00:28.884184+00:00",
+      "reason": "Probe LONG TEST: prix au-dessus EMA20/50/200 sur 5m-15m-1h et VWAP +0.46%, MACD 5m positif hist +3.74 avec volume z +1.9",
+      "notional_at_open": 1498.4628,
+      "fee_model": "binance_futures_taker",
+      "fee_rate_pct": 0.05,
+      "open_fee_usd": 0.7492
+    }
+  ]
 }

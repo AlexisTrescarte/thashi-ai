@@ -17,7 +17,7 @@ A Claude Code agent running on cron via Claude Code **Routines**. Objective: bea
    TELEGRAM_CHAT_ID=...
    TRADING_MODE=paper
    ```
-4. **Create the 5 routines** described in `routines/` (copy-paste cron + prompt). For each routine, in the permissions, enable **Allow unrestricted branch pushes** so Bull can commit to `main`.
+4. **Create the 5 routines** described in `routines/` (copy-paste cron + prompt). Keep runtime memory local or use a private repo if you want cloud routines to persist full state.
 5. **Launch a "Run now"** on the `weekly-review` routine to validate end-to-end.
 
 ## Architecture
@@ -25,7 +25,7 @@ A Claude Code agent running on cron via Claude Code **Routines**. Objective: bea
 ```
 thashi-ai/
 ├── CLAUDE.md                 # Global instructions (personality + iron rules)
-├── memory/                   # Persistent memory (committed each run)
+├── memory/                   # Local persistent memory (ignored in public Git)
 │   ├── guardrails.md         # Inviolable rules
 │   ├── strategy.md           # Trading strategy
 │   ├── portfolio.md          # Portfolio snapshot (updated after each trade)

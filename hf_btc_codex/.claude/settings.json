@@ -5,7 +5,7 @@
       "Bash(python hf_btc_codex/scripts/sim_portfolio.py snapshot:*)",
       "Bash(python hf_btc_codex/scripts/chart_img_client.py quota:*)",
       "Bash(python hf_btc_codex/scripts/stats.py:*)",
-      "Read(/Users/alexistrescarte/Documents/dev/thashi-ai/hf_btc_codex/state/charts/*)",
+      "Read(hf_btc_codex/state/charts/*)",
       "Read(/tmp/hf_codex_context.json)",
       "WebSearch(*)"
     ],

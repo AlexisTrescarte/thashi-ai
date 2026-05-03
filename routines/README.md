@@ -37,7 +37,7 @@ Bull is split into **two agents**:
    - Model: **Claude Opus 4.7**
    - Cron: copy from the matching `.md` file
    - Prompt: copy **the entire prompt block** from the matching `.md` file
-   - Permissions → **Allow unrestricted branch pushes**: enable (required to commit `memory/` to `main`)
+   - Permissions → keep branch pushes restricted for public repos. Enable pushes only if the repo is private or you have moved runtime memory to private storage.
 4. For each routine, **Run now** once to validate before letting the cron run.
 
 ## The 14 routines

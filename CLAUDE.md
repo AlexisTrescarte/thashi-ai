@@ -93,11 +93,11 @@ If `git push` fails: log `[PUSH-FAIL]` in learnings, notify Telegram, continue (
 
 ## Git
 
-Work on the branch set by the environment (typically `main` once deployed). Commit per run with format `[{routine}] {YYYY-MM-DD HH:MM} — {1-line summary}`. Push immediately.
+Work on the branch set by the environment (typically `main` once deployed). This repo may be public: do not commit `memory/`, `hf_btc/state/`, `hf_btc_codex/state/`, account snapshots, live positions, order IDs, or run logs. Only commit source/config changes that are safe to publish. If full persistent memory must be versioned, use a private repository.
 
 ## Routine scheduling
 
-Routines are scheduled via **claude.ai remote triggers** (managed by the `schedule` skill), not local cron. Each trigger wakes Claude in a fresh CCR sandbox on a dedicated branch, runs one slash command, commits + pushes (via `journal`), and terminates. Sessions are stateless — all continuity flows through `memory/`.
+Routines are scheduled via **claude.ai remote triggers** (managed by the `schedule` skill), not local cron. Each trigger wakes Claude in a fresh CCR sandbox on a dedicated branch, runs one slash command, and terminates. Sessions are stateless; continuity should flow through `memory/` only when that storage is private/local.
 
 Active triggers (12 total — plan max) — all in America/Chicago:
 - **Daily** (Mon–Fri): pre-market 06:00 · market-open 08:30 · intraday-scan 10:30 / 11:30 / 12:30 / 13:30 / 14:30 · market-close 15:00 · daily-review 15:30

@@ -547,6 +547,8 @@ def _maybe_notify(events: dict[str, Any], ctx: dict[str, Any]) -> None:
 def _git_commit(summary: str, material: bool) -> None:
     if not material:
         return
+    if os.environ.get("HF_ENABLE_GIT_STATE_COMMIT") != "1":
+        return
     try:
         subprocess.run(["git", "add", "-A", "hf_btc/state/", "hf_btc/"], cwd=str(REPO), check=True, capture_output=True)
         msg = f"[hf-btc] {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')} — {summary}"

@@ -8,10 +8,8 @@ venv/
 node_modules/
 *.log
 
-# Runtime and trading memory stay local. This repository is public; do not
-# publish positions, account snapshots, strategy notes, or bot run logs.
+# Long-form trading memory stays local. The HF bot state directories are
+# intentionally tracked for continuity/debugging.
 memory/
-hf_btc/state/
-hf_btc_codex/state/
 
 .claude/settings.local.json

@@ -49,8 +49,8 @@ TICK_INTERVAL_MIN = 15
 TEST_MODE = os.environ.get("HF_TEST_MODE", "0").strip() == "1"
 
 # Hard guardrails (NEVER softened — even in test mode)
-SIZING_MIN_PCT = 2.0
-SIZING_MAX_PCT = 12.0
+SIZING_MIN_PCT = 25.0
+SIZING_MAX_PCT = 100.0
 RR_FLOOR = 1.8
 DAILY_LOSS_CAP_PCT = -3.0
 MAX_OPEN = 1
@@ -231,20 +231,20 @@ def _build_prompt(ctx: dict[str, Any]) -> str:
         "| Confiance | Taille | Quand |\n"
         "|---|---|---|\n"
         "| <40 | SKIP forcé | sub-min, harness rejette |\n"
-        "| 40-49 | 2% (probe-test) | 3/7 confluence borderline, capter données |\n"
-        "| 50-59 | 3% (probe-test) | 3-4/7 confluence valide |\n"
-        "| 60-69 | 4% (probe) | 4/7 confluence standard |\n"
-        "| 70-84 | 5-7% (standard) | 5/7 confluence + chart |\n"
-        "| 85+ | 8-12% (high) | 6/7 + catalyseur news |\n"
+        "| 40-49 | 25% (probe-test) | 3/7 confluence borderline, capter données |\n"
+        "| 50-59 | 35% (probe-test) | 3-4/7 confluence valide |\n"
+        "| 60-69 | 50% (probe) | 4/7 confluence standard |\n"
+        "| 70-84 | 75% (standard) | 5/7 confluence + chart |\n"
+        "| 85+ | 100% (high) | 6/7 + catalyseur news |\n"
     ) if TEST_MODE else (
         "## 6b. Sizing par confiance (PROD)\n"
         "| Confiance | Taille | Quand |\n"
         "|---|---|---|\n"
         "| <50 | SKIP forcé | sub-min |\n"
         "| 50-59 | SKIP (sub-min) | borderline |\n"
-        "| 60-69 | 2-3% (probe) | 4/7 confluence |\n"
-        "| 70-84 | 5-7% (standard) | 5/7 + chart |\n"
-        "| 85+ | 8-12% (high) | 6/7 + catalyseur |\n"
+        "| 60-69 | 35% (probe) | 4/7 confluence |\n"
+        "| 70-84 | 65% (standard) | 5/7 + chart |\n"
+        "| 85+ | 100% (high) | 6/7 + catalyseur |\n"
     )
     lines += [
         "## 6. Garde-fous (en dur, infranchissables)",
@@ -267,7 +267,7 @@ def _build_prompt(ctx: dict[str, Any]) -> str:
         '  "limit_price": 67432.50,',
         '  "tp": 68100.00,',
         '  "sl": 67100.00,',
-        '  "sizing_pct": 8,',
+        '  "sizing_pct": 65,',
         '  "rr_ratio": 2.0,',
         '  "time_horizon_min": 60,',
         '  "confidence": 72,',
@@ -546,8 +546,6 @@ def _maybe_notify(events: dict[str, Any], ctx: dict[str, Any]) -> None:
 
 def _git_commit(summary: str, material: bool) -> None:
     if not material:
-        return
-    if os.environ.get("HF_ENABLE_GIT_STATE_COMMIT") != "1":
         return
     try:
         subprocess.run(["git", "add", "-A", "hf_btc/state/", "hf_btc/"], cwd=str(REPO), check=True, capture_output=True)

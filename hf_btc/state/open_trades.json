@@ -1,3 +1,17 @@
 {
-  "trades": []
+  "trades": [
+    {
+      "id": "89da765a",
+      "side": "long",
+      "entry": 78219.09,
+      "raw_price": 78180.0,
+      "qty": 0.00076745,
+      "sizing_pct": 2.0,
+      "tp": 78600.0,
+      "sl": 77950.0,
+      "opened_at": "2026-05-03T01:47:09.473974+00:00",
+      "reason": "Probe-test LONG mean-reversion : 5m RSI 27.8 (oversold profond) + 5m %B 0.15 zone basse, 1h MACD encore positif et prix ",
+      "notional_at_open": 60.029
+    }
+  ]
 }

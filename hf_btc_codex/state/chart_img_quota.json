@@ -1,0 +1,9 @@
+{
+  "date_utc": null,
+  "baseline_used": 0,
+  "opportunistic_used": 0,
+  "baseline_cap": 24,
+  "opportunistic_cap": 24,
+  "hard_cap": 48,
+  "history": []
+}

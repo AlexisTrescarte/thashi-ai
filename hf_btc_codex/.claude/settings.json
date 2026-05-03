@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python hf_btc_codex/scripts/btc_data.py:*)",
+      "Bash(python hf_btc_codex/scripts/sim_portfolio.py snapshot:*)",
+      "Bash(python hf_btc_codex/scripts/chart_img_client.py quota:*)",
+      "Bash(python hf_btc_codex/scripts/stats.py:*)",
+      "Read(/Users/alexistrescarte/Documents/dev/thashi-ai/hf_btc_codex/state/charts/*)",
+      "Read(/tmp/hf_codex_context.json)",
+      "WebSearch(*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(git push --force:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)"
+    ]
+  },
+  "env": {
+    "HF_BTC_AGENT": "1"
+  }
+}

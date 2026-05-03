@@ -1,0 +1,28 @@
+[Unit]
+Description=Bull-HF-BTC Codex continuous 15-min trading loop (sim-only)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=bull
+Group=bull
+WorkingDirectory=/opt/thashi-ai/hf_btc_codex
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+Environment="CODEX_BIN=/usr/bin/codex"
+Environment="HF_CODEX_MODEL=gpt-5.5"
+EnvironmentFile=/opt/thashi-ai/.env
+ExecStart=/opt/thashi-ai/hf_btc_codex/run_loop.sh
+Restart=on-failure
+RestartSec=30
+StandardOutput=append:/var/log/bull-hf-btc-codex.log
+StandardError=append:/var/log/bull-hf-btc-codex.log
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=false
+ProtectSystem=strict
+ReadWritePaths=/opt/thashi-ai /var/log /tmp /root/.codex
+
+[Install]
+WantedBy=multi-user.target

@@ -1,3 +1,20 @@
 {
-  "trades": []
+  "trades": [
+    {
+      "id": "2bfca8f3",
+      "side": "long",
+      "entry": 78532.8525,
+      "raw_price": 78525.0,
+      "qty": 0.01337782,
+      "sizing_pct": 35.0,
+      "tp": 78885.0,
+      "sl": 78345.0,
+      "opened_at": "2026-05-03T10:02:03.973909+00:00",
+      "reason": "Probe-test LONG TEST mode. 5m MACD hist +3.5 vient de croiser haussier, 15m MACD hist +28.6 confirme momentum, prix au-d",
+      "notional_at_open": 1050.5987,
+      "fee_model": "binance_futures_taker",
+      "fee_rate_pct": 0.05,
+      "open_fee_usd": 0.5253
+    }
+  ]
 }

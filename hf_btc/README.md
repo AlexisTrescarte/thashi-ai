@@ -2,7 +2,7 @@
 
 Sister project of Bull-equities. Runs a 15-minute decision loop on **BTC/USD only**, **simulation-only** (`$3000` paper portfolio, no Alpaca order execution). Long + short virtual positions. Multiple trades per day expected.
 
-> **Distinct from Bull-equities** — own CLAUDE.md, own state, own Telegram header (`*🐂 BullHF-BTC*`). Same chat ID, no API keys.
+> **Distinct from Bull-equities and the Codex HF loop** — own CLAUDE.md, own state, own Telegram header (`BTC-HF CLAUDE`). Same chat ID, no API keys.
 
 ## What runs each tick (15 min)
 

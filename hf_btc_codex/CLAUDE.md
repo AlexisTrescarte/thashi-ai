@@ -99,7 +99,7 @@ L'harness lit `HF_TEST_MODE` au démarrage. Le mode actif est annoncé en haut d
 
 ## Notifications Telegram
 
-Le harness envoie automatiquement les notifs (FR, header `🟠🟠🟠 BTC-HF`) — **uniquement sur événements de trade** :
+Le harness envoie automatiquement les notifs (FR, header `🔵🔵🔵 BTC-HF CODEX`) — **uniquement sur événements de trade** :
 - Nouveau trade ouvert
 - Trade clos (TP/SL hit ou CLOSE manuel)
 

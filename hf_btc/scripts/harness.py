@@ -486,7 +486,7 @@ def _format_open_msg(t: dict[str, Any], decision: dict[str, Any]) -> str:
     sign_tp = "+" if t["side"] == "long" else "-"
     sign_sl = "-" if t["side"] == "long" else "+"
     return (
-        f"🟠🟠🟠 *BTC-HF* 🟠🟠🟠\n"
+        f"🟠🟠🟠 *BTC-HF CLAUDE* 🟠🟠🟠\n"
         f"*{side_emoji} OUVERTURE {side} · BTC/USD*\n"
         f"_{_iso()[:19].replace('T',' ')} UTC · sim-only_\n\n"
         f"💵 *Entrée* : `${t['entry']:,.2f}`\n"
@@ -506,7 +506,7 @@ def _format_close_msg(t: dict[str, Any], reason: str) -> str:
     pnl_usd_str = f"+${t['pnl_usd']:,.2f}" if win else f"-${abs(t['pnl_usd']):,.2f}"
     pnl_pct_str = f"+{t['pnl_pct']:.2f}%" if win else f"{t['pnl_pct']:.2f}%"
     return (
-        f"🟠🟠🟠 *BTC-HF* 🟠🟠🟠\n"
+        f"🟠🟠🟠 *BTC-HF CLAUDE* 🟠🟠🟠\n"
         f"*{emoji} · {t['side'].upper()} clos*\n"
         f"_{_iso()[:19].replace('T',' ')} UTC · sim-only_\n\n"
         f"💵 Entry `${t['entry']:,.2f}` → Exit `${t['exit']:,.2f}`\n"

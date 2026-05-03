@@ -124,7 +124,7 @@ def report_fr(scope: str = "daily") -> str:
     label = "Bilan jour" if scope == "daily" else "Bilan all-time"
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     lines = [
-        f"*🐂 BullHF-BTC — {label}*",
+        f"*🔵 BullHF-BTC Codex — {label}*",
         f"_{today} UTC_",
         "",
         "📊 *Sim portfolio*",

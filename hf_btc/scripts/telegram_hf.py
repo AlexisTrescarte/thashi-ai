@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Telegram client for Bull-HF-BTC. Supports text + photo attachment.
 
-Header: *🐂 BullHF-BTC* — distinct from Bull-equities.
+Header: *BTC-HF CLAUDE* — distinct from Bull-equities and the Codex HF loop.
 
 Env: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID.
 

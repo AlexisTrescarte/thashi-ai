@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """$3000 sim portfolio for Bull-HF-BTC. LONG + SHORT virtual.
 
-Single-position cap (max 1 open trade). Slippage 0.05% adverse per fill.
+Single-position cap (max 1 open trade). Binance Futures-like fees per fill.
 P&L-based accounting: equity = starting + realized + unrealized.
 
 State files:
@@ -21,6 +21,7 @@ Usage:
 from __future__ import annotations
 
 import json
+import os
 import sys
 import uuid
 from datetime import datetime, timezone
@@ -32,7 +33,10 @@ PORT_FILE = STATE_DIR / "sim_portfolio.json"
 OPEN_FILE = STATE_DIR / "open_trades.json"
 LOG_FILE = STATE_DIR / "trade_log.jsonl"
 
-SLIPPAGE_PCT = 0.05  # 0.05% adverse fill
+SLIPPAGE_PCT = float(os.environ.get("HF_SIM_SLIPPAGE_PCT", "0.01"))
+BINANCE_MAKER_FEE_PCT = float(os.environ.get("HF_SIM_MAKER_FEE_PCT", "0.02"))
+BINANCE_TAKER_FEE_PCT = float(os.environ.get("HF_SIM_TAKER_FEE_PCT", "0.05"))
+EXECUTION_LIQUIDITY = os.environ.get("HF_SIM_LIQUIDITY", "taker").strip().lower()
 MAX_OPEN = 1
 
 
@@ -69,6 +73,16 @@ def _apply_slippage(price: float, side: str, action: str) -> float:
     if action == "close":
         return price * (1 - s) if side == "long" else price * (1 + s)
     return price
+
+
+def _fee_rate_pct() -> float:
+    if EXECUTION_LIQUIDITY == "maker":
+        return BINANCE_MAKER_FEE_PCT
+    return BINANCE_TAKER_FEE_PCT
+
+
+def _fee_usd(notional: float) -> float:
+    return notional * (_fee_rate_pct() / 100.0)
 
 
 def _unrealized(trade: dict[str, Any], mark: float) -> float:
@@ -110,15 +124,21 @@ def open_position(side: str, price: float, sizing_pct: float, tp: float, sl: flo
         raise SystemExit(f"max {MAX_OPEN} open trade(s) — close existing first")
     fill = _apply_slippage(price, side, "open")
     notional = port["equity"] * (sizing_pct / 100.0)
+    open_fee = _fee_usd(notional)
     qty = notional / fill
     tid = uuid.uuid4().hex[:8]
     trade = {
         "id": tid, "side": side, "entry": fill, "raw_price": price,
         "qty": round(qty, 8), "sizing_pct": sizing_pct, "tp": tp, "sl": sl,
         "opened_at": _now(), "reason": reason, "notional_at_open": round(notional, 4),
+        "fee_model": f"binance_futures_{EXECUTION_LIQUIDITY}",
+        "fee_rate_pct": _fee_rate_pct(),
+        "open_fee_usd": round(open_fee, 4),
     }
     opens["trades"].append(trade)
     _save_open(opens)
+    port["realized_pnl"] = port.get("realized_pnl", 0.0) - open_fee
+    port["fees_paid"] = round(port.get("fees_paid", 0.0) + open_fee, 4)
     _recompute_equity(port, opens, fill)
     _save_port(port)
     _append_log({"ts": _now(), "type": "open", "trade": trade, "equity_after": port["equity"]})
@@ -133,15 +153,25 @@ def close_position(trade_id: str, price: float, reason: str = "") -> dict[str, A
         raise SystemExit(f"trade {trade_id} not found")
     t = opens["trades"][idx]
     fill = _apply_slippage(price, t["side"], "close")
-    pnl = (fill - t["entry"]) * t["qty"] if t["side"] == "long" else (t["entry"] - fill) * t["qty"]
-    pnl_pct = pnl / t["notional_at_open"] * 100 if t["notional_at_open"] else 0.0
+    close_notional = fill * t["qty"]
+    close_fee = _fee_usd(close_notional)
+    gross_pnl = (fill - t["entry"]) * t["qty"] if t["side"] == "long" else (t["entry"] - fill) * t["qty"]
+    pnl = gross_pnl - close_fee
+    total_fees = float(t.get("open_fee_usd", 0.0)) + close_fee
+    pnl_pct = (gross_pnl - total_fees) / t["notional_at_open"] * 100 if t["notional_at_open"] else 0.0
     t.update({
         "closed_at": _now(), "exit": fill, "exit_raw": price,
-        "pnl_usd": round(pnl, 4), "pnl_pct": round(pnl_pct, 4), "close_reason": reason,
+        "gross_pnl_usd": round(gross_pnl, 4),
+        "close_fee_usd": round(close_fee, 4),
+        "total_fees_usd": round(total_fees, 4),
+        "pnl_usd": round(gross_pnl - total_fees, 4),
+        "pnl_pct": round(pnl_pct, 4),
+        "close_reason": reason,
     })
     opens["trades"].pop(idx)
     _save_open(opens)
     port["realized_pnl"] = port.get("realized_pnl", 0.0) + pnl
+    port["fees_paid"] = round(port.get("fees_paid", 0.0) + close_fee, 4)
     port["closed_trades_count"] += 1
     if pnl > 0:
         port["wins"] += 1

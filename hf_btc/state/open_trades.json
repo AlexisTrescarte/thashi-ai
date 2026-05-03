@@ -1,3 +1,20 @@
 {
-  "trades": []
+  "trades": [
+    {
+      "id": "e3f84aa5",
+      "side": "long",
+      "entry": 78787.878,
+      "raw_price": 78780.0,
+      "qty": 0.01331949,
+      "sizing_pct": 35.0,
+      "tp": 79180.0,
+      "sl": 78560.0,
+      "opened_at": "2026-05-03T12:31:25.259565+00:00",
+      "reason": "LONG probe \u2014 tendance haussi\u00e8re confirm\u00e9e 5m/15m/1h (RSI 60-65, MACD hist positif et croissant, EMA20>50>200, prix +0.52",
+      "notional_at_open": 1049.4142,
+      "fee_model": "binance_futures_taker",
+      "fee_rate_pct": 0.05,
+      "open_fee_usd": 0.5247
+    }
+  ]
 }
